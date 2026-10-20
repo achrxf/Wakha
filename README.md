@@ -1,4 +1,4 @@
 # Wakha — learn Moroccan Darija
 
-First version: a swipe-feed app for learning Darija, in one HTML file.
-Open `dist/wakha.html` in a browser.
+v2: levels path, real audio for every Darija line, the Guide, a more premium look.
+Build with `node build/build.js`, then open `dist/wakha.html`.
