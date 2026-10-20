@@ -1,0 +1,9 @@
+node_modules/
+build/cache/
+build/__pycache__/
+build/synth.log
+tests/shots/
+tests/video/
+*.pyc
+.DS_Store
+tests/clip/
