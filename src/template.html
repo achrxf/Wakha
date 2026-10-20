@@ -1,18 +1,18 @@
 <title>Wakha Darija</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="theme-color" content="#1E1A2B">
+<meta name="theme-color" content="#3B33C4">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Readex+Pro:wght@400;500;600;700&family=Reem+Kufi:wght@500..700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Readex+Pro:wght@300..700&family=Reem+Kufi:wght@500..700&display=swap">
 <style>
 /*CSS*/
 </style>
 
 <div class="stage" id="stage">
-  <section class="view" id="v-learn" aria-label="Learn"></section>
+  <section class="view" id="v-today" aria-label="Today"></section>
+  <section class="view" id="v-journey" aria-label="Journey" hidden></section>
   <section class="view" id="v-feed" aria-label="Feed" hidden><main class="feed" id="feed"></main></section>
   <section class="view" id="v-guide" aria-label="Guide" hidden></section>
-  <section class="view" id="v-kenz" aria-label="Kenz" hidden></section>
   <section class="view" id="v-me" aria-label="Me" hidden></section>
 
   <header class="hud" id="hud">
@@ -30,10 +30,10 @@
 
   <nav class="dock" aria-label="Sections">
     <div class="dock-in">
-      <button class="tab on" data-tab="learn" id="tab-learn"></button>
+      <button class="tab on" data-tab="today" id="tab-today"></button>
+      <button class="tab" data-tab="journey" id="tab-journey"></button>
       <button class="tab" data-tab="feed" id="tab-feed"></button>
       <button class="tab" data-tab="guide" id="tab-guide"></button>
-      <button class="tab" data-tab="kenz" id="tab-kenz"></button>
       <button class="tab" data-tab="me" id="tab-me"></button>
     </div>
   </nav>

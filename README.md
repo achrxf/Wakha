@@ -1,4 +1,4 @@
 # Wakha — learn Moroccan Darija
 
-v3: the Journey, a trip through Moroccan cities with zellige medallions.
+v4: Today screen, word of the day, daily sprint, streak shields, cleaner layout.
 Build with `node build/build.js`, then open `dist/wakha.html`.

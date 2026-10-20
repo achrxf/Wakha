@@ -181,6 +181,7 @@ const Sound = (() => {
     open:(t0) => { note(180, t0, 0.35, "sawtooth", 0.03, 900); [1047, 1319, 1568, 2093].forEach((f, i) => note(f, t0 + 0.3 + i * 0.07, 0.3, "sine", 0.07)); },
     flip:(t0) => note(440, t0, 0.12, "triangle", 0.06, 990),
     tick:(t0) => note(1320, t0, 0.03, "square", 0.022),
+    set:(t0, k = 0) => { const sc = [523, 587, 659, 784, 880, 1047, 1175, 1319, 1568, 1760, 2093, 2349, 2637, 3136]; note(sc[k % sc.length], t0, 0.09, "triangle", 0.06); },
     heart:(t0) => { note(880, t0, 0.08, "sine", 0.07); note(1320, t0 + 0.05, 0.14, "sine", 0.06); },
     whoosh:(t0) => note(260, t0, 0.2, "sine", 0.045, 820),
     match:(t0) => note(988, t0, 0.1, "sine", 0.1),
@@ -320,7 +321,7 @@ const FX = {
   cv:null, g:null, parts:[], raf:0, w:0, h:0,
   init() { this.cv = $("#fx"); this.g = this.cv.getContext("2d"); this.size(); addEventListener("resize", () => this.size()); },
   size() { const r = this.cv.getBoundingClientRect(); const dpr = Math.min(2, devicePixelRatio || 1); this.cv.width = Math.max(1, r.width * dpr); this.cv.height = Math.max(1, r.height * dpr); this.g.setTransform(dpr, 0, 0, dpr, 0, 0); this.w = r.width; this.h = r.height; },
-  cols:["#EBC274", "#FBE3AA", "#38D9A3", "#7E8CFF", "#FFFFFF", "#FF7F97", "#C995FF"],
+  cols:["#F6B932", "#FFD36B", "#129C72", "#6153E0", "#FFFFFF", "#DE4459", "#3B33C4"],
   burst(x, y, n = 34, power = 1) {
     if (reduced) n = Math.min(n, 8);
     for (let i = 0; i < n; i++) {
@@ -329,9 +330,20 @@ const FX = {
     }
     this.go();
   },
-  rain(n = 100) {
+  rain(n = 100, cols) {
     if (reduced) n = 16;
-    for (let i = 0; i < n; i++) this.parts.push({ x:Math.random() * this.w, y:-20 - Math.random() * this.h * 0.6, vx:(Math.random() - 0.5) * 2, vy:2 + Math.random() * 3, r:3 + Math.random() * 7, rot:Math.random() * 6.28, vr:(Math.random() - 0.5) * 0.2, c:this.cols[i % this.cols.length], life:0, max:160 + Math.random() * 60 });
+    const cs = cols ? cols.concat(["#F6B932", "#FFFFFF"]) : this.cols;
+    for (let i = 0; i < n; i++) this.parts.push({ x:Math.random() * this.w, y:-20 - Math.random() * this.h * 0.6, vx:(Math.random() - 0.5) * 2, vy:2 + Math.random() * 3, r:5 + Math.random() * 8, rot:Math.random() * 6.28, vr:(Math.random() - 0.5) * 0.2, c:cs[i % cs.length], life:0, max:160 + Math.random() * 60, s:i % 3 });
+    this.go();
+  },
+  // zellige shards: small glazed stars and diamonds that pop out of a right answer
+  shards(x, y, n = 14, cols) {
+    if (reduced) n = Math.min(n, 5);
+    const cs = (cols || ["#3B33C4", "#129C72", "#F6B932"]).concat(["#F6B932"]);
+    for (let i = 0; i < n; i++) {
+      const a = -Math.PI / 2 + (Math.random() - 0.5) * Math.PI * 1.6, sp = 4 + Math.random() * 6;
+      this.parts.push({ x, y, vx:Math.cos(a) * sp, vy:Math.sin(a) * sp - 2, r:6 + Math.random() * 8, rot:Math.random() * 6.28, vr:(Math.random() - 0.5) * 0.3, c:cs[i % cs.length], life:0, max:46 + Math.random() * 26, s:1 + (i % 2) });
+    }
     this.go();
   },
   go() { if (!this.raf) this.raf = requestAnimationFrame(() => this.loop()); },
@@ -342,7 +354,9 @@ const FX = {
       p.life++; p.vy += 0.22; p.vx *= 0.985; p.x += p.vx; p.y += p.vy; p.rot += p.vr;
       const a = Math.max(0, 1 - p.life / p.max);
       g.save(); g.globalAlpha = Math.min(1, a * 1.6); g.translate(p.x, p.y); g.rotate(p.rot); g.fillStyle = p.c;
-      g.fillRect(-p.r / 2, -p.r / 2, p.r, p.r); g.rotate(Math.PI / 4); g.fillRect(-p.r / 2, -p.r / 2, p.r, p.r);
+      if (p.s === 1) { g.beginPath(); for (let k = 0; k < 16; k++) { const rr = k % 2 ? p.r * 0.38 : p.r * 0.62, aa = k * Math.PI / 8; g.lineTo(Math.cos(aa) * rr, Math.sin(aa) * rr); } g.closePath(); g.fill(); g.strokeStyle = "rgba(255,255,255,.85)"; g.lineWidth = 1.2; g.stroke(); }
+      else if (p.s === 2) { g.beginPath(); g.moveTo(0, -p.r * 0.6); g.lineTo(p.r * 0.38, 0); g.lineTo(0, p.r * 0.6); g.lineTo(-p.r * 0.38, 0); g.closePath(); g.fill(); g.strokeStyle = "rgba(255,255,255,.85)"; g.lineWidth = 1.2; g.stroke(); }
+      else { g.fillRect(-p.r / 2, -p.r / 2, p.r, p.r); g.rotate(Math.PI / 4); g.fillRect(-p.r / 2, -p.r / 2, p.r, p.r); }
       g.restore();
     }
     this.raf = this.parts.length ? requestAnimationFrame(() => this.loop()) : 0;
@@ -413,12 +427,13 @@ function hit(ok, fromEl, base, opts = {}) {
     const bonus = Math.min(2, Math.floor((combo - 1) / 2));
     Sound.play("good");
     if (combo >= 3) setTimeout(() => Sound.play("combo", combo), 140);
-    if (fromEl && fromEl.isConnected) { const c = centerOf(fromEl); FX.burst(c.x, c.y, combo >= 5 ? 40 : 22, combo >= 5 ? 1.2 : 0.85); }
+    if (fromEl && fromEl.isConnected) { const c = centerOf(fromEl); FX.shards(c.x, c.y, combo >= 5 ? 26 : 14, glazeNow()); }
+    haptic(10);
     renderCombo();
     return award(base + bonus, fromEl, { boostable:true, to:opts.to });
   }
   combo = 0; S.stats.wrong++; rec.w++;
-  Sound.play("bad");
+  Sound.play("bad"); haptic([24, 50, 24]);
   renderCombo();
   persist();
   return 0;
@@ -487,7 +502,7 @@ function nextOverlay() {
   } else if (o.kind === "unit") {
     const prev = cityOf(o.unit - 1), c = cityOf(o.unit), u = UNITS[o.unit];
     html = `<div class="ov-box"><div class="mc" style="width:150px;height:150px">${medallion(o.unit - 1, unitStates(o.unit - 1).map(() => "done"))}</div>
-      <p class="ov-k">${esc(cityName(prev))} · ${esc(t("glazedN", { a:unitStates(o.unit - 1).length, b:unitStates(o.unit - 1).length }))}</p>
+      <p class="ov-k">${esc(cityName(prev))}, ${esc(t("glazedN", { a:unitStates(o.unit - 1).length, b:unitStates(o.unit - 1).length }))}</p>
       <p class="ov-t">${esc(t("nextStop"))}: ${esc(cityName(c))}</p><p class="ov-s"><b>${dj(u.d)}</b>${esc(L(c.scene))}</p>
       <div class="ov-btns"><button class="cta" data-ov="close">${esc(t("continueIn", { c:cityName(c) }))}</button></div></div>`;
     Sound.play("open"); setTimeout(() => FX.rain(70), 120);

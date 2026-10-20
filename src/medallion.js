@@ -61,38 +61,40 @@ const Zel = (() => {
     return R;
   }
   const RINGS = rings();
-  // which rings belong to which lesson, so every ring always reflects real progress
-  const RING_MAP = { 1: [[0, 1, 2, 3, 4]], 2: [[0, 1], [2, 3, 4]], 3: [[0], [1, 2], [3, 4]], 4: [[0], [1], [2], [3, 4]], 5: [[0], [1], [2], [3], [4]] };
+  // every piece in setting order: centre outwards, round each ring. Lesson k of n lays the k-th share of the pieces,
+  // so each finished lesson visibly sets the next run of tiles, like a craftsman working outwards.
+  const PIECES = [];
+  RINGS.forEach((pieces, ri) => pieces.forEach((p) => { if (p.role !== "brass") PIECES.push(Object.assign({ ri }, p)); }));
+  const BRASS = RINGS[0].find((p) => p.role === "brass");
   let uid = 0;
-  // states: array per lesson of "done" | "current" | "locked"; glazes: [main, second, accent]
+  // states: one per lesson, "done" | "current" | "locked"; glazes: [main, second, accent]
   function svg(glazes, states, opts = {}) {
-    const id = "z" + (++uid), seed = opts.seed || 7;
-    const map = RING_MAP[Math.min(5, Math.max(1, states.length))];
-    const ringState = [null, null, null, null, null];
-    map.forEach((rs, k) => rs.forEach((ri) => (ringState[ri] = states[Math.min(k, states.length - 1)])));
-    const roleColor = (role) => role === "ivory" ? "#F1EADB" : role === "brass" ? "#C8A04E" : glazes[role % glazes.length];
-    const allDone = states.every((x) => x === "done"), anyDone = states.some((x) => x === "done");
+    const id = "z" + (++uid), seed = opts.seed || 7, n = Math.max(1, states.length), N = PIECES.length;
+    const roleColor = (role) => role === "ivory" ? "#F1EADB" : glazes[role % glazes.length];
+    const anyDone = states.some((x) => x === "done") || /\bany\b/.test(opts.cls || "");
+    const rnd = rng(seed * 97 + 13);
     let out = `<svg xmlns="http://www.w3.org/2000/svg" class="zel ${opts.cls || ""}" viewBox="-104 -104 208 208" aria-hidden="true"><defs>
       <linearGradient id="${id}s" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".45" stop-color="#fff" stop-opacity=".06"/><stop offset="1" stop-color="#000" stop-opacity=".12"/></linearGradient>
       <radialGradient id="${id}l" cx=".32" cy=".26" r=".9"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></radialGradient>
       <filter id="${id}c" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="2" seed="${seed}"/><feColorMatrix values="0 0 0 0 0.4  0 0 0 0 0.25  0 0 0 0 0.18  0 0 0 .22 0"/><feComposite in2="SourceGraphic" operator="in"/><feBlend in2="SourceGraphic" mode="multiply"/></filter>
     </defs>
-    <circle class="field" r="101.5" fill="${anyDone || /\bany\b/.test(opts.cls || "") ? opts.field || "#17151F" : "#B07A60"}" style="--g:${opts.field || "#17151F"};--k:#B07A60"/>`;
-    RINGS.forEach((pieces, ri) => {
-      const st = ringState[ri] || "done";
-      const deco = ringState[ri] == null;
-      const rnd = rng(seed * 97 + ri * 13);
-      out += `<g class="ring r${ri} ${deco ? "deco" : st}" data-ring="${ri}"${!deco && st !== "done" ? ` filter="url(#${id}c)"` : ""}>`;
-      pieces.forEach((p, k) => {
+    <circle class="field" r="101.5" fill="${anyDone ? opts.field || "#17151F" : "#B07A60"}" style="--g:${opts.field || "#17151F"};--k:#B07A60"/>`;
+    for (let k = 0; k < n; k++) {
+      const a = Math.floor(k * N / n), b = Math.floor((k + 1) * N / n), st = states[k] || "locked";
+      out += `<g class="seg l${k} ${st}" data-l="${k}" style="--l:${k}"${st !== "done" ? ` filter="url(#${id}c)"` : ""}>`;
+      const ds = [];
+      for (let j = a; j < b; j++) {
+        const p = PIECES[j];
         const glazeC = vary(roleColor(p.role), rnd, p.role === "ivory" ? 3 : 6);
         const clayC = vary(p.role === "ivory" ? "#E2C3AC" : "#CF9C80", rnd, 5);
-        out += `<path class="pc" d="${p.d}" fill="${deco || st === "done" ? glazeC : clayC}" stroke="#E9E0CF" stroke-width="1.15" style="--g:${glazeC};--k:${clayC};transition-delay:${(k * 0.035).toFixed(3)}s"/>`;
-      });
-      out += `<path class="sheen" d="${pieces.map((p) => p.d).join("")}" fill="url(#${id}s)"/>`;
-      out += `</g>`;
-    });
+        out += `<path class="pc" d="${p.d}" fill="${st === "done" ? glazeC : clayC}" stroke="#E9E0CF" stroke-width="1.15" style="--g:${glazeC};--k:${clayC};--i:${j - a}"/>`;
+        ds.push(p.d);
+      }
+      out += `<path class="sheen" d="${ds.join("")}" fill="url(#${id}s)"/></g>`;
+    }
+    out += `<path d="${BRASS.d}" fill="#C8A04E" stroke="#E9E0CF" stroke-width="1.15"/>`;
     out += `<circle r="101.5" fill="url(#${id}l)" style="mix-blend-mode:soft-light" pointer-events="none"/><circle r="102.2" fill="none" stroke="#C9A24F" stroke-width="2.2"/><circle r="99.6" fill="none" stroke="#EDE5D6" stroke-width=".9" opacity=".7"/></svg>`;
     return out;
   }
-  return { svg, RING_MAP };
+  return { svg, count:PIECES.length };
 })();

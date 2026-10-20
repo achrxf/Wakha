@@ -15,6 +15,8 @@ VOW = {"a", "e", "i", "o", "u", "ou", "é"}
 
 # words whose letters (emphatics, fixed expressions) the rules can't guess
 OVR = {
+    "gool": "كُول", "goool": "كُووول", "l7akam": "الْحَكَم", "maghrib": "مْغْرِيب", "lmountakhab": "الْمُنْتَخَب", "ta3adol": "تْعَادُل", "nnatija": "النْتِيجَة", "zero": "زِيرُو", "niya": "النِّيَّة", "lkoura": "الكورة", "tiran": "تيران", "ljmhour": "الْجُمْهُور", "sir": "سِيرْ", "d9i9a": "دْقِيقَة", "lkhra": "اللُّخْرَى",
+    "tfddel": "تْفَضَّل", "tajine": "طَاجِين", "sa3a": "السَّاعَة", "bsse7": "بْصَّحّ", "wallah": "وَاللَّه", "mochkil": "مُشْكِيل", "ba3d": "بَعْد", "mtcharfin": "مْتْشَرّْفِين",
     "salam": "سَلَام", "safi": "صَافِي", "sa7bi": "صَاحْبِي", "sa7bti": "صَاحِبْتِي", "sba7": "صِبَاح", "lkhir": "الْخِير",
     "choukran": "شُكْرَان", "mouchkil": "مُشْكِيل", "machi": "مَاشِي", "tobis": "طُوبِيس", "ttobis": "الطُّوبِيس",
     "tomobil": "طُومُوبِيل", "lmghrib": "الْمَغْرِيب", "mghribi": "مَغْرِيبِي", "l7amdoulillah": "الْحَمْدُ لِلَّه",

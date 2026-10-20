@@ -3,6 +3,36 @@
    ========================================================= */
 
 
+
+// v4: three more words per city
+w("msalkhir","Msa lkhir","مسا الخير","good evening","bonsoir","hello",{ex:["Msa lkhir, labas?","Good evening, how are you?","Bonsoir, ça va ?"],note:["From late afternoon on, swap sba7 for msa.","À partir de la fin d’après-midi, on remplace sba7 par msa."]});
+w("mtcharfin","Mtcharfin","متشرفين","nice to meet you","enchanté","hello",{ex:["Smiti Adam. Mtcharfin!","I’m Adam. Nice to meet you!","Je m’appelle Adam. Enchanté !"]});
+w("kolchi","Kolchi mzyan?","كلشي مزيان؟","is everything good?","tout va bien ?","hello",{ex:["Kolchi mzyan f dar?","All good at home?","Tout va bien à la maison ?"],note:["Ask about the family too. It’s polite to ask twice.","Demande aussi pour la famille. C’est poli de demander deux fois."]});
+w("tfdl","Tfddel","تفضل","here you go / go ahead","tiens / je t’en prie","polite",{ex:["Tfddel, atay dyalek.","Here you go, your tea.","Tiens, ton thé."],note:["Say it when you hand something over or hold the door.","Dis-le quand tu tends quelque chose ou tiens la porte."]});
+w("mamochkil","Ma kayn mochkil","ما كاين مشكل","no problem","pas de problème","polite",{ex:["Ma kayn mochkil, sa7bi.","No problem, my friend.","Pas de problème, mon pote."]});
+w("choukranbzzaf","Choukran bzzaf","شكرا بزاف","thanks a lot","merci beaucoup","polite",{ex:["Choukran bzzaf 3la atay!","Thanks a lot for the tea!","Merci beaucoup pour le thé !"]});
+w("mnin","Mnin nta?","منين نتا؟","where are you from?","tu viens d’où ?","q",{ex:["Mnin nta? Ana mn Fes.","Where are you from? I’m from Fes.","Tu viens d’où ? Moi, de Fès."],note:["To a woman: mnin nti?","À une femme : mnin nti ?"]});
+w("fingadi","Fin ghadi?","فين غادي؟","where are you going?","tu vas où ?","q",{ex:["Fin ghadi f had lwe9t?","Where are you going at this hour?","Tu vas où à cette heure-ci ?"]});
+w("achnouhada","Achnou hada?","أشنو هادا؟","what’s this?","c’est quoi ça ?","q",{ex:["Achnou hada? Bnin!","What’s this? Delicious!","C’est quoi ça ? Délicieux !"]});
+w("tajine","Tajine","طاجين","tagine","tajine","food",{ex:["Tajine b l7em w l9e9","Tagine with meat and prunes","Tajine viande aux pruneaux"]});
+w("l7sab","L7sab, 3afak","الحساب عافاك","the bill, please","l’addition, s’il te plaît","food",{ex:["L7sab, 3afak. Choukran!","The bill, please. Thanks!","L’addition, s’il vous plaît. Merci !"]});
+w("zid","Zid","زيد","more / add","encore / ajoute","food",{ex:["Zid chwiya d atay, 3afak.","A bit more tea, please.","Encore un peu de thé, s’il te plaît."]});
+w("hada","Hada","هادا","this one","celui-ci","souk",{ex:["Bghit hada, 3afak.","I want this one, please.","Je veux celui-ci, s’il vous plaît."]});
+w("ghirkanchouf","Ghir kanchouf","غير كنشوف","just looking","je regarde juste","souk",{ex:["La choukran, ghir kanchouf.","No thanks, just looking.","Non merci, je regarde juste."],note:["Your shield on every souk street.","Ton bouclier dans chaque rue du souk."]});
+w("ma3ndich","Ma 3ndich","ما عنديش","I don’t have (it)","je n’ai pas","souk",{ex:["Ma 3ndich sarf.","I don’t have change.","Je n’ai pas de monnaie."]});
+w("chhalsa3a","Chhal f sa3a?","شحال فالساعة؟","what time is it?","quelle heure il est ?","time",{ex:["Smeh liya, chhal f sa3a?","Excuse me, what time is it?","Pardon, il est quelle heure ?"]});
+w("mnba3d","Mn ba3d","من بعد","later","plus tard","time",{ex:["Nchoufek mn ba3d!","See you later!","À plus tard !"]});
+w("ba9i","Ba9i","باقي","still / not yet","encore / pas encore","time",{ex:["Ba9i ma jach.","He hasn’t come yet.","Il n’est pas encore venu."]});
+w("weld","Weld","ولد","boy / son","garçon / fils","family",{ex:["Hada weldi.","This is my son.","C’est mon fils."]});
+w("bent","Bent","بنت","girl / daughter","fille","family",{ex:["Bent khti","My sister’s daughter","La fille de ma sœur"]});
+w("fer7an","Fer7an","فرحان","happy","content","feel",{ex:["Ana fer7an bzzaf lyoum!","I’m so happy today!","Je suis trop content aujourd’hui !"],note:["To a woman: fer7ana.","Au féminin : fer7ana."]});
+w("ghadi","Ghadi","غادي","going / going to","je vais","travel",{ex:["Ghadi l Merzouga.","I’m going to Merzouga.","Je vais à Merzouga."]});
+w("b3id","B3id","بعيد","far","loin","travel",{ex:["Wach b3id?","Is it far?","C’est loin ?"]});
+w("9rib","9rib","قريب","close / near","près","travel",{ex:["9rib, ghir hna.","Close, just here.","Tout près, juste ici."]});
+w("bsse7","Bsse7?","بصح؟","really?","c’est vrai ?","expr",{ex:["Bsse7? Ma 3reftch!","Really? I didn’t know!","C’est vrai ? Je savais pas !"]});
+w("wallah","Wallah","والله","I swear / honestly","je te jure","expr",{ex:["Wallah bnin!","Honestly, delicious!","Je te jure, c’est délicieux !"],note:["Moroccans use it for everything from big promises to good soup.","On l’utilise pour tout, des grandes promesses à une bonne soupe."]});
+w("nchoufek","Nchoufek ghedda","نشوفك غدا","see you tomorrow","à demain","expr",{ex:["Bslama, nchoufek ghedda!","Bye, see you tomorrow!","Salut, à demain !"]});
+
 // the journey: one Moroccan city per unit. wall = plaster color, niche = panel, g = glazes, accent = text accent
 const CITIES = [
   { en:"Tangier", fr:"Tanger", ar:"طنجة", wall:"#E6ECE8", niche:"#D3DFDA", accent:"#126E6C", g:["#13706F","#1F45B5","#E0A631"], field:"#141B24",
@@ -52,32 +82,50 @@ const LESSON_SCENES = {
   u9l1:["A fisherman talks fast. You didn’t catch a word.","Un pêcheur parle vite. Tu n’as rien compris."],
   u9l2:["Plans with friends: maybe, God willing.","Des projets entre amis : peut-être, si Dieu le veut."],
   u9l3:["Your friend got engaged. Big news at the port.","Ton ami s’est fiancé. Grande nouvelle au port."],
+  u1l4:["Evening on the Corniche. A new friend joins your table.","Le soir sur la corniche. Un nouvel ami s’assoit à ta table."],
+  u2l4:["Your host hands you a glass of tea on the terrace.","Ton hôte te tend un verre de thé sur la terrasse."],
+  u3l4:["A curious kid follows you through the souk with questions.","Un enfant curieux te suit dans le souk avec ses questions."],
+  u4l4:["A tagine for four, and the bill nobody lets you pay.","Un tajine pour quatre, et l’addition que personne ne te laisse payer."],
+  u5l3:["A hundred shops call your name. You are just looking.","Cent boutiques t’appellent. Tu regardes juste."],
+  u6l4:["A hundred meetings, and nobody knows what time it is.","Cent rendez-vous, et personne ne sait quelle heure il est."],
+  u7l4:["The cousins arrive. Everyone is happy, loudly.","Les cousins arrivent. Tout le monde est content, très fort."],
+  u8l4:["The dunes look close. They are not.","Les dunes ont l’air proches. Elles ne le sont pas."],
+  u9l5:["Last night by the sea. See you tomorrow, really?","Dernière soirée au bord de la mer. À demain, vraiment ?"],
+  u1s:["A stranger at the café wants to know who you are.","Un inconnu au café veut savoir qui tu es."],
+  u2s:["The corner shop on a blue street.","L’épicerie d’une rue bleue."],
+  u3s:["You ask your way out of the medina.","Tu demandes ton chemin pour sortir de la médina."],
+  u4s:["Your order at a Meknes café.","Ta commande dans un café de Meknès."],
+  u6s:["Making weekend plans with a friend.","Un programme de week-end avec un pote."],
+  u7s:["Mom calls. Where are you?","Maman appelle. T’es où ?"],
+  u8s:["A petit taxi to the edge of town.","Un petit taxi jusqu’au bout de la ville."],
+  u9s:["A wedding by the ocean.","Un mariage au bord de l’océan."],
   u9l4:["Cold wind, hot tea and a tired body.","Vent froid, thé chaud et corps fatigué."],
 };
 
 // tile names map to card palettes in CSS
 const UNITS = [
   { id:"u1", d:"Salam", en:"Hello and how are you", fr:"Bonjour et ça va", tile:"majorelle",
-    words:["salam","labas","hamdoulillah","bikhir","kidayr","sba7","merhba","bslama","tsb7"] },
+    words:["salam","labas","hamdoulillah","bikhir","kidayr","sba7","merhba","bslama","tsb7","msalkhir","mtcharfin","kolchi"] },
   { id:"u2", d:"Bla mzyya", en:"Please, thanks and OK", fr:"S’il te plaît, merci, d’accord", tile:"emerald",
-    words:["choukran","blamzyya","3afak","smeh","ma3lich","wakha","iyeh","la","safi"] },
+    words:["choukran","blamzyya","3afak","smeh","ma3lich","wakha","iyeh","la","safi","tfdl","mamochkil","choukranbzzaf"] },
   { id:"u3", d:"Achnou?", en:"Asking questions", fr:"Poser des questions", tile:"teal",
-    words:["achnou","fin","kifach","3lach","imta","chkoun","wach","smiti","achsmitek"] },
+    words:["achnou","fin","kifach","3lach","imta","chkoun","wach","smiti","achsmitek","mnin","fingadi","achnouhada"] },
   { id:"u4", d:"Atay", en:"Tea, food and the café", fr:"Thé, bouffe et café", tile:"saffron",
-    words:["atay","na3na3","sokkar","9hwa","lma","khobz","bghit","fiyajjo3","bnin"] },
+    words:["atay","na3na3","sokkar","9hwa","lma","khobz","bghit","fiyajjo3","bnin","tajine","l7sab","zid"] },
   { id:"u5", d:"Ssou9", en:"Shopping at the souk", fr:"Faire ses courses au souk", tile:"pomegranate", boss:"haggle",
-    words:["chhal","ghali","rkhis","nqss","akhirtaman","lflous","bzzaf","chwiya"] },
+    words:["chhal","ghali","rkhis","nqss","akhirtaman","lflous","bzzaf","chwiya","hada","ghirkanchouf","ma3ndich"] },
   { id:"u6", d:"Daba", en:"Time and numbers", fr:"Le temps et les chiffres", tile:"night",
-    words:["daba","lyoum","ghedda","lbare7","dghya","wa7ed","jouj","tlata","khamsa","3achra","mya"] },
+    words:["daba","lyoum","ghedda","lbare7","dghya","wa7ed","jouj","tlata","khamsa","3achra","mya","chhalsa3a","mnba3d","ba9i"] },
   { id:"u7", d:"Lfamilia", en:"Family and feelings", fr:"Famille et sentiments", tile:"plum",
-    words:["yemma","baba","khouya","khti","mima","sa7bi","kanbghik","mzyan","zwin","khayb"] },
+    words:["yemma","baba","khouya","khti","mima","sa7bi","kanbghik","mzyan","zwin","khayb","weld","bent","fer7an"] },
   { id:"u8", d:"Trig", en:"Getting around", fr:"Se déplacer", tile:"teal",
-    words:["wqef","nichan","limen","lisar","tobis","tomobil","kayn","makaynch","dar"] },
+    words:["wqef","nichan","limen","lisar","tobis","tomobil","kayn","makaynch","dar","ghadi","b3id","9rib"] },
   { id:"u9", d:"Lhedra", en:"Keeping the conversation going", fr:"Tenir une conversation", tile:"emerald",
-    words:["mafhemtch","3awed","hder","ma3reftch","yallah","inchallah","mabrouk","skhoun","lbrd","3yit","simana","kozina"] },
+    words:["mafhemtch","3awed","hder","ma3reftch","yallah","inchallah","mabrouk","skhoun","lbrd","3yit","simana","kozina","bsse7","wallah","nchoufek"] },
 ];
 
 // split each unit into lessons of 3 to 4 words, then a review (or the souk boss)
+const STORY_OF = { u1:"meet", u2:"hanout", u3:"lost", u4:"cafe", u6:"friend", u7:"mom", u8:"taxi", u9:"wedding" };
 function buildPath() {
   const nodes = [];
   UNITS.forEach((u, ui) => {
@@ -90,6 +138,7 @@ function buildPath() {
     if (m === 2) { fixed = Array(Math.floor(n / 3) - 2).fill(3).concat([4, 4]); }
     let k = 0, li = 0;
     for (const take of fixed) { nodes.push({ id:`${u.id}l${++li}`, unit:ui, kind:"lesson", words:u.words.slice(k, k + take) }); k += take; }
+    if (STORY_OF[u.id]) nodes.push({ id:`${u.id}s`, unit:ui, kind:"story", story:STORY_OF[u.id], words:[] });
     nodes.push({ id:`${u.id}r`, unit:ui, kind:u.boss === "haggle" ? "boss" : "review", words:u.words.slice() });
   });
   return nodes;
@@ -321,6 +370,12 @@ Object.assign(UI.en, {
   nextStop:"Next stop", continueIn:"Continue in {c}", journeyEnd:"More stops are on the way.", sceneStart:"Start the lesson", tileGlazed:"Tile glazed", perfectGlaze:"Perfect glaze",
   welcome3T:"Learn Darija across Morocco", welcome3S:"Nine cities, from Tangier to the Sahara. Every lesson glazes a piece of your zellige.", startJourney:"Start the journey",
   reviewTile:"Review", bossTile:"Souk", nextT:"Next", lockedT:"Locked", tapMed:"Each finished lesson glazes a ring of this city’s zellige.",
+  today:"Today", journey:"Journey", dayTrip:"Day {n} of your trip", dayTrip1:"Your trip starts in Tangier.", todayH:"Today", weekH:"This week",
+  wotd:"Word of the day", sprint:"Daily sprint", sprintS:"20 seconds, once a day", sprintBest:"Today: {n} right", sprintLock:"Learn 8 words to unlock",
+  reviewC:"Review", reviewS:"{n} words are ready", reviewNone:"Nothing due", cont:"Continue", startT:"Start", lessonsOf:"{a} of {b} lessons",
+  storyK:"Story", storyListen:"Listen to the story", storyTap:"Tap a line to see what it means.", storyQ:"What does this line mean?", storyQ2:"Which line means this?",
+  cityLocked:"Finish {c} to unlock this city.", wordsL:"words", streakL:"day streak", kenzL:"rare words", kenzH:"Kenz", doneT:"Done",
+  lessonT:"Lesson {n}", storyT:"Story", reviewT:"Review", soukT:"Souk battle", allDoneT:"Every lesson in Morocco is glazed.",
   learn:"Learn", feed:"Feed", guide:"Guide", kenz:"Kenz", me:"Me",
   unit:"Unit {n}", lesson:"Lesson {n}", review2:"Unit review", boss:"Souk boss", start:"Start", continueL:"Continue", practiceAgain:"Practice again",
   locked:"Finish the lesson before this one to unlock it.", lessonWords:"New words", done:"Done", startHere:"Start here",
@@ -343,6 +398,12 @@ Object.assign(UI.fr, {
   nextStop:"Prochaine étape", continueIn:"Continuer à {c}", journeyEnd:"D’autres étapes arrivent.", sceneStart:"Commencer la leçon", tileGlazed:"Tuile émaillée", perfectGlaze:"Émail parfait",
   welcome3T:"Apprends la darija à travers le Maroc", welcome3S:"Neuf villes, de Tanger au Sahara. Chaque leçon émaille une pièce de ton zellige.", startJourney:"Commencer le voyage",
   reviewTile:"Révision", bossTile:"Souk", nextT:"Suivant", lockedT:"Verrouillé", tapMed:"Chaque leçon terminée émaille un anneau du zellige de cette ville.",
+  today:"Aujourd’hui", journey:"Voyage", dayTrip:"Jour {n} de ton voyage", dayTrip1:"Ton voyage commence à Tanger.", todayH:"Aujourd’hui", weekH:"Cette semaine",
+  wotd:"Le mot du jour", sprint:"Sprint du jour", sprintS:"20 secondes, une fois par jour", sprintBest:"Aujourd’hui : {n} bonnes", sprintLock:"Apprends 8 mots pour débloquer",
+  reviewC:"Révision", reviewS:"{n} mots sont prêts", reviewNone:"Rien à revoir", cont:"Continuer", startT:"Commencer", lessonsOf:"{a} leçons sur {b}",
+  storyK:"Histoire", storyListen:"Écoute l’histoire", storyTap:"Touche une ligne pour voir ce qu’elle veut dire.", storyQ:"Que veut dire cette phrase ?", storyQ2:"Quelle phrase veut dire ça ?",
+  cityLocked:"Termine {c} pour débloquer cette ville.", wordsL:"mots", streakL:"jours de suite", kenzL:"mots rares", kenzH:"Kenz", doneT:"Fait",
+  lessonT:"Leçon {n}", storyT:"Histoire", reviewT:"Révision", soukT:"Bataille au souk", allDoneT:"Toutes les leçons du Maroc sont émaillées.",
   learn:"Apprendre", feed:"Fil", guide:"Guide", kenz:"Kenz", me:"Moi",
   unit:"Unité {n}", lesson:"Leçon {n}", review2:"Révision de l’unité", boss:"Boss du souk", start:"Commencer", continueL:"Continuer", practiceAgain:"Refaire",
   locked:"Termine la leçon d’avant pour débloquer celle-ci.", lessonWords:"Nouveaux mots", done:"Fait", startHere:"Commence ici",
