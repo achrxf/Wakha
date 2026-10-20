@@ -212,41 +212,24 @@ function installPatterns() {
   st.setProperty("--zl-dark", `url("${svgURI(zelligeTile("#3A2105", 0.14))}")`);
   st.setProperty("--zl-page", `url("${svgURI(zelligeTile("#8C85B8", 0.12, 110))}")`);
   st.setProperty("--noise", `url("${svgURI("<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(#n)'/></svg>")}")`);
+  st.setProperty("--zl-ivory", `url("${svgURI(zelligeTile("#FFFDF8", 0.2))}")`);
+  // one class per city: plaster wall, niche, accent ink, three glazes and the tiled frame band
+  const band = (a, b) => `url("${svgURI(`<svg xmlns='http://www.w3.org/2000/svg' width='22' height='22'><rect width='22' height='22' fill='${a}'/><path d='M11 2l2.6 6.4L20 11l-6.4 2.6L11 20l-2.6-6.4L2 11l6.4-2.6z' fill='${b}'/><circle cx='11' cy='11' r='2' fill='#EDE5D6'/></svg>`)}")`;
+  const css = CITIES.map((c, i) => `.cv${i}{--wall:${c.wall};--niche:${c.niche};--accent:${c.accent};--g0:${c.g[0]};--g1:${c.g[1]};--g2:${c.g[2]};--band:${band(c.g[0], c.g[2] === "#F0E9DA" ? c.g[1] : c.g[2])}}`).join("\n");
+  const tag = document.createElement("style"); tag.textContent = css; document.head.appendChild(tag);
 }
+const cityOf = (ui) => CITIES[Math.max(0, Math.min(CITIES.length - 1, ui))];
+const cityName = (c) => (S.lang === "fr" ? c.fr : c.en);
+// the medallion for one unit, reflecting the real state of each of its lessons
+function unitStates(ui) { const cur = currentNode(); return PATH.map((n, idx) => ({ n, idx })).filter((x) => x.n.unit === ui).map((x) => S.lessons[x.n.id] ? "done" : x.idx === cur ? "current" : "locked"); }
+function medallion(ui, states, cls = "") { const c = cityOf(ui); return Zel.svg(c.g, states, { seed:ui * 31 + 5, field:c.field, cls:(states.some((x) => x === "done") ? "any " : "") + cls }); }
+function panelHTML(ui, states, attrs = "") { return `<div class="panel cv${ui}" ${attrs}><span class="inner"></span><div class="zwrap">${medallion(ui, states)}</div></div>`; }
+// a small eight-point glazed star used where the old emoji medals were
+function medalMark() { return `<svg viewBox="-30 -30 60 60" aria-hidden="true"><polygon points="${starPts(0, 0, 27, 20.5, 8)}" style="fill:var(--g0,#13706F)" stroke="#E9E0CF" stroke-width="1.5" stroke-linejoin="round"/><polygon points="${starPts(0, 0, 13, 9.8, 8, -Math.PI / 2 + Math.PI / 8)}" style="fill:var(--g2,#E0A631)" stroke="#E9E0CF" stroke-width="1.2" stroke-linejoin="round"/></svg>`; }
 const ARCH = `<svg class="arch" viewBox="0 0 200 320" aria-hidden="true"><path d="M30 320V150A70 70 0 1 1 170 150V320" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M46 320V152A54 54 0 1 1 154 152V320" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M100 54l7 12 14 2-10 10 2 14-13-7-13 7 2-14-10-10 14-2z" fill="currentColor" opacity=".7"/></svg>`;
 const INK = "#2A1B3D";
 function mascot(mood = "happy", cls = "") {
-  const eyes = {
-    happy:`<path d="M36 63q8-10 16 0M68 63q8-10 16 0" stroke="${INK}" stroke-width="4.5" fill="none" stroke-linecap="round"/>`,
-    normal:`<ellipse cx="44" cy="61" rx="7" ry="9" fill="${INK}"/><ellipse cx="76" cy="61" rx="7" ry="9" fill="${INK}"/><circle cx="46.6" cy="57.6" r="2.7" fill="#fff"/><circle cx="78.6" cy="57.6" r="2.7" fill="#fff"/>`,
-    wow:`<ellipse cx="44" cy="60" rx="8.5" ry="11" fill="${INK}"/><ellipse cx="76" cy="60" rx="8.5" ry="11" fill="${INK}"/><circle cx="47" cy="56" r="3.4" fill="#fff"/><circle cx="79" cy="56" r="3.4" fill="#fff"/><circle cx="42" cy="64" r="1.6" fill="#fff"/><circle cx="74" cy="64" r="1.6" fill="#fff"/>`,
-    sad:`<ellipse cx="44" cy="63" rx="6" ry="7.5" fill="${INK}"/><ellipse cx="76" cy="63" rx="6" ry="7.5" fill="${INK}"/><circle cx="45.8" cy="60.4" r="2.2" fill="#fff"/><circle cx="77.8" cy="60.4" r="2.2" fill="#fff"/><path d="M35 51l13 4M85 51l-13 4" stroke="${INK}" stroke-width="3.5" stroke-linecap="round"/>`,
-    wink:`<path d="M36 63q8-10 16 0" stroke="${INK}" stroke-width="4.5" fill="none" stroke-linecap="round"/><ellipse cx="76" cy="61" rx="7" ry="9" fill="${INK}"/><circle cx="78.6" cy="57.6" r="2.7" fill="#fff"/>`,
-  }[mood] || "";
-  const mouth = {
-    happy:`<path d="M50 82q10 12 20 0" fill="#C2185B" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/>`,
-    normal:`<path d="M60 79v3M60 82q-5 5-9 1M60 82q5 5 9 1" stroke="${INK}" stroke-width="2.8" fill="none" stroke-linecap="round"/>`,
-    wow:`<ellipse cx="60" cy="86" rx="5" ry="6" fill="${INK}"/>`,
-    sad:`<path d="M52 88q8-7 16 0" stroke="${INK}" stroke-width="3" fill="none" stroke-linecap="round"/>`,
-    wink:`<path d="M50 82q10 12 20 0" fill="#C2185B" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/>`,
-  }[mood] || "";
-  return `<svg xmlns="http://www.w3.org/2000/svg" class="mc ${cls}" viewBox="0 0 120 120" aria-hidden="true">
-    <path d="M24 52L28 15L55 34Z" fill="#F29A44" stroke="${INK}" stroke-width="3.2" stroke-linejoin="round"/>
-    <path d="M96 52L92 15L65 34Z" fill="#F29A44" stroke="${INK}" stroke-width="3.2" stroke-linejoin="round"/>
-    <path d="M31 43L33 24L46 35Z" fill="#FFB3C1"/><path d="M89 43L87 24L74 35Z" fill="#FFB3C1"/>
-    <ellipse cx="60" cy="68" rx="43" ry="37" fill="#F29A44" stroke="${INK}" stroke-width="3.2"/>
-    <path d="M60 36v9M49 38l2.5 8M71 38l-2.5 8" stroke="#D2702A" stroke-width="4" stroke-linecap="round"/>
-    <path d="M44 33L48 10Q60 5 72 10L76 33Q60 38 44 33Z" fill="#C9233C" stroke="${INK}" stroke-width="3.2" stroke-linejoin="round"/>
-    <ellipse cx="60" cy="9.5" rx="12" ry="3.2" fill="#A61B30" stroke="${INK}" stroke-width="2.4"/>
-    <path d="M60 8Q75 4 82 18" stroke="${INK}" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-    <path d="M79.5 17l5.5 12-7.5-1.5Z" fill="#EBC274" stroke="${INK}" stroke-width="1.5" stroke-linejoin="round"/>
-    <ellipse cx="60" cy="82" rx="19" ry="13" fill="#FFE3C4"/>
-    ${eyes}
-    <path d="M55.5 74h9l-4.5 4.6Z" fill="#E8577A" stroke="${INK}" stroke-width="2" stroke-linejoin="round"/>
-    ${mouth}
-    <path d="M37 79H20M37 84l-15 5M83 79h17M83 84l15 5" stroke="${INK}" stroke-width="2.2" stroke-linecap="round"/>
-    <circle cx="33" cy="88" r="5.5" fill="#FF8FA3" opacity=".65"/><circle cx="87" cy="88" r="5.5" fill="#FF8FA3" opacity=".65"/>
-  </svg>`;
+  return Zel.svg(["#13706F", "#1F45B5", "#E0A631"], ["done"], { seed:11, field:"#141B24", cls:"mc any " + cls });
 }
 function vendorFace() {
   return `<svg class="face-v" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#FFE3C4"/>
@@ -502,9 +485,11 @@ function nextOverlay() {
       <div class="ov-btns"><button class="cta" data-ov="close">${esc(t("keepGoing"))}</button></div></div>`;
     Sound.play("level"); setTimeout(() => FX.rain(90), 120);
   } else if (o.kind === "unit") {
-    const u = UNITS[o.unit];
-    html = `<div class="ov-box"><p class="ov-k">${esc(t("nextUnit", { n:o.unit + 1 }))}</p><p class="ov-t">${dj(u.d)}</p><p class="ov-s">${esc(L([u.en, u.fr]))}</p>
-      <div class="ov-btns"><button class="cta" data-ov="close">${esc(t("keepGoing"))}</button></div></div>`;
+    const prev = cityOf(o.unit - 1), c = cityOf(o.unit), u = UNITS[o.unit];
+    html = `<div class="ov-box"><div class="mc" style="width:150px;height:150px">${medallion(o.unit - 1, unitStates(o.unit - 1).map(() => "done"))}</div>
+      <p class="ov-k">${esc(cityName(prev))} · ${esc(t("glazedN", { a:unitStates(o.unit - 1).length, b:unitStates(o.unit - 1).length }))}</p>
+      <p class="ov-t">${esc(t("nextStop"))}: ${esc(cityName(c))}</p><p class="ov-s"><b>${dj(u.d)}</b>${esc(L(c.scene))}</p>
+      <div class="ov-btns"><button class="cta" data-ov="close">${esc(t("continueIn", { c:cityName(c) }))}</button></div></div>`;
     Sound.play("open"); setTimeout(() => FX.rain(70), 120);
   }
   ov.innerHTML = html;
@@ -538,18 +523,18 @@ async function storyImage(spec) {
   rg.addColorStop(0, (spec.c3 || "#7E8CFF") + "AA"); rg.addColorStop(1, "rgba(0,0,0,0)");
   g.fillStyle = rg; g.fillRect(0, 0, Wd, H);
   try { const tile = await loadImg(svgURI(zelligeTile("#F3D08A", 0.22))); const pat = g.createPattern(tile, "repeat"); g.save(); g.globalAlpha = 0.8; g.scale(2.6, 2.6); g.fillStyle = pat; g.fillRect(0, 0, Wd / 2.6, H / 2.6); g.restore(); } catch (e) {}
-  try { await Promise.all([document.fonts.load('600 120px "Fraunces"'), document.fonts.load('500 40px "Readex Pro"'), document.fonts.load('700 100px "Amiri"')]); } catch (e) {}
+  try { await Promise.all([document.fonts.load('700 120px "Bodoni Moda"'), document.fonts.load('500 40px "Readex Pro"'), document.fonts.load('700 100px "Amiri"')]); } catch (e) {}
   g.fillStyle = "#FFFFFF"; g.textBaseline = "alphabetic";
   let y = 560;
   if (spec.art) { try { const art = await loadImg(svgURI(spec.art.replace("<svg ", '<svg xmlns="http://www.w3.org/2000/svg" '))); const aw = 560, ah = aw * (art.height / art.width || 0.75); g.drawImage(art, 90, 300, aw, ah); y = 300 + ah + 150; } catch (e) {} }
   g.font = '500 46px "Readex Pro", system-ui, sans-serif'; g.globalAlpha = 0.85; g.fillText(spec.kicker || "", 90, y - 150); g.globalAlpha = 1;
-  g.font = '600 ' + (spec.bigSize || 170) + 'px "Fraunces", Georgia, serif';
+  g.font = '600 ' + (spec.bigSize || 170) + 'px "Bodoni Moda", Didot, Georgia, serif';
   for (const ln of wrapLines(g, spec.big || "", Wd - 180)) { g.fillText(ln, 90, y); y += (spec.bigSize || 170) * 0.95; }
   if (spec.ar) { y += 30; g.font = '700 110px "Amiri", serif'; g.fillStyle = "#F7DCA0"; g.direction = "rtl"; g.textAlign = "right"; g.fillText(spec.ar, 90 + g.measureText(spec.ar).width, y); g.direction = "ltr"; g.textAlign = "left"; g.fillStyle = "#FFFFFF"; y += 150; }
   g.font = '500 58px "Readex Pro", system-ui, sans-serif';
   for (const ln of wrapLines(g, spec.sub || "", Wd - 180)) { g.fillText(ln, 90, y); y += 76; }
   try { const m = await loadImg(svgURI(mascot("happy"))); g.drawImage(m, Wd - 440, H - 620, 360, 360); } catch (e) {}
-  g.font = '600 92px "Fraunces", Georgia, serif'; g.fillStyle = "#F8DFA4"; g.fillText("Wakha", 90, H - 220); g.fillStyle = "#FFFFFF";
+  g.font = '600 92px "Bodoni Moda", Didot, Georgia, serif'; g.fillStyle = "#F8DFA4"; g.fillText("Wakha", 90, H - 220); g.fillStyle = "#FFFFFF";
   g.font = '400 44px "Readex Pro", system-ui, sans-serif'; g.globalAlpha = 0.8; g.fillText(S.lang === "fr" ? "La darija, une leçon à la fois" : "Darija, one lesson at a time", 90, H - 150); g.globalAlpha = 1;
   return await new Promise((res) => c.toBlob(res, "image/png"));
 }

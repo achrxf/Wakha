@@ -8,12 +8,12 @@ const put = (marker, value) => { const i = html.indexOf(marker); if (i < 0) thro
 put("/*CSS*/", R("src/styles.css"));
 put("/*AUDIO*/", audio.replace(/</g, "\\u003c"));
 put("/*CONTENT*/", content);
-put("/*APP*/", R("src/app1.js") + "\n" + R("src/app2.js"));
+put("/*APP*/", R("src/medallion.js") + "\n" + R("src/app1.js") + "\n" + R("src/app2.js"));
 fs.mkdirSync(path.join(__dirname, "../dist"), { recursive: true });
 fs.writeFileSync(path.join(__dirname, "../dist/wakha.html"), html);
 const RESET = ":root{color-scheme:light;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}";
 fs.writeFileSync(path.join(__dirname, "../dist/preview.html"), `<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>${RESET}</style></head><body>${html}</body></html>`);
 // syntax check the inline script
 const js = html.slice(html.indexOf('"use strict";'), html.lastIndexOf("})();"));
-fs.writeFileSync("/tmp/wakha_check.js", "(() => {" + js + "})();");
+fs.writeFileSync(require("os").tmpdir() + "/wakha_check.js", "(() => {" + js + "})();");
 console.log("built", (Buffer.byteLength(html) / 1e6).toFixed(2), "MB");

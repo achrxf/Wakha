@@ -2,6 +2,59 @@
    CONTENT v2: path units, conversations, proverbs, guide, souk
    ========================================================= */
 
+
+// the journey: one Moroccan city per unit. wall = plaster color, niche = panel, g = glazes, accent = text accent
+const CITIES = [
+  { en:"Tangier", fr:"Tanger", ar:"طنجة", wall:"#E6ECE8", niche:"#D3DFDA", accent:"#126E6C", g:["#13706F","#1F45B5","#E0A631"], field:"#141B24",
+    scene:["You step off the ferry into Tangier. Time to say hello.","Tu descends du ferry à Tanger. C’est le moment de dire bonjour."] },
+  { en:"Chefchaouen", fr:"Chefchaouen", ar:"شفشاون", wall:"#A8C4E8", niche:"#C2D5EF", accent:"#22307A", g:["#23307A","#3B79C6","#F0E9DA"], field:"#121630",
+    scene:["Blue walls, quiet steps. Good manners open every door here.","Murs bleus, pas tranquilles. Ici, la politesse ouvre toutes les portes."] },
+  { en:"Fes", fr:"Fès", ar:"فاس", wall:"#E4D2B2", niche:"#EEE0C6", accent:"#1B3E8C", g:["#1B3E8C","#0E6B4E","#C98A2B"], field:"#15141C",
+    scene:["The Fes medina is a maze. You’ll need to ask a few questions.","La médina de Fès est un labyrinthe. Il va falloir poser des questions."] },
+  { en:"Meknes", fr:"Meknès", ar:"مكناس", wall:"#D5E3CF", niche:"#E3EDDE", accent:"#2E6B45", g:["#2F8A5B","#B0702A","#6B3A1E"], field:"#16191A",
+    scene:["A long afternoon in Meknes, one glass of mint tea after another.","Un long après-midi à Meknès, un verre de thé à la menthe après l’autre."] },
+  { en:"Marrakech", fr:"Marrakech", ar:"مراكش", wall:"#DE9F86", niche:"#E8B6A1", accent:"#8F2F1E", g:["#A3381F","#0E6B4E","#E0A631"], field:"#1A1414", boss:true,
+    scene:["The red city. Somewhere in the souk, a vendor is waiting.","La ville rouge. Quelque part dans le souk, un vendeur t’attend."] },
+  { en:"Casablanca", fr:"Casablanca", ar:"الدار البيضاء", wall:"#EEEEEA", niche:"#E0E0DA", accent:"#1A1A1F", g:["#1C1C22","#B8913E","#157A7A"], field:"#0F0F12",
+    scene:["Casablanca never slows down. Keep track of the time.","Casablanca ne ralentit jamais. Garde un œil sur l’heure."] },
+  { en:"Kelaat M’Gouna", fr:"Kelaat M’Gouna", ar:"قلعة مكونة", wall:"#EAC4C6", niche:"#F1D6D7", accent:"#8E2C4E", g:["#C2456B","#5E2A6E","#4E8A4A"], field:"#1B1219",
+    scene:["In the Valley of Roses, the whole family is waiting for you.","Dans la vallée des Roses, toute la famille t’attend."] },
+  { en:"Merzouga", fr:"Merzouga", ar:"مرزوكة", wall:"#E6BF8B", niche:"#EED0A6", accent:"#22285E", g:["#22285E","#D08F3E","#A8402B"], field:"#141320",
+    scene:["The road to the dunes of Merzouga. Know your left from your right.","La route vers les dunes de Merzouga. Ne confonds pas la gauche et la droite."] },
+  { en:"Essaouira", fr:"Essaouira", ar:"الصويرة", wall:"#DFE9EF", niche:"#ECF2F5", accent:"#1F5E93", g:["#2C6FA5","#D4A23A","#F0E9DA"], field:"#121A22",
+    scene:["Wind, gulls and long talks at the port of Essaouira.","Du vent, des mouettes et de longues discussions au port d’Essaouira."] },
+];
+// one short moment per lesson; the review and the boss use the city line
+const LESSON_SCENES = {
+  u1l1:["The port café. A man looks up from his tea.","Le café du port. Un homme lève les yeux de son thé."],
+  u1l2:["Morning at the riad. The owner greets you on the stairs.","Le matin au riad. Le propriétaire te salue dans l’escalier."],
+  u1l3:["Sunset on the Kasbah walls. Time to say goodbye.","Coucher de soleil sur les remparts de la Kasbah. C’est l’heure de dire au revoir."],
+  u2l1:["A woman points you to the right alley. Say thanks.","Une femme t’indique la bonne ruelle. Dis merci."],
+  u2l2:["You bump into someone on the blue steps.","Tu bouscules quelqu’un dans les escaliers bleus."],
+  u2l3:["The guesthouse asks if dinner at eight is fine.","La maison d’hôtes demande si le dîner à huit heures te va."],
+  u3l1:["Lost in the medina. Every alley looks the same.","Perdu dans la médina. Toutes les ruelles se ressemblent."],
+  u3l2:["A shopkeeper wants to know when you arrived, and why.","Un commerçant veut savoir quand tu es arrivé, et pourquoi."],
+  u3l3:["Someone asks your name at the tannery.","Quelqu’un te demande ton nom à la tannerie."],
+  u4l1:["The tea arrives, poured from high above the glass.","Le thé arrive, versé de très haut au-dessus du verre."],
+  u4l2:["Breakfast: warm bread, coffee and water.","Le petit-déjeuner : pain chaud, café et eau."],
+  u4l3:["Lunch time, and you are starving.","L’heure du déjeuner, et tu meurs de faim."],
+  u5l1:["Babouches in every color. How much are they?","Des babouches de toutes les couleurs. C’est combien ?"],
+  u5l2:["The price is crazy. Time to bargain.","Le prix est fou. C’est le moment de marchander."],
+  u6l1:["Your train leaves soon. When exactly?","Ton train part bientôt. Quand exactement ?"],
+  u6l2:["Counting change at a busy kiosk.","Tu comptes la monnaie à un kiosque bondé."],
+  u6l3:["One, two, three: a hundred things to do today.","Un, deux, trois : cent choses à faire aujourd’hui."],
+  u7l1:["Your Moroccan family meets you at the gate.","Ta famille marocaine t’accueille au portail."],
+  u7l2:["Mima hugs you and won’t let go.","Mima te serre dans ses bras et ne te lâche plus."],
+  u7l3:["Dinner, compliments and a few family opinions.","Dîner, compliments et quelques avis de famille."],
+  u8l1:["The driver needs directions to the dunes.","Le chauffeur a besoin d’indications pour les dunes."],
+  u8l2:["The bus or the car? Pick your ride.","Le bus ou la voiture ? Choisis ton transport."],
+  u8l3:["Is there a place to sleep near the dunes?","Il y a un endroit pour dormir près des dunes ?"],
+  u9l1:["A fisherman talks fast. You didn’t catch a word.","Un pêcheur parle vite. Tu n’as rien compris."],
+  u9l2:["Plans with friends: maybe, God willing.","Des projets entre amis : peut-être, si Dieu le veut."],
+  u9l3:["Your friend got engaged. Big news at the port.","Ton ami s’est fiancé. Grande nouvelle au port."],
+  u9l4:["Cold wind, hot tea and a tired body.","Vent froid, thé chaud et corps fatigué."],
+};
+
 // tile names map to card palettes in CSS
 const UNITS = [
   { id:"u1", d:"Salam", en:"Hello and how are you", fr:"Bonjour et ça va", tile:"majorelle",
@@ -264,6 +317,10 @@ function audioKey(s) { return String(s).toLowerCase().replace(/^ar:/, "ar:").rep
 const PRAISE2 = [["Zwin!","Nice!","Bien !"],["Tbarkellah 3lik!","Well done!","Bien joué !"],["Wa3er!","Awesome!","Trop fort !"],["Nadi!","Excellent!","Top !"],["Mzyan bzzaf!","Very good!","Très bien !"],["Hakka!","That’s it!","C’est ça !"]];
 
 Object.assign(UI.en, {
+  rihla:"Rihla", rihlaS:"Learn Darija across Morocco, from Tangier to the Sahara.", stopN:"Stop {n}", glazedN:"{a} of {b} glazed", lessonsGlazed:"{a} of {b} lessons glazed",
+  nextStop:"Next stop", continueIn:"Continue in {c}", journeyEnd:"More stops are on the way.", sceneStart:"Start the lesson", tileGlazed:"Tile glazed", perfectGlaze:"Perfect glaze",
+  welcome3T:"Learn Darija across Morocco", welcome3S:"Nine cities, from Tangier to the Sahara. Every lesson glazes a piece of your zellige.", startJourney:"Start the journey",
+  reviewTile:"Review", bossTile:"Souk", nextT:"Next", lockedT:"Locked", tapMed:"Each finished lesson glazes a ring of this city’s zellige.",
   learn:"Learn", feed:"Feed", guide:"Guide", kenz:"Kenz", me:"Me",
   unit:"Unit {n}", lesson:"Lesson {n}", review2:"Unit review", boss:"Souk boss", start:"Start", continueL:"Continue", practiceAgain:"Practice again",
   locked:"Finish the lesson before this one to unlock it.", lessonWords:"New words", done:"Done", startHere:"Start here",
@@ -282,6 +339,10 @@ Object.assign(UI.en, {
   heard:"Listen", navHint:"Or use the arrow keys", noResults:"No words match that.", rare:"Rare", tapToHear:"Tap any Darija to hear it",
 });
 Object.assign(UI.fr, {
+  rihla:"Rihla", rihlaS:"Apprends la darija à travers le Maroc, de Tanger au Sahara.", stopN:"Étape {n}", glazedN:"{a} sur {b} émaillées", lessonsGlazed:"{a} leçons émaillées sur {b}",
+  nextStop:"Prochaine étape", continueIn:"Continuer à {c}", journeyEnd:"D’autres étapes arrivent.", sceneStart:"Commencer la leçon", tileGlazed:"Tuile émaillée", perfectGlaze:"Émail parfait",
+  welcome3T:"Apprends la darija à travers le Maroc", welcome3S:"Neuf villes, de Tanger au Sahara. Chaque leçon émaille une pièce de ton zellige.", startJourney:"Commencer le voyage",
+  reviewTile:"Révision", bossTile:"Souk", nextT:"Suivant", lockedT:"Verrouillé", tapMed:"Chaque leçon terminée émaille un anneau du zellige de cette ville.",
   learn:"Apprendre", feed:"Fil", guide:"Guide", kenz:"Kenz", me:"Moi",
   unit:"Unité {n}", lesson:"Leçon {n}", review2:"Révision de l’unité", boss:"Boss du souk", start:"Commencer", continueL:"Continuer", practiceAgain:"Refaire",
   locked:"Termine la leçon d’avant pour débloquer celle-ci.", lessonWords:"Nouveaux mots", done:"Fait", startHere:"Commence ici",
@@ -300,4 +361,4 @@ Object.assign(UI.fr, {
   heard:"Écoute", navHint:"Ou les flèches du clavier", noResults:"Aucun mot ne correspond.", rare:"Rare", tapToHear:"Touche n’importe quel mot en darija pour l’entendre",
 });
 
-if (typeof module !== "undefined") module.exports = { buildSay, audioKey, LEVELS, W, CORE, COLL, SITS, BUILDS, REELS, DIALOGS, PROVERBS, SOUNDS, RULES, HAGGLE, haggleRounds, hagglePrice, HAGGLE_OPEN, PRAISE, PRAISE2, COMFORT, NO_SAY, UNITS, PATH };
+if (typeof module !== "undefined") module.exports = { CITIES, LESSON_SCENES, buildSay, audioKey, LEVELS, W, CORE, COLL, SITS, BUILDS, REELS, DIALOGS, PROVERBS, SOUNDS, RULES, HAGGLE, haggleRounds, hagglePrice, HAGGLE_OPEN, PRAISE, PRAISE2, COMFORT, NO_SAY, UNITS, PATH };
