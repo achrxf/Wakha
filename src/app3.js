@@ -5,6 +5,7 @@ ICON.today = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
 ICON.journey = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.4"/><circle cx="18" cy="6" r="2.4"/><path d="M8.4 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.6" stroke-dasharray="2.2 2.6"/></svg>`;
 ICON.play = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.6-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg>`;
 
+function applyTheme() { const th = S.theme || "auto"; if (th === "auto") delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = th; }
 const isSide = (node) => ["practice", "daily", "sprint"].includes(node.kind);
 function haptic(p) { try { if (S.sound && navigator.vibrate) navigator.vibrate(p); } catch (e) {} }
 function glazeNow() { return Lesson.active && !isSide(Lesson.node) ? cityOf(Lesson.node.unit).g : null; }
@@ -70,6 +71,7 @@ function renderToday() {
   const dateLabel = new Date().toLocaleDateString(S.lang === "fr" ? "fr-FR" : "en-US", { weekday:"long", day:"numeric", month:"long" });
   el.innerHTML = `<div class="today">
     <section class="td-hero hero">
+      <div class="td-cat" data-act="cat" role="button" aria-label="${esc(t("catName"))}">${mascot("happy", Session.catHi ? "" : "hi")}</div>
       <div class="td-greet"><h1>${dj(greeting())}</h1><p>${esc(S.stats.lessons ? t("dayTrip", { n:Math.max(1, S.dayCount || 1) }) : t("dayTrip1"))}</p></div>
       <div class="td-med${Session.assembled ? "" : " assemble"}" data-act="journey" role="button" aria-label="${esc(t("journey"))}">${medRing(ui, states)}</div>
       <div class="td-city"><b>${esc(cityName(c))}<span lang="ar">${esc(c.ar)}</span></b><small>${esc(t("lessonsOf", { a:done, b:states.length }))}</small></div>
@@ -88,7 +90,9 @@ function renderToday() {
     <div class="td-week">${days.join("")}</div>
     <div class="td-stats"><div><b class="cu" data-to="${learned}">${learned}</b><span>${esc(t("wordsL"))}</span></div><div><b>${S.xp}</b><span>XP</span></div><div><b>${COLL.filter((id) => S.kenz[id]).length}</b><span>${esc(t("kenzL"))}</span></div></div>
   </div>`;
-  Session.assembled = true;
+  Session.assembled = true; Session.catHi = true;
+  Med3D.mount($(".td-med .zwrap", el), ui, states);
+  if (!Session.counted) { Session.counted = true; $$(".td-stats b", el).forEach((b) => { const n = parseInt(b.textContent, 10) || 0; b.textContent = "0"; setTimeout(() => countUp(b, n, 1100), 500); }); }
   $("#hud").classList.toggle("on-dark", view === "today" && el.scrollTop < 300);
 }
 
@@ -139,7 +143,8 @@ function jrSync() {
   $$("#v-journey .jr-page").forEach((pg, i) => {
     const off = (i * w - x) / w;
     if (Math.abs(off) > 1.2) return;
-    const m = $(".jr-med", pg); if (m) m.style.transform = `translateX(${(off * 60).toFixed(1)}px) rotate(${(off * 40).toFixed(1)}deg) scale(${(1 - Math.min(0.15, Math.abs(off) * 0.15)).toFixed(3)})`;
+    const m = $(".jr-med", pg); if (m) m.style.transform = `perspective(800px) translateX(${(off * 70).toFixed(1)}px) rotateY(${(off * -55).toFixed(1)}deg) rotate(${(off * 30).toFixed(1)}deg) scale(${(1 - Math.min(0.2, Math.abs(off) * 0.2)).toFixed(3)})`;
+    const inn = $(".jr-in", pg); if (inn) { inn.style.transform = Math.abs(off) < 0.002 ? "" : `perspective(1400px) rotateY(${(off * -22).toFixed(2)}deg) scale(${(1 - Math.abs(off) * 0.08).toFixed(3)})`; inn.style.transformOrigin = off > 0 ? "0% 50%" : "100% 50%"; }
   });
 }
 
@@ -153,6 +158,7 @@ function bindHome() {
   $("#v-today").addEventListener("click", (e) => {
     const s = e.target.closest("[data-start]"); if (s) { Sound.play("tap"); openLesson(PATH[+s.dataset.start], $("#v-today .td-med .zwrap")); return; }
     if (e.target.closest("[data-act=journey]")) { Sound.play("tap"); setView("journey"); return; }
+    const cb = e.target.closest("[data-act=cat]"); if (cb) { catTalk(cb); return; }
     if (e.target.closest("[data-act=practice]")) { if (learnedIds().length) startPractice(); return; }
     const d = e.target.closest("[data-daily]");
     if (d) {
@@ -174,6 +180,33 @@ function bindHome() {
       openLesson(PATH[idx], $(".jr-med", r.closest(".jr-page")));
     }
   });
+  // feed cards get depth as you swipe: the leaving card tips back, the next one rises
+  const feed = $("#feed");
+  const depth = () => {
+    Session.fdRaf = 0; if (reduced) return;
+    const h = feed.clientHeight || 1, y = feed.scrollTop;
+    for (const c of Feed.cards) {
+      const off = (c.el.offsetTop - y) / h; const inn = $(".card-in", c.el); if (!inn) continue;
+      if (Math.abs(off) > 1.1) { if (inn.style.transform) inn.style.transform = ""; continue; }
+      const a = Math.min(1, Math.abs(off));
+      inn.style.transform = a < 0.002 ? "" : `perspective(900px) rotateX(${(off * -14).toFixed(2)}deg) scale(${(1 - a * 0.1).toFixed(3)})`;
+      inn.style.opacity = (1 - a * 0.55).toFixed(3);
+    }
+  };
+  feed.addEventListener("scroll", () => { if (!Session.fdRaf) Session.fdRaf = requestAnimationFrame(depth); }, { passive:true });
+  // daily cards and sound tiles lean toward your finger
+  const TILT = ".td-card,.stile,.goal-pick,.kc.got";
+  const lean = (e) => {
+    const el = e.target.closest && e.target.closest(TILT); if (!el || reduced) return;
+    const r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+    el.style.transform = `perspective(700px) rotateX(${(-y * 14).toFixed(2)}deg) rotateY(${(x * 16).toFixed(2)}deg)`;
+    el.style.setProperty("--gx", ((x + 0.5) * 100).toFixed(0) + "%"); el.style.setProperty("--gy", ((y + 0.5) * 100).toFixed(0) + "%");
+  };
+  const unlean = (e) => { const el = e.target.closest && e.target.closest(TILT); if (el) el.style.transform = ""; };
+  document.addEventListener("pointermove", (e) => { if (e.pointerType === "mouse" || e.buttons) lean(e); }, { passive:true });
+  document.addEventListener("pointerdown", lean, { passive:true });
+  document.addEventListener("pointerup", unlean, { passive:true });
+  document.addEventListener("pointerout", (e) => { const el = e.target.closest && e.target.closest(TILT); if (el && !el.contains(e.relatedTarget)) el.style.transform = ""; }, { passive:true });
   // answers fill from the exact point you tapped
   document.addEventListener("pointerdown", (e) => {
     const o = e.target.closest && e.target.closest(".opt"); if (!o) return;
@@ -244,6 +277,143 @@ function exStoryQ(sp, host) {
   });
   return card;
 }
+
+
+/* ---------- Mchicha talks ---------- */
+const CAT_LINES = ["yallah", "wakha", "merhba", "zwin", "mzyan", "bslama", "inchallah"];
+function catPlay(holder, cls) {
+  const svg = $(".cat", holder); if (!svg) return;
+  svg.classList.remove("jump", "hi", "droop", "hop"); void svg.getBoundingClientRect(); svg.classList.add(cls);
+}
+function catTalk(holder) {
+  Session.gesture = true; Sound.unlock();
+  const id = CAT_LINES[(Session.catN = ((Session.catN || 0) + 1)) % CAT_LINES.length], wd = W[id];
+  catPlay(holder, Session.catN % 2 ? "jump" : "hi");
+  haptic(8);
+  $$(".cat-say", holder).forEach((b) => b.remove());
+  holder.insertAdjacentHTML("beforeend", `<div class="cat-say">${esc(wd.d)}<small>${esc(meaning(wd))}</small></div>`);
+  const b = holder.lastElementChild;
+  Voice.play(wd.d);
+  clearTimeout(Session.catT); Session.catT = setTimeout(() => { b.classList.add("out"); setTimeout(() => b.remove(), 320); }, 2200);
+}
+
+/* ---------- 3D: the medallion as a real glazed ceramic plate ----------
+   three.js is loaded on demand; if it can't load (offline, no WebGL) the SVG medallion simply stays. */
+const THREE_URL = "https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js";
+const Med3D = {
+  loading:null, ok:null, r:null, host:null, key:"", raf:0, t0:0, drag:null, rx:0, ry:0, vx:0, vy:0, tx:0, ty:0, spin:0, tilt:{ x:0, y:0 },
+  load() {
+    if (window.THREE) return Promise.resolve(window.THREE);
+    if (!this.loading) this.loading = new Promise((res, rej) => { const s = document.createElement("script"); s.src = THREE_URL; s.async = true; s.onload = () => (window.THREE ? res(window.THREE) : rej()); s.onerror = rej; document.head.appendChild(s); });
+    return this.loading;
+  },
+  img(svg, size) {
+    return new Promise((res, rej) => { const i = new Image(); i.onload = () => { const c = document.createElement("canvas"); c.width = c.height = size; c.getContext("2d").drawImage(i, 0, 0, size, size); res(c); }; i.onerror = rej; i.src = svgURI(svg); });
+  },
+  async mount(host, ui, states) {
+    if (this.ok === false || reduced || window.__no3d) return;
+    let T;
+    try { T = await this.load(); } catch (e) { this.ok = false; return; }
+    if (!host.isConnected) return;
+    try { if (!this.r) this.build(T); } catch (e) { this.ok = false; return; }
+    this.ok = true;
+    const key = ui + ":" + states.join(",");
+    if (key !== this.key) {
+      this.key = key;
+      const c = cityOf(ui), seed = ui * 31 + 5, size = 1024;
+      const [col, rough, bump, gloss] = await Promise.all([
+        this.img(Zel.svg(c.g, states, { seed, field:c.field }), size),
+        this.img(Zel.svg(c.g, states, { seed, field:c.field, mode:"rough" }), size),
+        this.img(Zel.svg(c.g, states, { seed, field:c.field, mode:"bump" }), size),
+        this.img(Zel.svg(c.g, states, { seed, field:c.field, mode:"gloss" }), 512),
+      ]).catch(() => [null]);
+      if (!col) return;
+      const m = this.top;
+      const tex = (cv, srgb) => { const tx = new T.CanvasTexture(cv); if (srgb) tx.encoding = T.sRGBEncoding; tx.anisotropy = 4; return tx; };
+      [m.map, m.roughnessMap, m.bumpMap, m.clearcoatMap].forEach((x) => x && x.dispose());
+      m.map = tex(col, true); m.roughnessMap = tex(rough); m.bumpMap = tex(bump); m.clearcoatMap = tex(gloss); m.needsUpdate = true;
+    }
+    this.attach(host);
+  },
+  build(T) {
+    const r = new T.WebGLRenderer({ antialias:true, alpha:true, powerPreference:"low-power", preserveDrawingBuffer:true });
+    r.setPixelRatio(Math.min(2, devicePixelRatio || 1));
+    r.outputEncoding = T.sRGBEncoding; r.toneMapping = T.NoToneMapping;
+    r.domElement.className = "med3d";
+    const scene = new T.Scene(), cam = new T.PerspectiveCamera(38, 1, 0.1, 50);
+    cam.position.set(0, 0, 3.42);
+    // a small studio for reflections: a dim room with a big soft box, a warm saffron panel and a cool Majorelle panel
+    const env = new T.Scene();
+    env.add(new T.Mesh(new T.BoxGeometry(12, 12, 12), new T.MeshBasicMaterial({ color:0x24224a, side:T.BackSide })));
+    const panel = (w, h, col, k, pos, rot) => { const m = new T.MeshBasicMaterial({ side:T.DoubleSide }); m.color.setRGB(col[0] * k, col[1] * k, col[2] * k); const p = new T.Mesh(new T.PlaneGeometry(w, h), m); p.position.set(...pos); p.lookAt(0, 0, 0); if (rot) p.rotation.z += rot; env.add(p); };
+    panel(5, 3, [1, 1, 1], 3, [0, 4, 3.5]);
+    panel(2.5, 4, [1, 0.78, 0.4], 3, [-5, 0.5, 2]);
+    panel(2.5, 4, [0.45, 0.42, 1], 2.4, [5, -0.5, 2]);
+    panel(6, 1, [1, 1, 1], 2, [0, -4.5, 2]);
+    const pm = new T.PMREMGenerator(r);
+    scene.environment = pm.fromScene(env, 0.035).texture;
+    // the plate: glazed face, brass edge and rim
+    const brass = new T.MeshStandardMaterial({ color:0xC9A24F, metalness:1, roughness:0.32 });
+    this.top = new T.MeshPhysicalMaterial({ roughness:1, metalness:0, bumpScale:0.045, envMapIntensity:0.55, clearcoat:0.9, clearcoatRoughness:0.05 });
+    const g = new T.CylinderGeometry(1, 1, 0.16, 160, 1);
+    g.rotateX(Math.PI / 2);
+    const plate = new T.Mesh(g, [brass, this.top, brass]);
+    const rim = new T.Mesh(new T.TorusGeometry(1.008, 0.045, 24, 180), brass);
+    rim.position.z = 0.08;
+    const grp = new T.Group(); grp.add(plate, rim); scene.add(grp);
+    const key = new T.DirectionalLight(0xffffff, 0.75); key.position.set(-2, 3, 4); scene.add(key);
+    scene.add(new T.AmbientLight(0xffffff, 0.35));
+    Object.assign(this, { r, scene, cam, grp, keyL:key, T });
+    const cv = r.domElement;
+    // drag to turn the plate; it springs back. A tap still opens the journey.
+    cv.addEventListener("pointerdown", (e) => { this.drag = { x:e.clientX, y:e.clientY, rx:this.tx, ry:this.ty, moved:false }; cv.setPointerCapture(e.pointerId); });
+    cv.addEventListener("pointermove", (e) => { const d = this.drag; if (!d) return; const dx = e.clientX - d.x, dy = e.clientY - d.y; if (Math.abs(dx) + Math.abs(dy) > 6) d.moved = true; this.ty = Math.max(-1.1, Math.min(1.1, d.ry + dx / 90)); this.tx = Math.max(-0.8, Math.min(0.8, d.rx + dy / 110)); });
+    const up = () => { const d = this.drag; this.drag = null; if (d && d.moved) { this.suppress = performance.now(); this.vy += (this.ty - this.ry) * 0.2; haptic(6); } this.tx = 0; this.ty = 0; };
+    cv.addEventListener("pointerup", up); cv.addEventListener("pointercancel", up);
+    cv.addEventListener("click", (e) => { if (performance.now() - (this.suppress || 0) < 300) { e.stopPropagation(); e.preventDefault(); } }, true);
+    addEventListener("deviceorientation", (e) => { if (e.gamma == null) return; this.tilt.y = Math.max(-0.35, Math.min(0.35, e.gamma / 90)); this.tilt.x = Math.max(-0.3, Math.min(0.3, (e.beta - 45) / 120)); }, { passive:true });
+  },
+  attach(host) {
+    const cv = this.r.domElement;
+    if (cv.parentNode !== host) { host.appendChild(cv); this.spin = this.host === null ? -Math.PI * 1.2 : this.spin; }
+    this.host = host;
+    this.size(); this.t0 = performance.now(); this.go();
+  },
+  size() { const w = Math.round((this.host.clientWidth || 260) * 1.12); this.r.setSize(w, w, false); this.cam.aspect = 1; this.cam.updateProjectionMatrix(); },
+  go() { if (!this.raf) { this.last = 0; this.raf = requestAnimationFrame((t) => this.frame(t)); } },
+  frame(now) {
+    this.raf = 0;
+    if (!this.host || !this.host.isConnected || document.hidden || view !== "today" || Lesson.active || !$("#welcome").hidden) return;
+    const t = (now - this.t0) / 1000;
+    // slow device? drop to 1x pixels, then fall back to the flat medallion
+    if (this.last) { const dt = now - this.last; this.dts = (this.dts || []).concat(dt).slice(-24); if (this.dts.length === 24) { const avg = this.dts.reduce((a, b) => a + b) / 24; if (avg > 48) { this.dts = []; if (this.r.getPixelRatio() > 1) { this.r.setPixelRatio(1); this.size(); } else { this.ok = false; this.host.classList.remove("has3d"); this.r.domElement.remove(); this.host = null; this.last = 0; return; } } } }
+    this.last = now;
+    // spring the plate toward the target angle
+    const k = 0.09, damp = 0.8;
+    this.vx = (this.vx + (this.tx + this.tilt.x + Math.cos(t * 0.6) * 0.2 - this.rx) * k) * damp;
+    this.vy = (this.vy + (this.ty + this.tilt.y + Math.sin(t * 0.45) * 0.38 - this.ry) * k) * damp;
+    this.rx += this.vx; this.ry += this.vy;
+    this.spin *= 0.94;
+    this.grp.rotation.set(this.rx, this.ry + this.spin, 0);
+    this.grp.position.y = Math.sin(t * 1.1) * 0.03;
+    this.keyL.position.set(Math.cos(t * 0.5) * 3, 2.5 + Math.sin(t * 0.7), 4);
+    // never queue a frame while the GPU is still busy with the last one; if it keeps lagging, step down
+    const gl = this.r.getContext();
+    if (this.sync && gl.fenceSync) {
+      const st = gl.getSyncParameter(this.sync, gl.SYNC_STATUS);
+      if (st !== gl.SIGNALED) {
+        this.waits = (this.waits || 0) + 1;
+        if (this.waits > 20) { this.waits = 0; if (this.r.getPixelRatio() > 1) { this.r.setPixelRatio(1); this.size(); } else { this.ok = false; this.host.classList.remove("has3d"); this.r.domElement.remove(); this.host = null; return; } }
+        this.go(); return;
+      }
+      gl.deleteSync(this.sync); this.sync = null; this.waits = 0;
+      if (!this.host.classList.contains("has3d")) this.host.classList.add("has3d");
+    }
+    this.r.render(this.scene, this.cam);
+    if (gl.fenceSync) { this.sync = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0); gl.flush(); } else this.host.classList.add("has3d");
+    this.go();
+  },
+};
 
 /* boot */
 const hot = window.claude && window.claude.hot;

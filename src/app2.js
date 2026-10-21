@@ -586,7 +586,7 @@ function exScene(sp, host) {
   const ws = (node.words || []).slice(0, node.kind === "lesson" ? 4 : 6);
   const exW = ws.map((id) => W[id]).find((wd) => wd && wd.ex);
   $(".card-in", el).innerHTML = `
-    <div class="sc-top a1"><div class="sc-med">${medallion(ui, unitStates(ui))}</div><div><p class="eyebrow">${esc(nodeLabel(node))}</p><h2 class="sc-city">${esc(cityName(c))}</h2><p class="sc-ar" lang="ar">${esc(c.ar)}</p></div></div>
+    <div class="sc-top a1"><div class="sc-med">${medallion(ui, unitStates(ui))}</div><div><p class="eyebrow">${esc(nodeLabel(node))}</p><h2 class="sc-city${cityName(c).length > 9 ? " long" : ""}">${esc(cityName(c))}</h2><p class="sc-ar" lang="ar">${esc(c.ar)}</p></div></div>
     <p class="sc-txt a2">${esc(L(line))}</p>
     ${node.kind === "boss" ? `<p class="note a3">${ICON.tagI}<span>${esc(t("haggleS"))}</span></p>` : node.kind === "story" ? `<p class="note a3">${ICON.chat}<span>${esc(t("storyListen"))}</span></p>` : exW ? `<div class="sc-quote a3"><div><p class="d">${dj(exW.ex[0])}</p><p class="t">${esc(exTr(exW.ex))}</p></div>${sayBtn(exW.ex[0])}</div>` : ""}
     <div class="sc-words a4">${node.kind === "boss" || node.kind === "story" ? "" : ws.map((id) => `<span class="chip">${esc(W[id].d)}${sayBtn(W[id].d)}</span>`).join("")}</div>`;
@@ -681,12 +681,20 @@ const Lesson = {
   },
   show() {
     const body = $("#lesson .l-body");
-    if (this.card) { this.card.leave && this.card.leave(); this.card.el.remove(); }
+    const old = this.card;
+    if (old) {
+      // the answered card swings away in 3D while the next one swings in
+      old.leave && old.leave();
+      const oe = old.el; oe.classList.add("leaving"); oe.classList.remove("is-active");
+      if (!reduced && oe.animate) oe.animate([{ transform:"none", opacity:1 }, { transform:"perspective(1200px) translateX(-34%) rotateY(30deg) scale(.9)", opacity:0 }], { duration:360, easing:"cubic-bezier(.45,0,.7,.4)", fill:"forwards" }).finished.then(() => oe.remove(), () => oe.remove());
+      else oe.remove();
+    }
     const sp = this.specs[this.i];
     const card = makeEx(sp, LessonHost);
     this.card = card;
     card.el.classList.add("play", "is-active");
     body.appendChild(card.el);
+    if (old && !reduced && card.el.animate) card.el.animate([{ transform:"perspective(1200px) translateX(38%) rotateY(-26deg) scale(.92)", opacity:0 }, { transform:"none", opacity:1 }], { duration:640, easing:"cubic-bezier(.2,.9,.25,1.06)" });
     card.firstEnter && card.firstEnter();
     card.enter && card.enter();
     this.progress();
@@ -709,6 +717,8 @@ const Lesson = {
     holder.innerHTML = bannerHTML(ok, info, false);
     const banner = holder.firstElementChild;
     banner.insertAdjacentHTML("beforeend", `<button class="cta" data-act="cont">${esc(t("continueL"))}</button>`);
+    const moods = ok ? ["happy", "wink", "wow"] : ["sad"];
+    banner.insertAdjacentHTML("beforeend", `<div class="cat-peek">${mascot(moods[(this.st.right + this.st.wrong) % moods.length], ok ? "jump" : "droop")}</div>`);
     $("#lesson").appendChild(banner);
     this.banner = banner;
     if (info.say && !info.noAuto) setTimeout(() => this.card === card && autoSay(info.say, info.voice), ok ? 200 : 350);
@@ -754,6 +764,8 @@ const Lesson = {
       <div class="stars anim">${[1, 2, 3].map((k) => ICON.star.replace("<svg", `<svg class="${k <= stars ? "on" : ""}"`)).join("")}</div>
       <div class="l-stats"><div><b class="xpv">0</b><span>${esc(t("xpL"))}</span></div><div><b class="accv">0%</b><span>${esc(t("accuracy"))}</span></div><div><b>${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, "0")}</b><span>${esc(t("timeL"))}</span></div></div></div>`;
     $("#lesson .l-body").appendChild(el);
+    const pnl = $(".l-end .panel", el); if (pnl) pnl.insertAdjacentHTML("beforeend", `<div class="cat-sit">${mascot(perfect ? "wow" : "happy", "")}</div>`);
+    setTimeout(() => pnl && catPlay(pnl, "jump"), reduced ? 0 : 1500);
     const lend = $(".l-end", el);
     lend.classList.add("cv" + ui);
     // choreography: medallion lands, this lesson's run of tiles is set piece by piece, stars stamp, numbers roll
@@ -784,7 +796,7 @@ const Lesson = {
     if (this.banner) { this.banner.remove(); this.banner = null; }
     const el = $("#lesson"); el.hidden = true; el.innerHTML = "";
     this.active = false; combo = 0; renderCombo();
-    refreshHUD(); renderLearn(completed ? this.justDone : null);
+    refreshHUD(); renderLearn(completed ? this.justDone : null); if (view === "today" && Med3D.host) Med3D.go();
     $("#desk-nav").hidden = view !== "feed";
     if (Session.overlayQ.length) { clearTimeout(Session.ovTimer); Session.ovTimer = setTimeout(nextOverlay, 500); }
   },
@@ -979,7 +991,9 @@ function setView(k) {
   $$(".tab").forEach((b) => { b.classList.toggle("on", b.dataset.tab === k); b.setAttribute("aria-current", b.dataset.tab === k ? "page" : "false"); });
   for (const v of ["today", "journey", "feed", "guide", "me"]) { const el = $("#v-" + v); el.hidden = v !== k; }
   $("#hud").classList.toggle("on-dark", k === "today" && $("#v-today").scrollTop < 300);
-  const el = $("#v-" + k); el.classList.remove("enter"); void el.offsetWidth; el.classList.add("enter");
+  const order = ["today", "journey", "feed", "guide", "me"];
+  const el = $("#v-" + k); el.style.setProperty("--dx", (order.indexOf(k) >= order.indexOf(Session.lastView || "today") ? 26 : -26) + "px"); Session.lastView = k;
+  el.classList.remove("enter"); void el.offsetWidth; el.classList.add("enter");
   $("#desk-nav").hidden = k !== "feed";
   closeNodeSheet();
   Voice.stop();
@@ -1093,6 +1107,7 @@ function renderMe() {
     ${kenzHTML()}
     <div class="panel-c"><h3>${esc(t("bestDeal"))}</h3><p class="sub" style="margin:0">${bd ? esc(t("paid", { p:bd.price, s:bd.start })) : esc(t("none"))}</p></div>
     <div class="panel-c"><h3>${esc(t("settings"))}</h3>
+      <div class="setrow"><span>${esc(t("theme"))}</span><div class="seg">${["auto", "light", "dark"].map((k) => `<button data-theme-set="${k}" class="${(S.theme || "auto") === k ? "on" : ""}">${esc(t(k === "auto" ? "themeSys" : k === "light" ? "themeLight" : "themeDark"))}</button>`).join("")}</div></div>
       <div class="setrow"><span>${esc(t("lang"))}</span><div class="seg"><button data-lang="en" class="${S.lang === "en" ? "on" : ""}">English</button><button data-lang="fr" class="${S.lang === "fr" ? "on" : ""}">Français</button></div></div>
       <div class="setrow"><span>${esc(t("voiceAuto"))}</span><button class="switch" role="switch" id="sw-voice" aria-checked="${S.voiceAuto}" aria-label="${esc(t("voiceAuto"))}"></button></div>
       <div class="setrow"><span>${esc(t("sfx"))}</span><button class="switch" role="switch" id="sw-sound" aria-checked="${S.sound}" aria-label="${esc(t("sfx"))}"></button></div>
@@ -1132,10 +1147,10 @@ function showWelcome(step = 1) {
   const el = $("#welcome");
   el.className = "welcome plaster cv0";
   if (step === 1) {
-    el.innerHTML = `${panelHTML(0, ["done", "done", "done", "done"])}
+    el.innerHTML = `<div class="stage-art">${panelHTML(0, ["done", "done", "done", "done"])}<div class="cat-sit">${mascot("happy", "hi")}</div></div>
       <p class="eyebrow">Wakha</p>
       <div class="salam"><span class="word">${dj("Salam!")}</span><span class="arw" lang="ar">سلام</span>${sayBtn("Salam!")}</div>
-      <h1>${esc(t("welcome3T"))}</h1><p>${esc(t("welcome3S"))}</p>
+      <h1>${esc(t("welcome3T"))}</h1><p>${esc(t("catIntro"))}</p>
       <button class="cta block split" data-w="next"><span>${esc(t("startJourney"))}</span>${ICON.right}</button>`;
   } else {
     const g = [[50, "goalChill", 0.35, 1], [100, "goalReg", 0.65, 2], [200, "goalSer", 1, 4]];
@@ -1159,12 +1174,14 @@ function showWelcome(step = 1) {
    ========================================================= */
 function start(data) {
   installPatterns();
+
   const fromHot = data && data.S ? migrate(data.S) : null;
   S = fromHot || loadLocal() || defaultState();
   Voice.init(); FX.init(); Feed.init();
   const t0 = today();
   Session.newDay = !!(S.lastOpen && S.lastOpen !== t0);
   if (S.lastOpen !== t0) { S.lastOpen = t0; S.dayCount = (S.dayCount || 0) + 1; }
+  applyTheme();
   refreshHUD(); renderCombo();
   setView("today");
   if (!S.onboarded) showWelcome(1);
@@ -1191,6 +1208,7 @@ function start(data) {
     if (e.target.closest("[data-act=practice]")) startPractice();
   });
   $("#v-me").addEventListener("click", (e) => {
+    const th = e.target.closest("[data-theme-set]"); if (th) { S.theme = th.dataset.themeSet; applyTheme(); persist(); renderMe(); return; }
     const lg = e.target.closest("[data-lang]"); if (lg) { S.lang = lg.dataset.lang; persist(); renderMe(); refreshHUD(); if (Feed.started) Feed.rebuildAhead(); $("#nav-hint").textContent = t("navHint"); return; }
     const gl = e.target.closest("[data-goal]"); if (gl) { S.goal = +gl.dataset.goal; S.goalChosen = true; checkGoal(); persist(); renderMe(); refreshHUD(); return; }
     if (e.target.closest("#sw-sound")) { S.sound = !S.sound; persist(); renderMe(); if (S.sound) Sound.play("good"); return; }
@@ -1225,7 +1243,7 @@ function start(data) {
   try { window.claude && window.claude.hot && window.claude.hot.snapshot && window.claude.hot.snapshot(() => ({ S })); } catch (e) {}
   connectCapabilities(() => { refreshHUD(); renderLearn(); if (S.onboarded) { $("#welcome").hidden = true; } Feed.started = false; if (view === "feed") Feed.start(); });
   window.__wakha = { get S() { return S; }, set S(v) { S = v; }, Feed, FG, Lesson, PATH, UNITS, W, COLL, CORE, BUILDS, SITS, today, levelInfo, dueWords, setView, currentNode, Voice, AUD, audioKey,
-    get view() { return view; }, inject(sp) { Feed.rebuildAhead(true, sp); }, startPractice };
+    Med3D, get view() { return view; }, inject(sp) { Feed.rebuildAhead(true, sp); }, startPractice };
 }
 function startPractice() {
   const due = dueWords();

@@ -1,4 +1,4 @@
 # Wakha — learn Moroccan Darija
 
-v4: Today screen, word of the day, daily sprint, streak shields, cleaner layout.
+v5: motion, a 3D medallion, Mchicha the cat with a tagiya, dark mode.
 Build with `node build/build.js`, then open `dist/wakha.html`.

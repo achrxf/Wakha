@@ -217,7 +217,11 @@ function installPatterns() {
   // one class per city: plaster wall, niche, accent ink, three glazes and the tiled frame band
   const band = (a, b) => `url("${svgURI(`<svg xmlns='http://www.w3.org/2000/svg' width='22' height='22'><rect width='22' height='22' fill='${a}'/><path d='M11 2l2.6 6.4L20 11l-6.4 2.6L11 20l-2.6-6.4L2 11l6.4-2.6z' fill='${b}'/><circle cx='11' cy='11' r='2' fill='#EDE5D6'/></svg>`)}")`;
   const css = CITIES.map((c, i) => `.cv${i}{--wall:${c.wall};--niche:${c.niche};--accent:${c.accent};--g0:${c.g[0]};--g1:${c.g[1]};--g2:${c.g[2]};--band:${band(c.g[0], c.g[2] === "#F0E9DA" ? c.g[1] : c.g[2])}}`).join("\n");
-  const tag = document.createElement("style"); tag.textContent = css; document.head.appendChild(tag);
+  // dark walls: the same plaster at dusk; accents lifted so they still read on it
+  const mix = (a, b, t) => { const p = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)); const x = p(a), y = p(b); return "#" + x.map((v, i) => Math.round(v + (y[i] - v) * t).toString(16).padStart(2, "0")).join(""); };
+  const dk = CITIES.map((c, i) => `.cv${i}{--wall:${mix(c.wall, "#100F26", 0.84)};--accent:${mix(c.accent, "#FFFFFF", 0.5)}}`).join("\n");
+  const css2 = css + `\n@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) ${dk.replace(/\n/g, "\n:root:not([data-theme=\"light\"]) ")}}\n` + dk.split("\n").map((r) => `:root[data-theme="dark"] ${r}`).join("\n");
+  const tag = document.createElement("style"); tag.textContent = css2; document.head.appendChild(tag);
 }
 const cityOf = (ui) => CITIES[Math.max(0, Math.min(CITIES.length - 1, ui))];
 const cityName = (c) => (S.lang === "fr" ? c.fr : c.en);
@@ -230,7 +234,53 @@ function medalMark() { return `<svg viewBox="-30 -30 60 60" aria-hidden="true"><
 const ARCH = `<svg class="arch" viewBox="0 0 200 320" aria-hidden="true"><path d="M30 320V150A70 70 0 1 1 170 150V320" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M46 320V152A54 54 0 1 1 154 152V320" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M100 54l7 12 14 2-10 10 2 14-13-7-13 7 2-14-10-10 14-2z" fill="currentColor" opacity=".7"/></svg>`;
 const INK = "#2A1B3D";
 function mascot(mood = "happy", cls = "") {
-  return Zel.svg(["#13706F", "#1F45B5", "#E0A631"], ["done"], { seed:11, field:"#141B24", cls:"mc any " + cls });
+  const O = "#3B2416", F = "#EE9A45", D = "#C8702A", C = "#FCE8CC", P = "#F29AA6";
+  const eyes = {
+    happy:`<path d="M58 79q7-8 14 0M88 79q7-8 14 0" stroke="${O}" stroke-width="3.6" fill="none" stroke-linecap="round"/>`,
+    normal:`<g class="cat-eyes"><ellipse cx="65" cy="78" rx="6.2" ry="7.6" fill="${O}"/><ellipse cx="95" cy="78" rx="6.2" ry="7.6" fill="${O}"/><circle cx="67.4" cy="75" r="2.4" fill="#fff"/><circle cx="97.4" cy="75" r="2.4" fill="#fff"/></g>`,
+    wow:`<g class="cat-eyes"><ellipse cx="65" cy="77" rx="7.4" ry="9.4" fill="${O}"/><ellipse cx="95" cy="77" rx="7.4" ry="9.4" fill="${O}"/><circle cx="68" cy="73.4" r="3" fill="#fff"/><circle cx="98" cy="73.4" r="3" fill="#fff"/><circle cx="63" cy="81" r="1.4" fill="#fff"/><circle cx="93" cy="81" r="1.4" fill="#fff"/></g>`,
+    sad:`<g class="cat-eyes"><ellipse cx="65" cy="80" rx="5.4" ry="6.4" fill="${O}"/><ellipse cx="95" cy="80" rx="5.4" ry="6.4" fill="${O}"/><circle cx="66.8" cy="77.6" r="2" fill="#fff"/><circle cx="96.8" cy="77.6" r="2" fill="#fff"/></g><path d="M57 74l11-5M103 74l-11-5" stroke="${O}" stroke-width="3" stroke-linecap="round"/>`,
+    wink:`<path d="M58 79q7-8 14 0" stroke="${O}" stroke-width="3.6" fill="none" stroke-linecap="round"/><g class="cat-eyes"><ellipse cx="95" cy="78" rx="6.2" ry="7.6" fill="${O}"/><circle cx="97.4" cy="75" r="2.4" fill="#fff"/></g>`,
+  }[mood] || "";
+  const mouth = {
+    happy:`<path d="M72 93q8 10 16 0Z" fill="#D9475C" stroke="${O}" stroke-width="2.4" stroke-linejoin="round"/>`,
+    normal:`<path d="M80 90v3M80 93q-4.5 4.5-8.5 1M80 93q4.5 4.5 8.5 1" stroke="${O}" stroke-width="2.4" fill="none" stroke-linecap="round"/>`,
+    wow:`<ellipse cx="80" cy="96" rx="4.6" ry="5.6" fill="${O}"/>`,
+    sad:`<path d="M73 98q7-6 14 0" stroke="${O}" stroke-width="2.6" fill="none" stroke-linecap="round"/>`,
+    wink:`<path d="M72 93q8 10 16 0Z" fill="#D9475C" stroke="${O}" stroke-width="2.4" stroke-linejoin="round"/>`,
+  }[mood] || "";
+  // tagiya: a white crocheted cap with a red and green zellige band and a little top knot
+  const cap = `<g class="cat-cap">
+      <path d="M53 50Q55 22 80 21Q105 22 107 50Q80 57 53 50Z" fill="#F7F1E3" stroke="${O}" stroke-width="2.6" stroke-linejoin="round"/>
+      <path d="M55.5 44Q80 50.5 104.5 44" fill="none" stroke="#C7362F" stroke-width="5"/>
+      <path d="M57 44.6l4-4 4 4 4-4 4 4 4-4 4 4 4-4 4 4 4-4 4 4 4-4 4 4" fill="none" stroke="#1F7A4D" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M60 33Q80 29 100 33" fill="none" stroke="#E2D6BC" stroke-width="1.6" stroke-dasharray="2 3"/>
+      <path d="M57 39Q80 35 103 39" fill="none" stroke="#E2D6BC" stroke-width="1.6" stroke-dasharray="2 3"/>
+      <circle cx="80" cy="20.5" r="3.4" fill="#C7362F" stroke="${O}" stroke-width="2"/></g>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" class="cat mc ${cls}" data-mood="${mood}" viewBox="0 0 160 160" aria-hidden="true">
+    <ellipse class="cat-shadow" cx="80" cy="151" rx="42" ry="5" fill="rgba(30,20,60,.18)"/>
+    <g class="cat-tail"><path d="M108 140Q140 140 138 112Q136 96 124 92" fill="none" stroke="${O}" stroke-width="14.5" stroke-linecap="round"/><path d="M108 140Q140 140 138 112Q136 96 124 92" fill="none" stroke="${F}" stroke-width="9.5" stroke-linecap="round"/><path d="M134.5 103q-6 1-8 6M137.5 118q-6-1-9 3" stroke="${D}" stroke-width="3" stroke-linecap="round" fill="none"/></g>
+    <g class="cat-body">
+      <path d="M48 148Q42 112 60 100Q80 92 100 100Q118 112 112 148Z" fill="${F}" stroke="${O}" stroke-width="2.8" stroke-linejoin="round"/>
+      <path d="M66 148Q62 118 80 108Q98 118 94 148Z" fill="${C}"/>
+      <path d="M52 118q6 1 9 5M50 130q6 0 9 4M108 118q-6 1-9 5M110 130q-6 0-9 4" stroke="${D}" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <ellipse cx="66" cy="148" rx="11" ry="6.5" fill="${C}" stroke="${O}" stroke-width="2.6"/>
+    </g>
+    <g class="cat-paw"><ellipse cx="94" cy="148" rx="11" ry="6.5" fill="${C}" stroke="${O}" stroke-width="2.6"/></g>
+    <g class="cat-head">
+      <g class="cat-ear-l"><path d="M48 66L46 28L72 46Z" fill="${F}" stroke="${O}" stroke-width="2.8" stroke-linejoin="round"/><path d="M52 58L51 36L66 47Z" fill="${P}"/></g>
+      <g class="cat-ear-r"><path d="M112 66L114 28L88 46Z" fill="${F}" stroke="${O}" stroke-width="2.8" stroke-linejoin="round"/><path d="M108 58L109 36L94 47Z" fill="${P}"/></g>
+      <ellipse cx="80" cy="80" rx="40" ry="34" fill="${F}" stroke="${O}" stroke-width="2.8"/>
+      <path d="M44 74q7 1 11 5M42 86q7 0 11 3M116 74q-7 1-11 5M118 86q-7 0-11 3" stroke="${D}" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <ellipse cx="80" cy="94" rx="18" ry="12.5" fill="${C}"/>
+      ${cap}
+      ${eyes}
+      <path d="M75.5 87h9l-4.5 4.6Z" fill="${P}" stroke="${O}" stroke-width="1.8" stroke-linejoin="round"/>
+      ${mouth}
+      <path d="M60 91H44M60 96l-14 4M100 91h16M100 96l14 4" stroke="${O}" stroke-width="1.8" stroke-linecap="round" opacity=".75"/>
+      <ellipse cx="55" cy="96" rx="5.5" ry="3.6" fill="${P}" opacity=".55"/><ellipse cx="105" cy="96" rx="5.5" ry="3.6" fill="${P}" opacity=".55"/>
+    </g>
+  </svg>`;
 }
 function vendorFace() {
   return `<svg class="face-v" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#FFE3C4"/>

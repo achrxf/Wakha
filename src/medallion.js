@@ -81,18 +81,21 @@ const Zel = (() => {
     <circle class="field" r="101.5" fill="${anyDone ? opts.field || "#17151F" : "#B07A60"}" style="--g:${opts.field || "#17151F"};--k:#B07A60"/>`;
     for (let k = 0; k < n; k++) {
       const a = Math.floor(k * N / n), b = Math.floor((k + 1) * N / n), st = states[k] || "locked";
-      out += `<g class="seg l${k} ${st}" data-l="${k}" style="--l:${k}"${st !== "done" ? ` filter="url(#${id}c)"` : ""}>`;
+      out += `<g class="seg l${k} ${st}" data-l="${k}" style="--l:${k}"${st !== "done" && !opts.mode ? ` filter="url(#${id}c)"` : ""}>`;
       const ds = [];
       for (let j = a; j < b; j++) {
         const p = PIECES[j];
         const glazeC = vary(roleColor(p.role), rnd, p.role === "ivory" ? 3 : 6);
         const clayC = vary(p.role === "ivory" ? "#E2C3AC" : "#CF9C80", rnd, 5);
-        out += `<path class="pc" d="${p.d}" fill="${st === "done" ? glazeC : clayC}" stroke="#E9E0CF" stroke-width="1.15" style="--g:${glazeC};--k:${clayC};--i:${j - a}"/>`;
+        const mf = opts.mode === "gloss" ? (st === "done" ? "#FFFFFF" : "#000000") : opts.mode === "rough" ? (st === "done" ? "#262626" : "#E6E6E6") : opts.mode === "bump" ? (st === "done" ? "#FFFFFF" : "#E8E8E8") : null;
+        const ms = opts.mode === "gloss" ? "#000000" : opts.mode === "rough" ? "#F2F2F2" : opts.mode === "bump" ? "#000000" : "#E9E0CF";
+        out += `<path class="pc" d="${p.d}" fill="${mf || (st === "done" ? glazeC : clayC)}" stroke="${ms}" stroke-width="${opts.mode === "bump" ? 1.8 : 1.15}" style="--g:${glazeC};--k:${clayC};--i:${j - a}"/>`;
         ds.push(p.d);
       }
-      out += `<path class="sheen" d="${ds.join("")}" fill="url(#${id}s)"/></g>`;
+      out += opts.mode ? `</g>` : `<path class="sheen" d="${ds.join("")}" fill="url(#${id}s)"/></g>`;
     }
-    out += `<path d="${BRASS.d}" fill="#C8A04E" stroke="#E9E0CF" stroke-width="1.15"/>`;
+    out += `<path d="${BRASS.d}" fill="${opts.mode === "gloss" ? "#000" : opts.mode === "rough" ? "#555" : opts.mode === "bump" ? "#fff" : "#C8A04E"}" stroke="${opts.mode === "bump" ? "#000" : "#E9E0CF"}" stroke-width="1.15"/>`;
+    if (opts.mode) return out.replace(/<circle class="field"[^>]*>/, `<circle class="field" r="101.5" fill="${opts.mode === "gloss" ? (anyDone ? "#9A9A9A" : "#000") : opts.mode === "rough" ? (anyDone ? "#303030" : "#CCCCCC") : "#9A9A9A"}"/>`).replace(/<rect[^>]*>/g, "") + `<circle r="102.2" fill="none" stroke="${opts.mode === "rough" ? "#444" : "#fff"}" stroke-width="2.2"/></svg>`;
     out += `<circle r="101.5" fill="url(#${id}l)" style="mix-blend-mode:soft-light" pointer-events="none"/><circle r="102.2" fill="none" stroke="#C9A24F" stroke-width="2.2"/><circle r="99.6" fill="none" stroke="#EDE5D6" stroke-width=".9" opacity=".7"/></svg>`;
     return out;
   }
