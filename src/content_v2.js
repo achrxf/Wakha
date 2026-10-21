@@ -33,12 +33,31 @@ w("bsse7","Bsse7?","بصح؟","really?","c’est vrai ?","expr",{ex:["Bsse7? Ma 
 w("wallah","Wallah","والله","I swear / honestly","je te jure","expr",{ex:["Wallah bnin!","Honestly, delicious!","Je te jure, c’est délicieux !"],note:["Moroccans use it for everything from big promises to good soup.","On l’utilise pour tout, des grandes promesses à une bonne soupe."]});
 w("nchoufek","Nchoufek ghedda","نشوفك غدا","see you tomorrow","à demain","expr",{ex:["Bslama, nchoufek ghedda!","Bye, see you tomorrow!","Salut, à demain !"]});
 
+// v6: football and match day
+w("lkoura","Lkoura","الكورة","football / the ball","le foot / le ballon","foot",{ex:["Kanbghi lkoura bzzaf!","I love football so much!","J’adore le foot !"],note:["The same word means the game and the ball itself.","Le même mot veut dire le jeu et le ballon lui-même."]});
+w("lmatch","Lmatch","الماتش","the match","le match","foot",{ex:["Lmatch bda, yallah!","The match has started, come on!","Le match a commencé, allez !"]});
+w("lmountakhab","Lmountakhab","المنتخب","the national team","l’équipe nationale","foot",{ex:["Lmountakhab dyalna zwin bzzaf.","Our national team is so good.","Notre équipe nationale est trop forte."],note:["Morocco’s team are also called the Atlas Lions.","L’équipe du Maroc, ce sont aussi les Lions de l’Atlas."]});
+w("marka","Marka","ماركا","he scored","il a marqué","foot",{ex:["Marka f d9i9a lkhra!","He scored in the last minute!","Il a marqué à la dernière minute !"],note:["From the French marquer. To a woman scorer: markat.","Vient du français marquer. Pour une joueuse : markat."]});
+w("gool","Gool!","كول!","goal!","but !","foot",{ex:["Goool! Dima Maghrib!","Goal! Always Morocco!","But ! Toujours le Maroc !"],note:["Stretch the o for as long as your lungs allow.","Étire le o aussi longtemps que tes poumons le permettent."]});
+w("ljmhour","Ljmhour","الجمهور","the fans / the crowd","le public / les supporters","foot",{ex:["Ljmhour kaygheni!","The crowd is singing!","Le public chante !"]});
+w("rbe7na","Rbe7na!","ربحنا!","we won!","on a gagné !","foot",{ex:["Rbe7na, l7amdoulillah!","We won, thank God!","On a gagné, Dieu merci !"]});
+w("khsserna","Khsserna","خسرنا","we lost","on a perdu","foot",{ex:["Khsserna, walakin ma3lich.","We lost, but never mind.","On a perdu, mais c’est pas grave."]});
+w("ta3adol","Ta3adol","تعادل","a draw","un match nul","foot",{ex:["Ta3adol, wa7ed wa7ed.","A draw, one all.","Match nul, un partout."]});
+w("l7akam","L7akam","الحكم","the referee","l’arbitre","foot",{ex:["Ach dar had l7akam?!","What is this referee doing?!","Mais qu’est-ce qu’il fait, l’arbitre ?!"],note:["Usually the villain of the evening.","En général, le méchant de la soirée."]});
+w("bennalti","Bennalti","بنالتي","penalty","penalty","foot",{ex:["Bennalti f d9i9a 90!","A penalty in the 90th minute!","Penalty à la 90e minute !"]});
+w("tiran","Tiran","تيران","the pitch","le terrain","foot",{ex:["Yallah nl3bou f tiran!","Let’s go play on the pitch!","Allez, on va jouer sur le terrain !"],note:["From the French terrain.","Vient du français terrain."]});
+w("dimamaghrib","Dima Maghrib!","ديما مغرب!","always Morocco!","toujours le Maroc !","foot",{ex:["Dima Maghrib, dima!","Morocco, always!","Le Maroc, toujours !"],note:["The chant you hear in every street after a win.","Le chant qu’on entend dans toutes les rues après une victoire."]});
+w("sir","Sir!","سير!","go! / go on!","vas-y !","foot",{ex:["Sir! Sir! Sir!","Go! Go! Go!","Allez ! Allez ! Allez !"],note:["Sir means go. Fans chant it three times, louder each time.","Sir veut dire vas-y. Les supporters le chantent trois fois, de plus en plus fort."]});
+w("dirniya","Dir niya","دير النية","have faith","aie confiance","foot",{ex:["Dir niya, ghadi nrb7ou!","Have faith, we’re going to win!","Aie confiance, on va gagner !"],note:["Niya is faith and good intention. It became the national team’s motto.","La niya, c’est la confiance et la bonne intention. C’est devenu la devise de l’équipe nationale."]});
+
 // the journey: one Moroccan city per unit. wall = plaster color, niche = panel, g = glazes, accent = text accent
 const CITIES = [
   { en:"Tangier", fr:"Tanger", ar:"طنجة", wall:"#E6ECE8", niche:"#D3DFDA", accent:"#126E6C", g:["#13706F","#1F45B5","#E0A631"], field:"#141B24",
     scene:["You step off the ferry into Tangier. Time to say hello.","Tu descends du ferry à Tanger. C’est le moment de dire bonjour."] },
   { en:"Chefchaouen", fr:"Chefchaouen", ar:"شفشاون", wall:"#A8C4E8", niche:"#C2D5EF", accent:"#22307A", g:["#23307A","#3B79C6","#F0E9DA"], field:"#121630",
     scene:["Blue walls, quiet steps. Good manners open every door here.","Murs bleus, pas tranquilles. Ici, la politesse ouvre toutes les portes."] },
+  { en:"Rabat", fr:"Rabat", ar:"الرباط", wall:"#EFE2D6", niche:"#F4EADF", accent:"#A11F26", g:["#C1272D","#006233","#E0A631"], field:"#151313",
+    scene:["Match day in Rabat. The whole city is wearing red and green.","Jour de match à Rabat. Toute la ville est en rouge et vert."] },
   { en:"Fes", fr:"Fès", ar:"فاس", wall:"#E4D2B2", niche:"#EEE0C6", accent:"#1B3E8C", g:["#1B3E8C","#0E6B4E","#C98A2B"], field:"#15141C",
     scene:["The Fes medina is a maze. You’ll need to ask a few questions.","La médina de Fès est un labyrinthe. Il va falloir poser des questions."] },
   { en:"Meknes", fr:"Meknès", ar:"مكناس", wall:"#D5E3CF", niche:"#E3EDDE", accent:"#2E6B45", g:["#2F8A5B","#B0702A","#6B3A1E"], field:"#16191A",
@@ -99,6 +118,12 @@ const LESSON_SCENES = {
   u7s:["Mom calls. Where are you?","Maman appelle. T’es où ?"],
   u8s:["A petit taxi to the edge of town.","Un petit taxi jusqu’au bout de la ville."],
   u9s:["A wedding by the ocean.","Un mariage au bord de l’océan."],
+  u10l1:["Your cousin has two tickets. It’s Morocco tonight.","Ton cousin a deux billets. Ce soir, c’est le Maroc."],
+  u10l2:["Kick-off. Sixty thousand people in red and green.","Coup d’envoi. Soixante mille personnes en rouge et vert."],
+  u10l3:["Full time. Win, lose or draw, everyone has an opinion.","Fin du match. Victoire, défaite ou nul, tout le monde a un avis."],
+  u10l4:["A penalty in the last minute. The referee checks the screen.","Un penalty à la dernière minute. L’arbitre regarde l’écran."],
+  u10l5:["The whole stadium sings. Learn the chants.","Tout le stade chante. Apprends les chants."],
+  u10s:["The match is on at the café and your friend is already shouting.","Le match passe au café et ton pote crie déjà."],
   u9l4:["Cold wind, hot tea and a tired body.","Vent froid, thé chaud et corps fatigué."],
 };
 
@@ -108,6 +133,8 @@ const UNITS = [
     words:["salam","labas","hamdoulillah","bikhir","kidayr","sba7","merhba","bslama","tsb7","msalkhir","mtcharfin","kolchi"] },
   { id:"u2", d:"Bla mzyya", en:"Please, thanks and OK", fr:"S’il te plaît, merci, d’accord", tile:"emerald",
     words:["choukran","blamzyya","3afak","smeh","ma3lich","wakha","iyeh","la","safi","tfdl","mamochkil","choukranbzzaf"] },
+  { id:"u10", d:"Dima Maghrib", en:"Football and match day", fr:"Le foot et le jour de match", tile:"pomegranate",
+    words:["lkoura","lmatch","lmountakhab","marka","gool","ljmhour","rbe7na","khsserna","ta3adol","l7akam","bennalti","tiran","dimamaghrib","sir","dirniya"] },
   { id:"u3", d:"Achnou?", en:"Asking questions", fr:"Poser des questions", tile:"teal",
     words:["achnou","fin","kifach","3lach","imta","chkoun","wach","smiti","achsmitek","mnin","fingadi","achnouhada"] },
   { id:"u4", d:"Atay", en:"Tea, food and the café", fr:"Thé, bouffe et café", tile:"saffron",
@@ -125,7 +152,7 @@ const UNITS = [
 ];
 
 // split each unit into lessons of 3 to 4 words, then a review (or the souk boss)
-const STORY_OF = { u1:"meet", u2:"hanout", u3:"lost", u4:"cafe", u6:"friend", u7:"mom", u8:"taxi", u9:"wedding" };
+const STORY_OF = { u10:"match", u1:"meet", u2:"hanout", u3:"lost", u4:"cafe", u6:"friend", u7:"mom", u8:"taxi", u9:"wedding" };
 function buildPath() {
   const nodes = [];
   UNITS.forEach((u, ui) => {
@@ -187,6 +214,12 @@ const DIALOGS = [
     ["B","Llah ybarek fik. Mer7ba bik!","God bless you. Welcome!","Que Dieu te bénisse. Bienvenue !"],
     ["A","Lmakla bnina bzzaf!","The food is so good!","La nourriture est trop bonne !"],
     ["B","Bssa7a! Zid chwiya.","Enjoy! Have some more.","Profite ! Reprends-en un peu."] ] },
+  { id:"match", tile:"pomegranate", t:["Match at the café","Match au café"], who:[["Friend","Pote"],["You","Toi"]], lines:[
+    ["A","Lmatch bda! Aji tchouf!","The match has started! Come and watch!","Le match a commencé ! Viens voir !"],
+    ["B","Chhal f nnatija?","What’s the score?","C’est combien, le score ?"],
+    ["A","Ba9i zero zero.","Still nil-nil.","Toujours zéro-zéro."],
+    ["B","Dir niya, ghadi nmarkiw!","Have faith, we’re going to score!","Aie confiance, on va marquer !"],
+    ["A","Goool! Dima Maghrib!","Goal! Always Morocco!","But ! Toujours le Maroc !"] ] },
   { id:"friend", tile:"saffron", t:["Weekend plans","Le programme du week-end"], who:[["Friend","Pote"],["You","Toi"]], lines:[
     ["A","Fin ghadi lyoum?","Where are you going today?","Tu vas où aujourd’hui ?"],
     ["B","Ma3reftch. W nta?","I don’t know. And you?","Je sais pas. Et toi ?"],
@@ -219,9 +252,33 @@ const BUILDS_MORE = [
   ["lovemom","I love you, mom","Je t’aime, maman",["kanbghik","a","yemma"],["baba","khti"],"kanbghik"],
   ["tired","I’m very tired","Je suis très fatigué(e)",["3yit","bzzaf"],["chwiya","mzyan"],"3yit"],
 ];
+BUILDS_MORE.push(
+  ["dima","Morocco, always!","Le Maroc, toujours !",["dima","maghrib"],["la","bzzaf"],"dimamaghrib"],
+  ["wewon","We won, thank God!","On a gagné, Dieu merci !",["rbe7na","l7amdoulillah"],["khsserna","ghedda"],"rbe7na"],
+  ["scored","He scored in the last minute","Il a marqué à la dernière minute",["marka","f","d9i9a","lkhra"],["tiran","bzzaf"],"marka"]);
 BUILDS.push(...BUILDS_MORE);
+SITS.push(
+  ["goal","⚽",["Morocco scores in the last minute. You jump up and shout…","Le Maroc marque à la dernière minute. Tu sautes et tu cries…"],"gool",[["Goool! Dima Maghrib!","Goal! Always Morocco!","But ! Toujours le Maroc !"],["Bslama!","Bye!","Salut !"],["Ghali bzzaf!","Way too expensive!","Beaucoup trop cher !"],["Ma3reftch.","I don’t know.","Je sais pas."]]],
+  ["ref","🟨",["The referee gives a card nobody understands.","L’arbitre donne un carton que personne ne comprend."],"l7akam",[["Ach dar had l7akam?!","What is this referee doing?!","Mais qu’est-ce qu’il fait, l’arbitre ?!"],["Bssa7a!","Enjoy!","Profite bien !"],["Mer7ba!","Welcome!","Bienvenue !"],["Tsb7 3la khir.","Good night.","Bonne nuit."]]],
+  ["faith","🦁",["Your friend thinks Morocco will lose the final.","Ton pote pense que le Maroc va perdre la finale."],"dirniya",[["Dir niya!","Have faith!","Aie confiance !"],["Choukran.","Thank you.","Merci."],["Fin kayn tobis?","Where’s the bus?","Il est où, le bus ?"],["Zid chwiya.","A bit more.","Encore un peu."]]],
+  ["draw","🤝",["The match ends one all. Your uncle asks how it went.","Le match finit un partout. Ton oncle demande comment ça s’est passé."],"ta3adol",[["Ta3adol, wa7ed wa7ed.","A draw, one all.","Match nul, un partout."],["Rbe7na zouj zero!","We won two-nil!","On a gagné deux-zéro !"],["Ana jay daba!","I’m coming now!","J’arrive tout de suite !"],["Mabrouk!","Congrats!","Félicitations !"]]]);
 
 REELS.push(
+  ["dimamaghrib","t-emerald",["Dima Maghrib","Dima Maghrib"],[
+    [null,"Dima Maghrib!","“Always Morocco!” You’ll hear it in every street after a win.","« Toujours le Maroc ! » Tu l’entendras dans toutes les rues après une victoire."],
+    [null,"2022","In Qatar, Morocco became the first African and Arab team to reach a World Cup semi-final.","Au Qatar, le Maroc est devenu la première équipe africaine et arabe en demi-finale d’une Coupe du monde."],
+    [null,"Sir! Sir! Sir!","The fans’ chant. Sir means “go!”","Le chant des supporters. Sir veut dire « vas-y ! »."],
+    [null,"Dir niya","“Have faith.” Niya became the national team’s motto.","« Aie confiance. » La niya est devenue la devise de l’équipe nationale."]]],
+  ["matchday","t-pomegranate",["Match day words","Les mots du jour de match"],[
+    [null,"Lkoura","Football. And also just “the ball”.","Le foot. Et aussi juste « le ballon »."],
+    [null,"Gool!","Stretch it as long as your lungs allow.","Étire-le aussi longtemps que tes poumons le permettent."],
+    [null,"L7akam","The referee. Usually the villain.","L’arbitre. En général, le méchant de l’histoire."],
+    [null,"Rbe7na!","We won! Now honk your horn all night.","On a gagné ! Maintenant, klaxonne toute la nuit."]]],
+  ["hosts","t-majorelle",["Morocco hosts the world","Le Maroc reçoit le monde"],[
+    [null,"AFCON 2025","Morocco hosted the Africa Cup of Nations. The final was played in Rabat.","Le Maroc a accueilli la Coupe d’Afrique des nations. La finale s’est jouée à Rabat."],
+    [null,"2026","At the World Cup in North America, the Atlas Lions reached the quarter-finals.","À la Coupe du monde en Amérique du Nord, les Lions de l’Atlas ont atteint les quarts de finale."],
+    [null,"2030","Next: the World Cup, hosted with Spain and Portugal.","Prochaine étape : la Coupe du monde, coorganisée avec l’Espagne et le Portugal."],
+    [null,"Dima Maghrib!","Learn the chants now. You’ll need them.","Apprends les chants dès maintenant. Tu en auras besoin."]]],
   ["couscous","t-saffron",["Friday is couscous day","Vendredi, c’est couscous"],[
     [null,"Nhar jjem3a","Friday.","Le vendredi."],
     ["🥘",null,"After Friday prayer, families sit around one big plate of couscous.","Après la prière du vendredi, la famille se retrouve autour d’un grand plat de couscous."],
@@ -237,7 +294,7 @@ REELS.push(
 );
 
 // big reel text that is not Darija gets no audio
-const NO_SAY = new Set(["3 7 9","3 = ع","7 = ح","9 = ق","gh = غ","1 DH = 20 ryal","= 50 DH","…or 5 hours","Daba?"]);
+const NO_SAY = new Set(["3 7 9","3 = ع","7 = ح","9 = ق","gh = غ","1 DH = 20 ryal","= 50 DH","…or 5 hours","Daba?","2022","2026","2030","AFCON 2025"]);
 
 // guide: sounds
 const SOUNDS = [
@@ -368,7 +425,7 @@ const PRAISE2 = [["Zwin!","Nice!","Bien !"],["Tbarkellah 3lik!","Well done!","Bi
 Object.assign(UI.en, {
   rihla:"Rihla", rihlaS:"Learn Darija across Morocco, from Tangier to the Sahara.", stopN:"Stop {n}", glazedN:"{a} of {b} glazed", lessonsGlazed:"{a} of {b} lessons glazed",
   nextStop:"Next stop", continueIn:"Continue in {c}", journeyEnd:"More stops are on the way.", sceneStart:"Start the lesson", tileGlazed:"Tile glazed", perfectGlaze:"Perfect glaze",
-  welcome3T:"Learn Darija across Morocco", welcome3S:"Nine cities, from Tangier to the Sahara. Every lesson glazes a piece of your zellige.", startJourney:"Start the journey",
+  welcome3T:"Learn Darija across Morocco", welcome3S:"Ten cities, from Tangier to the Sahara. Every lesson glazes a piece of your zellige.", startJourney:"Start the journey",
   reviewTile:"Review", bossTile:"Souk", nextT:"Next", lockedT:"Locked", tapMed:"Each finished lesson glazes a ring of this city’s zellige.",
   catIntro:"I’m Mchicha, a street cat from Tangier. I’ll show you around Morocco, one city at a time.", catName:"Mchicha", theme:"Appearance", themeSys:"Auto", themeLight:"Light", themeDark:"Dark",
   today:"Today", journey:"Journey", dayTrip:"Day {n} of your trip", dayTrip1:"Your trip starts in Tangier.", todayH:"Today", weekH:"This week",
@@ -397,7 +454,7 @@ Object.assign(UI.en, {
 Object.assign(UI.fr, {
   rihla:"Rihla", rihlaS:"Apprends la darija à travers le Maroc, de Tanger au Sahara.", stopN:"Étape {n}", glazedN:"{a} sur {b} émaillées", lessonsGlazed:"{a} leçons émaillées sur {b}",
   nextStop:"Prochaine étape", continueIn:"Continuer à {c}", journeyEnd:"D’autres étapes arrivent.", sceneStart:"Commencer la leçon", tileGlazed:"Tuile émaillée", perfectGlaze:"Émail parfait",
-  welcome3T:"Apprends la darija à travers le Maroc", welcome3S:"Neuf villes, de Tanger au Sahara. Chaque leçon émaille une pièce de ton zellige.", startJourney:"Commencer le voyage",
+  welcome3T:"Apprends la darija à travers le Maroc", welcome3S:"Dix villes, de Tanger au Sahara. Chaque leçon émaille une pièce de ton zellige.", startJourney:"Commencer le voyage",
   reviewTile:"Révision", bossTile:"Souk", nextT:"Suivant", lockedT:"Verrouillé", tapMed:"Chaque leçon terminée émaille un anneau du zellige de cette ville.",
   catIntro:"Moi c’est Mchicha, un chat des rues de Tanger. Je te fais visiter le Maroc, une ville à la fois.", catName:"Mchicha", theme:"Apparence", themeSys:"Auto", themeLight:"Clair", themeDark:"Sombre",
   today:"Aujourd’hui", journey:"Voyage", dayTrip:"Jour {n} de ton voyage", dayTrip1:"Ton voyage commence à Tanger.", todayH:"Aujourd’hui", weekH:"Cette semaine",

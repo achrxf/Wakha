@@ -12,9 +12,16 @@ const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
 const shuffle = (arr) => { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+// UI languages. English and French are written into the content; the others come from I18N, keyed by the English text.
+const LANGS = [["en", "English"], ["fr", "Français"], ["es", "Español"], ["de", "Deutsch"], ["nl", "Nederlands"], ["it", "Italiano"]];
+const LOCALES = { en:"en-GB", fr:"fr-FR", es:"es-ES", de:"de-DE", nl:"nl-NL", it:"it-IT" };
+function detectLang() {
+  const prefs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "en"]).map((x) => String(x).toLowerCase().slice(0, 2));
+  return prefs.find((p) => LANGS.some(([k]) => k === p)) || "en";
+}
 const defaultState = () => ({
   v:2, createdAt:Date.now(), updatedAt:0,
-  lang:(navigator.language || "en").toLowerCase().startsWith("fr") ? "fr" : "en",
+  lang:detectLang(),
   sound:true, voiceAuto:true, goal:100, goalChosen:false,
   xp:0, streak:0, best:0, lastGoalDay:null, shields:0, boost:0,
   words:{}, kenz:{}, days:{}, shown:{}, lessons:{},
@@ -25,12 +32,31 @@ let S = defaultState();
 let combo = 0;
 const Session = { interacted:false, gesture:false, overlayQ:[], overlayOpen:false, ovTimer:0 };
 
-const li = () => (S.lang === "fr" ? 1 : 0);
-const L = (pair) => (Array.isArray(pair) ? (pair[li()] ?? pair[0]) : pair);
-const t = (k, vars) => { let s = (UI[S.lang] && UI[S.lang][k]) ?? UI.en[k] ?? k; if (vars && typeof s === "string") for (const [a, b] of Object.entries(vars)) s = s.split("{" + a + "}").join(b); return s; };
-const meaning = (wd) => (S.lang === "fr" ? wd.fr : wd.en);
-const exTr = (ex) => (S.lang === "fr" ? ex[2] : ex[1]);
-const triTr = (tri) => (S.lang === "fr" ? tri[2] : tri[1]);
+// X(en, fr): the string in the learner's language. Numbers inside a sentence (souk prices) are matched as {n}.
+const Xmiss = new Set();
+function X(en, fr) {
+  if (en == null) return en;
+  if (S.lang === "en") return en;
+  if (S.lang === "fr" && fr != null) return fr;
+  const D = I18N[S.lang] || {};
+  if (D[en] != null) return D[en];
+  if (/\d/.test(en)) {
+    const nums = en.match(/\d+/g), key = en.replace(/\d+/g, "{n}");
+    if (D[key] != null) { let k = 0; return D[key].replace(/\{n\}/g, () => nums[k++]); }
+  }
+  if (S.lang !== "fr" && /[A-Za-z]/.test(en)) Xmiss.add(en);
+  return fr != null && S.lang === "fr" ? fr : en;
+}
+const L = (pair) => (Array.isArray(pair) ? X(pair[0], pair[1]) : pair);
+const t = (k, vars) => {
+  let s = S.lang === "en" || S.lang === "fr" ? ((UI[S.lang] && UI[S.lang][k]) ?? UI.en[k] ?? k) : UI.en[k] == null ? k : Array.isArray(UI.en[k]) ? UI.en[k].map((x) => X(x)) : X(UI.en[k]);
+  if (vars && typeof s === "string") for (const [a, b] of Object.entries(vars)) s = s.split("{" + a + "}").join(b);
+  return s;
+};
+const meaning = (wd) => X(wd.en, wd.fr);
+const exTr = (ex) => X(ex[1], ex[2]);
+const triTr = (tri) => X(tri[1], tri[2]);
+const locale = () => LOCALES[S.lang] || "en-GB";
 
 const dayKey = (d = new Date()) => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
 const today = () => dayKey(new Date());
@@ -112,28 +138,40 @@ async function connectCapabilities(onRemote) {
 /* ---------- audio: Darija voice clips + interface sounds ---------- */
 let AUD = {};
 try { AUD = JSON.parse(document.getElementById("aud").textContent || "{}"); } catch (e) { AUD = {}; }
+// Darija voice. Plays through an <audio> element; if that is blocked (strict page sandboxes refuse
+// data: media) or never starts, it switches to Web Audio, which decodes the same clips in memory.
 const Voice = {
-  el:null, marks:[], res:null, token:0,
+  el:null, marks:[], res:null, token:0, mode:"el", ctx:null, node:null, bufs:new Map(), wd:0,
   init() {
     this.el = new Audio(); this.el.preload = "auto";
     try { this.el.preservesPitch = true; } catch (e) {}
     this.el.addEventListener("ended", () => this.done());
-    this.el.addEventListener("error", () => this.done());
+    this.el.addEventListener("error", () => { if (this.res && this.mode === "el") this.fallback(); else this.done(false); });
+    this.el.addEventListener("playing", () => clearTimeout(this.wd));
+    // unlock both paths on the first touch, while the browser still counts it as a user gesture
+    const unlock = () => { this.unlock(); };
+    addEventListener("pointerdown", unlock, { capture:true }); addEventListener("keydown", unlock, { capture:true });
   },
-  src(text, voice = "n") {
+  unlock() {
+    try {
+      if (!this.ctx) { const AC = window.AudioContext || window.webkitAudioContext; if (AC) this.ctx = new AC(); }
+      if (this.ctx && this.ctx.state !== "running") this.ctx.resume().catch(() => {});
+      if (this.ctx && !this.primed) { const b = this.ctx.createBuffer(1, 1, 22050), s = this.ctx.createBufferSource(); s.buffer = b; s.connect(this.ctx.destination); s.start(0); this.primed = true; }
+    } catch (e) {}
+  },
+  b64(text, voice = "n") {
     if (!text) return null;
     const k = audioKey(text);
-    const b = (voice && voice !== "n" && AUD[voice + "|" + k]) || AUD[k];
-    return b ? "data:audio/mpeg;base64," + b : null;
+    return (voice && voice !== "n" && AUD[voice + "|" + k]) || AUD[k] || null;
   },
-  has(text, voice) { return !!this.src(text, voice); },
+  src(text, voice = "n") { const b = this.b64(text, voice); return b ? "data:audio/mpeg;base64," + b : null; },
+  has(text, voice) { return !!this.b64(text, voice); },
   play(text, opts = {}) {
-    const s = this.src(text, opts.voice || "n");
-    if (!s) return Promise.resolve(false);
+    const b = this.b64(text, opts.voice || "n");
+    if (!b) return Promise.resolve(false);
     this.stop();
     const tok = ++this.token;
-    this.el.src = s;
-    this.el.playbackRate = opts.rate || 1;
+    this.cur = { b, rate:opts.rate || 1, tok };
     const marks = [];
     if (opts.btn) marks.push(opts.btn);
     if (opts.mark) marks.push(...opts.mark);
@@ -141,12 +179,49 @@ const Voice = {
     this.marks = marks;
     return new Promise((res) => {
       this.res = res;
+      if (this.mode === "wa") { this.playWA(this.cur); return; }
+      this.el.src = "data:audio/mpeg;base64," + b;
+      this.el.playbackRate = this.cur.rate;
+      // watchdog: if nothing is playing shortly after, switch to Web Audio
+      clearTimeout(this.wd); this.wd = setTimeout(() => { if (tok === this.token && this.res && (this.el.paused || this.el.currentTime === 0)) this.fallback(); }, 1500);
       const p = this.el.play();
-      if (p && p.catch) p.catch(() => { if (tok === this.token) this.done(false); });
+      if (p && p.catch) p.catch((err) => { if (tok !== this.token) return; if (err && err.name === "AbortError") return; this.fallback(); });
     });
   },
-  stop() { try { this.el.pause(); } catch (e) {} this.done(false); },
+  fallback() {
+    clearTimeout(this.wd);
+    if (!this.cur || !this.res) return;
+    try { this.el.pause(); this.el.removeAttribute("src"); } catch (e) {}
+    this.mode = "wa";
+    this.playWA(this.cur);
+  },
+  async playWA(cur) {
+    try {
+      this.unlock();
+      if (!this.ctx) { this.done(false); return; }
+      let buf = this.bufs.get(cur.b);
+      if (!buf) {
+        const bin = atob(cur.b), u = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i);
+        buf = await new Promise((ok, bad) => { const p = this.ctx.decodeAudioData(u.buffer, ok, bad); if (p && p.then) p.then(ok, bad); });
+        if (this.bufs.size > 80) this.bufs.clear();
+        this.bufs.set(cur.b, buf);
+      }
+      if (cur.tok !== this.token) return;
+      if (this.ctx.state !== "running") await this.ctx.resume().catch(() => {});
+      const s = this.ctx.createBufferSource(); s.buffer = buf; s.playbackRate.value = cur.rate;
+      s.connect(this.ctx.destination); s.onended = () => { if (this.node === s) { this.node = null; this.done(true); } };
+      this.node = s; s.start(0);
+    } catch (e) { this.done(false); }
+  },
+  stop() {
+    clearTimeout(this.wd);
+    try { this.el.pause(); } catch (e) {}
+    if (this.node) { const n = this.node; this.node = null; try { n.onended = null; n.stop(); } catch (e) {} }
+    this.done(false);
+  },
   done(ok = true) {
+    clearTimeout(this.wd);
     this.marks.forEach((m) => m.classList.remove("playing")); this.marks = [];
     if (this.res) { const r = this.res; this.res = null; r(ok); }
   },
@@ -224,7 +299,7 @@ function installPatterns() {
   const tag = document.createElement("style"); tag.textContent = css2; document.head.appendChild(tag);
 }
 const cityOf = (ui) => CITIES[Math.max(0, Math.min(CITIES.length - 1, ui))];
-const cityName = (c) => (S.lang === "fr" ? c.fr : c.en);
+const cityName = (c) => X(c.en, c.fr);
 // the medallion for one unit, reflecting the real state of each of its lessons
 function unitStates(ui) { const cur = currentNode(); return PATH.map((n, idx) => ({ n, idx })).filter((x) => x.n.unit === ui).map((x) => S.lessons[x.n.id] ? "done" : x.idx === cur ? "current" : "locked"); }
 function medallion(ui, states, cls = "") { const c = cityOf(ui); return Zel.svg(c.g, states, { seed:ui * 31 + 5, field:c.field, cls:(states.some((x) => x === "done") ? "any " : "") + cls }); }
@@ -600,7 +675,7 @@ async function storyImage(spec) {
   for (const ln of wrapLines(g, spec.sub || "", Wd - 180)) { g.fillText(ln, 90, y); y += 76; }
   try { const m = await loadImg(svgURI(mascot("happy"))); g.drawImage(m, Wd - 440, H - 620, 360, 360); } catch (e) {}
   g.font = '600 92px "Bodoni Moda", Didot, Georgia, serif'; g.fillStyle = "#F8DFA4"; g.fillText("Wakha", 90, H - 220); g.fillStyle = "#FFFFFF";
-  g.font = '400 44px "Readex Pro", system-ui, sans-serif'; g.globalAlpha = 0.8; g.fillText(S.lang === "fr" ? "La darija, une leçon à la fois" : "Darija, one lesson at a time", 90, H - 150); g.globalAlpha = 1;
+  g.font = '400 44px "Readex Pro", system-ui, sans-serif'; g.globalAlpha = 0.8; g.fillText(X("Darija, one lesson at a time", "La darija, une leçon à la fois"), 90, H - 150); g.globalAlpha = 1;
   return await new Promise((res) => c.toBlob(res, "image/png"));
 }
 async function copyText(text) {

@@ -1,0 +1,32 @@
+const { openApp } = require("./harness");
+const { playLesson, solveStep } = require("./play");
+const closeOv = async (page) => { for (let k = 0; k < 4; k++) { await page.waitForTimeout(500); if (await page.locator("#overlay:not([hidden])").count()) await page.click("#overlay [data-ov=close]"); } };
+const res = []; const ok = (n, c, d = "") => res.push(`${c ? "PASS" : "FAIL"}  ${n}${d ? "  (" + d + ")" : ""}`);
+(async () => {
+  const W = (ids) => Object.fromEntries(ids.map((x) => [x, { b: 1, due: "2026-10-25", s: 1, c: 1, w: 0, intro: "2026-10-18" }]));
+  const st = { v:2, onboarded:true, goalChosen:true, lastOpen:"2026-10-21", lessons: { u1l1: { stars: 3 }, u1l2: { stars: 3 }, u1l3: { stars: 2 }, u1l4: { stars: 2 } }, words: W(["salam","labas","hamdoulillah","bikhir","kidayr","sba7","merhba","bslama","tsb7","msalkhir","mtcharfin","kolchi"]) };
+  const { browser, page, errors } = await openApp({ storage: JSON.stringify(st), time: "2026-10-21T09:00:00" });
+  ok("Today shows the greeting, city and a continue button", await page.locator("#v-today .td-greet h1").innerText() === "Sba7 lkhir" && await page.locator(".td-go").count() === 1);
+  await page.click(".td-go"); await page.waitForTimeout(900);
+  const k0 = await page.evaluate(() => window.__wakha.Lesson.node.kind);
+  const log = await playLesson(page); await page.waitForTimeout(300);
+  await page.click("#lesson .l-foot .cta"); await closeOv(page);
+  const s1 = await page.evaluate(() => window.__wakha.S.lessons.u1s);
+  ok("the story lesson plays the conversation, asks about it and is saved", k0 === "story" && log.filter((x) => x.startsWith("sq")).length === 4 && s1 && s1.stars >= 1, log.join(","));
+  await page.click('.td-card[data-daily="wotd"]'); await page.waitForTimeout(700);
+  const lg2 = await playLesson(page); await page.click("#lesson .l-foot .cta"); await closeOv(page);
+  ok("word of the day is a short lesson and is ticked off for today", (await page.evaluate(() => window.__wakha.S.daily.wotd)) === true && (await page.locator('.td-card[data-daily="wotd"] .done').count()) === 1, lg2.join(","));
+  await page.click('.td-card[data-daily="sprint"]'); await page.waitForTimeout(600);
+  await page.click("#lesson [data-act=go]");
+  for (let k = 0; k < 8; k++) { await page.click("#lesson .tf .yes"); await page.waitForTimeout(80); }
+  await page.waitForTimeout(400); await page.click("#lesson [data-act=next]"); await page.waitForTimeout(600);
+  await page.click("#lesson .l-foot .cta"); await closeOv(page);
+  const sp = await page.evaluate(() => window.__wakha.S.daily.sprint);
+  ok("the daily sprint records today's score", typeof sp === "number" && sp >= 0, String(sp));
+  await page.click("#tab-journey"); await page.waitForTimeout(600);
+  const pages = await page.locator(".jr-page").count(), rows = await page.locator(".jr-row").count();
+  ok("Journey has a page per city and a row per lesson", pages === 10 && rows === 60, pages + "/" + rows);
+  ok("no script errors", errors.length === 0, errors.join(" | "));
+  console.log(res.join("\n"));
+  await browser.close();
+})().catch((e) => { console.error("FAILED", e); process.exit(1); });

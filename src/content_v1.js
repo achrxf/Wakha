@@ -108,7 +108,7 @@ w("lwalidin","Llah yr7am lwalidin","الله يرحم الوالدين","please 
 w("zaama","Zaama","زعما","like… / yeah, right","genre… / soi-disant","slang",{rar:"legend",note:["The filler word of Morocco. Also the perfect sarcastic reply.","Le mot de remplissage du Maroc. Et la réplique sarcastique parfaite."]});
 w("khamsawkhmis","Khamsa w khmis","خمسة وخميس","touch wood! (against the evil eye)","touche du bois !","expr",{rar:"legend",lit:["literally “five and Thursday”","littéralement « cinq et jeudi »"]});
 
-const CAT = {hello:["Greetings","Salutations"],polite:["Manners","Politesse"],basics:["Basics","Bases"],q:["Questions","Questions"],food:["Food","Bouffe"],souk:["Souk","Souk"],family:["Family","Famille"],time:["Time","Temps"],travel:["Getting around","Se déplacer"],feel:["Vibes","Ressenti"],num:["Numbers","Chiffres"],remix:["Loanwords","Mots empruntés"],slang:["Street","Rue"],expr:["Expression","Expression"]};
+const CAT = {hello:["Greetings","Salutations"],polite:["Manners","Politesse"],basics:["Basics","Bases"],q:["Questions","Questions"],food:["Food","Bouffe"],souk:["Souk","Souk"],family:["Family","Famille"],time:["Time","Temps"],travel:["Getting around","Se déplacer"],feel:["Vibes","Ressenti"],num:["Numbers","Chiffres"],foot:["Football","Foot"],remix:["Loanwords","Mots empruntés"],slang:["Street","Rue"],expr:["Expression","Expression"]};
 const RAR = {rare:["Rare","Rare"],epic:["Epic","Épique"],legend:["Legendary","Légendaire"]};
 
 // situations: [id, emoji, prompt[en,fr], answerWord, options [[darija,en,fr]...] first = correct]

@@ -6,6 +6,19 @@ ICON.journey = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
 ICON.play = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.6-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg>`;
 
 function applyTheme() { const th = S.theme || "auto"; if (th === "auto") delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = th; }
+// language picker (a native select: the phone shows its own picker)
+function langSelect(id) { return `<label class="lang-pick"><span class="sr">${esc(t("lang"))}</span><select class="lang-select" id="${id}" aria-label="${esc(t("lang"))}">${LANGS.map(([k, n]) => `<option value="${k}"${S.lang === k ? " selected" : ""}>${n}</option>`).join("")}</select>${ICON.down || ""}</label>`; }
+function setLang(k) {
+  if (!LANGS.some(([x]) => x === k) || S.lang === k) return;
+  S.lang = k; document.documentElement.lang = k; persist();
+  refreshHUD();
+  if (!$("#welcome").hidden) { const st = $(".goal-picks", $("#welcome")) ? 2 : 1; showWelcome(st); }
+  if (view === "me") renderMe(); if (view === "guide") renderGuide();
+  renderLearn();
+  if (Feed.started) Feed.rebuildAhead();
+  $("#nav-hint").textContent = t("navHint");
+}
+function weekdayNarrow(dow) { const d = new Date(2026, 0, 4 + dow); return d.toLocaleDateString(locale(), { weekday:"narrow" }); }
 const isSide = (node) => ["practice", "daily", "sprint"].includes(node.kind);
 function haptic(p) { try { if (S.sound && navigator.vibrate) navigator.vibrate(p); } catch (e) {} }
 function glazeNow() { return Lesson.active && !isSide(Lesson.node) ? cityOf(Lesson.node.unit).g : null; }
@@ -64,11 +77,11 @@ function renderToday() {
   const days = [];
   for (let k = 6; k >= 0; k--) {
     const key = addDays(today(), -k), [y, m, d] = key.split("-").map(Number);
-    const label = new Date(y, m - 1, d).toLocaleDateString(S.lang === "fr" ? "fr-FR" : "en-US", { weekday:"narrow" });
+    const label = new Date(y, m - 1, d).toLocaleDateString(locale(), { weekday:"narrow" });
     const met = S.days[key] && S.days[key].goalMet;
     days.push(`<div class="d${met ? " met" : ""}${k === 0 ? " now" : ""}"><i>${met ? flameSVG() : ""}</i><span>${esc(label)}</span></div>`);
   }
-  const dateLabel = new Date().toLocaleDateString(S.lang === "fr" ? "fr-FR" : "en-US", { weekday:"long", day:"numeric", month:"long" });
+  const dateLabel = new Date().toLocaleDateString(locale(), { weekday:"long", day:"numeric", month:"long" });
   el.innerHTML = `<div class="today">
     <section class="td-hero hero">
       <div class="td-cat" data-act="cat" role="button" aria-label="${esc(t("catName"))}">${mascot("happy", Session.catHi ? "" : "hi")}</div>
@@ -226,7 +239,7 @@ function exStory(sp, host) {
   $(".card-in", el).innerHTML = `
     <div class="st-head a1"><h2 class="prompt-big">${esc(L(d.t))}</h2><button class="say lg" data-act="replay" aria-label="${esc(t("playAll"))}">${ICON.speak}</button></div>
     <p class="prompt a2">${esc(t("storyTap"))}</p>
-    <div class="dlg a3">${d.lines.map(([who, dar, en, fr], k) => `<div class="bub ${who}" data-k="${k}" hidden><div><span class="who">${esc(L(d.who[who === "A" ? 0 : 1]))}</span><span class="d" lang="ary-Latn" data-say="${esc(dar)}" data-voice="${who === "A" ? "a" : "n"}">${esc(dar)}</span><span class="t hide">${esc(S.lang === "fr" ? fr : en)}</span></div></div>`).join("")}</div>`;
+    <div class="dlg a3">${d.lines.map(([who, dar, en, fr], k) => `<div class="bub ${who}" data-k="${k}" hidden><div><span class="who">${esc(L(d.who[who === "A" ? 0 : 1]))}</span><span class="d" lang="ary-Latn" data-say="${esc(dar)}" data-voice="${who === "A" ? "a" : "n"}">${esc(dar)}</span><span class="t hide">${esc(X(en, fr))}</span></div></div>`).join("")}</div>`;
   const card = { el, kind:"story", run:0 };
   const play = async () => {
     const tok = ++card.run;
@@ -249,7 +262,7 @@ function exStory(sp, host) {
 }
 function exStoryQ(sp, host) {
   const d = DIALOGS.find((x) => x.id === sp.id) || DIALOGS[0];
-  const line = d.lines[sp.k], tr = (l) => (S.lang === "fr" ? l[3] : l[2]);
+  const line = d.lines[sp.k], tr = (l) => X(l[2], l[3]);
   const voice = line[0] === "A" ? "a" : "n";
   const others = shuffle(d.lines.filter((_, k) => k !== sp.k)).slice(0, 3);
   const opts = shuffle([line].concat(others));

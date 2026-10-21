@@ -1,173 +1,169 @@
-// Functional checks: persistence, day rollover, streak rules, SRS scheduling, language switch,
-// review injection, reset, and the db/downloads capability paths with a mocked platform.
-const { openApp, active, next } = require("./harness");
+const { openApp, lessonCard, next, active } = require("./harness");
+const { playLesson, solveStep, clickCont } = require("./play");
 const results = [];
 const ok = (name, cond, info = "") => results.push(`${cond ? "PASS" : "FAIL"}  ${name}${info ? "  (" + info + ")" : ""}`);
-
 const W = (ids, b, due, intro) => Object.fromEntries(ids.map((x) => [x, { b, due, s: 1, c: b, w: 0, intro, fav: false }]));
-
+const base = (extra) => JSON.stringify(Object.assign({ v: 2, onboarded: true, goalChosen: true, goal: 100, lastOpen: "2026-10-21", dayCount: 2 }, extra));
 (async () => {
-  // 1. persistence across reload
+  // 1 onboarding -> lesson 1 -> path advances -> reload keeps it
   {
-    const { browser, page, context } = await openApp({ time: "2026-10-20T09:00:00" });
-    await page.click('.card[data-i="0"] .vibe[data-v="family"]');
-    await page.waitForTimeout(1800);
-    const a = await active(page);
-    if (a.t === "quiz") await page.click(`.card[data-i="${a.i}"] .opt[data-id="${a.w}"]`);
-    await page.waitForTimeout(1500);
-    const before = await page.evaluate(() => ({ xp: window.__wakha.S.xp, vibe: window.__wakha.S.vibe, words: Object.keys(window.__wakha.S.words) }));
+    const { browser, page } = await openApp({ time: "2026-10-21T09:00:00" });
+    const w1 = await page.locator("#welcome:not([hidden])").count();
+    await page.click("#welcome [data-w=next]"); await page.click('#welcome .goal-pick[data-goal="50"]'); await page.waitForTimeout(900);
+    const lc = await lessonCard(page);
+    ok("first open shows welcome, then goal, then starts lesson 1", w1 === 1 && lc && lc.t === "scene", JSON.stringify(lc));
+    await playLesson(page); await page.waitForTimeout(500);
+    await page.click("#lesson .l-foot .cta"); await page.waitForTimeout(900);
+    for (let k = 0; k < 3; k++) if (await page.locator("#overlay:not([hidden])").count()) { await page.click("#overlay [data-ov=close]"); await page.waitForTimeout(400); }
+    const s = await page.evaluate(() => ({ l: window.__wakha.S.lessons, cur: window.__wakha.currentNode(), goal: window.__wakha.S.goal, cls: document.querySelector('.jr-row[data-node="1"]').className }));
+    ok("finishing lesson 1 saves stars and makes lesson 2 current", s.l.u1l1 && s.l.u1l1.stars >= 1 && s.cur === 1 && /current/.test(s.cls), JSON.stringify(s.l));
     await page.reload(); await page.waitForTimeout(900);
-    const after = await page.evaluate(() => ({ xp: window.__wakha.S.xp, vibe: window.__wakha.S.vibe, words: Object.keys(window.__wakha.S.words), first: window.__wakha.Feed.cards[0].spec.t }));
-    ok("progress survives a reload", after.xp === before.xp && after.xp > 0 && after.vibe === "family", `xp ${before.xp} -> ${after.xp}`);
-    ok("same-day reopen skips onboarding", after.first !== "welcome", "first card: " + after.first);
+    const r = await page.evaluate(() => ({ l: Object.keys(window.__wakha.S.lessons), welcome: !document.querySelector("#welcome").hidden, goal: window.__wakha.S.goal }));
+    ok("reload keeps lesson progress and skips welcome", r.l.includes("u1l1") && !r.welcome && r.goal === 50, JSON.stringify(r));
     await browser.close();
   }
-  // 2. day 2 comeback + streak continues + due reviews first
+  // 2 locked node, quit lesson, wrong answer retried
   {
-    const st = { v: 1, onboarded: true, goalChosen: true, goal: 100, xp: 300, streak: 3, best: 3, lastGoalDay: "2026-10-20", lastOpen: "2026-10-20", dayCount: 3,
-      words: Object.assign(W(["salam", "labas", "wakha", "bzzaf"], 1, "2026-10-21", "2026-10-19"), W(["atay", "daba"], 2, "2026-10-24", "2026-10-18")),
-      days: { "2026-10-20": { xp: 120, n: 30, c: 10, w: 2, goalMet: true } } };
-    const { browser, page } = await openApp({ time: "2026-10-21T08:00:00", storage: JSON.stringify(st) });
-    const a0 = await active(page);
+    const { browser, page } = await openApp({ time: "2026-10-21T09:00:00", storage: base({ lessons: { u1l1: { stars: 3, done: "2026-10-20", n: 1 } }, words: W(["salam", "labas", "hamdoulillah"], 1, "2026-10-25", "2026-10-20") }) });
+    await page.click("#tab-journey"); await page.waitForTimeout(500);
+    await page.evaluate(() => { const t = document.querySelector(".jr-track"); t.scrollLeft = t.clientWidth; }); await page.waitForTimeout(400);
+    await page.click('.jr-row[data-node="7"]'); await page.waitForTimeout(400);
+    const locked = await page.evaluate(() => ({ txt: document.querySelector("#nsheet").innerText, btn: !!document.querySelector("#nsheet [data-start]") }));
+    ok("tapping a locked lesson explains how to unlock it, with no start button", /Finish the lesson/.test(locked.txt) && !locked.btn);
+    await page.click("#sheet-scrim", { position: { x: 10, y: 100 } });
+    await page.click("#tab-today"); await page.waitForTimeout(400);
+    await page.click(".hero [data-start]"); await page.waitForTimeout(500);
+    const n0 = (await lessonCard(page)).n;
+    // play until first quiz, answer wrong
+    let wrongDone = false;
+    for (let k = 0; k < 8 && !wrongDone; k++) { const lc = await lessonCard(page); if (["pick", "listen", "rev"].includes(lc.t)) { await solveStep(page, false); wrongDone = true; } else await solveStep(page, true); }
+    const n1 = (await lessonCard(page)).n;
+    ok("a wrong answer adds that question again at the end", n1 === n0 + 1, `${n0} -> ${n1}`);
+    await page.click("#lesson [data-act=quit]"); await page.waitForTimeout(200);
+    const conf = await page.locator(".l-confirm:not([hidden])").count();
+    await page.click("#lesson [data-act=leave]"); await page.waitForTimeout(500);
+    const after = await page.evaluate(() => ({ open: !document.querySelector("#lesson").hidden, l2: !!window.__wakha.S.lessons.u1l2 }));
+    ok("quitting asks first and does not mark the lesson done", conf === 1 && !after.open && !after.l2);
+    await browser.close();
+  }
+  // 3 unit review completes unit -> unit overlay; boss works
+  {
+    const st = { lessons: { u1l1: { stars: 3 }, u1l2: { stars: 3 }, u1l3: { stars: 2 }, u1l4: { stars: 2 }, u1s: { stars: 3 } }, words: W(["salam", "labas", "hamdoulillah", "bikhir", "kidayr", "sba7", "merhba", "bslama", "tsb7", "msalkhir", "mtcharfin", "kolchi"], 1, "2026-10-25", "2026-10-19") };
+    const { browser, page, errors } = await openApp({ time: "2026-10-21T09:00:00", storage: base(st) });
+    await page.click(".hero [data-start]"); await page.waitForTimeout(500);
+    const kind = await page.evaluate(() => window.__wakha.Lesson.node.kind);
+    const log = await playLesson(page); await page.waitForTimeout(400);
+    await page.click("#lesson .l-foot .cta"); await page.waitForTimeout(1200);
+    const ov = []; for (let k = 0; k < 3; k++) if (await page.locator("#overlay:not([hidden])").count()) { ov.push(await page.locator("#overlay .ov-box").innerText()); await page.click("#overlay [data-ov=close]"); await page.waitForTimeout(1000); }
+    ok("finishing a unit review unlocks the next unit with a celebration", kind === "review" && ov.some((x) => /Next stop: Chefchaouen/.test(x)), `${log.length} steps, overlays: ${ov.join(" / ")}`);
+    // boss
+    await page.evaluate(() => { const S = window.__wakha.S; for (const n of window.__wakha.PATH) { if (n.id === "u5r") break; S.lessons[n.id] = { stars: 2 }; } window.__wakha.setView("learn"); });
+    await page.waitForTimeout(300);
+    await page.click(".hero [data-start]"); await page.waitForTimeout(600);
+    const bk = await page.evaluate(() => window.__wakha.Lesson.node.kind);
+    await solveStep(page); await page.waitForTimeout(500); await solveStep(page); await page.waitForTimeout(1500);
+    const end = await page.locator("#lesson .l-end").count();
+    await page.click("#lesson .l-foot .cta"); await page.waitForTimeout(600);
+    const b = await page.evaluate(() => window.__wakha.S.lessons.u5r);
+    ok("the souk boss lesson plays the haggle and records stars", bk === "boss" && end === 1 && b && b.stars >= 1, JSON.stringify(b));
+    ok("no script errors in unit and boss flows", errors.length === 0, errors.join(" | "));
+    await browser.close();
+  }
+  // 4 practice due words updates spaced repetition
+  {
+    const st = { lessons: { u1l1: { stars: 3 } }, words: Object.assign(W(["salam", "labas", "hamdoulillah"], 1, "2026-10-21", "2026-10-19"), W(["bikhir"], 2, "2026-10-30", "2026-10-19")) };
+    const { browser, page } = await openApp({ time: "2026-10-21T09:00:00", storage: base(st) });
+    const badge = await page.locator("#tab-today .badge").innerText();
+    const pr = await page.locator(".td-card[data-act=practice]").innerText();
+    await page.click(".td-card[data-act=practice]"); await page.waitForTimeout(500);
+    await playLesson(page); await page.click("#lesson .l-foot .cta"); await page.waitForTimeout(500);
+    const s = await page.evaluate(() => ["salam", "labas", "hamdoulillah"].map((id) => window.__wakha.S.words[id]));
+    ok("practice button shows due count and reviewing pushes words to later dates", badge === "3" && /3 words are ready/.test(pr) && s.every((x) => x.b >= 2 && x.due > "2026-10-21"), s.map((x) => x.b + "@" + x.due).join(", "));
+    await browser.close();
+  }
+  // 5 streak across days with goal
+  {
+    const st = { goal: 50, xp: 200, streak: 3, best: 3, lastGoalDay: "2026-10-20", lastOpen: "2026-10-20", lessons: { u1l1: { stars: 3 } }, words: W(["salam", "labas", "hamdoulillah"], 1, "2026-10-30", "2026-10-19") };
+    const { browser, page } = await openApp({ time: "2026-10-21T09:00:00", storage: base(st) });
     const hud = await page.locator("#hud-streak b").innerText();
-    ok("new day opens with the comeback card", a0.t === "comeback", a0.t);
-    ok("streak shows 3 the next morning", hud === "3", "HUD " + hud);
-    const badge = await page.locator("#tab-words .badge").innerText();
-    ok("Words tab badge counts due words", badge === "4", "badge " + badge);
-    const a1 = await next(page); const a2 = await next(page);
-    ok("due words are reviewed first", ["quiz", "rev"].includes(a1.t) && ["salam", "labas", "wakha", "bzzaf"].includes(a1.w) && ["quiz", "rev"].includes(a2.t), `${a1.t}:${a1.w}, ${a2.t}:${a2.w}`);
-    // answer correctly -> box 2, due in 3 days
-    await page.click(`.card[data-i="${a2.i}"] .opt[data-id="${a2.w}"]`);
-    await page.waitForTimeout(400);
-    const srs = await page.evaluate((w) => window.__wakha.S.words[w], a2.w);
-    ok("correct review moves word to box 2, due in 3 days", srs.b === 2 && srs.due === "2026-10-24", JSON.stringify({ b: srs.b, due: srs.due }));
-    // reach the goal today -> streak 4
-    await page.evaluate(() => { const S = window.__wakha.S; S.days["2026-10-21"] = S.days["2026-10-21"] || { xp: 0, n: 0, c: 0, w: 0, goalMet: false }; S.days["2026-10-21"].xp = 95; });
-    await page.evaluate(() => window.__wakha.inject({ t: "quiz", w: "atay" }));
-    const a3 = await next(page);
-    await page.click(`.card[data-i="${a3.i}"] .opt[data-id="atay"]`);
-    await page.waitForTimeout(1500);
-    const seen = [];
-    for (let k = 0; k < 3; k++) {
-      const o = await page.evaluate(() => (document.querySelector("#overlay").hidden ? "" : document.querySelector("#overlay .ov-t").innerText));
-      if (!o) break; seen.push(o); await page.click("#overlay [data-ov=close]"); await page.waitForTimeout(800);
-    }
-    const s2 = await page.evaluate(() => ({ streak: window.__wakha.S.streak }));
-    ok("hitting the goal on day 2 grows the streak to 4 and celebrates (queued after any level-up)", s2.streak === 4 && seen.some((x) => /Atay wajed/.test(x)), `streak ${s2.streak}, overlays: ${seen.join(" then ")}`);
+    await page.click(".hero [data-start]"); await page.waitForTimeout(400);
+    await playLesson(page); await page.click("#lesson .l-foot .cta"); await page.waitForTimeout(1200);
+    const ovs = []; for (let k = 0; k < 3; k++) if (await page.locator("#overlay:not([hidden])").count()) { ovs.push(await page.locator("#overlay .ov-t").innerText()); await page.click("#overlay [data-ov=close]"); await page.waitForTimeout(500); }
+    const s = await page.evaluate(() => window.__wakha.S.streak);
+    ok("next-day lesson that fills the goal grows the streak 3 -> 4, celebrated after the lesson", hud === "3" && s === 4 && ovs.some((x) => /Atay wajed/.test(x)), `overlays: ${ovs.join(" / ")}`);
     await browser.close();
   }
-  // 3. missed a day: no shield -> streak broken; with shield -> saved
-  for (const shields of [0, 1]) {
-    const st = { v: 1, onboarded: true, goalChosen: true, goal: 50, xp: 300, streak: 5, best: 5, lastGoalDay: "2026-10-20", lastOpen: "2026-10-20", shields, words: W(["salam", "labas", "wakha"], 1, "2026-10-30", "2026-10-19"), days: {} };
-    const { browser, page } = await openApp({ time: "2026-10-22T08:00:00", storage: JSON.stringify(st) });
-    const hud = await page.locator("#hud-streak b").innerText();
-    await page.evaluate(() => { const S = window.__wakha.S; S.days["2026-10-22"] = { xp: 45, n: 0, c: 0, w: 0, goalMet: false }; });
-    await next(page);
-    let a = await active(page);
-    for (let k = 0; k < 6 && !["quiz", "rev"].includes(a.t); k++) a = await next(page);
-    await page.click(`.card[data-i="${a.i}"] .opt[data-id="${a.w}"]`);
-    await page.waitForTimeout(1500);
-    const s = await page.evaluate(() => ({ streak: window.__wakha.S.streak, shields: window.__wakha.S.shields, txt: document.querySelector("#overlay").innerText }));
-    if (shields === 0) ok("missed day without shield: streak shows 0, restarts at 1", hud === "0" && s.streak === 1, `HUD ${hud}, after goal ${s.streak}`);
-    else ok("missed day with a shield: streak kept (5 -> 6) and shield used", hud === "5" && s.streak === 6 && s.shields === 0 && /shield/i.test(s.txt), `HUD ${hud}, after ${s.streak}, shields ${s.shields}`);
-    await browser.close();
-  }
-  // 4. wrong answer re-queues the word within a few cards
+  // 6 feed: nudge for new users, comeback on a new day
   {
-    const st = { v: 1, onboarded: true, goalChosen: true, xp: 200, lastOpen: "2026-10-20", words: W(["salam", "labas", "wakha", "bzzaf", "atay", "daba", "ghali", "chhal"], 1, "2026-10-30", "2026-10-19") };
-    const { browser, page } = await openApp({ time: "2026-10-20T12:00:00", storage: JSON.stringify(st) });
-    await page.evaluate(() => window.__wakha.inject({ t: "quiz", w: "atay" }));
-    const a = await next(page);
-    await page.click(`.card[data-i="${a.i}"] .opt:not([data-id="atay"]) >> nth=0`);
-    await page.waitForTimeout(400);
-    const srs = await page.evaluate(() => window.__wakha.S.words.atay);
-    let found = -1;
-    for (let k = 1; k <= 8; k++) { const c = await next(page); if (c.w === "atay" && ["quiz", "rev"].includes(c.t)) { found = k; break; } }
-    ok("wrong answer drops the word to box 0 and it comes back within 8 cards", srs.b === 0 && found > 0, `box ${srs.b}, back after ${found} cards`);
-    await browser.close();
-  }
-  // 5. French: UI and new cards switch
-  {
-    const { browser, page } = await openApp({ locale: "fr-FR", time: "2026-10-20T12:00:00" });
-    const t1 = await page.locator('.card[data-i="0"]').innerText();
-    ok("French device gets the French UI", /Bienvenue sur Wakha/.test(t1) && /Pourquoi la darija/.test(t1));
-    await page.evaluate(() => window.__wakha.setTab("me"));
-    await page.click('[data-lang="en"]');
-    await page.evaluate(() => window.__wakha.setTab("feed"));
-    const a = await next(page);
-    const txt = await page.locator(`.card[data-i="${a.i}"]`).innerText();
-    ok("switching to English re-renders upcoming cards", /What does this mean|New word|How do you say/.test(txt), a.t);
-    await browser.close();
-  }
-  // 6. reset progress needs a confirm step
-  {
-    const st = { v: 1, onboarded: true, goalChosen: true, xp: 700, lastOpen: "2026-10-20", words: W(["salam", "labas"], 2, "2026-10-30", "2026-10-19") };
-    const { browser, page } = await openApp({ time: "2026-10-20T12:00:00", storage: JSON.stringify(st) });
-    await page.evaluate(() => window.__wakha.setTab("me"));
-    await page.click("[data-act=reset]");
-    const vis = await page.locator(".confirm:not([hidden])").count();
-    await page.click("[data-act=cancel]");
-    const xpAfterCancel = await page.evaluate(() => window.__wakha.S.xp);
-    await page.click("[data-act=reset]"); await page.click("[data-act=erase]"); await page.waitForTimeout(500);
-    const s = await page.evaluate(() => ({ xp: window.__wakha.S.xp, first: window.__wakha.Feed.cards[0].spec.t, saved: localStorage.getItem("wakha.v1") }));
-    ok("reset asks first, cancel keeps progress, erase restarts onboarding", vis === 1 && xpAfterCancel === 700 && s.xp === 0 && s.first === "welcome" && JSON.parse(s.saved).xp === 0);
-    await browser.close();
-  }
-  // 7. Words sheet review button injects due reviews into the feed
-  {
-    const st = { v: 1, onboarded: true, goalChosen: true, xp: 300, lastOpen: "2026-10-21", words: Object.assign(W(["zwin", "khobz", "lma"], 1, "2026-10-21", "2026-10-19"), W(["salam"], 3, "2026-10-28", "2026-10-15")) };
-    const { browser, page } = await openApp({ time: "2026-10-21T12:00:00", storage: JSON.stringify(st) });
-    await page.evaluate(() => window.__wakha.setTab("words"));
-    const btn = await page.locator("[data-act=review]").innerText();
-    await page.click("[data-act=review]");
-    await page.waitForTimeout(1200);
+    const { browser, page } = await openApp({ time: "2026-10-21T09:00:00", storage: base({}) });
+    await page.click("#tab-feed"); await page.waitForTimeout(600);
     const a = await active(page);
-    ok("Review button jumps to a due-word quiz", /Review 3/.test(btn) && ["quiz", "rev"].includes(a.t) && ["zwin", "khobz", "lma"].includes(a.w), `${btn} -> ${a.t}:${a.w}`);
+    ok("feed for a brand-new learner opens with a nudge to start lesson 1", a.t === "nudge", a.t);
+    await page.click(`.feed .card[data-i="${a.i}"] [data-act=go]`); await page.waitForTimeout(600);
+    const lc = await lessonCard(page);
+    ok("the nudge button starts lesson 1", lc && lc.t === "scene" && await page.evaluate(() => window.__wakha.Lesson.node.id) === "u1l1");
     await browser.close();
   }
-  // 8. mocked platform: db save/load per viewer + downloads for story images
+  {
+    const st = { lastOpen: "2026-10-20", lessons: { u1l1: { stars: 3 } }, words: W(["salam", "labas", "hamdoulillah", "bikhir"], 1, "2026-10-21", "2026-10-19") };
+    const { browser, page } = await openApp({ time: "2026-10-21T09:00:00", storage: base(st) });
+    await page.click("#tab-feed"); await page.waitForTimeout(600);
+    const a = await active(page); const b = await next(page);
+    ok("on a new day the feed opens with a welcome-back card, then due reviews", a.t === "comeback" && ["pick", "rev", "listen"].includes(b.t), `${a.t} -> ${b.t}:${b.w}`);
+    await browser.close();
+  }
+  // 7 guide
+  {
+    const { browser, page } = await openApp({ time: "2026-10-21T09:00:00", storage: base({ words: W(["salam", "labas"], 1, "2026-10-25", "2026-10-19") }) });
+    await page.click("#tab-guide"); await page.waitForTimeout(300);
+    await page.click('[data-snd="gh"]'); await page.waitForTimeout(500);
+    const g = await page.locator(".gpanel h3").innerText();
+    await page.click('[data-gt="phrasebook"]'); await page.fill("#pb-q", "tea"); await page.waitForTimeout(300);
+    const rows = await page.locator(".pbrow .d").allInnerTexts();
+    await page.fill("#pb-q", ""); await page.click('[data-pbf="learned"]'); await page.waitForTimeout(200);
+    const learned = await page.locator(".pbrow").count();
+    ok("Guide sound tiles switch the detail panel", g === "gh");
+    ok("Phrasebook search finds words by meaning", rows.includes("Atay"), rows.join(","));
+    ok("Phrasebook Learned filter shows only learned words", learned === 2, String(learned));
+    await browser.close();
+  }
+  // 8 French + reset
+  {
+    const { browser, page } = await openApp({ locale: "fr-FR", time: "2026-10-21T09:00:00" });
+    const t1 = await page.locator("#welcome").innerText();
+    ok("French device gets French onboarding", /Apprends la darija/.test(t1));
+    await browser.close();
+  }
+  {
+    const { browser, page } = await openApp({ time: "2026-10-21T09:00:00", storage: base({ xp: 900, lessons: { u1l1: { stars: 3 } } }) });
+    await page.click("#tab-me"); await page.click("[data-act=reset]"); const vis = await page.locator(".confirm:not([hidden])").count();
+    await page.click("[data-act=erase]"); await page.waitForTimeout(500);
+    const s = await page.evaluate(() => ({ xp: window.__wakha.S.xp, w: !document.querySelector("#welcome").hidden }));
+    ok("reset asks first, then wipes progress and shows welcome", vis === 1 && s.xp === 0 && s.w);
+    await browser.close();
+  }
+  // 9 mocked platform: cloud save per viewer + story image
   {
     const mock = () => {
-      const store = (window.__store = window.__store || {});
-      const saves = (window.__saves = []);
-      const doc = (path) => ({ path, async get() { const d = store[path]; return { exists: !!d, data: () => d, id: path.split("/").pop(), metadata: {} }; }, async set(v) { store[path] = JSON.parse(JSON.stringify(v)); }, async update(v) { Object.assign(store[path], v); }, async delete() { delete store[path]; } });
-      const db = Object.freeze({ doc, collection: () => ({}) });
-      const user = Object.freeze({ id: async () => "u_test1", isOwner: async () => true, canEdit: async () => true, can: async () => true });
-      const downloads = Object.freeze({ save: async (o) => { saves.push({ filename: o.filename, size: o.data && o.data.size, type: o.data && o.data.type }); return { status: "saved" }; } });
-      const map = { db, user, downloads };
-      window.claude = { use: (n) => new Promise((r) => setTimeout(() => r(map[n] || null), 50)) };
+      const store = (window.__store = window.__store || {}); window.__saves = [];
+      const doc = (path) => ({ path, async get() { const d = store[path]; return { exists: !!d, data: () => d }; }, async set(v) { store[path] = JSON.parse(JSON.stringify(v)); } });
+      const map = { db: Object.freeze({ doc }), user: Object.freeze({ id: async () => "u_t" }), downloads: Object.freeze({ save: async (o) => { window.__saves.push({ name: o.filename, size: o.data.size, type: o.data.type }); return { status: "saved" }; } }) };
+      window.claude = { use: (n) => new Promise((r) => setTimeout(() => r(map[n] || null), 40)) };
     };
-    const remote = { v: 1, onboarded: true, goalChosen: true, xp: 999, streak: 9, best: 9, lastGoalDay: "2026-10-19", lastOpen: "2026-10-19", updatedAt: 1, words: W(["salam", "labas", "wakha", "bzzaf", "atay"], 3, "2026-10-25", "2026-10-10") };
-    const seed = (r) => { window.__store = { "data/users/u_test1/progress": r }; };
-    const { browser, page } = await openApp({ time: "2026-10-20T12:00:00", initScript: `(${seed.toString()})(${JSON.stringify(remote)}); (${mock.toString()})();` });
-    await page.waitForTimeout(1500);
-    const s = await page.evaluate(() => ({ xp: window.__wakha.S.xp, first: window.__wakha.Feed.cards[0].spec.t }));
-    ok("signed-in viewer on a new device gets their saved progress", s.xp === 999 && s.first === "comeback", `xp ${s.xp}, first ${s.first}`);
-    await page.evaluate(() => window.__wakha.inject({ t: "quiz", w: "atay" }));
-    const a = await next(page);
-    await page.click(`.card[data-i="${a.i}"] .opt[data-id="atay"]`);
-    await page.waitForTimeout(5200);
-    const stored = await page.evaluate(() => window.__store["data/users/u_test1/progress"].xp);
-    ok("progress is written back to the private per-viewer doc", stored > 999, "stored xp " + stored);
-    await page.evaluate(() => window.__wakha.inject({ t: "learn", w: "zwin" }));
-    const b = await next(page);
-    await page.click(`.card[data-i="${b.i}"] [data-act=share]`);
-    await page.waitForTimeout(2500);
-    const saves = await page.evaluate(() => window.__saves);
-    ok("Share hands a PNG story image to the downloads capability", saves.length === 1 && saves[0].filename.endsWith(".png") && saves[0].type === "image/png" && saves[0].size > 20000, JSON.stringify(saves[0] || {}));
-    await browser.close();
-  }
-  // 9. no platform: share falls back to copying text
-  {
-    const { browser, page, context } = await openApp({ time: "2026-10-20T12:00:00", storage: JSON.stringify({ v: 1, onboarded: true, goalChosen: true, lastOpen: "2026-10-20", xp: 10 }) });
-    await context.grantPermissions(["clipboard-read", "clipboard-write"], { origin: "https://artifact.test" });
-    await page.evaluate(() => window.__wakha.inject({ t: "learn", w: "bzzaf" }));
-    const b = await next(page);
-    await page.click(`.card[data-i="${b.i}"] [data-act=share]`);
-    await page.waitForTimeout(400);
-    const clip = await page.evaluate(() => navigator.clipboard.readText().catch((e) => "ERR " + e.message));
-    const toast = await page.locator("#toast").innerText();
-    ok("without the platform, Share copies a text card", /Bzzaf/.test(clip) && /Copied/.test(toast), clip.slice(0, 60));
+    const remote = { v: 2, onboarded: true, goalChosen: true, xp: 777, updatedAt: 1, lessons: { u1l1: { stars: 3 }, u1l2: { stars: 2 } }, words: W(["salam", "labas", "hamdoulillah", "bikhir"], 2, "2026-10-28", "2026-10-15") };
+    const seed = (r) => { window.__store = { "data/users/u_t/progress": r }; };
+    const { browser, page } = await openApp({ time: "2026-10-21T09:00:00", initScript: `(${seed.toString()})(${JSON.stringify(remote)});(${mock.toString()})();` });
+    await page.waitForTimeout(1200);
+    const s = await page.evaluate(() => ({ xp: window.__wakha.S.xp, cur: window.__wakha.currentNode(), welcome: !document.querySelector("#welcome").hidden }));
+    ok("signed-in learner on a new device gets their saved path", s.xp === 777 && s.cur === 2 && !s.welcome, JSON.stringify(s));
+    await page.click(".hero [data-start]"); await page.waitForTimeout(300); for (let k = 0; k < 4; k++) { await solveStep(page); await page.waitForTimeout(300); } await page.waitForTimeout(4600);
+    const stored = await page.evaluate(() => window.__store["data/users/u_t/progress"].xp);
+    ok("progress is written back to the private per-learner record", stored > 777, String(stored));
+    await page.click("#lesson [data-act=quit]"); await page.click("#lesson [data-act=leave]");
+    await page.click("#tab-feed"); await page.evaluate(() => window.__wakha.inject({ t: "spot", w: "labas" })); const c = await next(page);
+    await page.click(`.feed .card[data-i="${c.i}"] [data-act=share]`); await page.waitForTimeout(2500);
+    const sv = await page.evaluate(() => window.__saves);
+    ok("Share saves a story image through the platform", sv.length === 1 && sv[0].type === "image/png" && sv[0].size > 20000, JSON.stringify(sv[0] || {}));
     await browser.close();
   }
   console.log(results.join("\n"));

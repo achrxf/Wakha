@@ -1,0 +1,5031 @@
+[
+ {
+  "en": "Feed",
+  "fr": "Fil",
+  "c": "ui"
+ },
+ {
+  "en": "Words",
+  "fr": "Mots",
+  "c": "ui"
+ },
+ {
+  "en": "Me",
+  "fr": "Moi",
+  "c": "ui"
+ },
+ {
+  "en": "New word",
+  "fr": "Nouveau mot",
+  "c": "ui"
+ },
+ {
+  "en": "Review",
+  "fr": "Révision",
+  "c": "ui"
+ },
+ {
+  "en": "What does this mean?",
+  "fr": "Ça veut dire quoi ?",
+  "c": "ui"
+ },
+ {
+  "en": "How do you say",
+  "fr": "Comment on dit",
+  "c": "ui"
+ },
+ {
+  "en": "What do you say?",
+  "fr": "Tu dis quoi ?",
+  "c": "ui"
+ },
+ {
+  "en": "Build it",
+  "fr": "Construis",
+  "c": "ui"
+ },
+ {
+  "en": "Say it in Darija:",
+  "fr": "Dis-le en darija :",
+  "c": "ui"
+ },
+ {
+  "en": "Swipe up",
+  "fr": "Glisse vers le haut",
+  "c": "ui"
+ },
+ {
+  "en": "Next",
+  "fr": "Suivant",
+  "c": "ui"
+ },
+ {
+  "en": "Double-tap to save",
+  "fr": "Tape deux fois pour garder",
+  "c": "ui"
+ },
+ {
+  "en": "Save",
+  "fr": "Garder",
+  "c": "ui"
+ },
+ {
+  "en": "Saved to your words",
+  "fr": "Ajouté à tes mots",
+  "c": "ui"
+ },
+ {
+  "en": "Listen",
+  "fr": "Écouter",
+  "c": "ui"
+ },
+ {
+  "en": "Share",
+  "fr": "Partager",
+  "c": "ui"
+ },
+ {
+  "en": "Copied. Paste it anywhere.",
+  "fr": "Copié. Colle-le où tu veux.",
+  "c": "ui"
+ },
+ {
+  "en": "Sharing isn’t available here.",
+  "fr": "Le partage n’est pas disponible ici.",
+  "c": "ui"
+ },
+ {
+  "en": "Image saved. Post it to your story.",
+  "fr": "Image enregistrée. Poste-la en story.",
+  "c": "ui"
+ },
+ {
+  "en": "Answer:",
+  "fr": "Réponse :",
+  "c": "ui"
+ },
+ {
+  "en": "Not quite. Try again.",
+  "fr": "Pas tout à fait. Réessaie.",
+  "c": "ui"
+ },
+ {
+  "en": "Here’s the right order.",
+  "fr": "Voici le bon ordre.",
+  "c": "ui"
+ },
+ {
+  "en": "Culture reel",
+  "fr": "Reel culture",
+  "c": "ui"
+ },
+ {
+  "en": "Got it",
+  "fr": "Compris",
+  "c": "ui"
+ },
+ {
+  "en": "Mystery box",
+  "fr": "Boîte mystère",
+  "c": "ui"
+ },
+ {
+  "en": "Sandou9!",
+  "fr": "Sandou9 !",
+  "c": "ui"
+ },
+ {
+  "en": "Tap the box to open it",
+  "fr": "Touche la boîte pour l’ouvrir",
+  "c": "ui"
+ },
+ {
+  "en": "Atay boost!",
+  "fr": "Boost atay !",
+  "c": "ui"
+ },
+ {
+  "en": "Double XP on your next 5 answers.",
+  "fr": "XP doublés sur tes 5 prochaines réponses.",
+  "c": "ui"
+ },
+ {
+  "en": "Streak shield",
+  "fr": "Bouclier de série",
+  "c": "ui"
+ },
+ {
+  "en": "Miss a day, keep your streak. You have {n}.",
+  "fr": "Rate un jour sans perdre ta série. Tu en as {n}.",
+  "c": "ui"
+ },
+ {
+  "en": "Free XP. No questions asked.",
+  "fr": "Des XP gratuits. Sans conditions.",
+  "c": "ui"
+ },
+ {
+  "en": "New word for your Kenz!",
+  "fr": "Nouveau mot pour ton Kenz !",
+  "c": "ui"
+ },
+ {
+  "en": "Rare drop",
+  "fr": "Drop rare",
+  "c": "ui"
+ },
+ {
+  "en": "Tap the card to reveal it",
+  "fr": "Touche la carte pour la révéler",
+  "c": "ui"
+ },
+ {
+  "en": "Lightning round",
+  "fr": "Round éclair",
+  "c": "ui"
+ },
+ {
+  "en": "{n} words, {s} seconds. True or false?",
+  "fr": "{n} mots, {s} secondes. Vrai ou faux ?",
+  "c": "ui"
+ },
+ {
+  "en": "Start",
+  "fr": "Commencer",
+  "c": "ui"
+ },
+ {
+  "en": "True",
+  "fr": "Vrai",
+  "c": "ui"
+ },
+ {
+  "en": "False",
+  "fr": "Faux",
+  "c": "ui"
+ },
+ {
+  "en": "{a} out of {b}",
+  "fr": "{a} sur {b}",
+  "c": "ui"
+ },
+ {
+  "en": "Perfect round!",
+  "fr": "Sans faute !",
+  "c": "ui"
+ },
+ {
+  "en": "Time’s up!",
+  "fr": "Temps écoulé !",
+  "c": "ui"
+ },
+ {
+  "en": "Souk battle",
+  "fr": "Bataille au souk",
+  "c": "ui"
+ },
+ {
+  "en": "Get the best price. In Darija.",
+  "fr": "Obtiens le meilleur prix. En darija.",
+  "c": "ui"
+ },
+ {
+  "en": "Babouches, rugs, lanterns",
+  "fr": "Babouches, tapis, lanternes",
+  "c": "ui"
+ },
+ {
+  "en": "Start haggling",
+  "fr": "Commencer à marchander",
+  "c": "ui"
+ },
+ {
+  "en": "Deal!",
+  "fr": "Marché conclu !",
+  "c": "ui"
+ },
+ {
+  "en": "You paid {p} DH instead of {s} DH.",
+  "fr": "Tu as payé {p} DH au lieu de {s} DH.",
+  "c": "ui"
+ },
+ {
+  "en": "You saved {x} DH",
+  "fr": "Tu as économisé {x} DH",
+  "c": "ui"
+ },
+ {
+  "en": "Souk legend. 3mmi Hmad respects you.",
+  "fr": "Légende du souk. 3mmi Hmad te respecte.",
+  "c": "ui"
+ },
+ {
+  "en": "Not bad. You’ll eat well tonight.",
+  "fr": "Pas mal. Tu vas bien manger ce soir.",
+  "c": "ui"
+ },
+ {
+  "en": "3mmi Hmad thanks you for his new car.",
+  "fr": "3mmi Hmad te remercie pour sa nouvelle voiture.",
+  "c": "ui"
+ },
+ {
+  "en": "Save story image",
+  "fr": "Enregistrer l’image",
+  "c": "ui"
+ },
+ {
+  "en": "Copy",
+  "fr": "Copier",
+  "c": "ui"
+ },
+ {
+  "en": "Daily goal",
+  "fr": "Objectif du jour",
+  "c": "ui"
+ },
+ {
+  "en": "Pick your daily atay",
+  "fr": "Choisis ton atay du jour",
+  "c": "ui"
+ },
+ {
+  "en": "XP fills your tea glass. A full glass lights your streak.",
+  "fr": "Les XP remplissent ton verre de thé. Un verre plein allume ta série.",
+  "c": "ui"
+ },
+ {
+  "en": "Chill",
+  "fr": "Tranquille",
+  "c": "ui"
+ },
+ {
+  "en": "Regular",
+  "fr": "Régulier",
+  "c": "ui"
+ },
+ {
+  "en": "Serious",
+  "fr": "Sérieux",
+  "c": "ui"
+ },
+ {
+  "en": "{n} XP a day",
+  "fr": "{n} XP par jour",
+  "c": "ui"
+ },
+ {
+  "en": "You can change it anytime in Me.",
+  "fr": "Tu peux le changer quand tu veux dans Moi.",
+  "c": "ui"
+ },
+ {
+  "en": "Welcome to Wakha",
+  "fr": "Bienvenue sur Wakha",
+  "c": "ui"
+ },
+ {
+  "en": "Short lessons, real Moroccan phrases, and every word spoken out loud.",
+  "fr": "Des leçons courtes, de vraies phrases marocaines, et chaque mot prononcé à voix haute.",
+  "c": "ui"
+ },
+ {
+  "en": "Why Darija?",
+  "fr": "Pourquoi la darija ?",
+  "c": "ui"
+ },
+ {
+  "en": "Family",
+  "fr": "Famille",
+  "c": "ui"
+ },
+ {
+  "en": "Travel",
+  "fr": "Voyage",
+  "c": "ui"
+ },
+ {
+  "en": "Love",
+  "fr": "Amour",
+  "c": "ui"
+ },
+ {
+  "en": "Just for fun",
+  "fr": "Pour le fun",
+  "c": "ui"
+ },
+ {
+  "en": "Yallah! Swipe up.",
+  "fr": "Yallah ! Glisse vers le haut.",
+  "c": "ui"
+ },
+ {
+  "en": "Welcome back",
+  "fr": "Bon retour",
+  "c": "ui"
+ },
+ {
+  "en": "Day {n}",
+  "fr": "Jour {n}",
+  "c": "ui"
+ },
+ {
+  "en": "Your streak is waiting. {n} words want a review.",
+  "fr": "Ta série t’attend. {n} mots veulent une révision.",
+  "c": "ui"
+ },
+ {
+  "en": "Fill today’s glass to keep the streak going.",
+  "fr": "Remplis le verre du jour pour garder ta série.",
+  "c": "ui"
+ },
+ {
+  "en": "New day, new words.",
+  "fr": "Nouveau jour, nouveaux mots.",
+  "c": "ui"
+ },
+ {
+  "en": "Daily goal done",
+  "fr": "Objectif du jour atteint",
+  "c": "ui"
+ },
+ {
+  "en": "Atay wajed!",
+  "fr": "Atay wajed !",
+  "c": "ui"
+ },
+ {
+  "en": "Your glass is full. {n}-day streak.",
+  "fr": "Ton verre est plein. Série de {n} jours.",
+  "c": "ui"
+ },
+ {
+  "en": "A streak shield saved your streak.",
+  "fr": "Un bouclier a sauvé ta série.",
+  "c": "ui"
+ },
+ {
+  "en": "Level up",
+  "fr": "Niveau supérieur",
+  "c": "ui"
+ },
+ {
+  "en": "Level {n}",
+  "fr": "Niveau {n}",
+  "c": "ui"
+ },
+ {
+  "en": "Yallah!",
+  "fr": "Yallah !",
+  "c": "ui"
+ },
+ {
+  "en": "Your words",
+  "fr": "Tes mots",
+  "c": "ui"
+ },
+ {
+  "en": "{a} learned, {b} mastered",
+  "fr": "{a} appris, {b} maîtrisés",
+  "c": "ui"
+ },
+ {
+  "en": "Review {n} due words",
+  "fr": "Réviser {n} mots",
+  "c": "ui"
+ },
+ {
+  "en": "Nothing due right now",
+  "fr": "Rien à réviser pour l’instant",
+  "c": "ui"
+ },
+ {
+  "en": "All",
+  "fr": "Tous",
+  "c": "ui"
+ },
+ {
+  "en": "Due",
+  "fr": "À réviser",
+  "c": "ui"
+ },
+ {
+  "en": "No words yet. Scroll the feed and your words land here.",
+  "fr": "Pas encore de mots. Fais défiler le fil et ils arrivent ici.",
+  "c": "ui"
+ },
+ {
+  "en": "Nothing to review. Mchicha is impressed.",
+  "fr": "Rien à réviser. Mchicha est impressionné.",
+  "c": "ui"
+ },
+ {
+  "en": "Rare words you’ve found. Hunt them in mystery boxes, rare drops, reels and tricky situations.",
+  "fr": "Les mots rares que tu as trouvés. Cherche-les dans les boîtes mystère, les drops rares, les reels et les situations piégeuses.",
+  "c": "ui"
+ },
+ {
+  "en": "{a} of {b} found",
+  "fr": "{a} sur {b} trouvés",
+  "c": "ui"
+ },
+ {
+  "en": "Still hidden",
+  "fr": "Encore caché",
+  "c": "ui"
+ },
+ {
+  "en": "{n} XP to level {l}",
+  "fr": "{n} XP avant le niveau {l}",
+  "c": "ui"
+ },
+ {
+  "en": "Top level reached",
+  "fr": "Niveau max atteint",
+  "c": "ui"
+ },
+ {
+  "en": "day streak",
+  "fr": "jours de suite",
+  "c": "ui"
+ },
+ {
+  "en": "best streak",
+  "fr": "meilleure série",
+  "c": "ui"
+ },
+ {
+  "en": "words learned",
+  "fr": "mots appris",
+  "c": "ui"
+ },
+ {
+  "en": "accuracy",
+  "fr": "précision",
+  "c": "ui"
+ },
+ {
+  "en": "This week",
+  "fr": "Cette semaine",
+  "c": "ui"
+ },
+ {
+  "en": "Settings",
+  "fr": "Réglages",
+  "c": "ui"
+ },
+ {
+  "en": "Language",
+  "fr": "Langue",
+  "c": "ui"
+ },
+ {
+  "en": "Sounds",
+  "fr": "Sons",
+  "c": "ui"
+ },
+ {
+  "en": "Reset progress",
+  "fr": "Réinitialiser",
+  "c": "ui"
+ },
+ {
+  "en": "Erase all your progress? This can’t be undone.",
+  "fr": "Effacer toute ta progression ? C’est définitif.",
+  "c": "ui"
+ },
+ {
+  "en": "Erase everything",
+  "fr": "Tout effacer",
+  "c": "ui"
+ },
+ {
+  "en": "Cancel",
+  "fr": "Annuler",
+  "c": "ui"
+ },
+ {
+  "en": "Best souk deal",
+  "fr": "Meilleure affaire au souk",
+  "c": "ui"
+ },
+ {
+  "en": "none yet",
+  "fr": "pas encore",
+  "c": "ui"
+ },
+ {
+  "en": "Audio uses your device’s Arabic voice, so pronunciation is approximate.",
+  "fr": "L’audio utilise la voix arabe de ton appareil, la prononciation est donc approximative.",
+  "c": "ui"
+ },
+ {
+  "en": "Fill your daily atay to grow the streak.",
+  "fr": "Remplis ton atay du jour pour faire grandir ta série.",
+  "c": "ui"
+ },
+ {
+  "en": "“{d}” ({ar}) means “{m}” in Darija. Learning it on Wakha.",
+  "fr": "« {d} » ({ar}) veut dire « {m} » en darija. Je l’apprends sur Wakha.",
+  "c": "ui"
+ },
+ {
+  "en": "I just haggled {it} from {s} DH down to {p} DH. In Darija. Wakha.",
+  "fr": "Je viens de marchander {it} de {s} DH à {p} DH. En darija. Wakha.",
+  "c": "ui"
+ },
+ {
+  "en": "Level {n} in Darija: {t}. Wakha.",
+  "fr": "Niveau {n} en darija : {t}. Wakha.",
+  "c": "ui"
+ },
+ {
+  "en": "{n} Darija words. Tbarkellah!",
+  "fr": "{n} mots de darija. Tbarkellah !",
+  "c": "ui"
+ },
+ {
+  "en": "S",
+  "fr": "D",
+  "c": "ui"
+ },
+ {
+  "en": "M",
+  "fr": "L",
+  "c": "ui"
+ },
+ {
+  "en": "T",
+  "fr": "M",
+  "c": "ui"
+ },
+ {
+  "en": "W",
+  "fr": "M",
+  "c": "ui"
+ },
+ {
+  "en": "F",
+  "fr": "V",
+  "c": "ui"
+ },
+ {
+  "en": "Today",
+  "fr": "Aujourd’hui",
+  "c": "ui"
+ },
+ {
+  "en": "Learn Darija across Morocco, from Tangier to the Sahara.",
+  "fr": "Apprends la darija à travers le Maroc, de Tanger au Sahara.",
+  "c": "ui"
+ },
+ {
+  "en": "Stop {n}",
+  "fr": "Étape {n}",
+  "c": "ui"
+ },
+ {
+  "en": "{a} of {b} glazed",
+  "fr": "{a} sur {b} émaillées",
+  "c": "ui"
+ },
+ {
+  "en": "{a} of {b} lessons glazed",
+  "fr": "{a} leçons émaillées sur {b}",
+  "c": "ui"
+ },
+ {
+  "en": "Next stop",
+  "fr": "Prochaine étape",
+  "c": "ui"
+ },
+ {
+  "en": "Continue in {c}",
+  "fr": "Continuer à {c}",
+  "c": "ui"
+ },
+ {
+  "en": "More stops are on the way.",
+  "fr": "D’autres étapes arrivent.",
+  "c": "ui"
+ },
+ {
+  "en": "Start the lesson",
+  "fr": "Commencer la leçon",
+  "c": "ui"
+ },
+ {
+  "en": "Tile glazed",
+  "fr": "Tuile émaillée",
+  "c": "ui"
+ },
+ {
+  "en": "Perfect glaze",
+  "fr": "Émail parfait",
+  "c": "ui"
+ },
+ {
+  "en": "Learn Darija across Morocco",
+  "fr": "Apprends la darija à travers le Maroc",
+  "c": "ui"
+ },
+ {
+  "en": "Ten cities, from Tangier to the Sahara. Every lesson glazes a piece of your zellige.",
+  "fr": "Dix villes, de Tanger au Sahara. Chaque leçon émaille une pièce de ton zellige.",
+  "c": "ui"
+ },
+ {
+  "en": "Start the journey",
+  "fr": "Commencer le voyage",
+  "c": "ui"
+ },
+ {
+  "en": "Locked",
+  "fr": "Verrouillé",
+  "c": "ui"
+ },
+ {
+  "en": "Each finished lesson glazes a ring of this city’s zellige.",
+  "fr": "Chaque leçon terminée émaille un anneau du zellige de cette ville.",
+  "c": "ui"
+ },
+ {
+  "en": "I’m Mchicha, a street cat from Tangier. I’ll show you around Morocco, one city at a time.",
+  "fr": "Moi c’est Mchicha, un chat des rues de Tanger. Je te fais visiter le Maroc, une ville à la fois.",
+  "c": "ui"
+ },
+ {
+  "en": "Appearance",
+  "fr": "Apparence",
+  "c": "ui"
+ },
+ {
+  "en": "Light",
+  "fr": "Clair",
+  "c": "ui"
+ },
+ {
+  "en": "Dark",
+  "fr": "Sombre",
+  "c": "ui"
+ },
+ {
+  "en": "Journey",
+  "fr": "Voyage",
+  "c": "ui"
+ },
+ {
+  "en": "Day {n} of your trip",
+  "fr": "Jour {n} de ton voyage",
+  "c": "ui"
+ },
+ {
+  "en": "Your trip starts in Tangier.",
+  "fr": "Ton voyage commence à Tanger.",
+  "c": "ui"
+ },
+ {
+  "en": "Word of the day",
+  "fr": "Le mot du jour",
+  "c": "ui"
+ },
+ {
+  "en": "Daily sprint",
+  "fr": "Sprint du jour",
+  "c": "ui"
+ },
+ {
+  "en": "20 seconds, once a day",
+  "fr": "20 secondes, une fois par jour",
+  "c": "ui"
+ },
+ {
+  "en": "Today: {n} right",
+  "fr": "Aujourd’hui : {n} bonnes",
+  "c": "ui"
+ },
+ {
+  "en": "Learn 8 words to unlock",
+  "fr": "Apprends 8 mots pour débloquer",
+  "c": "ui"
+ },
+ {
+  "en": "{n} words are ready",
+  "fr": "{n} mots sont prêts",
+  "c": "ui"
+ },
+ {
+  "en": "Nothing due",
+  "fr": "Rien à revoir",
+  "c": "ui"
+ },
+ {
+  "en": "Continue",
+  "fr": "Continuer",
+  "c": "ui"
+ },
+ {
+  "en": "{a} of {b} lessons",
+  "fr": "{a} leçons sur {b}",
+  "c": "ui"
+ },
+ {
+  "en": "Story",
+  "fr": "Histoire",
+  "c": "ui"
+ },
+ {
+  "en": "Listen to the story",
+  "fr": "Écoute l’histoire",
+  "c": "ui"
+ },
+ {
+  "en": "Tap a line to see what it means.",
+  "fr": "Touche une ligne pour voir ce qu’elle veut dire.",
+  "c": "ui"
+ },
+ {
+  "en": "What does this line mean?",
+  "fr": "Que veut dire cette phrase ?",
+  "c": "ui"
+ },
+ {
+  "en": "Which line means this?",
+  "fr": "Quelle phrase veut dire ça ?",
+  "c": "ui"
+ },
+ {
+  "en": "Finish {c} to unlock this city.",
+  "fr": "Termine {c} pour débloquer cette ville.",
+  "c": "ui"
+ },
+ {
+  "en": "words",
+  "fr": "mots",
+  "c": "ui"
+ },
+ {
+  "en": "rare words",
+  "fr": "mots rares",
+  "c": "ui"
+ },
+ {
+  "en": "Done",
+  "fr": "Fait",
+  "c": "ui"
+ },
+ {
+  "en": "Lesson {n}",
+  "fr": "Leçon {n}",
+  "c": "ui"
+ },
+ {
+  "en": "Every lesson in Morocco is glazed.",
+  "fr": "Toutes les leçons du Maroc sont émaillées.",
+  "c": "ui"
+ },
+ {
+  "en": "Learn",
+  "fr": "Apprendre",
+  "c": "ui"
+ },
+ {
+  "en": "Unit {n}",
+  "fr": "Unité {n}",
+  "c": "ui"
+ },
+ {
+  "en": "Unit review",
+  "fr": "Révision de l’unité",
+  "c": "ui"
+ },
+ {
+  "en": "Souk boss",
+  "fr": "Boss du souk",
+  "c": "ui"
+ },
+ {
+  "en": "Practice again",
+  "fr": "Refaire",
+  "c": "ui"
+ },
+ {
+  "en": "Finish the lesson before this one to unlock it.",
+  "fr": "Termine la leçon d’avant pour débloquer celle-ci.",
+  "c": "ui"
+ },
+ {
+  "en": "New words",
+  "fr": "Nouveaux mots",
+  "c": "ui"
+ },
+ {
+  "en": "Start here",
+  "fr": "Commence ici",
+  "c": "ui"
+ },
+ {
+  "en": "Jump back in",
+  "fr": "Reprendre",
+  "c": "ui"
+ },
+ {
+  "en": "Practice {n} words",
+  "fr": "Réviser {n} mots",
+  "c": "ui"
+ },
+ {
+  "en": "All caught up",
+  "fr": "Tout est à jour",
+  "c": "ui"
+ },
+ {
+  "en": "Check",
+  "fr": "Vérifier",
+  "c": "ui"
+ },
+ {
+  "en": "Correct answer",
+  "fr": "Bonne réponse",
+  "c": "ui"
+ },
+ {
+  "en": "Hear it",
+  "fr": "Écouter",
+  "c": "ui"
+ },
+ {
+  "en": "Slow",
+  "fr": "Lent",
+  "c": "ui"
+ },
+ {
+  "en": "What did you hear?",
+  "fr": "Qu’as-tu entendu ?",
+  "c": "ui"
+ },
+ {
+  "en": "What does it mean?",
+  "fr": "Ça veut dire quoi ?",
+  "c": "ui"
+ },
+ {
+  "en": "Tap the matching pairs",
+  "fr": "Relie les paires",
+  "c": "ui"
+ },
+ {
+  "en": "Pairs",
+  "fr": "Paires",
+  "c": "ui"
+ },
+ {
+  "en": "All matched!",
+  "fr": "Tout est relié !",
+  "c": "ui"
+ },
+ {
+  "en": "Lesson complete!",
+  "fr": "Leçon terminée !",
+  "c": "ui"
+ },
+ {
+  "en": "Perfect lesson!",
+  "fr": "Leçon parfaite !",
+  "c": "ui"
+ },
+ {
+  "en": "time",
+  "fr": "temps",
+  "c": "ui"
+ },
+ {
+  "en": "Quit lesson",
+  "fr": "Quitter la leçon",
+  "c": "ui"
+ },
+ {
+  "en": "Leave this lesson? You’ll lose this lesson’s progress.",
+  "fr": "Quitter cette leçon ? Ta progression dans la leçon sera perdue.",
+  "c": "ui"
+ },
+ {
+  "en": "Keep learning",
+  "fr": "Continuer",
+  "c": "ui"
+ },
+ {
+  "en": "Leave",
+  "fr": "Quitter",
+  "c": "ui"
+ },
+ {
+  "en": "Unit {n} unlocked",
+  "fr": "Unité {n} débloquée",
+  "c": "ui"
+ },
+ {
+  "en": "More units are on the way.",
+  "fr": "D’autres unités arrivent.",
+  "c": "ui"
+ },
+ {
+  "en": "{a} of {b} done",
+  "fr": "{a} sur {b} faites",
+  "c": "ui"
+ },
+ {
+  "en": "Learn Darija the fun way",
+  "fr": "Apprends la darija en t’amusant",
+  "c": "ui"
+ },
+ {
+  "en": "Get started",
+  "fr": "C’est parti",
+  "c": "ui"
+ },
+ {
+  "en": "Pick your daily goal",
+  "fr": "Choisis ton objectif du jour",
+  "c": "ui"
+ },
+ {
+  "en": "about {n} lesson a day",
+  "fr": "environ {n} leçon par jour",
+  "c": "ui"
+ },
+ {
+  "en": "about {n} lessons a day",
+  "fr": "environ {n} leçons par jour",
+  "c": "ui"
+ },
+ {
+  "en": "Rules",
+  "fr": "Règles",
+  "c": "ui"
+ },
+ {
+  "en": "Phrasebook",
+  "fr": "Lexique",
+  "c": "ui"
+ },
+ {
+  "en": "The letters English doesn’t have. Tap to hear them.",
+  "fr": "Les lettres qui n’existent pas en français. Touche pour les entendre.",
+  "c": "ui"
+ },
+ {
+  "en": "The few rules that unlock most of Darija.",
+  "fr": "Les quelques règles qui débloquent presque toute la darija.",
+  "c": "ui"
+ },
+ {
+  "en": "Every word in Wakha, with audio.",
+  "fr": "Tous les mots de Wakha, avec l’audio.",
+  "c": "ui"
+ },
+ {
+  "en": "Search words",
+  "fr": "Chercher un mot",
+  "c": "ui"
+ },
+ {
+  "en": "Learned",
+  "fr": "Appris",
+  "c": "ui"
+ },
+ {
+  "en": "Examples",
+  "fr": "Exemples",
+  "c": "ui"
+ },
+ {
+  "en": "Sounds like",
+  "fr": "Ça ressemble à",
+  "c": "ui"
+ },
+ {
+  "en": "Play the sound",
+  "fr": "Écouter le son",
+  "c": "ui"
+ },
+ {
+  "en": "Play all",
+  "fr": "Tout écouter",
+  "c": "ui"
+ },
+ {
+  "en": "Moroccan proverb",
+  "fr": "Proverbe marocain",
+  "c": "ui"
+ },
+ {
+  "en": "Literally",
+  "fr": "Littéralement",
+  "c": "ui"
+ },
+ {
+  "en": "Means",
+  "fr": "Ça veut dire",
+  "c": "ui"
+ },
+ {
+  "en": "Voice",
+  "fr": "Voix",
+  "c": "ui"
+ },
+ {
+  "en": "Play words automatically",
+  "fr": "Lire les mots automatiquement",
+  "c": "ui"
+ },
+ {
+  "en": "Sound effects",
+  "fr": "Effets sonores",
+  "c": "ui"
+ },
+ {
+  "en": "Darija audio is generated by a computer voice. It’s close, but a native speaker will sound more natural.",
+  "fr": "L’audio en darija est généré par une voix de synthèse. C’est proche, mais un natif sonnera plus naturel.",
+  "c": "ui"
+ },
+ {
+  "en": "Start your first lesson",
+  "fr": "Commence ta première leçon",
+  "c": "ui"
+ },
+ {
+  "en": "Your feed fills up with your words as you learn. For now, enjoy some culture.",
+  "fr": "Ton fil se remplit avec tes mots au fil des leçons. En attendant, un peu de culture.",
+  "c": "ui"
+ },
+ {
+  "en": "{n} words learned",
+  "fr": "{n} mots appris",
+  "c": "ui"
+ },
+ {
+  "en": "Or use the arrow keys",
+  "fr": "Ou les flèches du clavier",
+  "c": "ui"
+ },
+ {
+  "en": "No words match that.",
+  "fr": "Aucun mot ne correspond.",
+  "c": "ui"
+ },
+ {
+  "en": "Tap any Darija to hear it",
+  "fr": "Touche n’importe quel mot en darija pour l’entendre",
+  "c": "ui"
+ },
+ {
+  "en": "Greetings",
+  "fr": "Salutations",
+  "c": "category"
+ },
+ {
+  "en": "Manners",
+  "fr": "Politesse",
+  "c": "category"
+ },
+ {
+  "en": "Basics",
+  "fr": "Bases",
+  "c": "category"
+ },
+ {
+  "en": "Food",
+  "fr": "Bouffe",
+  "c": "category"
+ },
+ {
+  "en": "Time",
+  "fr": "Temps",
+  "c": "category"
+ },
+ {
+  "en": "Getting around",
+  "fr": "Se déplacer",
+  "c": "category"
+ },
+ {
+  "en": "Vibes",
+  "fr": "Ressenti",
+  "c": "category"
+ },
+ {
+  "en": "Numbers",
+  "fr": "Chiffres",
+  "c": "category"
+ },
+ {
+  "en": "Football",
+  "fr": "Foot",
+  "c": "category"
+ },
+ {
+  "en": "Loanwords",
+  "fr": "Mots empruntés",
+  "c": "category"
+ },
+ {
+  "en": "Street",
+  "fr": "Rue",
+  "c": "category"
+ },
+ {
+  "en": "Epic",
+  "fr": "Épique",
+  "c": "rarity"
+ },
+ {
+  "en": "Legendary",
+  "fr": "Légendaire",
+  "c": "rarity"
+ },
+ {
+  "en": "hi",
+  "fr": "salut",
+  "c": "word meaning: Salam"
+ },
+ {
+  "en": "Hi, how are you?",
+  "fr": "Salut, ça va ?",
+  "c": "example: Salam, labas?"
+ },
+ {
+  "en": "Works with everyone, any time of day.",
+  "fr": "Marche avec tout le monde, à toute heure.",
+  "c": "note on Salam"
+ },
+ {
+  "en": "how are you?",
+  "fr": "ça va ?",
+  "c": "word meaning: Labas?"
+ },
+ {
+  "en": "Are you OK?",
+  "fr": "Tu vas bien ?",
+  "c": "example: Labas 3lik?"
+ },
+ {
+  "en": "The answer is “labas” too. Same word, no question mark.",
+  "fr": "La réponse, c’est aussi « labas ». Même mot, sans le point d’interrogation.",
+  "c": "note on Labas?"
+ },
+ {
+  "en": "literally “no harm?”",
+  "fr": "littéralement « pas de mal ? »",
+  "c": "literal meaning of Labas?"
+ },
+ {
+  "en": "OK",
+  "fr": "d’accord",
+  "c": "word meaning: Wakha"
+ },
+ {
+  "en": "OK, let’s go!",
+  "fr": "D’accord, on y va !",
+  "c": "example: Wakha, yallah!"
+ },
+ {
+  "en": "You’ll hear it a hundred times a day.",
+  "fr": "Tu l’entendras cent fois par jour.",
+  "c": "note on Wakha"
+ },
+ {
+  "en": "a lot / very",
+  "fr": "beaucoup / très",
+  "c": "word meaning: Bzzaf"
+ },
+ {
+  "en": "So beautiful!",
+  "fr": "Trop beau !",
+  "c": "example: Zwin bzzaf!"
+ },
+ {
+  "en": "Stretch it for drama: bzzzzaf.",
+  "fr": "Étire-le pour l’effet : bzzzzaf.",
+  "c": "note on Bzzaf"
+ },
+ {
+  "en": "thank you",
+  "fr": "merci",
+  "c": "word meaning: Choukran"
+ },
+ {
+  "en": "Thanks a lot!",
+  "fr": "Merci beaucoup !",
+  "c": "example: Choukran bzzaf!"
+ },
+ {
+  "en": "a little",
+  "fr": "un peu",
+  "c": "word meaning: Chwiya"
+ },
+ {
+  "en": "I speak a little Darija.",
+  "fr": "Je parle un peu darija.",
+  "c": "example: Kanhder chwiya d darija."
+ },
+ {
+  "en": "yes",
+  "fr": "oui",
+  "c": "word meaning: Iyeh"
+ },
+ {
+  "en": "no",
+  "fr": "non",
+  "c": "word meaning: La"
+ },
+ {
+  "en": "No, thanks.",
+  "fr": "Non, merci.",
+  "c": "example: La, choukran."
+ },
+ {
+  "en": "I want",
+  "fr": "je veux",
+  "c": "word meaning: Bghit"
+ },
+ {
+  "en": "I want tea.",
+  "fr": "Je veux du thé.",
+  "c": "example: Bghit atay."
+ },
+ {
+  "en": "tea",
+  "fr": "thé",
+  "c": "word meaning: Atay"
+ },
+ {
+  "en": "Mint tea",
+  "fr": "Thé à la menthe",
+  "c": "example: Atay b na3na3"
+ },
+ {
+  "en": "Served sweet. Very sweet. Saying no is not really an option.",
+  "fr": "Servi sucré. Très sucré. Refuser n’est pas vraiment une option.",
+  "c": "note on Atay"
+ },
+ {
+  "en": "how much?",
+  "fr": "combien ?",
+  "c": "word meaning: B chhal?"
+ },
+ {
+  "en": "How much is this?",
+  "fr": "C’est combien ?",
+  "c": "example: B chhal hada?"
+ },
+ {
+  "en": "expensive",
+  "fr": "cher",
+  "c": "word meaning: Ghali"
+ },
+ {
+  "en": "Way too expensive!",
+  "fr": "Beaucoup trop cher !",
+  "c": "example: Ghali bzzaf!"
+ },
+ {
+  "en": "Your best friend in the souk.",
+  "fr": "Ton meilleur ami au souk.",
+  "c": "note on Ghali"
+ },
+ {
+  "en": "now",
+  "fr": "maintenant",
+  "c": "word meaning: Daba"
+ },
+ {
+  "en": "I’m coming now!",
+  "fr": "J’arrive maintenant !",
+  "c": "example: Ana jay daba!"
+ },
+ {
+  "en": "A Moroccan “now” can last five minutes or five hours.",
+  "fr": "Un « maintenant » marocain peut durer cinq minutes ou cinq heures.",
+  "c": "note on Daba"
+ },
+ {
+  "en": "good",
+  "fr": "bien / bon",
+  "c": "word meaning: Mzyan"
+ },
+ {
+  "en": "Everything good?",
+  "fr": "Tout va bien ?",
+  "c": "example: Kolchi mzyan?"
+ },
+ {
+  "en": "bye",
+  "fr": "au revoir",
+  "c": "word meaning: Bslama"
+ },
+ {
+  "en": "Bye, see you tomorrow!",
+  "fr": "Salut, à demain !",
+  "c": "example: Bslama, nchoufek ghedda!"
+ },
+ {
+  "en": "where?",
+  "fr": "où ?",
+  "c": "word meaning: Fin?"
+ },
+ {
+  "en": "Where’s the bathroom?",
+  "fr": "Où sont les toilettes ?",
+  "c": "example: Fin kayn bit lma?"
+ },
+ {
+  "en": "beautiful / nice",
+  "fr": "beau / joli",
+  "c": "word meaning: Zwin"
+ },
+ {
+  "en": "This country is beautiful.",
+  "fr": "Ce pays est beau.",
+  "c": "example: Had lblad zwina."
+ },
+ {
+  "en": "sorry / excuse me",
+  "fr": "pardon",
+  "c": "word meaning: Smeh liya"
+ },
+ {
+  "en": "Excuse me, where’s the bus?",
+  "fr": "Pardon, où est le bus ?",
+  "c": "example: Smeh liya, fin kayn ttobis?"
+ },
+ {
+  "en": "please",
+  "fr": "s’il te plaît",
+  "c": "word meaning: 3afak"
+ },
+ {
+  "en": "Give me water, please.",
+  "fr": "Donne-moi de l’eau, s’il te plaît.",
+  "c": "example: 3tini lma, 3afak."
+ },
+ {
+  "en": "no worries",
+  "fr": "pas grave",
+  "c": "word meaning: Ma3lich"
+ },
+ {
+  "en": "No worries, it’s not a problem.",
+  "fr": "Pas grave, c’est pas un problème.",
+  "c": "example: Ma3lich, machi mouchkil."
+ },
+ {
+  "en": "water",
+  "fr": "l’eau",
+  "c": "word meaning: Lma"
+ },
+ {
+  "en": "bread",
+  "fr": "pain",
+  "c": "word meaning: Khobz"
+ },
+ {
+  "en": "Warm bread",
+  "fr": "Pain chaud",
+  "c": "example: Khobz skhoun"
+ },
+ {
+  "en": "thank God / all good",
+  "fr": "Dieu merci",
+  "c": "word meaning: L7amdoulillah"
+ },
+ {
+  "en": "The standard reply to “labas?”",
+  "fr": "La réponse classique à « labas ? »",
+  "c": "note on L7amdoulillah"
+ },
+ {
+  "en": "how’s it going?",
+  "fr": "comment ça va ?",
+  "c": "word meaning: Ki dayr?"
+ },
+ {
+  "en": "To a woman: ki dayra?",
+  "fr": "À une femme : ki dayra ?",
+  "c": "note on Ki dayr?"
+ },
+ {
+  "en": "fine / well",
+  "fr": "bien",
+  "c": "word meaning: Bikhir"
+ },
+ {
+  "en": "I’m good, thank God.",
+  "fr": "Je vais bien, Dieu merci.",
+  "c": "example: Ana bikhir, l7amdoulillah."
+ },
+ {
+  "en": "welcome",
+  "fr": "bienvenue",
+  "c": "word meaning: Mer7ba"
+ },
+ {
+  "en": "Welcome to Morocco!",
+  "fr": "Bienvenue au Maroc !",
+  "c": "example: Mer7ba bik f lmghrib!"
+ },
+ {
+  "en": "my name is…",
+  "fr": "je m’appelle…",
+  "c": "word meaning: Smiti…"
+ },
+ {
+  "en": "My name is Yasmine.",
+  "fr": "Je m’appelle Yasmine.",
+  "c": "example: Smiti Yasmine."
+ },
+ {
+  "en": "what’s your name?",
+  "fr": "comment tu t’appelles ?",
+  "c": "word meaning: Ach smitek?"
+ },
+ {
+  "en": "what?",
+  "fr": "quoi ?",
+  "c": "word meaning: Achnou?"
+ },
+ {
+  "en": "What’s this?",
+  "fr": "C’est quoi ça ?",
+  "c": "example: Achnou hada?"
+ },
+ {
+  "en": "how?",
+  "fr": "comment ?",
+  "c": "word meaning: Kifach?"
+ },
+ {
+  "en": "How do I say… in Darija?",
+  "fr": "Comment on dit… en darija ?",
+  "c": "example: Kifach ngoul… b darija?"
+ },
+ {
+  "en": "why?",
+  "fr": "pourquoi ?",
+  "c": "word meaning: 3lach?"
+ },
+ {
+  "en": "when?",
+  "fr": "quand ?",
+  "c": "word meaning: Imta?"
+ },
+ {
+  "en": "who?",
+  "fr": "qui ?",
+  "c": "word meaning: Chkoun?"
+ },
+ {
+  "en": "is it…? (question starter)",
+  "fr": "est-ce que… ?",
+  "c": "word meaning: Wach…?"
+ },
+ {
+  "en": "Are you Moroccan?",
+  "fr": "Tu es marocain ?",
+  "c": "example: Wach nta mghribi?"
+ },
+ {
+  "en": "there is",
+  "fr": "il y a",
+  "c": "word meaning: Kayn"
+ },
+ {
+  "en": "Is there wifi?",
+  "fr": "Il y a le wifi ?",
+  "c": "example: Wach kayn lwifi?"
+ },
+ {
+  "en": "there isn’t",
+  "fr": "il n’y a pas",
+  "c": "word meaning: Makaynch"
+ },
+ {
+  "en": "No problem.",
+  "fr": "Pas de problème.",
+  "c": "example: Makaynch mouchkil."
+ },
+ {
+  "en": "I didn’t get it",
+  "fr": "j’ai pas compris",
+  "c": "word meaning: Ma fhemtch"
+ },
+ {
+  "en": "again / repeat",
+  "fr": "répète",
+  "c": "word meaning: 3awed"
+ },
+ {
+  "en": "Again, please?",
+  "fr": "Encore, s’il te plaît ?",
+  "c": "example: 3awed, 3afak?"
+ },
+ {
+  "en": "speak slowly",
+  "fr": "parle doucement",
+  "c": "word meaning: Hder bchwiya"
+ },
+ {
+  "en": "Speak slowly, please.",
+  "fr": "Parle doucement, s’il te plaît.",
+  "c": "example: Hder bchwiya, 3afak."
+ },
+ {
+  "en": "I don’t know",
+  "fr": "je sais pas",
+  "c": "word meaning: Ma3reftch"
+ },
+ {
+  "en": "let’s go!",
+  "fr": "on y va !",
+  "c": "word meaning: Yallah"
+ },
+ {
+  "en": "OK, enough",
+  "fr": "c’est bon, ça suffit",
+  "c": "word meaning: Safi"
+ },
+ {
+  "en": "Enough, I’m full!",
+  "fr": "C’est bon, j’ai bien mangé !",
+  "c": "example: Safi, chb3t!"
+ },
+ {
+  "en": "today",
+  "fr": "aujourd’hui",
+  "c": "word meaning: Lyoum"
+ },
+ {
+  "en": "tomorrow",
+  "fr": "demain",
+  "c": "word meaning: Ghedda"
+ },
+ {
+  "en": "yesterday",
+  "fr": "hier",
+  "c": "word meaning: Lbare7"
+ },
+ {
+  "en": "delicious",
+  "fr": "délicieux",
+  "c": "word meaning: Bnin"
+ },
+ {
+  "en": "This tajine is so good!",
+  "fr": "Ce tajine est trop bon !",
+  "c": "example: Had ttajin bnin bzzaf!"
+ },
+ {
+  "en": "I’m hungry",
+  "fr": "j’ai faim",
+  "c": "word meaning: Fiya jjo3"
+ },
+ {
+  "en": "literally “hunger is in me”",
+  "fr": "littéralement « la faim est en moi »",
+  "c": "literal meaning of Fiya jjo3"
+ },
+ {
+  "en": "mint",
+  "fr": "menthe",
+  "c": "word meaning: Na3na3"
+ },
+ {
+  "en": "sugar",
+  "fr": "sucre",
+  "c": "word meaning: Sokkar"
+ },
+ {
+  "en": "“Bla sokkar” (no sugar) is a brave request.",
+  "fr": "« Bla sokkar » (sans sucre), c’est une demande courageuse.",
+  "c": "note on Sokkar"
+ },
+ {
+  "en": "cheap",
+  "fr": "pas cher",
+  "c": "word meaning: Rkhis"
+ },
+ {
+  "en": "lower it a bit",
+  "fr": "baisse un peu",
+  "c": "word meaning: Nqss chwiya"
+ },
+ {
+  "en": "final price?",
+  "fr": "dernier prix ?",
+  "c": "word meaning: Akhir taman?"
+ },
+ {
+  "en": "money",
+  "fr": "l’argent",
+  "c": "word meaning: Lflous"
+ },
+ {
+  "en": "house / home",
+  "fr": "maison",
+  "c": "word meaning: Dar"
+ },
+ {
+  "en": "I’m at home.",
+  "fr": "Je suis à la maison.",
+  "c": "example: Ana f ddar."
+ },
+ {
+  "en": "mom",
+  "fr": "maman",
+  "c": "word meaning: Yemma"
+ },
+ {
+  "en": "dad",
+  "fr": "papa",
+  "c": "word meaning: Baba"
+ },
+ {
+  "en": "my brother / bro",
+  "fr": "mon frère",
+  "c": "word meaning: Khouya"
+ },
+ {
+  "en": "my sister",
+  "fr": "ma sœur",
+  "c": "word meaning: Khti"
+ },
+ {
+  "en": "grandma",
+  "fr": "mamie",
+  "c": "word meaning: Mima"
+ },
+ {
+  "en": "Some families say “henna” instead.",
+  "fr": "Certaines familles disent « henna ».",
+  "c": "note on Mima"
+ },
+ {
+  "en": "my friend",
+  "fr": "mon pote",
+  "c": "word meaning: Sa7bi"
+ },
+ {
+  "en": "For a girl: sa7bti.",
+  "fr": "Pour une fille : sa7bti.",
+  "c": "note on Sa7bi"
+ },
+ {
+  "en": "I love you",
+  "fr": "je t’aime",
+  "c": "word meaning: Kanbghik"
+ },
+ {
+  "en": "Works for your partner, your mom and your favorite tajine.",
+  "fr": "Marche pour ton chéri, ta mère et ton tajine préféré.",
+  "c": "note on Kanbghik"
+ },
+ {
+  "en": "congrats!",
+  "fr": "félicitations !",
+  "c": "word meaning: Mabrouk!"
+ },
+ {
+  "en": "God willing / hopefully",
+  "fr": "si Dieu le veut",
+  "c": "word meaning: Inchallah"
+ },
+ {
+  "en": "Can mean yes, maybe or never. Watch the face.",
+  "fr": "Peut vouloir dire oui, peut-être ou jamais. Regarde le visage.",
+  "c": "note on Inchallah"
+ },
+ {
+  "en": "From the French “autobus”.",
+  "fr": "Du français « autobus ».",
+  "c": "note on Tobis"
+ },
+ {
+  "en": "week",
+  "fr": "semaine",
+  "c": "word meaning: Simana"
+ },
+ {
+  "en": "From the Spanish “semana”.",
+  "fr": "De l’espagnol « semana ».",
+  "c": "note on Simana"
+ },
+ {
+  "en": "kitchen",
+  "fr": "cuisine",
+  "c": "word meaning: Kozina"
+ },
+ {
+  "en": "From the Spanish “cocina”.",
+  "fr": "De l’espagnol « cocina ».",
+  "c": "note on Kozina"
+ },
+ {
+  "en": "car",
+  "fr": "voiture",
+  "c": "word meaning: Tomobil"
+ },
+ {
+  "en": "From the French “automobile”.",
+  "fr": "Du français « automobile ».",
+  "c": "note on Tomobil"
+ },
+ {
+  "en": "stop here",
+  "fr": "arrête-toi ici",
+  "c": "word meaning: Wqef hna"
+ },
+ {
+  "en": "go straight",
+  "fr": "tout droit",
+  "c": "word meaning: Sir nichan"
+ },
+ {
+  "en": "to the right",
+  "fr": "à droite",
+  "c": "word meaning: 3la limen"
+ },
+ {
+  "en": "to the left",
+  "fr": "à gauche",
+  "c": "word meaning: 3la lisar"
+ },
+ {
+  "en": "quickly",
+  "fr": "vite",
+  "c": "word meaning: Dghya"
+ },
+ {
+  "en": "bad / ugly",
+  "fr": "mauvais / moche",
+  "c": "word meaning: Khayb"
+ },
+ {
+  "en": "The weather’s bad today.",
+  "fr": "Il fait moche aujourd’hui.",
+  "c": "example: Ljaw khayb lyoum."
+ },
+ {
+  "en": "hot",
+  "fr": "chaud",
+  "c": "word meaning: Skhoun"
+ },
+ {
+  "en": "The tea is hot!",
+  "fr": "Le thé est chaud !",
+  "c": "example: Atay skhoun!"
+ },
+ {
+  "en": "I’m tired",
+  "fr": "je suis fatigué(e)",
+  "c": "word meaning: 3yit"
+ },
+ {
+  "en": "one",
+  "fr": "un",
+  "c": "word meaning: Wa7ed"
+ },
+ {
+  "en": "two",
+  "fr": "deux",
+  "c": "word meaning: Jouj"
+ },
+ {
+  "en": "Very Moroccan. Most other Arabic dialects say “tnin”.",
+  "fr": "Très marocain. La plupart des autres dialectes disent « tnin ».",
+  "c": "note on Jouj"
+ },
+ {
+  "en": "three",
+  "fr": "trois",
+  "c": "word meaning: Tlata"
+ },
+ {
+  "en": "five",
+  "fr": "cinq",
+  "c": "word meaning: Khamsa"
+ },
+ {
+  "en": "Also the hand charm against the evil eye.",
+  "fr": "C’est aussi la main contre le mauvais œil.",
+  "c": "note on Khamsa"
+ },
+ {
+  "en": "ten",
+  "fr": "dix",
+  "c": "word meaning: 3achra"
+ },
+ {
+  "en": "a hundred",
+  "fr": "cent",
+  "c": "word meaning: Mya"
+ },
+ {
+  "en": "the cold",
+  "fr": "le froid",
+  "c": "word meaning: Lbrd"
+ },
+ {
+  "en": "It’s cold today.",
+  "fr": "Il fait froid aujourd’hui.",
+  "c": "example: Kayn lbrd lyoum."
+ },
+ {
+  "en": "coffee",
+  "fr": "café",
+  "c": "word meaning: 9hwa"
+ },
+ {
+  "en": "good night",
+  "fr": "bonne nuit",
+  "c": "word meaning: Tsb7 3la khir"
+ },
+ {
+  "en": "good morning",
+  "fr": "bonjour (le matin)",
+  "c": "word meaning: Sba7 lkhir"
+ },
+ {
+  "en": "you’re welcome",
+  "fr": "de rien",
+  "c": "word meaning: Bla mzyya"
+ },
+ {
+  "en": "literally “no favor”",
+  "fr": "littéralement « sans faveur »",
+  "c": "literal meaning of Bla mzyya"
+ },
+ {
+  "en": "enjoy it! (new look, meal, hammam)",
+  "fr": "profite bien !",
+  "c": "word meaning: Bssa7a!"
+ },
+ {
+  "en": "Reply: “Llah y3tik sa7a” (God give you health).",
+  "fr": "Réponse : « Llah y3tik sa7a » (que Dieu te donne la santé).",
+  "c": "note on Bssa7a!"
+ },
+ {
+  "en": "shame! / so embarrassing",
+  "fr": "la honte !",
+  "c": "word meaning: Hchouma"
+ },
+ {
+  "en": "please (the warm one)",
+  "fr": "s’il te plaît (chaleureux)",
+  "c": "word meaning: Llah ykhlik"
+ },
+ {
+  "en": "literally “may God keep you”",
+  "fr": "littéralement « que Dieu te garde »",
+  "c": "literal meaning of Llah ykhlik"
+ },
+ {
+  "en": "poor thing",
+  "fr": "le pauvre",
+  "c": "word meaning: Mskin"
+ },
+ {
+  "en": "the kids / the guys",
+  "fr": "les gamins / les gars",
+  "c": "word meaning: Drari"
+ },
+ {
+  "en": "it’s late",
+  "fr": "il est tard",
+  "c": "word meaning: Mcha l7al"
+ },
+ {
+  "en": "literally “the time has gone”",
+  "fr": "littéralement « le temps est parti »",
+  "c": "literal meaning of Mcha l7al"
+ },
+ {
+  "en": "I’m full",
+  "fr": "j’ai bien mangé",
+  "c": "word meaning: Chb3t"
+ },
+ {
+  "en": "awesome / insane",
+  "fr": "trop fort",
+  "c": "word meaning: Wa3er"
+ },
+ {
+  "en": "excellent",
+  "fr": "top / génial",
+  "c": "word meaning: Nadi"
+ },
+ {
+  "en": "street-smart / sly",
+  "fr": "malin",
+  "c": "word meaning: 9afez"
+ },
+ {
+  "en": "luck",
+  "fr": "la chance",
+  "c": "word meaning: Zzhr"
+ },
+ {
+  "en": "You’re so lucky!",
+  "fr": "T’as trop de chance !",
+  "c": "example: 3ndek zzhr!"
+ },
+ {
+  "en": "nosy gossip",
+  "fr": "le commérage",
+  "c": "word meaning: Tberguig"
+ },
+ {
+  "en": "right now, for real",
+  "fr": "tout de suite, vraiment",
+  "c": "word meaning: Daba daba"
+ },
+ {
+  "en": "bless! / well done",
+  "fr": "bravo, que Dieu préserve",
+  "c": "word meaning: Tbarkellah"
+ },
+ {
+  "en": "Praise that keeps the evil eye away. For babies, new cars and good grades.",
+  "fr": "Un compliment qui éloigne le mauvais œil. Pour les bébés, les voitures neuves et les bonnes notes.",
+  "c": "note on Tbarkellah"
+ },
+ {
+  "en": "please / thanks (the magic one)",
+  "fr": "s’il te plaît / merci (la formule magique)",
+  "c": "word meaning: Llah yr7am lwalidin"
+ },
+ {
+  "en": "literally “may God have mercy on your parents”",
+  "fr": "littéralement « que Dieu ait pitié de tes parents »",
+  "c": "literal meaning of Llah yr7am lwalidin"
+ },
+ {
+  "en": "like… / yeah, right",
+  "fr": "genre… / soi-disant",
+  "c": "word meaning: Zaama"
+ },
+ {
+  "en": "The filler word of Morocco. Also the perfect sarcastic reply.",
+  "fr": "Le mot de remplissage du Maroc. Et la réplique sarcastique parfaite.",
+  "c": "note on Zaama"
+ },
+ {
+  "en": "touch wood! (against the evil eye)",
+  "fr": "touche du bois !",
+  "c": "word meaning: Khamsa w khmis"
+ },
+ {
+  "en": "literally “five and Thursday”",
+  "fr": "littéralement « cinq et jeudi »",
+  "c": "literal meaning of Khamsa w khmis"
+ },
+ {
+  "en": "good evening",
+  "fr": "bonsoir",
+  "c": "word meaning: Msa lkhir"
+ },
+ {
+  "en": "Good evening, how are you?",
+  "fr": "Bonsoir, ça va ?",
+  "c": "example: Msa lkhir, labas?"
+ },
+ {
+  "en": "From late afternoon on, swap sba7 for msa.",
+  "fr": "À partir de la fin d’après-midi, on remplace sba7 par msa.",
+  "c": "note on Msa lkhir"
+ },
+ {
+  "en": "nice to meet you",
+  "fr": "enchanté",
+  "c": "word meaning: Mtcharfin"
+ },
+ {
+  "en": "I’m Adam. Nice to meet you!",
+  "fr": "Je m’appelle Adam. Enchanté !",
+  "c": "example: Smiti Adam. Mtcharfin!"
+ },
+ {
+  "en": "is everything good?",
+  "fr": "tout va bien ?",
+  "c": "word meaning: Kolchi mzyan?"
+ },
+ {
+  "en": "All good at home?",
+  "fr": "Tout va bien à la maison ?",
+  "c": "example: Kolchi mzyan f dar?"
+ },
+ {
+  "en": "Ask about the family too. It’s polite to ask twice.",
+  "fr": "Demande aussi pour la famille. C’est poli de demander deux fois.",
+  "c": "note on Kolchi mzyan?"
+ },
+ {
+  "en": "here you go / go ahead",
+  "fr": "tiens / je t’en prie",
+  "c": "word meaning: Tfddel"
+ },
+ {
+  "en": "Here you go, your tea.",
+  "fr": "Tiens, ton thé.",
+  "c": "example: Tfddel, atay dyalek."
+ },
+ {
+  "en": "Say it when you hand something over or hold the door.",
+  "fr": "Dis-le quand tu tends quelque chose ou tiens la porte.",
+  "c": "note on Tfddel"
+ },
+ {
+  "en": "no problem",
+  "fr": "pas de problème",
+  "c": "word meaning: Ma kayn mochkil"
+ },
+ {
+  "en": "No problem, my friend.",
+  "fr": "Pas de problème, mon pote.",
+  "c": "example: Ma kayn mochkil, sa7bi."
+ },
+ {
+  "en": "thanks a lot",
+  "fr": "merci beaucoup",
+  "c": "word meaning: Choukran bzzaf"
+ },
+ {
+  "en": "Thanks a lot for the tea!",
+  "fr": "Merci beaucoup pour le thé !",
+  "c": "example: Choukran bzzaf 3la atay!"
+ },
+ {
+  "en": "where are you from?",
+  "fr": "tu viens d’où ?",
+  "c": "word meaning: Mnin nta?"
+ },
+ {
+  "en": "Where are you from? I’m from Fes.",
+  "fr": "Tu viens d’où ? Moi, de Fès.",
+  "c": "example: Mnin nta? Ana mn Fes."
+ },
+ {
+  "en": "To a woman: mnin nti?",
+  "fr": "À une femme : mnin nti ?",
+  "c": "note on Mnin nta?"
+ },
+ {
+  "en": "where are you going?",
+  "fr": "tu vas où ?",
+  "c": "word meaning: Fin ghadi?"
+ },
+ {
+  "en": "Where are you going at this hour?",
+  "fr": "Tu vas où à cette heure-ci ?",
+  "c": "example: Fin ghadi f had lwe9t?"
+ },
+ {
+  "en": "what’s this?",
+  "fr": "c’est quoi ça ?",
+  "c": "word meaning: Achnou hada?"
+ },
+ {
+  "en": "What’s this? Delicious!",
+  "fr": "C’est quoi ça ? Délicieux !",
+  "c": "example: Achnou hada? Bnin!"
+ },
+ {
+  "en": "tagine",
+  "fr": "tajine",
+  "c": "word meaning: Tajine"
+ },
+ {
+  "en": "Tagine with meat and prunes",
+  "fr": "Tajine viande aux pruneaux",
+  "c": "example: Tajine b l7em w l9e9"
+ },
+ {
+  "en": "the bill, please",
+  "fr": "l’addition, s’il te plaît",
+  "c": "word meaning: L7sab, 3afak"
+ },
+ {
+  "en": "The bill, please. Thanks!",
+  "fr": "L’addition, s’il vous plaît. Merci !",
+  "c": "example: L7sab, 3afak. Choukran!"
+ },
+ {
+  "en": "more / add",
+  "fr": "encore / ajoute",
+  "c": "word meaning: Zid"
+ },
+ {
+  "en": "A bit more tea, please.",
+  "fr": "Encore un peu de thé, s’il te plaît.",
+  "c": "example: Zid chwiya d atay, 3afak."
+ },
+ {
+  "en": "this one",
+  "fr": "celui-ci",
+  "c": "word meaning: Hada"
+ },
+ {
+  "en": "I want this one, please.",
+  "fr": "Je veux celui-ci, s’il vous plaît.",
+  "c": "example: Bghit hada, 3afak."
+ },
+ {
+  "en": "just looking",
+  "fr": "je regarde juste",
+  "c": "word meaning: Ghir kanchouf"
+ },
+ {
+  "en": "No thanks, just looking.",
+  "fr": "Non merci, je regarde juste.",
+  "c": "example: La choukran, ghir kanchouf."
+ },
+ {
+  "en": "Your shield on every souk street.",
+  "fr": "Ton bouclier dans chaque rue du souk.",
+  "c": "note on Ghir kanchouf"
+ },
+ {
+  "en": "I don’t have (it)",
+  "fr": "je n’ai pas",
+  "c": "word meaning: Ma 3ndich"
+ },
+ {
+  "en": "I don’t have change.",
+  "fr": "Je n’ai pas de monnaie.",
+  "c": "example: Ma 3ndich sarf."
+ },
+ {
+  "en": "what time is it?",
+  "fr": "quelle heure il est ?",
+  "c": "word meaning: Chhal f sa3a?"
+ },
+ {
+  "en": "Excuse me, what time is it?",
+  "fr": "Pardon, il est quelle heure ?",
+  "c": "example: Smeh liya, chhal f sa3a?"
+ },
+ {
+  "en": "later",
+  "fr": "plus tard",
+  "c": "word meaning: Mn ba3d"
+ },
+ {
+  "en": "See you later!",
+  "fr": "À plus tard !",
+  "c": "example: Nchoufek mn ba3d!"
+ },
+ {
+  "en": "still / not yet",
+  "fr": "encore / pas encore",
+  "c": "word meaning: Ba9i"
+ },
+ {
+  "en": "He hasn’t come yet.",
+  "fr": "Il n’est pas encore venu.",
+  "c": "example: Ba9i ma jach."
+ },
+ {
+  "en": "boy / son",
+  "fr": "garçon / fils",
+  "c": "word meaning: Weld"
+ },
+ {
+  "en": "This is my son.",
+  "fr": "C’est mon fils.",
+  "c": "example: Hada weldi."
+ },
+ {
+  "en": "girl / daughter",
+  "fr": "fille",
+  "c": "word meaning: Bent"
+ },
+ {
+  "en": "My sister’s daughter",
+  "fr": "La fille de ma sœur",
+  "c": "example: Bent khti"
+ },
+ {
+  "en": "happy",
+  "fr": "content",
+  "c": "word meaning: Fer7an"
+ },
+ {
+  "en": "I’m so happy today!",
+  "fr": "Je suis trop content aujourd’hui !",
+  "c": "example: Ana fer7an bzzaf lyoum!"
+ },
+ {
+  "en": "To a woman: fer7ana.",
+  "fr": "Au féminin : fer7ana.",
+  "c": "note on Fer7an"
+ },
+ {
+  "en": "going / going to",
+  "fr": "je vais",
+  "c": "word meaning: Ghadi"
+ },
+ {
+  "en": "I’m going to Merzouga.",
+  "fr": "Je vais à Merzouga.",
+  "c": "example: Ghadi l Merzouga."
+ },
+ {
+  "en": "far",
+  "fr": "loin",
+  "c": "word meaning: B3id"
+ },
+ {
+  "en": "Is it far?",
+  "fr": "C’est loin ?",
+  "c": "example: Wach b3id?"
+ },
+ {
+  "en": "close / near",
+  "fr": "près",
+  "c": "word meaning: 9rib"
+ },
+ {
+  "en": "Close, just here.",
+  "fr": "Tout près, juste ici.",
+  "c": "example: 9rib, ghir hna."
+ },
+ {
+  "en": "really?",
+  "fr": "c’est vrai ?",
+  "c": "word meaning: Bsse7?"
+ },
+ {
+  "en": "Really? I didn’t know!",
+  "fr": "C’est vrai ? Je savais pas !",
+  "c": "example: Bsse7? Ma 3reftch!"
+ },
+ {
+  "en": "I swear / honestly",
+  "fr": "je te jure",
+  "c": "word meaning: Wallah"
+ },
+ {
+  "en": "Honestly, delicious!",
+  "fr": "Je te jure, c’est délicieux !",
+  "c": "example: Wallah bnin!"
+ },
+ {
+  "en": "Moroccans use it for everything from big promises to good soup.",
+  "fr": "On l’utilise pour tout, des grandes promesses à une bonne soupe.",
+  "c": "note on Wallah"
+ },
+ {
+  "en": "see you tomorrow",
+  "fr": "à demain",
+  "c": "word meaning: Nchoufek ghedda"
+ },
+ {
+  "en": "football / the ball",
+  "fr": "le foot / le ballon",
+  "c": "word meaning: Lkoura"
+ },
+ {
+  "en": "I love football so much!",
+  "fr": "J’adore le foot !",
+  "c": "example: Kanbghi lkoura bzzaf!"
+ },
+ {
+  "en": "The same word means the game and the ball itself.",
+  "fr": "Le même mot veut dire le jeu et le ballon lui-même.",
+  "c": "note on Lkoura"
+ },
+ {
+  "en": "the match",
+  "fr": "le match",
+  "c": "word meaning: Lmatch"
+ },
+ {
+  "en": "The match has started, come on!",
+  "fr": "Le match a commencé, allez !",
+  "c": "example: Lmatch bda, yallah!"
+ },
+ {
+  "en": "the national team",
+  "fr": "l’équipe nationale",
+  "c": "word meaning: Lmountakhab"
+ },
+ {
+  "en": "Our national team is so good.",
+  "fr": "Notre équipe nationale est trop forte.",
+  "c": "example: Lmountakhab dyalna zwin bzzaf."
+ },
+ {
+  "en": "Morocco’s team are also called the Atlas Lions.",
+  "fr": "L’équipe du Maroc, ce sont aussi les Lions de l’Atlas.",
+  "c": "note on Lmountakhab"
+ },
+ {
+  "en": "he scored",
+  "fr": "il a marqué",
+  "c": "word meaning: Marka"
+ },
+ {
+  "en": "He scored in the last minute!",
+  "fr": "Il a marqué à la dernière minute !",
+  "c": "example: Marka f d9i9a lkhra!"
+ },
+ {
+  "en": "From the French marquer. To a woman scorer: markat.",
+  "fr": "Vient du français marquer. Pour une joueuse : markat.",
+  "c": "note on Marka"
+ },
+ {
+  "en": "goal!",
+  "fr": "but !",
+  "c": "word meaning: Gool!"
+ },
+ {
+  "en": "Goal! Always Morocco!",
+  "fr": "But ! Toujours le Maroc !",
+  "c": "example: Goool! Dima Maghrib!"
+ },
+ {
+  "en": "Stretch the o for as long as your lungs allow.",
+  "fr": "Étire le o aussi longtemps que tes poumons le permettent.",
+  "c": "note on Gool!"
+ },
+ {
+  "en": "the fans / the crowd",
+  "fr": "le public / les supporters",
+  "c": "word meaning: Ljmhour"
+ },
+ {
+  "en": "The crowd is singing!",
+  "fr": "Le public chante !",
+  "c": "example: Ljmhour kaygheni!"
+ },
+ {
+  "en": "we won!",
+  "fr": "on a gagné !",
+  "c": "word meaning: Rbe7na!"
+ },
+ {
+  "en": "We won, thank God!",
+  "fr": "On a gagné, Dieu merci !",
+  "c": "example: Rbe7na, l7amdoulillah!"
+ },
+ {
+  "en": "we lost",
+  "fr": "on a perdu",
+  "c": "word meaning: Khsserna"
+ },
+ {
+  "en": "We lost, but never mind.",
+  "fr": "On a perdu, mais c’est pas grave.",
+  "c": "example: Khsserna, walakin ma3lich."
+ },
+ {
+  "en": "a draw",
+  "fr": "un match nul",
+  "c": "word meaning: Ta3adol"
+ },
+ {
+  "en": "A draw, one all.",
+  "fr": "Match nul, un partout.",
+  "c": "example: Ta3adol, wa7ed wa7ed."
+ },
+ {
+  "en": "the referee",
+  "fr": "l’arbitre",
+  "c": "word meaning: L7akam"
+ },
+ {
+  "en": "What is this referee doing?!",
+  "fr": "Mais qu’est-ce qu’il fait, l’arbitre ?!",
+  "c": "example: Ach dar had l7akam?!"
+ },
+ {
+  "en": "Usually the villain of the evening.",
+  "fr": "En général, le méchant de la soirée.",
+  "c": "note on L7akam"
+ },
+ {
+  "en": "A penalty in the 90th minute!",
+  "fr": "Penalty à la 90e minute !",
+  "c": "example: Bennalti f d9i9a 90!"
+ },
+ {
+  "en": "the pitch",
+  "fr": "le terrain",
+  "c": "word meaning: Tiran"
+ },
+ {
+  "en": "Let’s go play on the pitch!",
+  "fr": "Allez, on va jouer sur le terrain !",
+  "c": "example: Yallah nl3bou f tiran!"
+ },
+ {
+  "en": "From the French terrain.",
+  "fr": "Vient du français terrain.",
+  "c": "note on Tiran"
+ },
+ {
+  "en": "always Morocco!",
+  "fr": "toujours le Maroc !",
+  "c": "word meaning: Dima Maghrib!"
+ },
+ {
+  "en": "Morocco, always!",
+  "fr": "Le Maroc, toujours !",
+  "c": "example: Dima Maghrib, dima!"
+ },
+ {
+  "en": "The chant you hear in every street after a win.",
+  "fr": "Le chant qu’on entend dans toutes les rues après une victoire.",
+  "c": "note on Dima Maghrib!"
+ },
+ {
+  "en": "go! / go on!",
+  "fr": "vas-y !",
+  "c": "word meaning: Sir!"
+ },
+ {
+  "en": "Go! Go! Go!",
+  "fr": "Allez ! Allez ! Allez !",
+  "c": "example: Sir! Sir! Sir!"
+ },
+ {
+  "en": "Sir means go. Fans chant it three times, louder each time.",
+  "fr": "Sir veut dire vas-y. Les supporters le chantent trois fois, de plus en plus fort.",
+  "c": "note on Sir!"
+ },
+ {
+  "en": "have faith",
+  "fr": "aie confiance",
+  "c": "word meaning: Dir niya"
+ },
+ {
+  "en": "Have faith, we’re going to win!",
+  "fr": "Aie confiance, on va gagner !",
+  "c": "example: Dir niya, ghadi nrb7ou!"
+ },
+ {
+  "en": "Niya is faith and good intention. It became the national team’s motto.",
+  "fr": "La niya, c’est la confiance et la bonne intention. C’est devenu la devise de l’équipe nationale.",
+  "c": "note on Dir niya"
+ },
+ {
+  "en": "Your friend just got a fresh haircut. You say…",
+  "fr": "Ton pote sort de chez le coiffeur. Tu dis…",
+  "c": "situation"
+ },
+ {
+  "en": "Enjoy it!",
+  "fr": "Profite bien !",
+  "c": "answer: Bssa7a!"
+ },
+ {
+  "en": "Too expensive!",
+  "fr": "Trop cher !",
+  "c": "answer: Ghali bzzaf!"
+ },
+ {
+  "en": "Bye!",
+  "fr": "Salut !",
+  "c": "answer: Bslama!"
+ },
+ {
+  "en": "I’m hungry.",
+  "fr": "J’ai faim.",
+  "c": "answer: Fiya jjo3."
+ },
+ {
+  "en": "A vendor wants 400 DH for a tiny vase. You say…",
+  "fr": "Un vendeur veut 400 DH pour un petit vase. Tu dis…",
+  "c": "situation"
+ },
+ {
+  "en": "OK, thanks!",
+  "fr": "D’accord, merci !",
+  "c": "answer: Wakha, choukran!"
+ },
+ {
+  "en": "I love you.",
+  "fr": "Je t’aime.",
+  "c": "answer: Kanbghik."
+ },
+ {
+  "en": "Good night.",
+  "fr": "Bonne nuit.",
+  "c": "answer: Tsb7 3la khir."
+ },
+ {
+  "en": "You’re lost in the medina.",
+  "fr": "Tu es perdu(e) dans la médina.",
+  "c": "situation"
+ },
+ {
+  "en": "Excuse me, where’s the gate?",
+  "fr": "Pardon, où est la porte ?",
+  "c": "answer: Smeh liya, fin kayn lbab?"
+ },
+ {
+  "en": "Congrats!",
+  "fr": "Félicitations !",
+  "c": "answer: Mabrouk!"
+ },
+ {
+  "en": "Enough, I’m full.",
+  "fr": "Ça suffit, j’ai bien mangé.",
+  "c": "answer: Safi, chb3t."
+ },
+ {
+  "en": "A lot!",
+  "fr": "Beaucoup !",
+  "c": "answer: Bzzaf!"
+ },
+ {
+  "en": "Your mom calls you to dinner. You’re on your way.",
+  "fr": "Ta mère t’appelle pour manger. Tu arrives.",
+  "c": "situation"
+ },
+ {
+  "en": "I don’t know.",
+  "fr": "Je sais pas.",
+  "c": "answer: Ma3reftch."
+ },
+ {
+  "en": "Too expensive.",
+  "fr": "Trop cher.",
+  "c": "answer: Ghali bzzaf."
+ },
+ {
+  "en": "Stop here.",
+  "fr": "Arrête-toi ici.",
+  "c": "answer: Wqef hna."
+ },
+ {
+  "en": "Your petit taxi reaches your street.",
+  "fr": "Ton petit taxi arrive dans ta rue.",
+  "c": "situation"
+ },
+ {
+  "en": "Stop here, please.",
+  "fr": "Arrête-toi ici, s’il te plaît.",
+  "c": "answer: Wqef hna, 3afak."
+ },
+ {
+  "en": "Go straight!",
+  "fr": "Tout droit !",
+  "c": "answer: Sir nichan!"
+ },
+ {
+  "en": "Enjoy!",
+  "fr": "Profite bien !",
+  "c": "answer: Bssa7a!"
+ },
+ {
+  "en": "Someone says “choukran” to you.",
+  "fr": "Quelqu’un te dit « choukran ».",
+  "c": "situation"
+ },
+ {
+  "en": "You’re welcome.",
+  "fr": "De rien.",
+  "c": "answer: Bla mzyya."
+ },
+ {
+  "en": "Thank you.",
+  "fr": "Merci.",
+  "c": "answer: Choukran."
+ },
+ {
+  "en": "I didn’t get it.",
+  "fr": "J’ai pas compris.",
+  "c": "answer: Ma fhemtch."
+ },
+ {
+  "en": "Tomorrow.",
+  "fr": "Demain.",
+  "c": "answer: Ghedda."
+ },
+ {
+  "en": "You’re leaving your aunt’s house late at night.",
+  "fr": "Tu quittes la maison de ta tante tard le soir.",
+  "c": "situation"
+ },
+ {
+  "en": "Good night!",
+  "fr": "Bonne nuit !",
+  "c": "answer: Tsb7 3la khir!"
+ },
+ {
+  "en": "Good morning!",
+  "fr": "Bonjour !",
+  "c": "answer: Sba7 lkhir!"
+ },
+ {
+  "en": "Welcome!",
+  "fr": "Bienvenue !",
+  "c": "answer: Mer7ba!"
+ },
+ {
+  "en": "How much?",
+  "fr": "Combien ?",
+  "c": "answer: B chhal?"
+ },
+ {
+  "en": "Your cousin just passed her driving test.",
+  "fr": "Ta cousine vient d’avoir son permis.",
+  "c": "situation"
+ },
+ {
+  "en": "Poor thing.",
+  "fr": "La pauvre.",
+  "c": "answer: Mskina."
+ },
+ {
+  "en": "Shame on you!",
+  "fr": "La honte !",
+  "c": "answer: Hchouma!"
+ },
+ {
+  "en": "Where?",
+  "fr": "Où ?",
+  "c": "answer: Fin?"
+ },
+ {
+  "en": "Your cousin shows you her newborn baby.",
+  "fr": "Ta cousine te montre son nouveau-né.",
+  "c": "situation"
+ },
+ {
+  "en": "Bless! (no evil eye)",
+  "fr": "Que Dieu le préserve !",
+  "c": "answer: Tbarkellah!"
+ },
+ {
+  "en": "Expensive!",
+  "fr": "Cher !",
+  "c": "answer: Ghali!"
+ },
+ {
+  "en": "Ugly.",
+  "fr": "Moche.",
+  "c": "answer: Khayb."
+ },
+ {
+  "en": "Let’s go!",
+  "fr": "On y va !",
+  "c": "answer: Yallah!"
+ },
+ {
+  "en": "Mima keeps adding couscous to your plate. You’re done.",
+  "fr": "Mima remet du couscous dans ton assiette. T’en peux plus.",
+  "c": "situation"
+ },
+ {
+  "en": "More!",
+  "fr": "Encore !",
+  "c": "answer: Zid!"
+ },
+ {
+  "en": "I’m hungry!",
+  "fr": "J’ai faim !",
+  "c": "answer: Fiya jjo3!"
+ },
+ {
+  "en": "A stranger helps you carry your heavy bags.",
+  "fr": "Un inconnu t’aide à porter tes valises.",
+  "c": "situation"
+ },
+ {
+  "en": "Bless your parents! (thank you)",
+  "fr": "Paix à tes parents ! (merci)",
+  "c": "answer: Llah yr7am lwalidin!"
+ },
+ {
+  "en": "Shame!",
+  "fr": "La honte !",
+  "c": "answer: Hchouma!"
+ },
+ {
+  "en": "The shopkeeper talks way too fast.",
+  "fr": "Le commerçant parle beaucoup trop vite.",
+  "c": "situation"
+ },
+ {
+  "en": "Faster, faster!",
+  "fr": "Plus vite !",
+  "c": "answer: Dghya, dghya!"
+ },
+ {
+  "en": "Tea!",
+  "fr": "Du thé !",
+  "c": "answer: Atay!"
+ },
+ {
+  "en": "Your friend scores an impossible goal.",
+  "fr": "Ton pote marque un but impossible.",
+  "c": "situation"
+ },
+ {
+  "en": "Insane!",
+  "fr": "Trop fort !",
+  "c": "answer: Wa3er!"
+ },
+ {
+  "en": "Poor guy.",
+  "fr": "Le pauvre.",
+  "c": "answer: Mskin."
+ },
+ {
+  "en": "Excuse me.",
+  "fr": "Pardon.",
+  "c": "answer: Smeh liya."
+ },
+ {
+  "en": "Yesterday.",
+  "fr": "Hier.",
+  "c": "answer: Lbare7."
+ },
+ {
+  "en": "Your neighbor asks: “Labas?”",
+  "fr": "Ton voisin te demande : « Labas ? »",
+  "c": "situation"
+ },
+ {
+  "en": "Fine, thank God.",
+  "fr": "Ça va, Dieu merci.",
+  "c": "answer: Labas, l7amdoulillah."
+ },
+ {
+  "en": "Expensive.",
+  "fr": "Cher.",
+  "c": "answer: Ghali."
+ },
+ {
+  "en": "When?",
+  "fr": "Quand ?",
+  "c": "answer: Imta?"
+ },
+ {
+  "en": "It’s 1 a.m. and the wedding party is still going. You want to leave.",
+  "fr": "Il est 1 h du matin et le mariage continue. Tu veux partir.",
+  "c": "situation"
+ },
+ {
+  "en": "It’s late, I’m heading out.",
+  "fr": "Il est tard, je vais y aller.",
+  "c": "answer: Mcha l7al, ghadi nmchi."
+ },
+ {
+  "en": "Right now!",
+  "fr": "Tout de suite !",
+  "c": "answer: Daba daba!"
+ },
+ {
+  "en": "More tea!",
+  "fr": "Encore du thé !",
+  "c": "answer: Zid atay!"
+ },
+ {
+  "en": "Someone says your new car is stunning. You want to block the evil eye.",
+  "fr": "Quelqu’un dit que ta nouvelle voiture est magnifique. Tu veux éviter le mauvais œil.",
+  "c": "situation"
+ },
+ {
+  "en": "Touch wood!",
+  "fr": "Touche du bois !",
+  "c": "answer: Khamsa w khmis!"
+ },
+ {
+  "en": "I love you!",
+  "fr": "Je t’aime !",
+  "c": "answer: Kanbghik!"
+ },
+ {
+  "en": "Your friend wins a phone in a raffle.",
+  "fr": "Ton pote gagne un téléphone à la tombola.",
+  "c": "situation"
+ },
+ {
+  "en": "Bye.",
+  "fr": "Salut.",
+  "c": "answer: Bslama."
+ },
+ {
+  "en": "Your aunt wants every detail about your love life.",
+  "fr": "Ta tante veut tous les détails sur ta vie amoureuse.",
+  "c": "situation"
+ },
+ {
+  "en": "That’s just nosy gossip!",
+  "fr": "C’est du commérage, ça !",
+  "c": "answer: Hadchi tberguig!"
+ },
+ {
+  "en": "Mint tea.",
+  "fr": "Thé à la menthe.",
+  "c": "answer: Atay b na3na3."
+ },
+ {
+  "en": "Go straight.",
+  "fr": "Tout droit.",
+  "c": "answer: Sir nichan."
+ },
+ {
+  "en": "Your little brother talks his way out of chores. Again.",
+  "fr": "Ton petit frère échappe encore aux corvées avec son baratin.",
+  "c": "situation"
+ },
+ {
+  "en": "You’re so sly!",
+  "fr": "T’es malin, toi !",
+  "c": "answer: Nta 9afez!"
+ },
+ {
+  "en": "Mima asks where the kids went.",
+  "fr": "Mima demande où sont passés les enfants.",
+  "c": "situation"
+ },
+ {
+  "en": "The kids are out in the street.",
+  "fr": "Les gamins sont dans la rue.",
+  "c": "answer: Drari f zzen9a."
+ },
+ {
+  "en": "Your friend’s phone fell into the hammam bucket.",
+  "fr": "Le téléphone de ton pote est tombé dans le seau du hammam.",
+  "c": "situation"
+ },
+ {
+  "en": "Poor thing!",
+  "fr": "Le pauvre !",
+  "c": "answer: Mskin!"
+ },
+ {
+  "en": "Awesome!",
+  "fr": "Trop fort !",
+  "c": "answer: Wa3er!"
+ },
+ {
+  "en": "You’re lucky!",
+  "fr": "T’as de la chance !",
+  "c": "answer: 3ndek zzhr!"
+ },
+ {
+  "en": "Your cousin asks how the new tacos place was. It was amazing.",
+  "fr": "Ton cousin demande comment était le nouveau tacos. C’était top.",
+  "c": "situation"
+ },
+ {
+  "en": "Excellent!",
+  "fr": "Top !",
+  "c": "answer: Nadi!"
+ },
+ {
+  "en": "Bad.",
+  "fr": "Nul.",
+  "c": "answer: Khayb."
+ },
+ {
+  "en": "Your friend swears he’ll wake up at 6 to go running. You doubt it.",
+  "fr": "Ton pote jure qu’il va se lever à 6 h pour courir. T’y crois pas.",
+  "c": "situation"
+ },
+ {
+  "en": "Yeah, right?",
+  "fr": "Ouais, c’est ça ?",
+  "c": "answer: Zaama?"
+ },
+ {
+  "en": "Please.",
+  "fr": "S’il te plaît.",
+  "c": "answer: 3afak."
+ },
+ {
+  "en": "You want your sister to bring you a coffee. Ask nicely.",
+  "fr": "Tu veux que ta sœur te ramène un café. Demande gentiment.",
+  "c": "situation"
+ },
+ {
+  "en": "Bring me a coffee, please.",
+  "fr": "Ramène-moi un café, s’il te plaît.",
+  "c": "answer: Jibli 9hwa, llah ykhlik."
+ },
+ {
+  "en": "Bring me a coffee. NOW!",
+  "fr": "Ramène-moi un café. MAINTENANT !",
+  "c": "answer: Jibli 9hwa, daba!"
+ },
+ {
+  "en": "I don’t want it.",
+  "fr": "Je veux pas.",
+  "c": "answer: Ma bghitch."
+ },
+ {
+  "en": "Morocco scores in the last minute. You jump up and shout…",
+  "fr": "Le Maroc marque à la dernière minute. Tu sautes et tu cries…",
+  "c": "situation"
+ },
+ {
+  "en": "The referee gives a card nobody understands.",
+  "fr": "L’arbitre donne un carton que personne ne comprend.",
+  "c": "situation"
+ },
+ {
+  "en": "Your friend thinks Morocco will lose the final.",
+  "fr": "Ton pote pense que le Maroc va perdre la finale.",
+  "c": "situation"
+ },
+ {
+  "en": "Have faith!",
+  "fr": "Aie confiance !",
+  "c": "answer: Dir niya!"
+ },
+ {
+  "en": "Where’s the bus?",
+  "fr": "Il est où, le bus ?",
+  "c": "answer: Fin kayn tobis?"
+ },
+ {
+  "en": "A bit more.",
+  "fr": "Encore un peu.",
+  "c": "answer: Zid chwiya."
+ },
+ {
+  "en": "The match ends one all. Your uncle asks how it went.",
+  "fr": "Le match finit un partout. Ton oncle demande comment ça s’est passé.",
+  "c": "situation"
+ },
+ {
+  "en": "We won two-nil!",
+  "fr": "On a gagné deux-zéro !",
+  "c": "answer: Rbe7na zouj zero!"
+ },
+ {
+  "en": "I want mint tea",
+  "fr": "Je veux un thé à la menthe",
+  "c": "sentence to build"
+ },
+ {
+  "en": "Where is the bathroom?",
+  "fr": "Où sont les toilettes ?",
+  "c": "sentence to build"
+ },
+ {
+  "en": "I didn’t understand",
+  "fr": "J’ai pas compris",
+  "c": "sentence to build"
+ },
+ {
+  "en": "Speak slowly, please",
+  "fr": "Parle doucement, s’il te plaît",
+  "c": "sentence to build"
+ },
+ {
+  "en": "This is very beautiful",
+  "fr": "C’est très beau",
+  "c": "sentence to build"
+ },
+ {
+  "en": "I’m going home",
+  "fr": "Je rentre à la maison",
+  "c": "sentence to build"
+ },
+ {
+  "en": "I don’t want it",
+  "fr": "Je veux pas",
+  "c": "sentence to build"
+ },
+ {
+  "en": "See you tomorrow",
+  "fr": "À demain",
+  "c": "sentence to build"
+ },
+ {
+  "en": "Give me water, please",
+  "fr": "Donne-moi de l’eau, s’il te plaît",
+  "c": "sentence to build"
+ },
+ {
+  "en": "There’s no wifi",
+  "fr": "Il n’y a pas de wifi",
+  "c": "sentence to build"
+ },
+ {
+  "en": "Welcome to Morocco",
+  "fr": "Bienvenue au Maroc",
+  "c": "sentence to build"
+ },
+ {
+  "en": "Everything’s good, thank God",
+  "fr": "Tout va bien, Dieu merci",
+  "c": "sentence to build"
+ },
+ {
+  "en": "Where are you going?",
+  "fr": "Tu vas où ?",
+  "c": "sentence to build"
+ },
+ {
+  "en": "The tea is hot",
+  "fr": "Le thé est chaud",
+  "c": "sentence to build"
+ },
+ {
+  "en": "I want a little sugar",
+  "fr": "Je veux un peu de sucre",
+  "c": "sentence to build"
+ },
+ {
+  "en": "Stop here, please",
+  "fr": "Arrête-toi ici, s’il te plaît",
+  "c": "sentence to build"
+ },
+ {
+  "en": "My name is Adam",
+  "fr": "Je m’appelle Adam",
+  "c": "sentence to build"
+ },
+ {
+  "en": "Is there a bus?",
+  "fr": "Il y a un bus ?",
+  "c": "sentence to build"
+ },
+ {
+  "en": "I love you, mom",
+  "fr": "Je t’aime, maman",
+  "c": "sentence to build"
+ },
+ {
+  "en": "I’m very tired",
+  "fr": "Je suis très fatigué(e)",
+  "c": "sentence to build"
+ },
+ {
+  "en": "He scored in the last minute",
+  "fr": "Il a marqué à la dernière minute",
+  "c": "sentence to build"
+ },
+ {
+  "en": "Numbers are letters",
+  "fr": "Les chiffres sont des lettres",
+  "c": "reel title"
+ },
+ {
+  "en": "In Darija texts, some numbers are letters.",
+  "fr": "Dans les textos en darija, certains chiffres sont des lettres.",
+  "c": "reel text"
+ },
+ {
+  "en": "A deep “a” from the throat. Like in 3afak (please).",
+  "fr": "Un « a » profond, de la gorge. Comme dans 3afak (s’il te plaît).",
+  "c": "reel text"
+ },
+ {
+  "en": "A breathy h, like fogging up a mirror. Like in 7out (fish).",
+  "fr": "Un h soufflé, comme pour faire de la buée. Comme dans 7out (poisson).",
+  "c": "reel text"
+ },
+ {
+  "en": "A k from deep in the throat. Like in 9hwa (coffee).",
+  "fr": "Un k du fond de la gorge. Comme dans 9hwa (café).",
+  "c": "reel text"
+ },
+ {
+  "en": "gh sounds like the French R. kh sounds like the ch in Bach.",
+  "fr": "gh se prononce comme le R français. kh comme la jota espagnole.",
+  "c": "reel text"
+ },
+ {
+  "en": "gh = غ",
+  "c": "reel big text"
+ },
+ {
+  "en": "Daba ≠ now",
+  "fr": "Daba ≠ maintenant",
+  "c": "reel title"
+ },
+ {
+  "en": "It means “now”.",
+  "fr": "Ça veut dire « maintenant ».",
+  "c": "reel text"
+ },
+ {
+  "en": "But a Moroccan “daba” can mean in five minutes…",
+  "fr": "Mais un « daba » marocain peut vouloir dire dans cinq minutes…",
+  "c": "reel text"
+ },
+ {
+  "en": "Daba?",
+  "c": "reel big text"
+ },
+ {
+  "en": "…or in five hours. Or next week.",
+  "fr": "…ou dans cinq heures. Ou la semaine prochaine.",
+  "c": "reel text"
+ },
+ {
+  "en": "…or 5 hours",
+  "c": "reel big text"
+ },
+ {
+  "en": "Need it right now, for real? Say it twice.",
+  "fr": "Tu le veux vraiment tout de suite ? Dis-le deux fois.",
+  "c": "reel text"
+ },
+ {
+  "en": "The magic word",
+  "fr": "Le mot magique",
+  "c": "reel title"
+ },
+ {
+  "en": "Fresh haircut? Bssa7a!",
+  "fr": "Nouvelle coupe ? Bssa7a !",
+  "c": "reel text"
+ },
+ {
+  "en": "New shoes? Bssa7a!",
+  "fr": "Nouvelles baskets ? Bssa7a !",
+  "c": "reel text"
+ },
+ {
+  "en": "Back from the hammam? Bssa7a!",
+  "fr": "Tu sors du hammam ? Bssa7a !",
+  "c": "reel text"
+ },
+ {
+  "en": "The reply: “God give you health.”",
+  "fr": "La réponse : « Que Dieu te donne la santé. »",
+  "c": "reel text"
+ },
+ {
+  "en": "Darija is a remix",
+  "fr": "La darija est un remix",
+  "c": "reel title"
+ },
+ {
+  "en": "Darija borrows words from French and Spanish.",
+  "fr": "La darija emprunte des mots au français et à l’espagnol.",
+  "c": "reel text"
+ },
+ {
+  "en": "Bus, from the French “autobus”.",
+  "fr": "Le bus, du français « autobus ».",
+  "c": "reel text"
+ },
+ {
+  "en": "Week, from the Spanish “semana”.",
+  "fr": "La semaine, de l’espagnol « semana ».",
+  "c": "reel text"
+ },
+ {
+  "en": "Kitchen, from the Spanish “cocina”.",
+  "fr": "La cuisine, de l’espagnol « cocina ».",
+  "c": "reel text"
+ },
+ {
+  "en": "Nurse, from the French “infirmier”.",
+  "fr": "L’infirmier, du français « infirmier ».",
+  "c": "reel text"
+ },
+ {
+  "en": "The ma…ch sandwich",
+  "fr": "Le sandwich ma…ch",
+  "c": "reel title"
+ },
+ {
+  "en": "To say “not”, wrap the verb: ma + verb + ch.",
+  "fr": "Pour dire « ne… pas », on entoure le verbe : ma + verbe + ch.",
+  "c": "reel text"
+ },
+ {
+  "en": "fhemt = I understood. ma fhemtch = I didn’t understand.",
+  "fr": "fhemt = j’ai compris. ma fhemtch = j’ai pas compris.",
+  "c": "reel text"
+ },
+ {
+  "en": "bghit = I want. ma bghitch = I don’t want.",
+  "fr": "bghit = je veux. ma bghitch = je veux pas.",
+  "c": "reel text"
+ },
+ {
+  "en": "kayn = there is. makaynch = there isn’t.",
+  "fr": "kayn = il y a. makaynch = il n’y a pas.",
+  "c": "reel text"
+ },
+ {
+  "en": "Grandma’s money math",
+  "fr": "Les maths de Mima",
+  "c": "reel title"
+ },
+ {
+  "en": "Mima says something costs “alf ryal”. Panic?",
+  "fr": "Mima dit que ça coûte « alf ryal ». Panique ?",
+  "c": "reel text"
+ },
+ {
+  "en": "In much of Morocco, people still count in ryal.",
+  "fr": "Dans une grande partie du Maroc, on compte encore en ryal.",
+  "c": "reel text"
+ },
+ {
+  "en": "1 DH = 20 ryal",
+  "c": "reel big text"
+ },
+ {
+  "en": "So alf ryal (1,000 ryal) is 50 dirhams.",
+  "fr": "Donc alf ryal (1 000 ryal), c’est 50 dirhams.",
+  "c": "reel text"
+ },
+ {
+  "en": "= 50 DH",
+  "c": "reel big text"
+ },
+ {
+  "en": "Yes, everyone needs a second to calculate.",
+  "fr": "Oui, tout le monde a besoin d’une seconde pour calculer.",
+  "c": "reel text"
+ },
+ {
+  "en": "Inchallah has levels",
+  "fr": "Les niveaux d’inchallah",
+  "c": "reel title"
+ },
+ {
+  "en": "It means “God willing”.",
+  "fr": "Ça veut dire « si Dieu le veut ».",
+  "c": "reel text"
+ },
+ {
+  "en": "Said fast with a smile: probably yes.",
+  "fr": "Dit vite avec le sourire : sûrement oui.",
+  "c": "reel text"
+ },
+ {
+  "en": "Said slowly, looking away: probably no.",
+  "fr": "Dit lentement en regardant ailleurs : sûrement non.",
+  "c": "reel text"
+ },
+ {
+  "en": "Said by mom about buying a console: never.",
+  "fr": "Dit par maman pour une console : jamais.",
+  "c": "reel text"
+ },
+ {
+  "en": "The ultimate please",
+  "fr": "Le s’il te plaît ultime",
+  "c": "reel title"
+ },
+ {
+  "en": "Literally: “May God have mercy on your parents.”",
+  "fr": "Littéralement : « Que Dieu ait pitié de tes parents. »",
+  "c": "reel text"
+ },
+ {
+  "en": "Use it to ask a favor. Nobody can say no.",
+  "fr": "Utilise-le pour demander un service. Personne ne peut refuser.",
+  "c": "reel text"
+ },
+ {
+  "en": "Use it to say thanks when someone helps you.",
+  "fr": "Utilise-le pour remercier quelqu’un qui t’aide.",
+  "c": "reel text"
+ },
+ {
+  "en": "Four ways to say yes",
+  "fr": "Quatre façons de dire oui",
+  "c": "reel title"
+ },
+ {
+  "en": "Yes. The standard.",
+  "fr": "Oui. Le classique.",
+  "c": "reel text"
+ },
+ {
+  "en": "Yeah. Super casual.",
+  "fr": "Ouais. Très détendu.",
+  "c": "reel text"
+ },
+ {
+  "en": "OK, deal.",
+  "fr": "D’accord, ça marche.",
+  "c": "reel text"
+ },
+ {
+  "en": "OK, done, enough. End of discussion.",
+  "fr": "C’est bon. Fin de la discussion.",
+  "c": "reel text"
+ },
+ {
+  "en": "Shame, embarrassment, “what will people say”.",
+  "fr": "La honte, la gêne, le « qu’est-ce que les gens vont dire ».",
+  "c": "reel text"
+ },
+ {
+  "en": "A kid talks back to an adult? Hchouma!",
+  "fr": "Un enfant répond à un adulte ? Hchouma !",
+  "c": "reel text"
+ },
+ {
+  "en": "It’s why guests say “no thanks” twice before eating. The host always insists.",
+  "fr": "C’est pour ça que l’invité refuse deux fois avant de manger. L’hôte insiste toujours.",
+  "c": "reel text"
+ },
+ {
+  "en": "The number five",
+  "fr": "Le chiffre cinq",
+  "c": "reel title"
+ },
+ {
+  "en": "It means five.",
+  "fr": "Ça veut dire cinq.",
+  "c": "reel text"
+ },
+ {
+  "en": "It’s also the hand charm that blocks the evil eye.",
+  "fr": "C’est aussi la main qui protège du mauvais œil.",
+  "c": "reel text"
+ },
+ {
+  "en": "“Five and Thursday.” Moroccans say it the way you’d say “touch wood”.",
+  "fr": "« Cinq et jeudi. » Les Marocains le disent comme on dit « touche du bois ».",
+  "c": "reel text"
+ },
+ {
+  "en": "Petit taxi survival kit",
+  "fr": "Kit de survie en petit taxi",
+  "c": "reel title"
+ },
+ {
+  "en": "Three phrases and you run the back seat.",
+  "fr": "Trois phrases et c’est toi qui commandes.",
+  "c": "reel text"
+ },
+ {
+  "en": "To the right. Left is 3la lisar.",
+  "fr": "À droite. À gauche, c’est 3la lisar.",
+  "c": "reel text"
+ },
+ {
+  "en": "“Always Morocco!” You’ll hear it in every street after a win.",
+  "fr": "« Toujours le Maroc ! » Tu l’entendras dans toutes les rues après une victoire.",
+  "c": "reel text"
+ },
+ {
+  "en": "In Qatar, Morocco became the first African and Arab team to reach a World Cup semi-final.",
+  "fr": "Au Qatar, le Maroc est devenu la première équipe africaine et arabe en demi-finale d’une Coupe du monde.",
+  "c": "reel text"
+ },
+ {
+  "en": "The fans’ chant. Sir means “go!”",
+  "fr": "Le chant des supporters. Sir veut dire « vas-y ! ».",
+  "c": "reel text"
+ },
+ {
+  "en": "“Have faith.” Niya became the national team’s motto.",
+  "fr": "« Aie confiance. » La niya est devenue la devise de l’équipe nationale.",
+  "c": "reel text"
+ },
+ {
+  "en": "Match day words",
+  "fr": "Les mots du jour de match",
+  "c": "reel title"
+ },
+ {
+  "en": "Football. And also just “the ball”.",
+  "fr": "Le foot. Et aussi juste « le ballon ».",
+  "c": "reel text"
+ },
+ {
+  "en": "Stretch it as long as your lungs allow.",
+  "fr": "Étire-le aussi longtemps que tes poumons le permettent.",
+  "c": "reel text"
+ },
+ {
+  "en": "The referee. Usually the villain.",
+  "fr": "L’arbitre. En général, le méchant de l’histoire.",
+  "c": "reel text"
+ },
+ {
+  "en": "We won! Now honk your horn all night.",
+  "fr": "On a gagné ! Maintenant, klaxonne toute la nuit.",
+  "c": "reel text"
+ },
+ {
+  "en": "Morocco hosts the world",
+  "fr": "Le Maroc reçoit le monde",
+  "c": "reel title"
+ },
+ {
+  "en": "Morocco hosted the Africa Cup of Nations. The final was played in Rabat.",
+  "fr": "Le Maroc a accueilli la Coupe d’Afrique des nations. La finale s’est jouée à Rabat.",
+  "c": "reel text"
+ },
+ {
+  "en": "AFCON 2025",
+  "c": "reel big text"
+ },
+ {
+  "en": "At the World Cup in North America, the Atlas Lions reached the quarter-finals.",
+  "fr": "À la Coupe du monde en Amérique du Nord, les Lions de l’Atlas ont atteint les quarts de finale.",
+  "c": "reel text"
+ },
+ {
+  "en": "Next: the World Cup, hosted with Spain and Portugal.",
+  "fr": "Prochaine étape : la Coupe du monde, coorganisée avec l’Espagne et le Portugal.",
+  "c": "reel text"
+ },
+ {
+  "en": "Learn the chants now. You’ll need them.",
+  "fr": "Apprends les chants dès maintenant. Tu en auras besoin.",
+  "c": "reel text"
+ },
+ {
+  "en": "Friday is couscous day",
+  "fr": "Vendredi, c’est couscous",
+  "c": "reel title"
+ },
+ {
+  "en": "Friday.",
+  "fr": "Le vendredi.",
+  "c": "reel text"
+ },
+ {
+  "en": "After Friday prayer, families sit around one big plate of couscous.",
+  "fr": "Après la prière du vendredi, la famille se retrouve autour d’un grand plat de couscous.",
+  "c": "reel text"
+ },
+ {
+  "en": "Everyone says bismillah, then eats from their own side of the plate.",
+  "fr": "Chacun dit bismillah, puis mange de son côté du plat.",
+  "c": "reel text"
+ },
+ {
+  "en": "The tea pour",
+  "fr": "Servir le thé",
+  "c": "reel title"
+ },
+ {
+  "en": "Atay is poured from high up so it gets a foam on top.",
+  "fr": "On verse l’atay de haut pour qu’il mousse.",
+  "c": "reel text"
+ },
+ {
+  "en": "No foam? Pour it back into the pot and try again.",
+  "fr": "Pas de mousse ? On le reverse dans la théière et on recommence.",
+  "c": "reel text"
+ },
+ {
+  "en": "When someone serves you, say bssa7a.",
+  "fr": "Quand on te sert, dis bssa7a.",
+  "c": "reel text"
+ },
+ {
+  "en": "Where are you from?",
+  "fr": "Tu viens d’où ?",
+  "c": "reel title"
+ },
+ {
+  "en": "Where are you from? To a woman: mnin nti?",
+  "fr": "Tu viens d’où ? À une femme : mnin nti ?",
+  "c": "reel text"
+ },
+ {
+  "en": "I’m from Casa. Casablanca is just Kaza.",
+  "fr": "Je suis de Casa. Casablanca, c’est Kaza.",
+  "c": "reel text"
+ },
+ {
+  "en": "I’m from France.",
+  "fr": "Je viens de France.",
+  "c": "reel text"
+ },
+ {
+  "en": "At the café",
+  "fr": "Au café",
+  "c": "conversation title"
+ },
+ {
+  "en": "Waiter",
+  "fr": "Serveur",
+  "c": "speaker"
+ },
+ {
+  "en": "You",
+  "fr": "Toi",
+  "c": "speaker"
+ },
+ {
+  "en": "Hi, what would you like?",
+  "fr": "Salut, qu’est-ce que tu veux ?",
+  "c": "line: Salam, achnou bghiti?"
+ },
+ {
+  "en": "I’d like a tea, please.",
+  "fr": "Je voudrais un thé, s’il te plaît.",
+  "c": "line: Bghit wa7ed atay, 3afak."
+ },
+ {
+  "en": "With mint?",
+  "fr": "À la menthe ?",
+  "c": "line: B na3na3?"
+ },
+ {
+  "en": "Yes, and a little sugar.",
+  "fr": "Oui, et un peu de sucre.",
+  "c": "line: Iyeh, w chwiya d sokkar."
+ },
+ {
+  "en": "OK, it’s coming right up.",
+  "fr": "D’accord, ça arrive.",
+  "c": "line: Wakha, daba yji."
+ },
+ {
+  "en": "In a petit taxi",
+  "fr": "En petit taxi",
+  "c": "conversation title"
+ },
+ {
+  "en": "Driver",
+  "fr": "Chauffeur",
+  "c": "speaker"
+ },
+ {
+  "en": "Hi, are you free?",
+  "fr": "Salut, vous êtes libre ?",
+  "c": "line: Salam, wach khawi?"
+ },
+ {
+  "en": "Yes, where are you going?",
+  "fr": "Oui, tu vas où ?",
+  "c": "line: Iyeh, fin ghadi?"
+ },
+ {
+  "en": "To the old medina, please.",
+  "fr": "À l’ancienne médina, s’il te plaît.",
+  "c": "line: L lmdina l9dima, 3afak."
+ },
+ {
+  "en": "OK, get in.",
+  "fr": "D’accord, monte.",
+  "c": "line: Wakha, tla3."
+ },
+ {
+  "en": "Stop here, thanks!",
+  "fr": "Arrêtez-vous ici, merci !",
+  "c": "line: Wqef hna, choukran!"
+ },
+ {
+  "en": "Meeting someone",
+  "fr": "Faire connaissance",
+  "c": "conversation title"
+ },
+ {
+  "en": "Hi, I’m Yasmine. What’s your name?",
+  "fr": "Salut, moi c’est Yasmine. Tu t’appelles comment ?",
+  "c": "line: Salam, ana Yasmine. Ach smitek?"
+ },
+ {
+  "en": "Nice to meet you. Where are you from?",
+  "fr": "Enchantée. Tu viens d’où ?",
+  "c": "line: Mtcharfin. Mnin nta?"
+ },
+ {
+  "en": "I’m from Casa.",
+  "fr": "Je suis de Casa.",
+  "c": "line: Ana mn Kaza."
+ },
+ {
+  "en": "Mom on the phone",
+  "fr": "Maman au téléphone",
+  "c": "conversation title"
+ },
+ {
+  "en": "Mom",
+  "fr": "Maman",
+  "c": "speaker"
+ },
+ {
+  "en": "Hello, where are you?",
+  "fr": "Allô, t’es où ?",
+  "c": "line: Alo, fin nta?"
+ },
+ {
+  "en": "I’m on my way, mom.",
+  "fr": "Je suis en route, maman.",
+  "c": "line: Ana f tri9, yemma."
+ },
+ {
+  "en": "When are you coming?",
+  "fr": "Tu arrives quand ?",
+  "c": "line: Imta ghadi tji?"
+ },
+ {
+  "en": "Yeah, right…",
+  "fr": "C’est ça…",
+  "c": "line: Zaama…"
+ },
+ {
+  "en": "At the corner shop",
+  "fr": "À l’épicerie du coin",
+  "c": "conversation title"
+ },
+ {
+  "en": "Shopkeeper",
+  "fr": "Épicier",
+  "c": "speaker"
+ },
+ {
+  "en": "Hi, do you have water?",
+  "fr": "Salut, vous avez de l’eau ?",
+  "c": "line: Salam, wach 3ndek lma?"
+ },
+ {
+  "en": "Yes, big or small?",
+  "fr": "Oui, grande ou petite ?",
+  "c": "line: Iyeh, kbira wla sghira?"
+ },
+ {
+  "en": "Big. How much?",
+  "fr": "Grande. C’est combien ?",
+  "c": "line: Kbira. B chhal?"
+ },
+ {
+  "en": "Here you go, thanks.",
+  "fr": "Tenez, merci.",
+  "c": "line: Hak, choukran."
+ },
+ {
+  "en": "Asking the way",
+  "fr": "Demander son chemin",
+  "c": "conversation title"
+ },
+ {
+  "en": "Passer-by",
+  "fr": "Passant",
+  "c": "speaker"
+ },
+ {
+  "en": "Excuse me, where’s the bank?",
+  "fr": "Pardon, où est la banque ?",
+  "c": "line: Smeh liya, fin kayna lbanka?"
+ },
+ {
+  "en": "Go straight, then turn right.",
+  "fr": "Va tout droit, puis tourne à droite.",
+  "c": "line: Sir nichan, w dour 3la limen."
+ },
+ {
+  "en": "No, it’s close. Five minutes.",
+  "fr": "Non, c’est près. Cinq minutes.",
+  "c": "line: La, 9riba. Khamsa d d9aye9."
+ },
+ {
+  "en": "At a wedding",
+  "fr": "À un mariage",
+  "c": "conversation title"
+ },
+ {
+  "en": "Guest",
+  "fr": "Invité",
+  "c": "speaker"
+ },
+ {
+  "en": "Host",
+  "fr": "Hôte",
+  "c": "speaker"
+ },
+ {
+  "en": "Congrats! May it all go well.",
+  "fr": "Félicitations ! Que tout se passe bien.",
+  "c": "line: Mabrouk! Llah ykemmel bikhir."
+ },
+ {
+  "en": "God bless you. Welcome!",
+  "fr": "Que Dieu te bénisse. Bienvenue !",
+  "c": "line: Llah ybarek fik. Mer7ba bik!"
+ },
+ {
+  "en": "The food is so good!",
+  "fr": "La nourriture est trop bonne !",
+  "c": "line: Lmakla bnina bzzaf!"
+ },
+ {
+  "en": "Enjoy! Have some more.",
+  "fr": "Profite ! Reprends-en un peu.",
+  "c": "line: Bssa7a! Zid chwiya."
+ },
+ {
+  "en": "Match at the café",
+  "fr": "Match au café",
+  "c": "conversation title"
+ },
+ {
+  "en": "Friend",
+  "fr": "Pote",
+  "c": "speaker"
+ },
+ {
+  "en": "The match has started! Come and watch!",
+  "fr": "Le match a commencé ! Viens voir !",
+  "c": "line: Lmatch bda! Aji tchouf!"
+ },
+ {
+  "en": "What’s the score?",
+  "fr": "C’est combien, le score ?",
+  "c": "line: Chhal f nnatija?"
+ },
+ {
+  "en": "Still nil-nil.",
+  "fr": "Toujours zéro-zéro.",
+  "c": "line: Ba9i zero zero."
+ },
+ {
+  "en": "Have faith, we’re going to score!",
+  "fr": "Aie confiance, on va marquer !",
+  "c": "line: Dir niya, ghadi nmarkiw!"
+ },
+ {
+  "en": "Weekend plans",
+  "fr": "Le programme du week-end",
+  "c": "conversation title"
+ },
+ {
+  "en": "Where are you going today?",
+  "fr": "Tu vas où aujourd’hui ?",
+  "c": "line: Fin ghadi lyoum?"
+ },
+ {
+  "en": "I don’t know. And you?",
+  "fr": "Je sais pas. Et toi ?",
+  "c": "line: Ma3reftch. W nta?"
+ },
+ {
+  "en": "Let’s go to the beach!",
+  "fr": "On va à la plage !",
+  "c": "line: Yallah l b7er!"
+ },
+ {
+  "en": "Whoever wants honey puts up with bee stings.",
+  "fr": "Qui veut le miel supporte les piqûres d’abeilles.",
+  "c": "proverb, literally: Li bgha l3sel ysber l9ris n7el."
+ },
+ {
+  "en": "Good things take some pain.",
+  "fr": "Les bonnes choses demandent des efforts.",
+  "c": "proverb meaning"
+ },
+ {
+  "en": "Every delay has some good in it.",
+  "fr": "Chaque retard a du bon.",
+  "c": "proverb, literally: Kol 3otla fiha khir."
+ },
+ {
+  "en": "When plans slip, there’s a reason.",
+  "fr": "Quand ça bloque, il y a une raison.",
+  "c": "proverb meaning"
+ },
+ {
+  "en": "What’s gone is dead.",
+  "fr": "Ce qui est passé est mort.",
+  "c": "proverb, literally: Lli fat mat."
+ },
+ {
+  "en": "Let the past go.",
+  "fr": "Laisse le passé derrière toi.",
+  "c": "proverb meaning"
+ },
+ {
+  "en": "Do good and forget about it.",
+  "fr": "Fais le bien et oublie-le.",
+  "c": "proverb, literally: Dir lkhir w nsah."
+ },
+ {
+  "en": "Help people without keeping score.",
+  "fr": "Aide sans compter.",
+  "c": "proverb meaning"
+ },
+ {
+  "en": "Without money, your words have no taste.",
+  "fr": "Sans argent, ta parole n’a pas de goût.",
+  "c": "proverb, literally: Lli ma 3ndo flous, klamo masous."
+ },
+ {
+  "en": "Money talks.",
+  "fr": "L’argent parle.",
+  "c": "proverb meaning"
+ },
+ {
+  "en": "The neighbor before the house.",
+  "fr": "Le voisin avant la maison.",
+  "c": "proverb, literally: Ljar 9bel ddar."
+ },
+ {
+  "en": "Pick your neighbors before your home.",
+  "fr": "Choisis tes voisins avant ta maison.",
+  "c": "proverb meaning"
+ },
+ {
+  "en": "Patience is the key to relief.",
+  "fr": "La patience est la clé du soulagement.",
+  "c": "proverb, literally: Ssbr mfta7 lfaraj."
+ },
+ {
+  "en": "Hang in there.",
+  "fr": "Tiens bon.",
+  "c": "proverb meaning"
+ },
+ {
+  "en": "There’s no running from what’s written.",
+  "fr": "On n’échappe pas à ce qui est écrit.",
+  "c": "proverb, literally: Lmektoub ma fih hroub."
+ },
+ {
+  "en": "What will be, will be.",
+  "fr": "Ce qui doit arriver arrivera.",
+  "c": "proverb meaning"
+ },
+ {
+  "en": "Eat what you like, wear what people like.",
+  "fr": "Mange ce que tu aimes, porte ce qui plaît aux gens.",
+  "c": "proverb, literally: Koul ma bghiti w lbes ma y3jeb nnas."
+ },
+ {
+  "en": "Your plate is yours, your look is public.",
+  "fr": "Ton assiette est à toi, ton look est public.",
+  "c": "proverb meaning"
+ },
+ {
+  "en": "Seven trades and the money’s still lost.",
+  "fr": "Sept métiers et toujours fauché.",
+  "c": "proverb, literally: Sb3 snaye3 w rrz9 dayi3."
+ },
+ {
+  "en": "Jack of all trades, master of none.",
+  "fr": "Touche-à-tout, bon à rien.",
+  "c": "proverb meaning"
+ },
+ {
+  "en": "The 3",
+  "fr": "Le 3",
+  "c": "sound name"
+ },
+ {
+  "en": "A tight “a” from deep in the throat. Squeeze your throat as if you’re about to gag, then say “a”.",
+  "fr": "Un « a » serré, du fond de la gorge. Serre la gorge comme si tu allais avoir un haut-le-cœur, puis dis « a ».",
+  "c": "how to say the sound"
+ },
+ {
+  "en": "English has no sound like it. It’s the one learners skip most.",
+  "fr": "Le français n’a pas ce son. C’est celui que les apprenants oublient le plus.",
+  "c": "sound comparison (adapt to the learner’s language)"
+ },
+ {
+  "en": "The 7",
+  "fr": "Le 7",
+  "c": "sound name"
+ },
+ {
+  "en": "A strong, breathy h. Breathe out like you’re fogging up a mirror, but squeeze your throat a little.",
+  "fr": "Un h fort et soufflé. Souffle comme pour faire de la buée sur un miroir, en serrant un peu la gorge.",
+  "c": "how to say the sound"
+ },
+ {
+  "en": "Stronger than the h in “hello”.",
+  "fr": "Plus fort que le h aspiré anglais.",
+  "c": "sound comparison (adapt to the learner’s language)"
+ },
+ {
+  "en": "The 9",
+  "fr": "Le 9",
+  "c": "sound name"
+ },
+ {
+  "en": "A k made far back in the throat, where you’d swallow.",
+  "fr": "Un k prononcé tout au fond de la gorge, là où tu avales.",
+  "c": "how to say the sound"
+ },
+ {
+  "en": "Say “k”, then slide it further back.",
+  "fr": "Dis « k », puis recule-le dans la gorge.",
+  "c": "sound comparison (adapt to the learner’s language)"
+ },
+ {
+  "en": "A soft gargle at the back of the mouth.",
+  "fr": "Un léger gargarisme au fond de la bouche.",
+  "c": "how to say the sound"
+ },
+ {
+  "en": "Exactly the French R in “Paris”.",
+  "fr": "Exactement le R français de « Paris ».",
+  "c": "sound comparison (adapt to the learner’s language)"
+ },
+ {
+  "en": "A scratchy h, like clearing your throat gently.",
+  "fr": "Un h qui gratte, comme pour se racler doucement la gorge.",
+  "c": "how to say the sound"
+ },
+ {
+  "en": "Like “ch” in German “Bach” or the Spanish “j” in “jamón”.",
+  "fr": "Comme le « ch » allemand de « Bach » ou la jota espagnole.",
+  "c": "sound comparison (adapt to the learner’s language)"
+ },
+ {
+  "en": "Just like “sh” in “shoe”.",
+  "fr": "Comme le « ch » de « chat ».",
+  "c": "how to say the sound"
+ },
+ {
+  "en": "Darija writes it ch, like French.",
+  "fr": "La darija l’écrit ch, comme en français.",
+  "c": "sound comparison (adapt to the learner’s language)"
+ },
+ {
+  "en": "Like the “s” in “measure”.",
+  "fr": "Comme le « j » de « jour ».",
+  "c": "how to say the sound"
+ },
+ {
+  "en": "Softer than the English j in “jam”.",
+  "fr": "Plus doux que le j anglais de « jam ».",
+  "c": "sound comparison (adapt to the learner’s language)"
+ },
+ {
+  "en": "Heavy s, t, d",
+  "fr": "Les s, t, d lourds",
+  "c": "sound name"
+ },
+ {
+  "en": "Darker versions of s, t and d. Pull your tongue back and let the vowel next to it sound deeper.",
+  "fr": "Des s, t et d plus sombres. Recule la langue et laisse la voyelle sonner plus grave.",
+  "c": "how to say the sound"
+ },
+ {
+  "en": "Darija writes them like normal letters, so learn them word by word.",
+  "fr": "La darija les écrit comme des lettres normales, il faut les apprendre mot par mot.",
+  "c": "sound comparison (adapt to the learner’s language)"
+ },
+ {
+  "en": "Double letters",
+  "fr": "Les lettres doublées",
+  "c": "sound name"
+ },
+ {
+  "en": "A doubled letter is held a beat longer. Bzzaf is b, then a long zz, then af.",
+  "fr": "Une lettre doublée se tient un temps de plus. Bzzaf, c’est b, puis un long zz, puis af.",
+  "c": "how to say the sound"
+ },
+ {
+  "en": "Like the two t’s in Italian “gatto”.",
+  "fr": "Comme les deux t de l’italien « gatto ».",
+  "c": "sound comparison (adapt to the learner’s language)"
+ },
+ {
+  "en": "Missing vowels",
+  "fr": "Les voyelles qui manquent",
+  "c": "sound name"
+ },
+ {
+  "en": "Darija drops short vowels, so many words start with two consonants. Say them together as one quick block.",
+  "fr": "La darija avale les voyelles courtes, donc beaucoup de mots commencent par deux consonnes. Dis-les ensemble, d’un seul bloc.",
+  "c": "how to say the sound"
+ },
+ {
+  "en": "Don’t add an “e” in front: it’s mzyan, not emzyan.",
+  "fr": "N’ajoute pas de « e » devant : c’est mzyan, pas emzyan.",
+  "c": "sound comparison (adapt to the learner’s language)"
+ },
+ {
+  "en": "Saying no: ma…ch",
+  "fr": "Dire non : ma…ch",
+  "c": "grammar rule title"
+ },
+ {
+  "en": "Wrap the verb: ma in front, ch at the end.",
+  "fr": "On entoure le verbe : ma devant, ch derrière.",
+  "c": "grammar rule"
+ },
+ {
+  "en": "I understood",
+  "fr": "J’ai compris",
+  "c": "example: Fhemt"
+ },
+ {
+  "en": "I don’t want",
+  "fr": "Je veux pas",
+  "c": "example: Ma bghitch"
+ },
+ {
+  "en": "There is",
+  "fr": "Il y a",
+  "c": "example: Kayn"
+ },
+ {
+  "en": "There isn’t",
+  "fr": "Il n’y a pas",
+  "c": "example: Makaynch"
+ },
+ {
+  "en": "Asking questions",
+  "fr": "Poser des questions",
+  "c": "grammar rule title"
+ },
+ {
+  "en": "Start a yes or no question with wach. For everything else, use a question word.",
+  "fr": "Une question oui ou non commence par wach. Pour le reste, on utilise un mot interrogatif.",
+  "c": "grammar rule"
+ },
+ {
+  "en": "How?",
+  "fr": "Comment ?",
+  "c": "example: Kifach?"
+ },
+ {
+  "en": "Why?",
+  "fr": "Pourquoi ?",
+  "c": "example: 3lach?"
+ },
+ {
+  "en": "Who?",
+  "fr": "Qui ?",
+  "c": "example: Chkoun?"
+ },
+ {
+  "en": "I, you, he, she",
+  "fr": "Je, tu, il, elle",
+  "c": "grammar rule title"
+ },
+ {
+  "en": "There’s a different “you” for a man, a woman and a group.",
+  "fr": "Il y a un « tu » pour un homme, un pour une femme, et un pour un groupe.",
+  "c": "grammar rule"
+ },
+ {
+  "en": "I",
+  "fr": "je",
+  "c": "example: Ana"
+ },
+ {
+  "en": "you, to a man",
+  "fr": "tu, à un homme",
+  "c": "example: Nta"
+ },
+ {
+  "en": "you, to a woman",
+  "fr": "tu, à une femme",
+  "c": "example: Nti"
+ },
+ {
+  "en": "he",
+  "fr": "il",
+  "c": "example: Howa"
+ },
+ {
+  "en": "she",
+  "fr": "elle",
+  "c": "example: Hiya"
+ },
+ {
+  "en": "we",
+  "fr": "nous",
+  "c": "example: 7na"
+ },
+ {
+  "en": "you, to a group",
+  "fr": "vous",
+  "c": "example: Ntouma"
+ },
+ {
+  "en": "they",
+  "fr": "ils, elles",
+  "c": "example: Homa"
+ },
+ {
+  "en": "Talking to a woman",
+  "fr": "Parler à une femme",
+  "c": "grammar rule title"
+ },
+ {
+  "en": "Many words add an a when you talk to or about a woman.",
+  "fr": "Beaucoup de mots prennent un a quand on parle à une femme, ou d’une femme.",
+  "c": "grammar rule"
+ },
+ {
+  "en": "How are you? (to a man)",
+  "fr": "Ça va ? (à un homme)",
+  "c": "example: Ki dayr?"
+ },
+ {
+  "en": "How are you? (to a woman)",
+  "fr": "Ça va ? (à une femme)",
+  "c": "example: Ki dayra?"
+ },
+ {
+  "en": "good (masculine)",
+  "fr": "bien (masculin)",
+  "c": "example: Mzyan"
+ },
+ {
+  "en": "good (feminine)",
+  "fr": "bien (féminin)",
+  "c": "example: Mzyana"
+ },
+ {
+  "en": "my friend (a guy)",
+  "fr": "mon pote",
+  "c": "example: Sa7bi"
+ },
+ {
+  "en": "my friend (a girl)",
+  "fr": "ma copine",
+  "c": "example: Sa7bti"
+ },
+ {
+  "en": "Having: 3nd",
+  "fr": "Avoir : 3nd",
+  "c": "grammar rule title"
+ },
+ {
+  "en": "To say “I have”, use 3nd plus an ending for the person.",
+  "fr": "Pour dire « j’ai », on utilise 3nd avec une terminaison selon la personne.",
+  "c": "grammar rule"
+ },
+ {
+  "en": "I have",
+  "fr": "j’ai",
+  "c": "example: 3ndi"
+ },
+ {
+  "en": "you have",
+  "fr": "tu as",
+  "c": "example: 3ndek"
+ },
+ {
+  "en": "he has",
+  "fr": "il a",
+  "c": "example: 3ndo"
+ },
+ {
+  "en": "she has",
+  "fr": "elle a",
+  "c": "example: 3ndha"
+ },
+ {
+  "en": "we have",
+  "fr": "nous avons",
+  "c": "example: 3ndna"
+ },
+ {
+  "en": "I don’t have",
+  "fr": "je n’ai pas",
+  "c": "example: Ma 3ndich"
+ },
+ {
+  "en": "I have a brother and a sister.",
+  "fr": "J’ai un frère et une sœur.",
+  "c": "example: 3ndi khouya w khti."
+ },
+ {
+  "en": "Mine and yours: dyal",
+  "fr": "À moi, à toi : dyal",
+  "c": "grammar rule title"
+ },
+ {
+  "en": "Put dyal after a thing to say whose it is.",
+  "fr": "On met dyal après une chose pour dire à qui elle est.",
+  "c": "grammar rule"
+ },
+ {
+  "en": "mine",
+  "fr": "à moi",
+  "c": "example: Dyali"
+ },
+ {
+  "en": "yours",
+  "fr": "à toi",
+  "c": "example: Dyalek"
+ },
+ {
+  "en": "his",
+  "fr": "à lui",
+  "c": "example: Dyalo"
+ },
+ {
+  "en": "hers",
+  "fr": "à elle",
+  "c": "example: Dyalha"
+ },
+ {
+  "en": "my car",
+  "fr": "ma voiture",
+  "c": "example: Tomobil dyali"
+ },
+ {
+  "en": "Is this yours?",
+  "fr": "C’est à toi ?",
+  "c": "example: Wach hada dyalek?"
+ },
+ {
+  "en": "Right now: ka-",
+  "fr": "Le présent : ka-",
+  "c": "grammar rule title"
+ },
+ {
+  "en": "Put ka- in front of a verb for things happening now, or that happen usually. It changes with the person.",
+  "fr": "On met ka- devant le verbe pour ce qui se passe maintenant, ou d’habitude. Ça change selon la personne.",
+  "c": "grammar rule"
+ },
+ {
+  "en": "I understand",
+  "fr": "je comprends",
+  "c": "example: Kanfhem"
+ },
+ {
+  "en": "you understand",
+  "fr": "tu comprends",
+  "c": "example: Katfhem"
+ },
+ {
+  "en": "he understands",
+  "fr": "il comprend",
+  "c": "example: Kayfhem"
+ },
+ {
+  "en": "we understand",
+  "fr": "nous comprenons",
+  "c": "example: Kanfehmou"
+ },
+ {
+  "en": "What’s next: ghadi",
+  "fr": "Le futur : ghadi",
+  "c": "grammar rule title"
+ },
+ {
+  "en": "Put ghadi before the verb to say what you’re going to do.",
+  "fr": "On met ghadi devant le verbe pour dire ce qu’on va faire.",
+  "c": "grammar rule"
+ },
+ {
+  "en": "I’m going to go.",
+  "fr": "Je vais y aller.",
+  "c": "example: Ghadi nmchi."
+ },
+ {
+  "en": "I’m going to eat.",
+  "fr": "Je vais manger.",
+  "c": "example: Ghadi nakol."
+ },
+ {
+  "en": "I’ll see you tomorrow.",
+  "fr": "Je te vois demain.",
+  "c": "example: Ghadi nchoufek ghedda."
+ },
+ {
+  "en": "What happened: -t",
+  "fr": "Le passé : -t",
+  "c": "grammar rule title"
+ },
+ {
+  "en": "For “I” in the past, most verbs end in -t or -it.",
+  "fr": "Pour « je » au passé, la plupart des verbes finissent en -t ou -it.",
+  "c": "grammar rule"
+ },
+ {
+  "en": "I ate",
+  "fr": "j’ai mangé",
+  "c": "example: Klit"
+ },
+ {
+  "en": "I went",
+  "fr": "je suis allé(e)",
+  "c": "example: Mchit"
+ },
+ {
+  "en": "I went to the souk yesterday.",
+  "fr": "Je suis allé(e) au souk hier.",
+  "c": "example: Mchit l ssou9 lbare7."
+ },
+ {
+  "en": "Jouj (two) is very Moroccan. Before a noun, add d: jouj d lkisan, two glasses.",
+  "fr": "Jouj (deux) est très marocain. Devant un nom, on ajoute d : jouj d lkisan, deux verres.",
+  "c": "grammar rule"
+ },
+ {
+  "en": "two glasses",
+  "fr": "deux verres",
+  "c": "example: Jouj d lkisan"
+ },
+ {
+  "en": "Money: dirham and ryal",
+  "fr": "L’argent : dirham et ryal",
+  "c": "grammar rule title"
+ },
+ {
+  "en": "Many Moroccans still count in ryal. 1 dirham is 20 ryal, so alf ryal (1,000 ryal) is 50 dirhams.",
+  "fr": "Beaucoup de Marocains comptent encore en ryal. 1 dirham vaut 20 ryal, donc alf ryal (1 000 ryal) font 50 dirhams.",
+  "c": "grammar rule"
+ },
+ {
+  "en": "1,000 ryal (50 DH)",
+  "fr": "1 000 ryal (50 DH)",
+  "c": "example: Alf ryal"
+ },
+ {
+  "en": "Magic phrases",
+  "fr": "Les formules magiques",
+  "c": "grammar rule title"
+ },
+ {
+  "en": "These little blessings come up all day. Use them and people light up.",
+  "fr": "Ces petites bénédictions reviennent toute la journée. Utilise-les et les gens s’illuminent.",
+  "c": "grammar rule"
+ },
+ {
+  "en": "God keep you (thank you)",
+  "fr": "Que Dieu te garde (merci)",
+  "c": "example: Llah y7fdek"
+ },
+ {
+  "en": "God bless you",
+  "fr": "Que Dieu te bénisse",
+  "c": "example: Llah ybarek fik"
+ },
+ {
+  "en": "Enjoy it",
+  "fr": "Profite bien",
+  "c": "example: Bssa7a"
+ },
+ {
+  "en": "God give you health",
+  "fr": "Que Dieu te donne la santé",
+  "c": "example: Llah y3tik sa7a"
+ },
+ {
+  "en": "Well done",
+  "fr": "Bravo",
+  "c": "example: Tbarkellah 3lik"
+ },
+ {
+  "en": "Borrowed words",
+  "fr": "Les mots empruntés",
+  "c": "grammar rule title"
+ },
+ {
+  "en": "Darija mixes in French and Spanish words, said the Moroccan way.",
+  "fr": "La darija mélange des mots français et espagnols, prononcés à la marocaine.",
+  "c": "grammar rule"
+ },
+ {
+  "en": "bus (French autobus)",
+  "fr": "bus (autobus)",
+  "c": "example: Tobis"
+ },
+ {
+  "en": "week (Spanish semana)",
+  "fr": "semaine (espagnol semana)",
+  "c": "example: Simana"
+ },
+ {
+  "en": "kitchen (Spanish cocina)",
+  "fr": "cuisine (espagnol cocina)",
+  "c": "example: Kozina"
+ },
+ {
+  "en": "car (French automobile)",
+  "fr": "voiture (automobile)",
+  "c": "example: Tomobil"
+ },
+ {
+  "en": "nurse (French infirmier)",
+  "fr": "infirmier",
+  "c": "example: Fermli"
+ },
+ {
+  "en": "these babouches",
+  "fr": "ces babouches",
+  "c": "souk item"
+ },
+ {
+  "en": "Welcome! Only {n} dirhams for these babouches.",
+  "fr": "Bienvenue ! Seulement {n} dirhams pour ces babouches.",
+  "c": "vendor line"
+ },
+ {
+  "en": "Way too expensive! Lower it a bit.",
+  "fr": "Beaucoup trop cher ! Baisse un peu.",
+  "c": "your reply: Ghali bzzaf! Nqss chwiya."
+ },
+ {
+  "en": "OK, just for you: {n}.",
+  "fr": "D’accord, rien que pour toi : {n}.",
+  "c": "vendor reply"
+ },
+ {
+  "en": "OK, sounds good!",
+  "fr": "D’accord, c’est bien !",
+  "c": "your reply: Wakha, mzyan!"
+ },
+ {
+  "en": "Enjoy! God bless you. (He can’t believe his luck.)",
+  "fr": "Profite bien ! Que Dieu te bénisse. (Il n’en revient pas.)",
+  "c": "vendor reply"
+ },
+ {
+  "en": "Haha, me too! But the price stays the same.",
+  "fr": "Haha, moi aussi ! Mais le prix reste le même.",
+  "c": "vendor reply"
+ },
+ {
+  "en": "I can’t go lower. {n}, final.",
+  "fr": "Je peux pas baisser plus. {n}, point final.",
+  "c": "vendor line"
+ },
+ {
+  "en": "Final price?",
+  "fr": "Dernier prix ?",
+  "c": "your reply: Akhir taman?"
+ },
+ {
+  "en": "Final price: {n}.",
+  "fr": "Dernier prix : {n}.",
+  "c": "vendor reply"
+ },
+ {
+  "en": "Fine, bye!",
+  "fr": "Bon, salut !",
+  "c": "your reply: Safi, bslama!"
+ },
+ {
+  "en": "Wait, come back! {n}, just for you!",
+  "fr": "Attends, reviens ! {n}, rien que pour toi !",
+  "c": "vendor reply"
+ },
+ {
+  "en": "Me too! Still {n}.",
+  "fr": "Moi aussi ! Toujours {n}.",
+  "c": "vendor reply"
+ },
+ {
+  "en": "OK, last word: {n}.",
+  "fr": "Bon, dernier mot : {n}.",
+  "c": "vendor line"
+ },
+ {
+  "en": "I’ll take them for {n}.",
+  "fr": "Je les prends à {n}.",
+  "c": "your reply: Ghanakhodha b 110."
+ },
+ {
+  "en": "Well played! Fine, {n}. Enjoy!",
+  "fr": "Bien joué ! Bon, {n}. Profites-en !",
+  "c": "vendor reply"
+ },
+ {
+  "en": "OK.",
+  "fr": "D’accord.",
+  "c": "your reply: Wakha."
+ },
+ {
+  "en": "Congrats! {n}.",
+  "fr": "Félicitations ! {n}.",
+  "c": "vendor reply"
+ },
+ {
+  "en": "Tomorrow the price goes up! Come on, {n}.",
+  "fr": "Demain le prix monte ! Allez, {n}.",
+  "c": "vendor reply"
+ },
+ {
+  "en": "this rug",
+  "fr": "ce tapis",
+  "c": "souk item"
+ },
+ {
+  "en": "Welcome! Only {n} dirhams for this rug.",
+  "fr": "Bienvenue ! Seulement {n} dirhams pour ce tapis.",
+  "c": "vendor line"
+ },
+ {
+  "en": "I’ll take it for {n}.",
+  "fr": "Je le prends à {n}.",
+  "c": "your reply: Ghanakhodha b 840."
+ },
+ {
+  "en": "this lantern",
+  "fr": "cette lanterne",
+  "c": "souk item"
+ },
+ {
+  "en": "Welcome! Only {n} dirhams for this lantern.",
+  "fr": "Bienvenue ! Seulement {n} dirhams pour cette lanterne.",
+  "c": "vendor line"
+ },
+ {
+  "en": "this teapot",
+  "fr": "cette théière",
+  "c": "souk item"
+ },
+ {
+  "en": "Welcome! Only {n} dirhams for this teapot.",
+  "fr": "Bienvenue ! Seulement {n} dirhams pour cette théière.",
+  "c": "vendor line"
+ },
+ {
+  "en": "this tajine pot",
+  "fr": "ce plat à tajine",
+  "c": "souk item"
+ },
+ {
+  "en": "Welcome! Only {n} dirhams for this tajine pot.",
+  "fr": "Bienvenue ! Seulement {n} dirhams pour ce plat à tajine.",
+  "c": "vendor line"
+ },
+ {
+  "en": "I have the best price in the souk!",
+  "fr": "J’ai le meilleur prix du souk !",
+  "c": "vendor opener"
+ },
+ {
+  "en": "Nice!",
+  "fr": "Bien !",
+  "c": "feedback after an answer: Zwin!"
+ },
+ {
+  "en": "Well done!",
+  "fr": "Bien joué !",
+  "c": "feedback after an answer: Tbarkellah 3lik!"
+ },
+ {
+  "en": "Very good!",
+  "fr": "Très bien !",
+  "c": "feedback after an answer: Mzyan bzzaf!"
+ },
+ {
+  "en": "That’s it!",
+  "fr": "C’est ça !",
+  "c": "feedback after an answer: Hakka!"
+ },
+ {
+  "en": "No worries.",
+  "fr": "Pas grave.",
+  "c": "feedback after an answer: Ma3lich!"
+ },
+ {
+  "en": "Not a problem.",
+  "fr": "C’est pas un problème.",
+  "c": "feedback after an answer: Machi mouchkil."
+ },
+ {
+  "en": "Try again next time.",
+  "fr": "On réessaiera.",
+  "c": "feedback after an answer: 3awed!"
+ },
+ {
+  "en": "Tourist",
+  "fr": "Touriste",
+  "c": "level title"
+ },
+ {
+  "en": "Souk haggler",
+  "fr": "Pro du marchandage",
+  "c": "level title"
+ },
+ {
+  "en": "Taxi philosopher",
+  "fr": "Philosophe du taxi",
+  "c": "level title"
+ },
+ {
+  "en": "Mima’s favorite",
+  "fr": "Le chouchou de Mima",
+  "c": "level title"
+ },
+ {
+  "en": "Darija legend",
+  "fr": "Légende de la darija",
+  "c": "level title"
+ },
+ {
+  "en": "“I get a little”",
+  "fr": "« je comprends un peu »",
+  "c": "level subtitle"
+ },
+ {
+  "en": "“from the neighborhood”",
+  "fr": "« du quartier »",
+  "c": "level subtitle"
+ },
+ {
+  "en": "“street-smart”",
+  "fr": "« malin »",
+  "c": "level subtitle"
+ },
+ {
+  "en": "Tangier",
+  "fr": "Tanger",
+  "c": "city"
+ },
+ {
+  "en": "You step off the ferry into Tangier. Time to say hello.",
+  "fr": "Tu descends du ferry à Tanger. C’est le moment de dire bonjour.",
+  "c": "city intro"
+ },
+ {
+  "en": "Blue walls, quiet steps. Good manners open every door here.",
+  "fr": "Murs bleus, pas tranquilles. Ici, la politesse ouvre toutes les portes.",
+  "c": "city intro"
+ },
+ {
+  "en": "Match day in Rabat. The whole city is wearing red and green.",
+  "fr": "Jour de match à Rabat. Toute la ville est en rouge et vert.",
+  "c": "city intro"
+ },
+ {
+  "en": "Fes",
+  "fr": "Fès",
+  "c": "city"
+ },
+ {
+  "en": "The Fes medina is a maze. You’ll need to ask a few questions.",
+  "fr": "La médina de Fès est un labyrinthe. Il va falloir poser des questions.",
+  "c": "city intro"
+ },
+ {
+  "en": "Meknes",
+  "fr": "Meknès",
+  "c": "city"
+ },
+ {
+  "en": "A long afternoon in Meknes, one glass of mint tea after another.",
+  "fr": "Un long après-midi à Meknès, un verre de thé à la menthe après l’autre.",
+  "c": "city intro"
+ },
+ {
+  "en": "The red city. Somewhere in the souk, a vendor is waiting.",
+  "fr": "La ville rouge. Quelque part dans le souk, un vendeur t’attend.",
+  "c": "city intro"
+ },
+ {
+  "en": "Casablanca never slows down. Keep track of the time.",
+  "fr": "Casablanca ne ralentit jamais. Garde un œil sur l’heure.",
+  "c": "city intro"
+ },
+ {
+  "en": "In the Valley of Roses, the whole family is waiting for you.",
+  "fr": "Dans la vallée des Roses, toute la famille t’attend.",
+  "c": "city intro"
+ },
+ {
+  "en": "The road to the dunes of Merzouga. Know your left from your right.",
+  "fr": "La route vers les dunes de Merzouga. Ne confonds pas la gauche et la droite.",
+  "c": "city intro"
+ },
+ {
+  "en": "Wind, gulls and long talks at the port of Essaouira.",
+  "fr": "Du vent, des mouettes et de longues discussions au port d’Essaouira.",
+  "c": "city intro"
+ },
+ {
+  "en": "The port café. A man looks up from his tea.",
+  "fr": "Le café du port. Un homme lève les yeux de son thé.",
+  "c": "lesson scene u1l1"
+ },
+ {
+  "en": "Morning at the riad. The owner greets you on the stairs.",
+  "fr": "Le matin au riad. Le propriétaire te salue dans l’escalier.",
+  "c": "lesson scene u1l2"
+ },
+ {
+  "en": "Sunset on the Kasbah walls. Time to say goodbye.",
+  "fr": "Coucher de soleil sur les remparts de la Kasbah. C’est l’heure de dire au revoir.",
+  "c": "lesson scene u1l3"
+ },
+ {
+  "en": "A woman points you to the right alley. Say thanks.",
+  "fr": "Une femme t’indique la bonne ruelle. Dis merci.",
+  "c": "lesson scene u2l1"
+ },
+ {
+  "en": "You bump into someone on the blue steps.",
+  "fr": "Tu bouscules quelqu’un dans les escaliers bleus.",
+  "c": "lesson scene u2l2"
+ },
+ {
+  "en": "The guesthouse asks if dinner at eight is fine.",
+  "fr": "La maison d’hôtes demande si le dîner à huit heures te va.",
+  "c": "lesson scene u2l3"
+ },
+ {
+  "en": "Lost in the medina. Every alley looks the same.",
+  "fr": "Perdu dans la médina. Toutes les ruelles se ressemblent.",
+  "c": "lesson scene u3l1"
+ },
+ {
+  "en": "A shopkeeper wants to know when you arrived, and why.",
+  "fr": "Un commerçant veut savoir quand tu es arrivé, et pourquoi.",
+  "c": "lesson scene u3l2"
+ },
+ {
+  "en": "Someone asks your name at the tannery.",
+  "fr": "Quelqu’un te demande ton nom à la tannerie.",
+  "c": "lesson scene u3l3"
+ },
+ {
+  "en": "The tea arrives, poured from high above the glass.",
+  "fr": "Le thé arrive, versé de très haut au-dessus du verre.",
+  "c": "lesson scene u4l1"
+ },
+ {
+  "en": "Breakfast: warm bread, coffee and water.",
+  "fr": "Le petit-déjeuner : pain chaud, café et eau.",
+  "c": "lesson scene u4l2"
+ },
+ {
+  "en": "Lunch time, and you are starving.",
+  "fr": "L’heure du déjeuner, et tu meurs de faim.",
+  "c": "lesson scene u4l3"
+ },
+ {
+  "en": "Babouches in every color. How much are they?",
+  "fr": "Des babouches de toutes les couleurs. C’est combien ?",
+  "c": "lesson scene u5l1"
+ },
+ {
+  "en": "The price is crazy. Time to bargain.",
+  "fr": "Le prix est fou. C’est le moment de marchander.",
+  "c": "lesson scene u5l2"
+ },
+ {
+  "en": "Your train leaves soon. When exactly?",
+  "fr": "Ton train part bientôt. Quand exactement ?",
+  "c": "lesson scene u6l1"
+ },
+ {
+  "en": "Counting change at a busy kiosk.",
+  "fr": "Tu comptes la monnaie à un kiosque bondé.",
+  "c": "lesson scene u6l2"
+ },
+ {
+  "en": "One, two, three: a hundred things to do today.",
+  "fr": "Un, deux, trois : cent choses à faire aujourd’hui.",
+  "c": "lesson scene u6l3"
+ },
+ {
+  "en": "Your Moroccan family meets you at the gate.",
+  "fr": "Ta famille marocaine t’accueille au portail.",
+  "c": "lesson scene u7l1"
+ },
+ {
+  "en": "Mima hugs you and won’t let go.",
+  "fr": "Mima te serre dans ses bras et ne te lâche plus.",
+  "c": "lesson scene u7l2"
+ },
+ {
+  "en": "Dinner, compliments and a few family opinions.",
+  "fr": "Dîner, compliments et quelques avis de famille.",
+  "c": "lesson scene u7l3"
+ },
+ {
+  "en": "The driver needs directions to the dunes.",
+  "fr": "Le chauffeur a besoin d’indications pour les dunes.",
+  "c": "lesson scene u8l1"
+ },
+ {
+  "en": "The bus or the car? Pick your ride.",
+  "fr": "Le bus ou la voiture ? Choisis ton transport.",
+  "c": "lesson scene u8l2"
+ },
+ {
+  "en": "Is there a place to sleep near the dunes?",
+  "fr": "Il y a un endroit pour dormir près des dunes ?",
+  "c": "lesson scene u8l3"
+ },
+ {
+  "en": "A fisherman talks fast. You didn’t catch a word.",
+  "fr": "Un pêcheur parle vite. Tu n’as rien compris.",
+  "c": "lesson scene u9l1"
+ },
+ {
+  "en": "Plans with friends: maybe, God willing.",
+  "fr": "Des projets entre amis : peut-être, si Dieu le veut.",
+  "c": "lesson scene u9l2"
+ },
+ {
+  "en": "Your friend got engaged. Big news at the port.",
+  "fr": "Ton ami s’est fiancé. Grande nouvelle au port.",
+  "c": "lesson scene u9l3"
+ },
+ {
+  "en": "Evening on the Corniche. A new friend joins your table.",
+  "fr": "Le soir sur la corniche. Un nouvel ami s’assoit à ta table.",
+  "c": "lesson scene u1l4"
+ },
+ {
+  "en": "Your host hands you a glass of tea on the terrace.",
+  "fr": "Ton hôte te tend un verre de thé sur la terrasse.",
+  "c": "lesson scene u2l4"
+ },
+ {
+  "en": "A curious kid follows you through the souk with questions.",
+  "fr": "Un enfant curieux te suit dans le souk avec ses questions.",
+  "c": "lesson scene u3l4"
+ },
+ {
+  "en": "A tagine for four, and the bill nobody lets you pay.",
+  "fr": "Un tajine pour quatre, et l’addition que personne ne te laisse payer.",
+  "c": "lesson scene u4l4"
+ },
+ {
+  "en": "A hundred shops call your name. You are just looking.",
+  "fr": "Cent boutiques t’appellent. Tu regardes juste.",
+  "c": "lesson scene u5l3"
+ },
+ {
+  "en": "A hundred meetings, and nobody knows what time it is.",
+  "fr": "Cent rendez-vous, et personne ne sait quelle heure il est.",
+  "c": "lesson scene u6l4"
+ },
+ {
+  "en": "The cousins arrive. Everyone is happy, loudly.",
+  "fr": "Les cousins arrivent. Tout le monde est content, très fort.",
+  "c": "lesson scene u7l4"
+ },
+ {
+  "en": "The dunes look close. They are not.",
+  "fr": "Les dunes ont l’air proches. Elles ne le sont pas.",
+  "c": "lesson scene u8l4"
+ },
+ {
+  "en": "Last night by the sea. See you tomorrow, really?",
+  "fr": "Dernière soirée au bord de la mer. À demain, vraiment ?",
+  "c": "lesson scene u9l5"
+ },
+ {
+  "en": "A stranger at the café wants to know who you are.",
+  "fr": "Un inconnu au café veut savoir qui tu es.",
+  "c": "lesson scene u1s"
+ },
+ {
+  "en": "The corner shop on a blue street.",
+  "fr": "L’épicerie d’une rue bleue.",
+  "c": "lesson scene u2s"
+ },
+ {
+  "en": "You ask your way out of the medina.",
+  "fr": "Tu demandes ton chemin pour sortir de la médina.",
+  "c": "lesson scene u3s"
+ },
+ {
+  "en": "Your order at a Meknes café.",
+  "fr": "Ta commande dans un café de Meknès.",
+  "c": "lesson scene u4s"
+ },
+ {
+  "en": "Making weekend plans with a friend.",
+  "fr": "Un programme de week-end avec un pote.",
+  "c": "lesson scene u6s"
+ },
+ {
+  "en": "Mom calls. Where are you?",
+  "fr": "Maman appelle. T’es où ?",
+  "c": "lesson scene u7s"
+ },
+ {
+  "en": "A petit taxi to the edge of town.",
+  "fr": "Un petit taxi jusqu’au bout de la ville.",
+  "c": "lesson scene u8s"
+ },
+ {
+  "en": "A wedding by the ocean.",
+  "fr": "Un mariage au bord de l’océan.",
+  "c": "lesson scene u9s"
+ },
+ {
+  "en": "Your cousin has two tickets. It’s Morocco tonight.",
+  "fr": "Ton cousin a deux billets. Ce soir, c’est le Maroc.",
+  "c": "lesson scene u10l1"
+ },
+ {
+  "en": "Kick-off. Sixty thousand people in red and green.",
+  "fr": "Coup d’envoi. Soixante mille personnes en rouge et vert.",
+  "c": "lesson scene u10l2"
+ },
+ {
+  "en": "Full time. Win, lose or draw, everyone has an opinion.",
+  "fr": "Fin du match. Victoire, défaite ou nul, tout le monde a un avis.",
+  "c": "lesson scene u10l3"
+ },
+ {
+  "en": "A penalty in the last minute. The referee checks the screen.",
+  "fr": "Un penalty à la dernière minute. L’arbitre regarde l’écran.",
+  "c": "lesson scene u10l4"
+ },
+ {
+  "en": "The whole stadium sings. Learn the chants.",
+  "fr": "Tout le stade chante. Apprends les chants.",
+  "c": "lesson scene u10l5"
+ },
+ {
+  "en": "The match is on at the café and your friend is already shouting.",
+  "fr": "Le match passe au café et ton pote crie déjà.",
+  "c": "lesson scene u10s"
+ },
+ {
+  "en": "Cold wind, hot tea and a tired body.",
+  "fr": "Vent froid, thé chaud et corps fatigué.",
+  "c": "lesson scene u9l4"
+ },
+ {
+  "en": "Hello and how are you",
+  "fr": "Bonjour et ça va",
+  "c": "unit topic: Salam"
+ },
+ {
+  "en": "Please, thanks and OK",
+  "fr": "S’il te plaît, merci, d’accord",
+  "c": "unit topic: Bla mzyya"
+ },
+ {
+  "en": "Football and match day",
+  "fr": "Le foot et le jour de match",
+  "c": "unit topic: Dima Maghrib"
+ },
+ {
+  "en": "Tea, food and the café",
+  "fr": "Thé, bouffe et café",
+  "c": "unit topic: Atay"
+ },
+ {
+  "en": "Shopping at the souk",
+  "fr": "Faire ses courses au souk",
+  "c": "unit topic: Ssou9"
+ },
+ {
+  "en": "Time and numbers",
+  "fr": "Le temps et les chiffres",
+  "c": "unit topic: Daba"
+ },
+ {
+  "en": "Family and feelings",
+  "fr": "Famille et sentiments",
+  "c": "unit topic: Lfamilia"
+ },
+ {
+  "en": "Keeping the conversation going",
+  "fr": "Tenir une conversation",
+  "c": "unit topic: Lhedra"
+ },
+ {
+  "en": "Darija, one lesson at a time",
+  "fr": "La darija, une leçon à la fois",
+  "c": "share image tagline"
+ }
+]

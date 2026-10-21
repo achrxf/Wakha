@@ -185,7 +185,7 @@ function exBuild(sp, host) {
   $(".card-in", el).innerHTML = `
     <div class="kicker a1"><span class="tag solid">${esc(t("buildK"))}</span></div>
     <p class="prompt a1">${esc(t("say"))}</p>
-    <h2 class="prompt-big a2">${esc(S.lang === "fr" ? fr : en)}</h2>
+    <h2 class="prompt-big a2">${esc(X(en, fr))}</h2>
     <div class="slots a3" aria-live="polite"></div>
     <div class="pool a4">${chips.map(({ x, k }) => `<button class="tok" data-k="${k}" lang="ary-Latn">${esc(x)}</button>`).join("")}</div>
     <div class="fbx"></div>`;
@@ -263,7 +263,7 @@ function exReel(sp, host) {
   const sayOf = (s) => (s[1] && !NO_SAY.has(s[1]) && Voice.has(s[1]) ? s[1] : null);
   $(".card-in", el).innerHTML = `
     <div class="kicker"><span class="tag solid">${esc(t("reel"))}</span><span class="tag">${esc(L(title))}</span></div>
-    <div class="slides">${slides.map((s, k) => `<div class="slide${k === 0 ? " on" : ""}">${s[0] ? `<div class="emo" aria-hidden="true">${s[0]}</div>` : ""}${s[1] ? `<div class="word-row"><p class="sbig ${s[1].length <= 7 ? "s1" : s[1].length > 15 ? "s3" : ""}" lang="ary-Latn">${esc(s[1])}</p>${sayOf(s) ? sayBtn(s[1]) : ""}</div>` : ""}<p class="stxt">${esc(S.lang === "fr" ? s[3] : s[2])}</p>${k === slides.length - 1 ? `<div><button class="cta" data-act="done" style="margin-top:8px">${esc(t("gotIt"))}</button></div>` : ""}</div>`).join("")}</div>`;
+    <div class="slides">${slides.map((s, k) => `<div class="slide${k === 0 ? " on" : ""}">${s[0] ? `<div class="emo" aria-hidden="true">${s[0]}</div>` : ""}${s[1] ? `<div class="word-row"><p class="sbig ${s[1].length <= 7 ? "s1" : s[1].length > 15 ? "s3" : ""}" ${NO_SAY.has(s[1]) ? "" : 'lang="ary-Latn"'}>${esc(NO_SAY.has(s[1]) ? X(s[1]) : s[1])}</p>${sayOf(s) ? sayBtn(s[1]) : ""}</div>` : ""}<p class="stxt">${esc(X(s[2], s[3]))}</p>${k === slides.length - 1 ? `<div><button class="cta" data-act="done" style="margin-top:8px">${esc(t("gotIt"))}</button></div>` : ""}</div>`).join("")}</div>`;
   el.insertAdjacentHTML("beforeend", `<div class="tapzone l" data-act="prev"></div><div class="tapzone r" data-act="fwd"></div>`);
   const card = { el, kind:"reel", k:0, timer:0, finished:false };
   const bars = $$(".bars i", el), sl = $$(".slide", el);
@@ -308,7 +308,7 @@ function exDialog(sp, host) {
   $(".card-in", el).innerHTML = `
     <div class="kicker a1"><span class="tag solid">${ICON.chat}${esc(t("conv"))}</span></div>
     <h2 class="prompt-big a2">${esc(L(d.t))}</h2>
-    <div class="dlg a3">${d.lines.map(([who, dar, en, fr], k) => `<div class="bub ${who}" data-say="${esc(dar)}" data-voice="${who === "A" ? "a" : "n"}" data-k="${k}" hidden><div><span class="who">${esc(L(d.who[who === "A" ? 0 : 1]))}</span><span class="d" lang="ary-Latn">${esc(dar)}</span><span class="t">${esc(S.lang === "fr" ? fr : en)}</span></div></div>`).join("")}</div>
+    <div class="dlg a3">${d.lines.map(([who, dar, en, fr], k) => `<div class="bub ${who}" data-say="${esc(dar)}" data-voice="${who === "A" ? "a" : "n"}" data-k="${k}" hidden><div><span class="who">${esc(L(d.who[who === "A" ? 0 : 1]))}</span><span class="d" lang="ary-Latn">${esc(dar)}</span><span class="t">${esc(X(en, fr))}</span></div></div>`).join("")}</div>
     <div class="a4"><button class="ghost" data-act="replay">${ICON.speak}<span>${esc(t("playAll"))}</span></button></div>`;
   const card = { el, kind:"dialog", run:0, rewarded:false };
   const play = async () => {
@@ -338,8 +338,8 @@ function exProverb(sp, host) {
     <div class="qmark a2" aria-hidden="true">“</div>
     <p class="proverb a2">${dj(p[1])}</p>
     <div class="a3">${sayBtn(p[1], "lg")}</div>
-    <div class="pv-row a4"><b>${esc(t("literally"))}</b><span>${esc(S.lang === "fr" ? p[3] : p[2])}</span></div>
-    <div class="pv-row a5"><b>${esc(t("means"))}</b><span>${esc(S.lang === "fr" ? p[5] : p[4])}</span></div>`;
+    <div class="pv-row a4"><b>${esc(t("literally"))}</b><span>${esc(X(p[2], p[3]))}</span></div>
+    <div class="pv-row a5"><b>${esc(t("means"))}</b><span>${esc(X(p[4], p[5]))}</span></div>`;
   const card = { el, kind:"proverb", enter() { setTimeout(() => host.isActive(card) && autoSay(p[1], "n", $$(".proverb .dj", el)), 450); } };
   return card;
 }
@@ -476,13 +476,13 @@ function exHaggle(sp, host) {
   const it = HAGGLE.find((h) => h.id === sp.item) || HAGGLE[0];
   sp.item = it.id;
   const el = shell("haggle", "pomegranate");
-  const fr = S.lang === "fr", itName = fr ? it.fr : it.en;
+  const itName = X(it.en, it.fr);
   const { offer, rounds } = haggleRounds(it);
   $(".card-in", el).style.justifyContent = "flex-start";
   $(".card-in", el).innerHTML = `
     <div class="h-head a1">${vendorFace()}<div><b>${esc(t("vendor"))}</b><span>${esc(t("haggleK"))}</span></div></div>
     <div class="h-item a2">${ITEM_ART[it.id]}<div class="price"><p class="was"></p><p class="p"><span class="num">${it.start}</span><small>DH</small></p></div></div>
-    <div class="h-start a3"><div class="bub A" data-say="${esc(HAGGLE_OPEN[0])}" data-voice="v" style="animation:none"><div><span class="d" lang="ary-Latn">${esc(HAGGLE_OPEN[0])}</span><span class="t">${esc(fr ? HAGGLE_OPEN[2] : HAGGLE_OPEN[1])}</span></div></div><p class="prompt-big">${esc(t("haggleS"))}</p><div><button class="cta" data-act="begin">${esc(t("start2"))}</button></div></div>
+    <div class="h-start a3"><div class="bub A" data-say="${esc(HAGGLE_OPEN[0])}" data-voice="v" style="animation:none"><div><span class="d" lang="ary-Latn">${esc(HAGGLE_OPEN[0])}</span><span class="t">${esc(X(HAGGLE_OPEN[1], HAGGLE_OPEN[2]))}</span></div></div><p class="prompt-big">${esc(t("haggleS"))}</p><div><button class="cta" data-act="begin">${esc(t("start2"))}</button></div></div>
     <div class="chat" hidden></div>
     <div class="h-opts" hidden></div>
     <div class="result" hidden></div>`;
@@ -498,7 +498,7 @@ function exHaggle(sp, host) {
   const say = (who, tri) => {
     const m = document.createElement("div"); m.className = "bub " + (who === "v" ? "A" : "B");
     m.dataset.say = tri[0]; m.dataset.voice = who === "v" ? "v" : "n";
-    m.innerHTML = `<div><span class="d" lang="ary-Latn">${esc(tri[0])}</span><span class="t">${esc(fr ? tri[2] : tri[1])}</span></div>`;
+    m.innerHTML = `<div><span class="d" lang="ary-Latn">${esc(tri[0])}</span><span class="t">${esc(X(tri[1], tri[2]))}</span></div>`;
     chat.appendChild(m);
     while (chat.children.length > maxMsgs()) chat.firstElementChild.remove();
     return m;
@@ -510,7 +510,7 @@ function exHaggle(sp, host) {
   };
   const showOpts = () => {
     const R = rounds[card.round];
-    optsBox.innerHTML = shuffle(R.o.map((o, k) => ({ o, k }))).map(({ o, k }) => `<button class="opt" data-k="${k}"><span class="d" lang="ary-Latn">${esc(o.d[0])}</span><span style="font:400 13px/1.3 var(--font-ui);opacity:.8">${esc(fr ? o.d[2] : o.d[1])}</span></button>`).join("");
+    optsBox.innerHTML = shuffle(R.o.map((o, k) => ({ o, k }))).map(({ o, k }) => `<button class="opt" data-k="${k}"><span class="d" lang="ary-Latn">${esc(o.d[0])}</span><span style="font:400 13px/1.3 var(--font-ui);opacity:.8">${esc(X(o.d[1], o.d[2]))}</span></button>`).join("");
     optsBox.hidden = false;
   };
   const finish = () => {
@@ -1052,7 +1052,7 @@ function renderGuide() {
       <div class="sgrid" style="margin-top:12px">${SOUNDS.map((x, k) => `<button class="stile j-${SOUND_TILES[k]}" data-snd="${esc(x.id)}" aria-pressed="${x.id === s.id}"><span class="gk" lang="ary-Latn">${esc(x.key)}</span><span class="ga" lang="ar">${esc(x.ar)}</span><span class="gn">${esc(L(x.t))}</span></button>`).join("")}</div>`;
   } else if (guideTab === "rules") {
     body = `<p class="g-sub">${esc(t("rulesS"))}</p>` + RULES.map((r, k) => `<div class="rule${k === 0 ? " open" : ""}" data-rule="${r.id}"><button data-act="rule"><b>${esc(L(r.t))}</b>${ICON.down}</button>
-      <div class="rb-body"><p>${esc(L(r.body))}</p><div class="exlist">${r.ex.map((x) => `<div class="exrow"><div><p class="d">${dj(x[0])}</p><p class="t">${esc(S.lang === "fr" ? x[2] : x[1])}</p></div>${sayBtn(x[0], "sm")}</div>`).join("")}</div></div></div>`).join("");
+      <div class="rb-body"><p>${esc(L(r.body))}</p><div class="exlist">${r.ex.map((x) => `<div class="exrow"><div><p class="d">${dj(x[0])}</p><p class="t">${esc(X(x[1], x[2]))}</p></div>${sayBtn(x[0], "sm")}</div>`).join("")}</div></div></div>`).join("");
   } else {
     const q = pbQuery.trim().toLowerCase();
     const match = (wd) => !q || wd.d.toLowerCase().includes(q) || meaning(wd).toLowerCase().includes(q) || wd.ar.includes(q);
@@ -1086,7 +1086,7 @@ function weekChart() {
   const bars = days.map((x, i) => {
     const hgt = Math.max(3, (x.xp / max) * ph), xx = i * (bw + gapX), yy = top + ph - hgt, isT = i === 6;
     return `<rect x="${xx.toFixed(1)}" y="${yy.toFixed(1)}" width="${bw}" height="${hgt.toFixed(1)}" rx="7" style="fill:${isT ? "var(--gold)" : x.xp >= S.goal ? "var(--good)" : "var(--surface-3)"}"/>
-      <text x="${(xx + bw / 2).toFixed(1)}" y="${Hc - 6}" text-anchor="middle" class="${isT ? "lbl" : ""}">${esc(UI[S.lang].daysShort[x.dow])}</text>
+      <text x="${(xx + bw / 2).toFixed(1)}" y="${Hc - 6}" text-anchor="middle" class="${isT ? "lbl" : ""}">${esc(weekdayNarrow(x.dow))}</text>
       ${isT || x.xp > 0 ? `<text x="${(xx + bw / 2).toFixed(1)}" y="${(yy - 6).toFixed(1)}" text-anchor="middle" class="${isT ? "lbl" : ""}">${x.xp}</text>` : ""}`;
   }).join("");
   return `<svg class="chart" viewBox="0 0 ${Wc} ${Hc}" width="100%" role="img" aria-label="${esc(t("week"))}"><line x1="0" x2="${Wc}" y1="${gy.toFixed(1)}" y2="${gy.toFixed(1)}" style="stroke:var(--fg-faint)" stroke-dasharray="4 4" stroke-width="1"/>${bars}</svg>`;
@@ -1108,7 +1108,7 @@ function renderMe() {
     <div class="panel-c"><h3>${esc(t("bestDeal"))}</h3><p class="sub" style="margin:0">${bd ? esc(t("paid", { p:bd.price, s:bd.start })) : esc(t("none"))}</p></div>
     <div class="panel-c"><h3>${esc(t("settings"))}</h3>
       <div class="setrow"><span>${esc(t("theme"))}</span><div class="seg">${["auto", "light", "dark"].map((k) => `<button data-theme-set="${k}" class="${(S.theme || "auto") === k ? "on" : ""}">${esc(t(k === "auto" ? "themeSys" : k === "light" ? "themeLight" : "themeDark"))}</button>`).join("")}</div></div>
-      <div class="setrow"><span>${esc(t("lang"))}</span><div class="seg"><button data-lang="en" class="${S.lang === "en" ? "on" : ""}">English</button><button data-lang="fr" class="${S.lang === "fr" ? "on" : ""}">Français</button></div></div>
+      <div class="setrow"><span>${esc(t("lang"))}</span>${langSelect("me-lang")}</div>
       <div class="setrow"><span>${esc(t("voiceAuto"))}</span><button class="switch" role="switch" id="sw-voice" aria-checked="${S.voiceAuto}" aria-label="${esc(t("voiceAuto"))}"></button></div>
       <div class="setrow"><span>${esc(t("sfx"))}</span><button class="switch" role="switch" id="sw-sound" aria-checked="${S.sound}" aria-label="${esc(t("sfx"))}"></button></div>
       <div class="setrow"><span>${esc(t("goalSet"))}</span><div class="seg">${[50, 100, 200].map((n) => `<button data-goal="${n}" class="${S.goal === n ? "on" : ""}">${n}</button>`).join("")}</div></div>
@@ -1147,7 +1147,7 @@ function showWelcome(step = 1) {
   const el = $("#welcome");
   el.className = "welcome plaster cv0";
   if (step === 1) {
-    el.innerHTML = `<div class="stage-art">${panelHTML(0, ["done", "done", "done", "done"])}<div class="cat-sit">${mascot("happy", "hi")}</div></div>
+    el.innerHTML = `<div class="w-lang">${langSelect("w-lang")}</div><div class="stage-art">${panelHTML(0, ["done", "done", "done", "done"])}<div class="cat-sit">${mascot("happy", "hi")}</div></div>
       <p class="eyebrow">Wakha</p>
       <div class="salam"><span class="word">${dj("Salam!")}</span><span class="arw" lang="ar">سلام</span>${sayBtn("Salam!")}</div>
       <h1>${esc(t("welcome3T"))}</h1><p>${esc(t("catIntro"))}</p>
@@ -1181,7 +1181,7 @@ function start(data) {
   const t0 = today();
   Session.newDay = !!(S.lastOpen && S.lastOpen !== t0);
   if (S.lastOpen !== t0) { S.lastOpen = t0; S.dayCount = (S.dayCount || 0) + 1; }
-  applyTheme();
+  applyTheme(); document.documentElement.lang = S.lang;
   refreshHUD(); renderCombo();
   setView("today");
   if (!S.onboarded) showWelcome(1);
@@ -1206,6 +1206,10 @@ function start(data) {
     const r = e.target.closest("[data-act=rule]"); if (r) { r.parentElement.classList.toggle("open"); return; }
     const f = e.target.closest("[data-pbf]"); if (f) { pbFilter = f.dataset.pbf; renderGuide(); return; }
     if (e.target.closest("[data-act=practice]")) startPractice();
+  });
+  document.addEventListener("change", (e) => {
+    const sel = e.target.closest && e.target.closest("select.lang-select"); if (!sel) return;
+    setLang(sel.value);
   });
   $("#v-me").addEventListener("click", (e) => {
     const th = e.target.closest("[data-theme-set]"); if (th) { S.theme = th.dataset.themeSet; applyTheme(); persist(); renderMe(); return; }
@@ -1243,7 +1247,7 @@ function start(data) {
   try { window.claude && window.claude.hot && window.claude.hot.snapshot && window.claude.hot.snapshot(() => ({ S })); } catch (e) {}
   connectCapabilities(() => { refreshHUD(); renderLearn(); if (S.onboarded) { $("#welcome").hidden = true; } Feed.started = false; if (view === "feed") Feed.start(); });
   window.__wakha = { get S() { return S; }, set S(v) { S = v; }, Feed, FG, Lesson, PATH, UNITS, W, COLL, CORE, BUILDS, SITS, today, levelInfo, dueWords, setView, currentNode, Voice, AUD, audioKey,
-    Med3D, get view() { return view; }, inject(sp) { Feed.rebuildAhead(true, sp); }, startPractice };
+    Med3D, X, Xmiss, setLang, I18N, LANGS, get view() { return view; }, inject(sp) { Feed.rebuildAhead(true, sp); }, startPractice };
 }
 function startPractice() {
   const due = dueWords();
