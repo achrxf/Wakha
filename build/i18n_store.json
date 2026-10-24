@@ -1518,7 +1518,10 @@
   "Cheche": "Cheche",
   "Match beanie": "Gorro de partido",
   "Fisher’s hat": "Gorro de pescador",
-  "Shades": "Gafas de sol"
+  "Shades": "Gafas de sol",
+  "Try it as a new user": "Probar como usuario nuevo",
+  "Start over": "Empezar de cero",
+  "Tap again: erase everything": "Toca otra vez: borrar todo"
  },
  "de": {
   "Feed": "Feed",
@@ -3039,7 +3042,10 @@
   "Cheche": "Chech",
   "Match beanie": "Stadionmütze",
   "Fisher’s hat": "Fischerhut",
-  "Shades": "Sonnenbrille"
+  "Shades": "Sonnenbrille",
+  "Try it as a new user": "Als neuer Nutzer testen",
+  "Start over": "Neu anfangen",
+  "Tap again: erase everything": "Nochmal tippen: alles löschen"
  },
  "nl": {
   "Feed": "Feed",
@@ -4560,7 +4566,10 @@
   "Cheche": "Chech",
   "Match beanie": "Wedstrijdmuts",
   "Fisher’s hat": "Vissershoedje",
-  "Shades": "Zonnebril"
+  "Shades": "Zonnebril",
+  "Try it as a new user": "Uitproberen als nieuwe gebruiker",
+  "Start over": "Opnieuw beginnen",
+  "Tap again: erase everything": "Tik nog eens: alles wissen"
  },
  "it": {
   "Feed": "Feed",
@@ -6081,6 +6090,9 @@
   "Cheche": "Cheche",
   "Match beanie": "Berretto da stadio",
   "Fisher’s hat": "Cappello da pescatore",
-  "Shades": "Occhiali da sole"
+  "Shades": "Occhiali da sole",
+  "Try it as a new user": "Prova come nuovo utente",
+  "Start over": "Ricomincia da capo",
+  "Tap again: erase everything": "Tocca ancora: cancella tutto"
  }
 }

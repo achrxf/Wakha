@@ -1321,6 +1321,7 @@ function renderMe() {
       <div class="setrow"><span>${esc(t("devTier"))}</span><div class="seg">${["auto", "free", "plus"].map((k) => `<button data-dev-tier="${k}" class="${plan().dev === k ? "on" : ""}">${k === "auto" ? esc(t("devAuto")) : k === "free" ? esc(t("devFree")) : "Plus"}</button>`).join("")}</div></div>
       <div class="setrow"><span>${esc(t("devShortAds"))}</span><button class="switch" role="switch" id="sw-shortads" aria-checked="${!!plan().shortAds}" aria-label="${esc(t("devShortAds"))}"><i></i></button></div>
       <div class="setrow"><span>${esc(t("devTools"))}</span><div class="row-btns" style="justify-content:flex-end;flex-wrap:wrap"><button class="ghost" data-dev="cups">${esc(t("devCups"))}</button><button class="ghost" data-dev="trial">${esc(t("devTrial"))}</button><button class="ghost" data-dev="endtrial">${esc(t("devEndTrial"))}</button><button class="ghost" data-dev="unsub">${esc(t("devUnsub"))}</button></div></div>
+      <div class="setrow"><span>${esc(t("devNewUser"))}</span><button class="ghost dev-new" data-dev="newuser">${esc(t("devNewUserB"))}</button></div>
     </div>
     <div class="panel-c"><h3>${esc(t("settings"))}</h3>
       <div class="setrow"><span>${esc(t("textSize"))}</span><div class="seg">${[0, 1, 2].map((k) => `<button data-ts-set="${k}" class="${(S.textSize || 0) === k ? "on" : ""}" aria-label="${esc(t("textSize"))} ${k + 1}"><span style="font-size:${13 + k * 3}px">A</span>${k ? "+".repeat(k) : ""}</button>`).join("")}</div></div>
@@ -1445,6 +1446,7 @@ function start(data) {
       if (k === "trial") { p.installedAt = Date.now(); p.sub = null; }
       if (k === "endtrial") p.installedAt = Date.now() - (TRIAL_DAYS + 1) * 864e5;
       if (k === "unsub") p.sub = null;
+      if (k === "newuser") { if (dt.dataset.armed !== "1") { dt.dataset.armed = "1"; dt.textContent = t("devNewUserSure"); return; } startOver(); return; }
       persist(); refreshAll(); renderMe(); toast(t("devDone"), ""); return;
     }
     const ts = e.target.closest("[data-ts-set]"); if (ts) { S.textSize = +ts.dataset.tsSet; applyTextSize(); persist(); renderMe(); return; }

@@ -221,11 +221,20 @@ function plusCardHTML() {
 }
 function adBannerHTML() { return isPlus() ? "" : `<div class="ad-banner"><span class="ad-tag">${esc(t("adLabel"))}</span><span>${esc(t("adSlotS"))}</span><button class="sh-link" data-act="plus">${esc(t("removeAds"))}</button></div>`; }
 
+/* ---------- start over as a brand-new user (Me → Developer, or open the app with #newuser) ---------- */
+function startOver() {
+  S = defaultState(); S.lastOpen = today();
+  try { saveLocal(); } catch (e) {} try { remoteSave(); } catch (e) {}
+  Session.jrOpen = null; Feed.started = false; closeNodeSheet(); closePaywall();
+  refreshHUD(); setView("today"); renderLearn(); showWelcome(1);
+}
+
 /* ---------- boot ---------- */
 function bootPlans() {
   plan(); refillDaily();
   if (!$("#feedlock")) { const fl = document.createElement("div"); fl.id = "feedlock"; fl.className = "feedlock"; fl.hidden = true; $("#v-feed").appendChild(fl); }
   setInterval(feedTick, 1000);
+  if (location.hash === "#newuser") { try { history.replaceState(history.state, "", location.pathname + location.search); } catch (e) {} setTimeout(startOver, 50); }
   setTimeout(() => { if (window.__wakha) Object.assign(window.__wakha, { isPlus, cityGate, cupsLeft, openPaywall, openPlacement, Ads, plan, refreshAll, persist }); }, 0);
   // any "Plus" button anywhere opens the paywall
   document.addEventListener("click", (e) => {

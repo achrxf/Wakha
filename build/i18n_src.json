@@ -490,8 +490,8 @@
   "c": "ui"
  },
  {
-  "en": "best streak",
-  "fr": "meilleure série",
+  "en": "longest run",
+  "fr": "plus longue suite",
   "c": "ui"
  },
  {
@@ -1582,6 +1582,21 @@
  {
   "en": "Short ads (2 s)",
   "fr": "Pubs courtes (2 s)",
+  "c": "ui"
+ },
+ {
+  "en": "Try it as a new user",
+  "fr": "Essayer comme un nouvel utilisateur",
+  "c": "ui"
+ },
+ {
+  "en": "Start over",
+  "fr": "Tout recommencer",
+  "c": "ui"
+ },
+ {
+  "en": "Tap again: erase everything",
+  "fr": "Touche encore : tout effacer",
   "c": "ui"
  },
  {
