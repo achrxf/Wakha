@@ -591,7 +591,7 @@ function exComeback(sp, host) {
     <div class="kicker a1"><span class="tag solid">${esc(t("comebackK"))}</span></div>
     <div class="a2" style="display:flex;align-items:center;gap:14px"><div style="width:56px;height:76px">${teaGlass(1, "cb-glass")}</div><h2 class="word">${esc(t("dayN", { n:Math.max(1, S.dayCount || 1) }))}</h2></div>
     <p class="mean a3">${esc(due ? t("comebackS", { n:due }) : st > 0 ? t("comebackS0") : t("comebackNew"))}</p>
-    <div class="a4" style="display:flex;gap:8px;flex-wrap:wrap">${st > 0 ? `<span class="tag">${esc(tn("trayL", { n:st }, st))}</span>` : ""}${S.shields ? `<span class="tag">${ICON.shield} ${S.shields}</span>` : ""}</div>
+    <div class="a4" style="display:flex;gap:8px;flex-wrap:wrap">${st > 0 ? `<span class="tag">${esc(tn("runL", { n:st }, st))}</span>` : ""}${S.shields ? `<span class="tag">${ICON.shield} ${S.shields}</span>` : ""}</div>
     <p class="swipe-cue a5">${ICON.up}<span>${esc(t("swipe"))}</span></p>`;
   return { el, kind:"comeback", firstEnter() { FG.force = dueWords().slice(0, 6); if (FG.force.length) Feed.rebuildAhead(false); } };
 }
@@ -784,7 +784,10 @@ const LessonHost = {
 const Lesson = {
   active:false, node:null, specs:[], i:0, card:null, tile:"majorelle", pool:[], st:null,
   open(node) {
+    if (!isPlus() && cupsLeft() <= 0 && !["daily", "sprint"].includes(node.kind)) { cupsSheet(false); return; }
+    if (isPlus() && !isSide(node) && node.unit != null && PATH.includes(node)) S.focusUnit = node.unit;
     Voice.stop();
+    this.waitCups = false;
     this.node = node; this.active = true;
     this.tile = "wall";
     this.specs = lessonSpecs(node);
@@ -805,7 +808,7 @@ const Lesson = {
       else if (a.dataset.act === "stay") { $(".l-confirm", el).hidden = true; }
       else if (a.dataset.act === "leave") { this.close(false); }
       else if (a.dataset.act === "cont") { this.advance(); }
-      else if (a.dataset.act === "finish") { this.close(true); }
+      else if (a.dataset.act === "finish") { a.disabled = true; afterLessonAd(() => this.close(true)); }
     };
     $("#desk-nav").hidden = true;
     this.show();
@@ -851,6 +854,7 @@ const Lesson = {
   answer(card, ok, info) {
     if (card !== this.card) return;
     if (ok) this.st.right++; else this.st.wrong++;
+    if (!ok && this.node.kind !== "sprint") loseCup();
     const xp = hit(ok, info.fromEl, info.base ?? 3, { to:$("#l-bar") });
     this.st.xp += xp;
     if (!ok && !this.retried.has(this.i) && this.specs[this.i].t !== "haggle") { this.retried.add(this.i); this.specs.push(Object.assign({}, this.specs[this.i], { retry:true })); }
@@ -867,6 +871,7 @@ const Lesson = {
     setTimeout(() => { const c = $(".cta", foot); c && c.focus({ preventScroll:true }); }, 60);
   },
   advance() {
+    if (!isPlus() && cupsLeft() <= 0 && this.i + 1 < this.specs.length) { this.waitCups = true; cupsSheet(true); return; }
     if (this.banner) { const bn = this.banner; this.banner = null; bn.classList.add("leaving"); setTimeout(() => bn.remove(), reduced ? 0 : 200); }
     Voice.stop();
     this.i++;
@@ -901,7 +906,7 @@ const Lesson = {
     if (side === "daily") dailyRec().wotd = true;
     if (side === "sprint") dailyRec().sprint = this.sprintScore || 0;
     const head = side === "sprint" ? t("sprintBest", { n:this.sprintScore || 0 }) : side === "daily" ? t("wotd") : perfect ? t("perfectGlaze") : before ? t("tileGlazed") : t("lessonDone");
-    const art = before ? panelHTML(ui, before) : `<div class="panel">${mascot()}</div>`;
+    const art = `<div class="end-badge">${isSide(this.node) ? mascot(perfect ? "wow" : "happy") : cityBadge(ui, perfect ? "wow" : "happy")}</div>`;
     el.innerHTML = `<div class="l-end">${art}<h2>${esc(head)}</h2>
       ${before ? `<p class="sub">${esc(cityName(c))}, ${esc(t("glazedN", { a:glazedNow, b:before.length }))}</p>` : ""}
       <div class="stars anim">${[1, 2, 3].map((k) => ICON.star.replace("<svg", `<svg class="${k <= stars ? "on" : ""}"`)).join("")}</div>
@@ -1082,7 +1087,7 @@ const Feed = {
     for (let k = 0; k < 4; k++) this.push();
   },
   push() {
-    const sp = FG.next();
+    const sp = !isPlus() && this.cards.length > 2 && (this.cards.length + 1) % 7 === 0 ? { t:"ad" } : FG.next();
     const card = makeEx(sp, FeedHost);
     card.spec = sp; card.i = this.cards.length; card.seen = false;
     card.el.dataset.i = card.i;
@@ -1134,13 +1139,24 @@ const Feed = {
    VIEWS
    ========================================================= */
 let view = "learn";
-function currentNode() { return PATH.findIndex((n) => !S.lessons[n.id]); }
-function nodeState(idx) { const n = PATH[idx]; if (S.lessons[n.id]) return "done"; return idx === currentNode() ? "current" : "locked"; }
+// Plus: any city can be started, lessons stay in order inside a city; Today follows the city you're in.
+// Free: one path in order, Tangier open, the next six cities open with an ad, the rest are Plus.
+function currentNode() {
+  if (isPlus() && S.focusUnit != null) { const i = PATH.findIndex((p) => p.unit === S.focusUnit && !S.lessons[p.id]); if (i >= 0) return i; }
+  return PATH.findIndex((n) => !S.lessons[n.id]);
+}
+function nodeState(idx) {
+  const n = PATH[idx]; if (S.lessons[n.id]) return "done";
+  if (isPlus()) return PATH.findIndex((p) => p.unit === n.unit && !S.lessons[p.id]) === idx ? "current" : "locked";
+  if (idx !== PATH.findIndex((p) => !S.lessons[p.id])) return "locked";
+  return cityGate(n.unit) ? "locked" : "current";
+}
 function setView(k) {
   if (k === "learn") k = "today"; if (k === "kenz") k = "me";
   if (Lesson.active) return;
   if (view === "feed" && k !== "feed") Feed.pause();
   view = k; $("#stage").dataset.view = k;
+  setTimeout(syncFeedLock, 0);
   $$(".tab").forEach((b) => { b.classList.toggle("on", b.dataset.tab === k); b.setAttribute("aria-current", b.dataset.tab === k ? "page" : "false"); });
   for (const v of ["today", "journey", "feed", "guide", "me"]) { const el = $("#v-" + v); el.hidden = v !== k; }
   $("#hud").classList.remove("on-dark");
@@ -1251,7 +1267,7 @@ function renderGuide() {
       <div class="pb-tools"><div class="seg">${["all", "learned"].map((k) => `<button class="${pbFilter === k ? "on" : ""}" data-pbf="${k}">${esc(k === "all" ? t("allWords") : t("learnedOnly"))}</button>`).join("")}</div>${dueWords().length ? `<button class="ghost" data-act="practice">${ICON.loop}<span>${esc(t("practiceDue", { n:dueWords().length }))}</span></button>` : ""}</div>
       <div class="pb-list">${groups.length ? groups.map((g) => `<div class="pb-group"><h4>${esc(g.title)}</h4>${g.ids.map((id) => { const wd = W[id], has = !!S.words[id]; return `<div class="pbrow${has ? "" : " locked"}">${sayBtn(wd.d, "sm")}<span class="d">${dj(wd.d)}</span><span class="a" lang="ary">${esc(wd.ar)}</span><span class="m">${esc(meaning(wd))}</span></div>`; }).join("")}</div>`).join("") : `<div class="empty">${esc(t("noResults"))}</div>`}</div>`;
   }
-  el.innerHTML = `<div class="scroll-pad"><div class="vh"><div><h2>${esc(t("guide"))}</h2></div></div>${tabs}${body}</div>`;
+  el.innerHTML = `<div class="scroll-pad"><div class="vh"><div><h2>${esc(t("guide"))}</h2></div></div>${tabs}${body}${adBannerHTML()}</div>`;
   const inp = $("#pb-q", el);
   if (inp) inp.addEventListener("input", () => { pbQuery = inp.value; const pos = inp.selectionStart; renderGuide(); const n = $("#pb-q"); n.focus(); try { n.setSelectionRange(pos, pos); } catch (e) {} });
 }
@@ -1294,6 +1310,15 @@ function renderMe() {
     <div class="panel-c"><h3>${esc(t("week"))}</h3>${weekChart()}</div>
     ${kenzHTML()}
     <div class="panel-c"><h3>${esc(t("bestDeal"))}</h3><p class="sub" style="margin:0">${bd ? esc(t("paid", { p:bd.price, s:bd.start })) : esc(t("none"))}</p></div>
+    <div class="panel-c plan-c"><h3>${esc(t("planH"))}</h3>
+      <div class="setrow"><span>${esc(isPlus() ? (plan().sub ? t("planSubbed", { p:t(plan().sub === "yearly" ? "planYearly" : "planMonthly") }) : plan().dev === "plus" ? "Wakha Plus (dev)" : t("trialLeft", { n:trialDaysLeft() })) : t("planFree"))}</span><button class="ghost" data-act="plus">${esc(isPlus() && plan().sub ? t("planManage") : t("seePlans"))}</button></div>
+      ${isPlus() ? `<div class="setrow"><span>${esc(t("plTestK"))}</span><button class="ghost" data-act="placement">${esc(t("plStart"))}</button></div>` : ""}
+    </div>
+    <div class="panel-c dev-c"><h3>${esc(t("devH"))}</h3><p class="sub" style="margin:0 0 8px">${esc(t("devS"))}</p>
+      <div class="setrow"><span>${esc(t("devTier"))}</span><div class="seg">${["auto", "free", "plus"].map((k) => `<button data-dev-tier="${k}" class="${plan().dev === k ? "on" : ""}">${k === "auto" ? esc(t("devAuto")) : k === "free" ? esc(t("devFree")) : "Plus"}</button>`).join("")}</div></div>
+      <div class="setrow"><span>${esc(t("devShortAds"))}</span><button class="switch" role="switch" id="sw-shortads" aria-checked="${!!plan().shortAds}" aria-label="${esc(t("devShortAds"))}"><i></i></button></div>
+      <div class="setrow"><span>${esc(t("devTools"))}</span><div class="row-btns" style="justify-content:flex-end;flex-wrap:wrap"><button class="ghost" data-dev="cups">${esc(t("devCups"))}</button><button class="ghost" data-dev="trial">${esc(t("devTrial"))}</button><button class="ghost" data-dev="endtrial">${esc(t("devEndTrial"))}</button><button class="ghost" data-dev="unsub">${esc(t("devUnsub"))}</button></div></div>
+    </div>
     <div class="panel-c"><h3>${esc(t("settings"))}</h3>
       <div class="setrow"><span>${esc(t("textSize"))}</span><div class="seg">${[0, 1, 2].map((k) => `<button data-ts-set="${k}" class="${(S.textSize || 0) === k ? "on" : ""}" aria-label="${esc(t("textSize"))} ${k + 1}"><span style="font-size:${13 + k * 3}px">A</span>${k ? "+".repeat(k) : ""}</button>`).join("")}</div></div>
       <div class="setrow"><span>${esc(t("theme"))}</span><div class="seg">${["auto", "light", "dark"].map((k) => `<button data-theme-set="${k}" class="${(S.theme || "auto") === k ? "on" : ""}">${esc(t(k === "auto" ? "themeSys" : k === "light" ? "themeLight" : "themeDark"))}</button>`).join("")}</div></div>
@@ -1311,10 +1336,12 @@ function renderMe() {
 function refreshHUD() {
   const st = shownStreak();
   const sEl = $("#hud-streak");
-  sEl.innerHTML = teaTray() + `<b>${st}</b>`;
+  sEl.innerHTML = runStar() + `<b>${st}</b>`;
+  const cEl = $("#hud-cups"); cEl.innerHTML = cupsHUD(); cEl.classList.toggle("plus", isPlus());
+  cEl.setAttribute("aria-label", isPlus() ? t("cupsPlusOn") : t("cupsAria", { n:cupsLeft(), b:CUPS_MAX }));
   $("#hud-mark").innerHTML = `${ICON.mark}<span class="wm">Wakha</span><span class="ar" lang="ar">واخا</span>`;
   sEl.classList.toggle("cold", !dayRec().goalMet);
-  sEl.setAttribute("aria-label", tn("trayL", { n:st }, st));
+  sEl.setAttribute("aria-label", tn("runL", { n:st }, st));
   const rec = dayRec(), pct = Math.min(1, rec.xp / S.goal);
   const gEl = $("#hud-goal");
   gEl.innerHTML = teaGlass(pct, "gl") + `<span class="bar"><i style="width:${(pct * 100).toFixed(1)}%"></i></span><b>${Math.min(rec.xp, 999)}/${S.goal}</b>`;
@@ -1388,6 +1415,7 @@ function start(data) {
   $$(".tab").forEach((b) => b.addEventListener("click", () => { Sound.play("tap"); setView(b.dataset.tab); }));
   ["#hud-streak", "#hud-goal", "#hud-lvl"].forEach((s) => $(s).addEventListener("click", () => setView("me")));
   bindHome();
+  bootPlans();
   $("#nsheet").addEventListener("click", (e) => { const s = e.target.closest("[data-start]"); if (s) { closeNodeSheet(); Lesson.open(PATH[+s.dataset.start]); } });
   $("#sheet-scrim").addEventListener("click", closeNodeSheet);
   sheetDrag($("#nsheet"));
@@ -1403,6 +1431,18 @@ function start(data) {
     setLang(sel.value);
   });
   $("#v-me").addEventListener("click", (e) => {
+    const dv = e.target.closest("[data-dev-tier]"); if (dv) { plan().dev = dv.dataset.devTier; persist(); refreshAll(); renderMe(); toast(t("devTierSet", { t:dv.textContent }), ""); return; }
+    if (e.target.closest("#sw-shortads")) { plan().shortAds = !plan().shortAds; persist(); renderMe(); return; }
+    if (e.target.closest("[data-act=placement]")) { openPlacement(); return; }
+    const dt = e.target.closest("[data-dev]");
+    if (dt) {
+      const k = dt.dataset.dev, p = plan();
+      if (k === "cups") { S.cups = CUPS_MAX; S.cupsDay = today(); }
+      if (k === "trial") { p.installedAt = Date.now(); p.sub = null; }
+      if (k === "endtrial") p.installedAt = Date.now() - (TRIAL_DAYS + 1) * 864e5;
+      if (k === "unsub") p.sub = null;
+      persist(); refreshAll(); renderMe(); toast(t("devDone"), ""); return;
+    }
     const ts = e.target.closest("[data-ts-set]"); if (ts) { S.textSize = +ts.dataset.tsSet; applyTextSize(); persist(); renderMe(); return; }
     const th = e.target.closest("[data-theme-set]"); if (th) { S.theme = th.dataset.themeSet; applyTheme(); persist(); renderMe(); return; }
     const lg = e.target.closest("[data-lang]"); if (lg) { S.lang = lg.dataset.lang; persist(); renderMe(); refreshHUD(); if (Feed.started) Feed.rebuildAhead(); $("#nav-hint").textContent = t("navHint"); return; }
@@ -1433,7 +1473,7 @@ function start(data) {
     else if (/^[1-4]$/.test(e.key)) { const c = Feed.cards[Feed.active]; const b = c && $$(".opts .opt, .h-opts .opt", c.el)[+e.key - 1]; b && b.click(); }
   });
   // keyboard focus and screen readers stay inside whatever is on top: everything underneath goes inert
-  const LAYERS = ["overlay", "welcome", "lesson", "nsheet"];
+  const LAYERS = ["adlayer", "paywall", "placement", "overlay", "welcome", "nsheet", "lesson"];
   const syncInert = () => {
     const top = LAYERS.map((id) => document.getElementById(id)).find((el) => el && !el.hidden);
     for (const el of $("#stage").children) {
@@ -1451,7 +1491,10 @@ function start(data) {
   addEventListener("popstate", () => {
     let handled = true;
     const ovB = $("#overlay [data-ov=close]");
-    if (!$("#overlay").hidden && ovB) ovB.click();
+    if (!$("#adlayer").hidden) { /* an ad can't be skipped with Back */ }
+    else if (!$("#paywall").hidden) closePaywall();
+    else if (!$("#placement").hidden) { $("#placement").hidden = true; $("#placement").innerHTML = ""; }
+    else if (!$("#overlay").hidden && ovB) ovB.click();
     else if (!$("#nsheet").hidden) closeNodeSheet();
     else if (Lesson.active) { const c = $("#lesson .l-confirm"); if (c) c.hidden = !c.hidden; }
     else if (view !== "today") setView("today");

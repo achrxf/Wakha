@@ -1,0 +1,99 @@
+30	Día de descanso	Ruhetag	Rustdag	Giorno di riposo
+31	Si fallas un día, un día de descanso mantiene tu racha. Tienes {n}.	Verpasst du einen Tag, hält ein Ruhetag deine Serie. Du hast {n}.	Mis je een dag, dan houdt een rustdag je reeks in stand. Je hebt er {n}.	Se salti un giorno, un giorno di riposo mantiene la tua serie. Ne hai {n}.
+58	Gana XP cada día para llegar a tu objetivo diario.	Sammle jeden Tag XP, um dein Tagesziel zu erreichen.	Verdien elke dag XP om je dagdoel te halen.	Guadagna XP ogni giorno per raggiungere il tuo obiettivo.
+74	Tu racha te espera. {n} palabras quieren un repaso.	Deine Serie wartet. {n} Wörter wollen wiederholt werden.	Je reeks wacht. {n} woorden willen herhaald worden.	La tua serie ti aspetta. {n} parole vogliono un ripasso.
+75	Termina una lección hoy para mantener tu racha.	Schließ heute eine Lektion ab, um deine Serie zu halten.	Rond vandaag een les af om je reeks te houden.	Finisci una lezione oggi per mantenere la serie.
+79	Objetivo diario conseguido. {n} días seguidos.	Tagesziel erreicht. {n} Tage in Folge.	Dagdoel gehaald. {n} dagen op rij.	Obiettivo raggiunto. {n} giorni di fila.
+80	Un día de descanso mantuvo tu racha.	Ein Ruhetag hat deine Serie gehalten.	Een rustdag heeft je reeks gered.	Un giorno di riposo ha salvato la tua serie.
+97	días seguidos	Tage in Folge	dagen op rij	giorni di fila
+112	Termina una lección cada día para hacer crecer tu racha.	Schließ jeden Tag eine Lektion ab, damit deine Serie wächst.	Rond elke dag een les af om je reeks te laten groeien.	Finisci una lezione ogni giorno per far crescere la serie.
+227	Hoy cuenta. Hasta mañana para la siguiente.	Heute zählt. Bis morgen zur nächsten.	Vandaag telt. Tot morgen voor de volgende.	Oggi conta. A domani per la prossima.
+233	{n} días seguidos	{n} Tage in Folge	{n} dagen op rij	{n} giorni di fila
+234	{n} día seguido	{n} Tag in Folge	{n} dag op rij	{n} giorno di fila
+235	Termina tu primera lección para empezar tu racha.	Schließ deine erste Lektion ab, um deine Serie zu starten.	Rond je eerste les af om je reeks te starten.	Finisci la prima lezione per iniziare la serie.
+236	Anuncio	Werbung	Advertentie	Pubblicità
+237	Los anuncios mantienen Wakha gratis y ayudan a pagar su desarrollo. ¡Gracias!	Werbung hält Wakha kostenlos und hilft, die Entwicklung zu bezahlen. Danke!	Advertenties houden Wakha gratis en helpen de ontwikkeling te betalen. Bedankt!	La pubblicità mantiene Wakha gratuita e aiuta a finanziarne lo sviluppo. Grazie!
+238	Míralo hasta el final para conseguir tu recompensa. Los anuncios ayudan a pagar el desarrollo de Wakha.	Schau bis zum Ende, um deine Belohnung zu bekommen. Werbung hilft, Wakha zu entwickeln.	Kijk tot het eind voor je beloning. Advertenties helpen Wakha te ontwikkelen.	Guarda fino alla fine per la ricompensa. La pubblicità aiuta lo sviluppo di Wakha.
+239	Podrás cerrar el anuncio en un momento	Du kannst die Werbung gleich schließen	Je kunt de advertentie zo sluiten	Potrai chiudere la pubblicità tra poco
+240	Cerrar anuncio	Werbung schließen	Advertentie sluiten	Chiudi pubblicità
+241	Conseguir mi recompensa	Belohnung abholen	Mijn beloning halen	Ritira la ricompensa
+242	Tu anuncio aquí	Ihre Werbung hier	Uw advertentie hier	La tua pubblicità qui
+243	Aquí aparecerá el anuncio de un patrocinador en la app real.	Hier erscheint in der echten App die Werbung eines Sponsors.	Hier komt in de echte app de advertentie van een sponsor.	Qui comparirà la pubblicità di uno sponsor nell’app vera.
+244	Aprende sin anuncios	Lerne ohne Werbung	Leer zonder advertenties	Impara senza pubblicità
+245	Wakha Plus: todas las ciudades en el orden que quieras, té ilimitado, sin anuncios.	Wakha Plus: jede Stadt in beliebiger Reihenfolge, unbegrenzt Tee, keine Werbung.	Wakha Plus: elke stad in elke volgorde, onbeperkt thee, geen advertenties.	Wakha Plus: ogni città nell’ordine che vuoi, tè illimitato, niente pubblicità.
+246	Ver planes	Pläne ansehen	Abonnementen bekijken	Vedi i piani
+247	Quitar anuncios	Werbung entfernen	Advertenties weghalen	Rimuovi la pubblicità
+248	Tus vasos de té	Deine Teegläser	Je theeglazen	I tuoi bicchieri di tè
+249	Tienes {n} de 3. Cada fallo vacía uno. Se vuelven a llenar cada mañana.	Du hast {n} von 3. Jeder Fehler leert eins. Jeden Morgen füllen sie sich wieder.	Je hebt er {n} van de 3. Elke fout leegt er een. Elke ochtend lopen ze weer vol.	Ne hai {n} su 3. Ogni errore ne svuota uno. Si riempiono di nuovo ogni mattina.
+250	Sin té	Kein Tee mehr	Geen thee meer	Niente più tè
+251	Tus vasos están vacíos. Mira un anuncio corto para servir uno, o vuelve mañana cuando se llenen.	Deine Gläser sind leer. Schau eine kurze Werbung für ein Glas oder komm morgen wieder.	Je glazen zijn leeg. Kijk een korte advertentie voor een glas, of kom morgen terug.	I tuoi bicchieri sono vuoti. Guarda una breve pubblicità per riempirne uno, o torna domani.
+252	Ver un anuncio: +1 vaso	Werbung ansehen: +1 Glas	Advertentie kijken: +1 glas	Guarda una pubblicità: +1 bicchiere
+253	Té ilimitado con Plus	Unbegrenzt Tee mit Plus	Onbeperkt thee met Plus	Tè illimitato con Plus
+254	Un vaso servido. ¡Bssa7tek!	Ein Glas eingeschenkt. Bssa7tek!	Eén glas ingeschonken. Bssa7tek!	Un bicchiere versato. Bssa7tek!
+255	Plus: té ilimitado	Plus: unbegrenzt Tee	Plus: onbeperkt thee	Plus: tè illimitato
+256	Quedan {n} de {b} vasos de té	{n} von {b} Teegläsern übrig	Nog {n} van {b} theeglazen	Restano {n} bicchieri di tè su {b}
+257	Parte de Wakha Plus.	Teil von Wakha Plus.	Onderdeel van Wakha Plus.	Parte di Wakha Plus.
+258	La versión gratis incluye las {n} primeras ciudades. Plus abre todo Marruecos, en el orden que quieras.	Die kostenlose Version umfasst die ersten {n} Städte. Plus öffnet ganz Marokko, in beliebiger Reihenfolge.	De gratis versie bevat de eerste {n} steden. Plus opent heel Marokko, in elke volgorde.	La versione gratuita include le prime {n} città. Plus apre tutto il Marocco, nell’ordine che vuoi.
+259	{c} está abierta. ¡Yallah!	{c} ist offen. Yallah!	{c} is open. Yallah!	{c} è aperta. Yallah!
+260	Abrir {c} con un anuncio corto	{c} mit kurzer Werbung öffnen	{c} openen met een korte advertentie	Apri {c} con una breve pubblicità
+261	Abrir con un anuncio	Mit Werbung öffnen	Openen met advertentie	Apri con una pubblicità
+262	Seguir a {c} con Plus	Weiter nach {c} mit Plus	Verder naar {c} met Plus	Continua verso {c} con Plus
+263	Gratis: las {n} primeras ciudades. Todas con Wakha Plus.	Kostenlos: die ersten {n} Städte. Alle Städte mit Wakha Plus.	Gratis: de eerste {n} steden. Alle steden met Wakha Plus.	Gratis: le prime {n} città. Tutte con Wakha Plus.
+264	Tu plan	Dein Plan	Je abonnement	Il tuo piano
+265	Gratis, con anuncios	Kostenlos, mit Werbung	Gratis, met advertenties	Gratis, con pubblicità
+266	Gestionar	Verwalten	Beheren	Gestisci
+267	Mensual	Monatlich	Maandelijks	Mensile
+268	Anual	Jährlich	Jaarlijks	Annuale
+269	Mantener mi plan	Plan behalten	Abonnement houden	Mantieni il piano
+270	Prueba Plus: quedan {n} días	Plus-Test: noch {n} Tage	Plus-proef: nog {n} dagen	Prova Plus: ancora {n} giorni
+271	Tu prueba gratis ha terminado	Dein kostenloser Test ist vorbei	Je gratis proefperiode is voorbij	La tua prova gratuita è finita
+272	Las {n} ciudades, y empieza por la que quieras	Alle {n} Städte, und starte, wo du willst	Alle {n} steden, en begin waar je wilt	Tutte le {n} città, e inizia da quella che vuoi
+273	Una prueba de nivel que te dice por dónde empezar	Ein Einstufungstest zeigt dir, wo du anfängst	Een niveautest die zegt waar je begint	Un test di livello che ti dice da dove iniziare
+274	Té ilimitado: los fallos nunca te paran	Unbegrenzt Tee: Fehler halten dich nie auf	Onbeperkt thee: fouten houden je nooit tegen	Tè illimitato: gli errori non ti fermano mai
+275	Sin anuncios, nunca	Nie Werbung	Nooit advertenties	Mai pubblicità
+276	El feed sin límite diario	Der Feed ohne Tageslimit	De feed zonder daglimiet	Il feed senza limite giornaliero
+277	Tu página Hoy completa: palabras, objetivo, repasos, sprint y palabra del día	Deine komplette Heute-Seite: Wörter, Ziel, Wiederholungen, Sprint und Wort des Tages	Je volledige Vandaag-pagina: woorden, doel, herhalingen, sprint en woord van de dag	La tua pagina Oggi completa: parole, obiettivo, ripassi, sprint e parola del giorno
+278	Ahorra un {n}%	{n} % sparen	Bespaar {n}%	Risparmia il {n}%
+279	año	Jahr	jaar	anno
+280	mes	Monat	maand	mese
+281	{p} al mes	{p} pro Monat	{p} per maand	{p} al mese
+282	Cancela cuando quieras	Jederzeit kündbar	Altijd opzegbaar	Annulla quando vuoi
+283	Prototipo: no se cobra nada. En la versión de la tienda se cobra tras confirmar, y puedes cancelar cuando quieras.	Prototyp: Es wird nichts abgebucht. In der Store-Version zahlst du nach Bestätigung und kannst jederzeit kündigen.	Prototype: er wordt niets afgeschreven. In de store-versie betaal je na bevestiging en kun je altijd opzeggen.	Prototipo: non viene addebitato nulla. Nella versione dello store paghi dopo la conferma e puoi annullare quando vuoi.
+284	Restaurar compra	Kauf wiederherstellen	Aankoop herstellen	Ripristina acquisto
+285	Prototipo: Plus activado, sin cobro	Prototyp: Plus ist an, nichts abgebucht	Prototype: Plus staat aan, niets betaald	Prototipo: Plus attivo, nessun pagamento
+286	Prototipo: nada que restaurar	Prototyp: nichts wiederherzustellen	Prototype: niets te herstellen	Prototipo: niente da ripristinare
+287	Prueba de nivel	Einstufungstest	Niveautest	Test di livello
+288	¿De qué quieres hablar primero?	Worüber willst du zuerst sprechen?	Waarover wil je eerst praten?	Di cosa vuoi parlare per primo?
+289	Elige lo que quieras. Luego 10 palabras rápidas para ver lo que ya sabes.	Wähle, was du willst. Dann 10 schnelle Wörter, um zu sehen, was du schon kannst.	Kies wat je wilt. Daarna 10 snelle woorden om te zien wat je al kent.	Scegli quello che vuoi. Poi 10 parole veloci per vedere cosa sai già.
+290	Empezar la prueba	Test starten	Test beginnen	Inizia il test
+291	No la conozco	Kenne ich nicht	Ken ik niet	Non la conosco
+292	Sabías {n} de {b}	Du kanntest {n} von {b}	Je kende er {n} van {b}	Ne conoscevi {n} su {b}
+293	Encaja con lo que ya sabes	Passt zu dem, was du schon kannst	Past bij wat je al kent	Adatta a quello che sai già
+294	Para {t}	Für {t}	Voor {t}	Per {t}
+295	Puedes abrir cualquier ciudad desde el Viaje cuando quieras.	Du kannst jederzeit jede Stadt in der Reise öffnen.	Je kunt elke stad altijd openen vanuit de Reis.	Puoi aprire qualsiasi città dal Viaggio quando vuoi.
+296	Pues {c}. ¡Yallah!	Also {c}. Yallah!	Dan {c}. Yallah!	Allora {c}. Yallah!
+297	¿No sabes por dónde empezar?	Nicht sicher, wo du anfangen sollst?	Weet je niet waar je moet beginnen?	Non sai da dove iniziare?
+298	Haz la prueba de 2 minutos, o abre cualquier ciudad abajo.	Mach den 2-Minuten-Test oder öffne unten eine Stadt.	Doe de test van 2 minuten, of open hieronder een stad.	Fai il test di 2 minuti, o apri una città qui sotto.
+299	Una prueba de 2 minutos elige tus ciudades. Parte de Plus.	Ein 2-Minuten-Test wählt deine Städte. Teil von Plus.	Een test van 2 minuten kiest je steden. Onderdeel van Plus.	Un test di 2 minuti sceglie le tue città. Parte di Plus.
+300	Ya están tus 5 minutos de hoy	Das waren deine 5 Minuten für heute	Dat waren je 5 minuten voor vandaag	Ecco i tuoi 5 minuti di oggi
+301	El feed gratis vuelve mañana. Sigue con el Viaje, o consigue feed ilimitado con Plus.	Der kostenlose Feed kommt morgen wieder. Mach in der Reise weiter oder hol dir unbegrenzten Feed mit Plus.	De gratis feed komt morgen terug. Ga verder met de Reis, of krijg onbeperkte feed met Plus.	Il feed gratuito torna domani. Continua con il Viaggio, o prendi il feed illimitato con Plus.
+302	Feed ilimitado con Plus	Unbegrenzter Feed mit Plus	Onbeperkte feed met Plus	Feed illimitato con Plus
+303	Volver al Viaje	Zurück zur Reise	Terug naar de Reis	Torna al Viaggio
+304	Queda 1 minuto de feed hoy	Noch 1 Minute Feed heute	Nog 1 minuut feed vandaag	Resta 1 minuto di feed oggi
+305	Todo Wakha, sin límites	Alles von Wakha, ohne Grenzen	Heel Wakha, zonder grenzen	Tutto Wakha, senza limiti
+306	Las {n} ciudades, empieza donde quieras	Alle {n} Städte, starte, wo du willst	Alle {n} steden, begin waar je wilt	Tutte le {n} città, inizia dove vuoi
+307	Sin anuncios y té ilimitado	Keine Werbung und unbegrenzt Tee	Geen advertenties en onbeperkt thee	Niente pubblicità e tè illimitato
+308	Todo tu progreso: palabras, objetivo, repasos	Dein ganzer Fortschritt: Wörter, Ziel, Wiederholungen	Al je voortgang: woorden, doel, herhalingen	Tutti i tuoi progressi: parole, obiettivo, ripassi
+309	Plus desde {p} al mes	Plus ab {p} im Monat	Plus vanaf {p} per maand	Plus da {p} al mese
+310	Desarrollador	Entwickler	Ontwikkelaar	Sviluppatore
+311	Solo mientras se desarrolla la app. Cambia de plan para probar las dos versiones.	Nur während der Entwicklung. Wechsle den Plan, um beide Versionen zu testen.	Alleen tijdens het bouwen. Wissel van abonnement om beide versies te testen.	Solo durante lo sviluppo. Cambia piano per provare le due versioni.
+312	Plan	Plan	Abonnement	Piano
+313	Real	Echt	Echt	Reale
+314	Gratis	Kostenlos	Gratis	Gratis
+315	Anuncios cortos (2 s)	Kurze Werbung (2 s)	Korte advertenties (2 s)	Pubblicità brevi (2 s)
+316	Herramientas	Werkzeuge	Hulpmiddelen	Strumenti
+317	Llenar vasos	Gläser füllen	Glazen vullen	Riempi i bicchieri
+318	Reiniciar prueba	Test neu starten	Proef herstarten	Riavvia la prova
+319	Terminar prueba	Test beenden	Proef beëindigen	Termina la prova
+320	Cancelar Plus	Plus kündigen	Plus opzeggen	Annulla Plus
+321	Plan: {t}	Plan: {t}	Abonnement: {t}	Piano: {t}

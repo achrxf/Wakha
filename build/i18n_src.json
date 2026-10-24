@@ -150,13 +150,13 @@
   "c": "ui"
  },
  {
-  "en": "Spare glass",
-  "fr": "Verre de secours",
+  "en": "Rest day",
+  "fr": "Jour de repos",
   "c": "ui"
  },
  {
-  "en": "Miss a day and a spare glass fills in for it. You have {n}.",
-  "fr": "Rate un jour, un verre de secours le remplit pour toi. Tu en as {n}.",
+  "en": "Miss a day and a rest day keeps your run going. You have {n}.",
+  "fr": "Rate un jour, un jour de repos garde ta série. Tu en as {n}.",
   "c": "ui"
  },
  {
@@ -290,8 +290,8 @@
   "c": "ui"
  },
  {
-  "en": "XP fills your tea glass. Fill one every day.",
-  "fr": "Les XP remplissent ton verre de thé. Remplis-en un chaque jour.",
+  "en": "Earn XP every day to reach your daily goal.",
+  "fr": "Gagne des XP chaque jour pour atteindre ton objectif.",
   "c": "ui"
  },
  {
@@ -370,13 +370,13 @@
   "c": "ui"
  },
  {
-  "en": "Your tray is waiting. {n} words want a review.",
-  "fr": "Ton plateau t’attend. {n} mots veulent une révision.",
+  "en": "Your run is waiting. {n} words want a review.",
+  "fr": "Ta série t’attend. {n} mots veulent une révision.",
   "c": "ui"
  },
  {
-  "en": "Fill today’s glass to keep your run going.",
-  "fr": "Remplis le verre du jour pour continuer ta suite.",
+  "en": "Finish a lesson today to keep your run going.",
+  "fr": "Termine une leçon aujourd’hui pour garder ta série.",
   "c": "ui"
  },
  {
@@ -395,13 +395,13 @@
   "c": "ui"
  },
  {
-  "en": "Your glass is full. {n} days of atay in a row.",
-  "fr": "Ton verre est plein. {n} jours d’atay d’affilée.",
+  "en": "Daily goal reached. {n} days in a row.",
+  "fr": "Objectif du jour atteint. {n} jours d’affilée.",
   "c": "ui"
  },
  {
-  "en": "A spare glass filled in for yesterday.",
-  "fr": "Un verre de secours a rempli hier.",
+  "en": "A rest day kept your run going.",
+  "fr": "Un jour de repos a gardé ta série.",
   "c": "ui"
  },
  {
@@ -485,13 +485,13 @@
   "c": "ui"
  },
  {
-  "en": "days of atay",
-  "fr": "jours d’atay",
+  "en": "days in a row",
+  "fr": "jours d’affilée",
   "c": "ui"
  },
  {
-  "en": "longest run",
-  "fr": "plus longue suite",
+  "en": "best streak",
+  "fr": "meilleure série",
   "c": "ui"
  },
  {
@@ -560,8 +560,8 @@
   "c": "ui"
  },
  {
-  "en": "Fill a glass every day and watch your tray fill up.",
-  "fr": "Remplis un verre chaque jour et regarde ton plateau se remplir.",
+  "en": "Finish a lesson every day to grow your run.",
+  "fr": "Termine une leçon chaque jour pour faire grandir ta série.",
   "c": "ui"
  },
  {
@@ -1120,11 +1120,6 @@
   "c": "ui"
  },
  {
-  "en": "{n} days of atay in a row",
-  "fr": "{n} jours d’atay d’affilée",
-  "c": "ui"
- },
- {
   "en": "{n} day of atay in a row",
   "fr": "{n} jour d’atay d’affilée",
   "c": "ui"
@@ -1140,8 +1135,8 @@
   "c": "ui"
  },
  {
-  "en": "Today’s glass is full. See you tomorrow for the next one.",
-  "fr": "Le verre du jour est plein. À demain pour le suivant.",
+  "en": "Today counts. See you tomorrow for the next one.",
+  "fr": "Aujourd’hui compte. À demain pour la suite.",
   "c": "ui"
  },
  {
@@ -1167,6 +1162,451 @@
  {
   "en": "Text size",
   "fr": "Taille du texte",
+  "c": "ui"
+ },
+ {
+  "en": "{n} days in a row",
+  "fr": "{n} jours d’affilée",
+  "c": "ui"
+ },
+ {
+  "en": "{n} day in a row",
+  "fr": "{n} jour d’affilée",
+  "c": "ui"
+ },
+ {
+  "en": "Finish your first lesson to start your run.",
+  "fr": "Termine ta première leçon pour lancer ta série.",
+  "c": "ui"
+ },
+ {
+  "en": "Ad",
+  "fr": "Pub",
+  "c": "ui"
+ },
+ {
+  "en": "Ads keep Wakha free and help pay for its development. Thank you!",
+  "fr": "Les pubs gardent Wakha gratuit et aident à financer son développement. Merci !",
+  "c": "ui"
+ },
+ {
+  "en": "Watch to the end to get your reward. Ads help pay for Wakha’s development.",
+  "fr": "Regarde jusqu’au bout pour ta récompense. Les pubs aident à financer Wakha.",
+  "c": "ui"
+ },
+ {
+  "en": "You can close the ad soon",
+  "fr": "Tu pourras fermer la pub dans un instant",
+  "c": "ui"
+ },
+ {
+  "en": "Close ad",
+  "fr": "Fermer la pub",
+  "c": "ui"
+ },
+ {
+  "en": "Get my reward",
+  "fr": "Récupérer ma récompense",
+  "c": "ui"
+ },
+ {
+  "en": "Your ad here",
+  "fr": "Votre pub ici",
+  "c": "ui"
+ },
+ {
+  "en": "A sponsor’s ad will show here in the real app.",
+  "fr": "La pub d’un partenaire s’affichera ici dans la vraie app.",
+  "c": "ui"
+ },
+ {
+  "en": "Learn without ads",
+  "fr": "Apprends sans pubs",
+  "c": "ui"
+ },
+ {
+  "en": "Wakha Plus: every city in any order, unlimited cups of tea, no ads.",
+  "fr": "Wakha Plus : toutes les villes dans l’ordre que tu veux, thé illimité, zéro pub.",
+  "c": "ui"
+ },
+ {
+  "en": "See plans",
+  "fr": "Voir les offres",
+  "c": "ui"
+ },
+ {
+  "en": "Remove ads",
+  "fr": "Retirer les pubs",
+  "c": "ui"
+ },
+ {
+  "en": "Your cups of tea",
+  "fr": "Tes verres de thé",
+  "c": "ui"
+ },
+ {
+  "en": "You have {n} of 3. A wrong answer empties one. They fill up again every morning.",
+  "fr": "Tu en as {n} sur 3. Une erreur en vide un. Ils se remplissent chaque matin.",
+  "c": "ui"
+ },
+ {
+  "en": "Out of tea",
+  "fr": "Plus de thé",
+  "c": "ui"
+ },
+ {
+  "en": "Your cups are empty. Watch a short ad to pour one, or come back tomorrow when they refill.",
+  "fr": "Tes verres sont vides. Regarde une courte pub pour en remplir un, ou reviens demain.",
+  "c": "ui"
+ },
+ {
+  "en": "Watch an ad: +1 cup",
+  "fr": "Regarder une pub : +1 verre",
+  "c": "ui"
+ },
+ {
+  "en": "Unlimited tea with Plus",
+  "fr": "Thé illimité avec Plus",
+  "c": "ui"
+ },
+ {
+  "en": "One cup poured. Bssa7tek!",
+  "fr": "Un verre servi. Bssa7tek !",
+  "c": "ui"
+ },
+ {
+  "en": "Plus: unlimited cups of tea",
+  "fr": "Plus : thé illimité",
+  "c": "ui"
+ },
+ {
+  "en": "{n} of {b} cups of tea left",
+  "fr": "{n} verres de thé sur {b}",
+  "c": "ui"
+ },
+ {
+  "en": "Part of Wakha Plus.",
+  "fr": "Fait partie de Wakha Plus.",
+  "c": "ui"
+ },
+ {
+  "en": "The free version covers the first {n} cities. Plus opens all of Morocco, in any order.",
+  "fr": "La version gratuite couvre les {n} premières villes. Plus ouvre tout le Maroc, dans l’ordre que tu veux.",
+  "c": "ui"
+ },
+ {
+  "en": "{c} is open. Yallah!",
+  "fr": "{c} est ouverte. Yallah !",
+  "c": "ui"
+ },
+ {
+  "en": "Open {c} with a short ad",
+  "fr": "Ouvrir {c} avec une courte pub",
+  "c": "ui"
+ },
+ {
+  "en": "Open with an ad",
+  "fr": "Ouvrir avec une pub",
+  "c": "ui"
+ },
+ {
+  "en": "Continue to {c} with Plus",
+  "fr": "Continuer vers {c} avec Plus",
+  "c": "ui"
+ },
+ {
+  "en": "Free: the first {n} cities. Every city with Wakha Plus.",
+  "fr": "Gratuit : les {n} premières villes. Toutes les villes avec Wakha Plus.",
+  "c": "ui"
+ },
+ {
+  "en": "Your plan",
+  "fr": "Ton offre",
+  "c": "ui"
+ },
+ {
+  "en": "Free, with ads",
+  "fr": "Gratuit, avec pubs",
+  "c": "ui"
+ },
+ {
+  "en": "Manage",
+  "fr": "Gérer",
+  "c": "ui"
+ },
+ {
+  "en": "Monthly",
+  "fr": "Mensuel",
+  "c": "ui"
+ },
+ {
+  "en": "Yearly",
+  "fr": "Annuel",
+  "c": "ui"
+ },
+ {
+  "en": "Keep my plan",
+  "fr": "Garder mon offre",
+  "c": "ui"
+ },
+ {
+  "en": "Plus trial: {n} days left",
+  "fr": "Essai Plus : encore {n} jours",
+  "c": "ui"
+ },
+ {
+  "en": "Your free trial has ended",
+  "fr": "Ton essai gratuit est terminé",
+  "c": "ui"
+ },
+ {
+  "en": "All {n} cities, and start from any of them",
+  "fr": "Les {n} villes, et commence par celle que tu veux",
+  "c": "ui"
+ },
+ {
+  "en": "A placement test that tells you where to start",
+  "fr": "Un test de niveau qui te dit par où commencer",
+  "c": "ui"
+ },
+ {
+  "en": "Unlimited cups of tea: mistakes never stop you",
+  "fr": "Thé illimité : les erreurs ne t’arrêtent jamais",
+  "c": "ui"
+ },
+ {
+  "en": "No ads, ever",
+  "fr": "Aucune pub",
+  "c": "ui"
+ },
+ {
+  "en": "The feed without a daily limit",
+  "fr": "Le fil sans limite quotidienne",
+  "c": "ui"
+ },
+ {
+  "en": "Your full Today page: words, goal, reviews, sprint and word of the day",
+  "fr": "Ta page Aujourd’hui complète : mots, objectif, révisions, sprint et mot du jour",
+  "c": "ui"
+ },
+ {
+  "en": "Save {n}%",
+  "fr": "-{n} %",
+  "c": "ui"
+ },
+ {
+  "en": "year",
+  "fr": "an",
+  "c": "ui"
+ },
+ {
+  "en": "month",
+  "fr": "mois",
+  "c": "ui"
+ },
+ {
+  "en": "{p} a month",
+  "fr": "{p} par mois",
+  "c": "ui"
+ },
+ {
+  "en": "Cancel any time",
+  "fr": "Résiliable à tout moment",
+  "c": "ui"
+ },
+ {
+  "en": "Prototype: no payment is taken. In the app store version you’re charged after confirming, and you can cancel any time.",
+  "fr": "Prototype : aucun paiement n’est pris. Dans la version store, tu es débité après confirmation et tu peux résilier à tout moment.",
+  "c": "ui"
+ },
+ {
+  "en": "Restore purchase",
+  "fr": "Restaurer l’achat",
+  "c": "ui"
+ },
+ {
+  "en": "Prototype: Plus is on, no payment taken",
+  "fr": "Prototype : Plus est activé, aucun paiement",
+  "c": "ui"
+ },
+ {
+  "en": "Prototype: nothing to restore",
+  "fr": "Prototype : rien à restaurer",
+  "c": "ui"
+ },
+ {
+  "en": "Placement test",
+  "fr": "Test de niveau",
+  "c": "ui"
+ },
+ {
+  "en": "What do you want to talk about first?",
+  "fr": "De quoi veux-tu parler en premier ?",
+  "c": "ui"
+ },
+ {
+  "en": "Pick any. Then 10 quick words to see what you already know.",
+  "fr": "Choisis ce que tu veux. Puis 10 mots rapides pour voir ce que tu sais déjà.",
+  "c": "ui"
+ },
+ {
+  "en": "Start the test",
+  "fr": "Commencer le test",
+  "c": "ui"
+ },
+ {
+  "en": "I don’t know this one",
+  "fr": "Je ne connais pas",
+  "c": "ui"
+ },
+ {
+  "en": "You knew {n} of {b}",
+  "fr": "Tu en connaissais {n} sur {b}",
+  "c": "ui"
+ },
+ {
+  "en": "Matches what you already know",
+  "fr": "Correspond à ce que tu sais déjà",
+  "c": "ui"
+ },
+ {
+  "en": "For {t}",
+  "fr": "Pour {t}",
+  "c": "ui"
+ },
+ {
+  "en": "You can open any city from the Journey at any time.",
+  "fr": "Tu peux ouvrir n’importe quelle ville depuis le Voyage, à tout moment.",
+  "c": "ui"
+ },
+ {
+  "en": "{c} it is. Yallah!",
+  "fr": "Va pour {c}. Yallah !",
+  "c": "ui"
+ },
+ {
+  "en": "Not sure where to start?",
+  "fr": "Tu ne sais pas par où commencer ?",
+  "c": "ui"
+ },
+ {
+  "en": "Take the 2-minute test, or open any city below.",
+  "fr": "Fais le test de 2 minutes, ou ouvre une ville ci-dessous.",
+  "c": "ui"
+ },
+ {
+  "en": "A 2-minute test picks your cities. Part of Plus.",
+  "fr": "Un test de 2 minutes choisit tes villes. Inclus dans Plus.",
+  "c": "ui"
+ },
+ {
+  "en": "That’s your 5 minutes for today",
+  "fr": "Tes 5 minutes du jour sont finies",
+  "c": "ui"
+ },
+ {
+  "en": "The free feed comes back tomorrow. Keep going in the Journey, or get unlimited feed with Plus.",
+  "fr": "Le fil gratuit revient demain. Continue le Voyage, ou passe au fil illimité avec Plus.",
+  "c": "ui"
+ },
+ {
+  "en": "Unlimited feed with Plus",
+  "fr": "Fil illimité avec Plus",
+  "c": "ui"
+ },
+ {
+  "en": "Back to the Journey",
+  "fr": "Retour au Voyage",
+  "c": "ui"
+ },
+ {
+  "en": "1 minute of feed left today",
+  "fr": "Encore 1 minute de fil aujourd’hui",
+  "c": "ui"
+ },
+ {
+  "en": "Everything Wakha has, without limits",
+  "fr": "Tout Wakha, sans limites",
+  "c": "ui"
+ },
+ {
+  "en": "All {n} cities, start where you want",
+  "fr": "Les {n} villes, commence où tu veux",
+  "c": "ui"
+ },
+ {
+  "en": "No ads and unlimited cups of tea",
+  "fr": "Zéro pub et thé illimité",
+  "c": "ui"
+ },
+ {
+  "en": "Your full progress: words, goal, reviews",
+  "fr": "Toute ta progression : mots, objectif, révisions",
+  "c": "ui"
+ },
+ {
+  "en": "Get Plus from {p} a month",
+  "fr": "Plus dès {p} par mois",
+  "c": "ui"
+ },
+ {
+  "en": "Developer",
+  "fr": "Développeur",
+  "c": "ui"
+ },
+ {
+  "en": "Only while building the app. Switch the plan to test both versions.",
+  "fr": "Seulement pendant le développement. Change d’offre pour tester les deux versions.",
+  "c": "ui"
+ },
+ {
+  "en": "Plan",
+  "fr": "Offre",
+  "c": "ui"
+ },
+ {
+  "en": "Real",
+  "fr": "Réelle",
+  "c": "ui"
+ },
+ {
+  "en": "Free",
+  "fr": "Gratuit",
+  "c": "ui"
+ },
+ {
+  "en": "Short ads (2 s)",
+  "fr": "Pubs courtes (2 s)",
+  "c": "ui"
+ },
+ {
+  "en": "Tools",
+  "fr": "Outils",
+  "c": "ui"
+ },
+ {
+  "en": "Refill cups",
+  "fr": "Remplir les verres",
+  "c": "ui"
+ },
+ {
+  "en": "Restart trial",
+  "fr": "Relancer l’essai",
+  "c": "ui"
+ },
+ {
+  "en": "End trial",
+  "fr": "Finir l’essai",
+  "c": "ui"
+ },
+ {
+  "en": "Cancel Plus",
+  "fr": "Annuler Plus",
+  "c": "ui"
+ },
+ {
+  "en": "Plan: {t}",
+  "fr": "Offre : {t}",
   "c": "ui"
  },
  {
@@ -1262,16 +1702,6 @@
  {
   "en": "Start lesson",
   "fr": "Commencer la leçon",
-  "c": "ui"
- },
- {
-  "en": "Today’s glass is still empty. This lesson fills it.",
-  "fr": "Le verre du jour est encore vide. Cette leçon le remplit.",
-  "c": "ui"
- },
- {
-  "en": "Your first lesson pours your first glass.",
-  "fr": "Ta première leçon sert ton premier verre.",
   "c": "ui"
  },
  {

@@ -91,19 +91,24 @@ function renderToday() {
   const dateLabel = new Date().toLocaleDateString(locale(), { weekday:"long", day:"numeric", month:"long" });
   const line = rec.goalMet ? t("goalMetLine") : rec.day ? t("dayDoneLine") : !shownStreak() ? t("streakStart") : t("streakKeep");
   const words = n && n.words && n.words.length ? n.words.slice(0, 3) : [];
+  const gate = n ? cityGate(ui) : null, plus = isPlus();
+  const goBtn = !n ? "" : gate === "ad" ? `<button class="cta block td-go" data-act="adopen" data-city="${ui}">${ICON.speak ? "" : ""}${esc(t("openWithAd", { c:cityName(c) }))}</button><p class="ad-note">${esc(t("adNote"))}</p>`
+    : gate === "plus" ? `<button class="cta block td-go" data-act="plus">${esc(t("plusContinue", { c:cityName(c) }))}</button>`
+    : `<button class="cta block td-go" data-start="${cur}">${esc(t("startLesson"))} <span>· ${esc(t("minN", { n:STOP_MIN[n.kind] || 4 }))}</span></button>`;
   const lead = n ? `<section class="td-lead cv${ui}"><span class="td-badge">${cityBadge(ui)}</span>
       <div class="where"><span>${esc(t("stopOf", { c:cityName(c), a:k, b:states.length }))}</span><span class="ar" lang="ar">${esc(c.ar)}</span></div>
       <h3>${esc(n.kind === "lesson" ? L([UNITS[ui].en, UNITS[ui].fr]) : nodeLabel(n))}</h3>
       <p class="sc">${esc(L(LESSON_SCENES[n.id] || c.scene))}</p>
       ${words.length ? `<div class="wordrow">${words.map((id) => `<div class="wchip"><b lang="ary-Latn">${esc(W[id].d)}</b><span lang="ary">${esc(W[id].ar)}</span></div>`).join("")}</div>` : ""}
       <div class="td-cat catline" data-act="cat" role="button" aria-label="${esc(t("catName"))}">${mascot("happy", Session.catHi ? "" : "hi")}<p><b>${esc(t("catName"))}</b> · ${esc(line)}</p></div>
-      <button class="cta block td-go" data-start="${cur}">${esc(t("startLesson"))} <span>· ${esc(t("minN", { n:STOP_MIN[n.kind] || 4 }))}</span></button>
+      ${goBtn}
     </section>` : `<section class="td-lead"><h3>${esc(t("allDoneT"))}</h3></section>`;
   el.innerHTML = `<div class="today scroll-pad">
     <div class="td-greet"><h1>${dj(greeting())}</h1><span class="ar" lang="ar">${esc(GREET_AR[greeting()] || "")}</span></div>
     <p class="td-date">${esc(dateLabel)}</p>
+    ${onTrial() ? `<button class="trial-pill" data-act="plus">${runStar()}<span>${esc(t("trialLeft", { n:trialDaysLeft() }))}</span><b>${esc(t("seePlans"))}</b></button>` : ""}
     ${lead}
-    <div class="td-tiles">
+    ${plus ? `    <div class="td-tiles">
       <button class="td-tile" data-act="kenz"><span class="l">${esc(t("words"))}</span><span class="v">${learned}<small>/ ${total}</small></span><span class="bar"><i style="transform:scaleX(${(learned / total).toFixed(3)})"></i></span></button>
       <button class="td-tile" data-daily="sprint"${sprintOpen ? "" : ` aria-disabled="true"`}><span class="l">${esc(t("goalT"))}</span><span class="v">${Math.min(rec.xp, 999)}<small>/ ${S.goal} XP</small></span><span class="bar"><i style="transform:scaleX(${Math.min(1, rec.xp / S.goal).toFixed(3)})"></i></span><span class="s">${esc(!sprintOpen ? t("sprintLock") : dr.sprint != null ? t("sprintBest", { n:dr.sprint }) : t("sprint"))}</span></button>
       <button class="td-tile" data-act="practice"${learned ? "" : ` aria-disabled="true"`}><span class="l">${esc(t("dueT"))}</span><span class="v">${due}<small>${esc(t("wordsL"))}</small></span></button>
@@ -121,6 +126,7 @@ function renderToday() {
       <span class="dots">${CITIES.map((x, i) => `<i class="${i < curUnit ? "done" : i === curUnit ? "now cv" + i : ""}"></i>`).join("")}</span>
       <span class="dotnames"><span>${esc(cityName(CITIES[0]))}</span><b>${esc(cityName(cityOf(Math.min(curUnit, UNITS.length - 1))))}</b><span>${esc(cityName(CITIES[CITIES.length - 1]))}</span></span>
     </button>
+` : plusCardHTML()}
   </div>`;
   Session.catHi = true;
 }
@@ -144,17 +150,22 @@ function rowHTML(n, idx, st) {
 function renderJourney() {
   const el = $("#v-journey");
   const cur = currentNode(), curUnit = PATH[cur] ? PATH[cur].unit : UNITS.length - 1;
-  if (Session.jrOpen == null || Session.jrOpen > curUnit) Session.jrOpen = curUnit;
+  const plus = isPlus();
+  if (Session.jrOpen == null || (!plus && Session.jrOpen > curUnit)) Session.jrOpen = curUnit;
   const stopsAll = PATH.length, stopsDone = PATH.filter((p) => S.lessons[p.id]).length;
   const rows = UNITS.map((u, ui) => {
     const c = cityOf(ui), nodes = PATH.map((n, idx) => ({ n, idx })).filter((x) => x.n.unit === ui);
     const states = nodes.map((x) => nodeState(x.idx)), done = states.filter((x) => x === "done").length;
-    const locked = states.every((x) => x === "locked") && ui > curUnit, open = ui === Session.jrOpen && !locked;
-    const head = `<button class="crow${locked ? " locked" : ""}${open ? " open" : ""}" data-city="${ui}" aria-expanded="${open}"><span class="sw">${cityBadge(ui)}</span><span class="nm"><b>${esc(cityName(c))}</b><span class="ar" lang="ar">${esc(c.ar)}</span></span><span class="c${done === states.length ? " full" : ""}">${esc(t("aOfB", { a:done, b:states.length }))}</span></button>`;
+    const gate = cityGate(ui), reached = cityReached(ui) || states.some((x) => x !== "locked");
+    const locked = !plus && (gate === "plus" || (states.every((x) => x === "locked") && ui > curUnit && !(gate === "ad" && reached)));
+    const open = ui === Session.jrOpen && !locked && gate !== "ad";
+    const right = gate === "plus" ? `<span class="pill-plus">Plus</span>` : gate === "ad" && reached ? `<span class="pill-ad">${esc(t("openAdShort"))}</span>` : `<span class="c${done === states.length ? " full" : ""}">${esc(t("aOfB", { a:done, b:states.length }))}</span>`;
+    const head = `<button class="crow${locked ? " locked" : ""}${gate === "plus" ? " plus-locked" : ""}${open ? " open" : ""}" data-city="${ui}" data-gate="${gate || ""}" data-reached="${reached ? 1 : 0}" aria-expanded="${open}"><span class="sw">${cityBadge(ui)}</span><span class="nm"><b>${esc(cityName(c))}</b><span class="ar" lang="ar">${esc(c.ar)}</span></span>${right}</button>`;
     if (!open) return head;
     return `<div class="copen cv${ui}">${head}<p class="cscene">${esc(L(c.scene))}</p><div class="stops">${nodes.map(({ n, idx }, k) => rowHTML(n, idx, states[k])).join("")}</div></div>`;
   }).join("");
-  el.innerHTML = `<div class="journey scroll-pad"><h1 class="jt">${esc(t("journey"))}</h1><p class="jsub">${esc(tn("stopsWords", { a:stopsDone, b:stopsAll, c:learnedIds().length, d:CORE.length + COLL.length }, stopsDone))}</p><div class="cities">${rows}</div></div>`;
+  const test = `<button class="pl-card" data-act="placement">${runStar()}<span><b>${esc(t("plCardT"))}</b><small>${esc(plus ? t("plCardS") : t("plCardFree"))}</small></span>${plus ? "" : `<span class="pill-plus">Plus</span>`}</button>`;
+  el.innerHTML = `<div class="journey scroll-pad"><h1 class="jt">${esc(t("journey"))}</h1><p class="jsub">${esc(tn("stopsWords", { a:stopsDone, b:stopsAll, c:learnedIds().length, d:CORE.length + COLL.length }, stopsDone))}</p>${test}<div class="cities">${rows}</div>${plus ? "" : `<p class="jr-free">${esc(t("freeCitiesNote", { n:FREE_CITIES }))}</p>`}</div>`;
 }
 function renderLearn(justDone) {
   if (view === "today" || !$("#v-today").hidden) renderToday();
@@ -168,6 +179,7 @@ function bindHome() {
     if (e.target.closest("[data-act=kenz]")) { Sound.play("tap"); setView("me"); return; }
     if (e.target.closest("[data-act=journey]")) { Sound.play("tap"); setView("journey"); return; }
     const cb = e.target.closest("[data-act=cat]"); if (cb) { catTalk(cb); return; }
+    const ao = e.target.closest("[data-act=adopen]"); if (ao) { openCityWithAd(+ao.dataset.city); return; }
     if (e.target.closest("[data-act=practice]")) { if (learnedIds().length) startPractice(); return; }
     const d = e.target.closest("[data-daily]");
     if (d) {
@@ -181,11 +193,14 @@ function bindHome() {
     const ch = e.target.closest("[data-city]");
     if (ch) {
       const ui = +ch.dataset.city; Sound.play("tap");
+      if (ch.dataset.gate === "plus") { plusCitySheet(ui); return; }
+      if (ch.dataset.gate === "ad") { if (ch.dataset.reached === "1") openCityWithAd(ui); else openCitySheet(ui); return; }
       if (ch.classList.contains("locked")) { openCitySheet(ui); return; }
       Session.jrOpen = Session.jrOpen === ui ? -1 : ui; renderJourney();
       const o = $("#v-journey .copen"); if (o && !reduced) o.animate([{ opacity:0, transform:"translateY(-6px)" }, { opacity:1, transform:"none" }], { duration:220, easing:EASE_OUT });
       return;
     }
+    if (e.target.closest("[data-act=placement]")) { Sound.play("tap"); openPlacement(); return; }
     const r = e.target.closest("[data-node]");
     if (r) {
       const idx = +r.dataset.node;
@@ -441,6 +456,4 @@ const Med3D = {
   },
 };
 
-/* boot */
-const hot = window.claude && window.claude.hot;
-if (hot && typeof hot.ready === "function") hot.ready(start); else start((hot && hot.data) || {});
+

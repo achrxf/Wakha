@@ -305,7 +305,7 @@ function installPatterns() {
 const cityOf = (ui) => CITIES[Math.max(0, Math.min(CITIES.length - 1, ui))];
 const cityName = (c) => X(c.en, c.fr);
 // the medallion for one unit, reflecting the real state of each of its lessons
-function unitStates(ui) { const cur = currentNode(); return PATH.map((n, idx) => ({ n, idx })).filter((x) => x.n.unit === ui).map((x) => S.lessons[x.n.id] ? "done" : x.idx === cur ? "current" : "locked"); }
+function unitStates(ui) { return PATH.map((n, idx) => ({ n, idx })).filter((x) => x.n.unit === ui).map((x) => nodeState(x.idx)); }
 function medallion(ui, states, cls = "") { const c = cityOf(ui); return Zel.svg(c.g, states, { seed:ui * 31 + 5, field:c.field, cls:(states.some((x) => x === "done") ? "any " : "") + cls }); }
 function panelHTML(ui, states, attrs = "") { return `<div class="panel cv${ui}" ${attrs}><span class="inner"></span><div class="zwrap">${medallion(ui, states)}</div></div>`; }
 // a small eight-point glazed star used where the old emoji medals were
