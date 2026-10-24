@@ -1396,7 +1396,17 @@
   "So, I shouldn’t swim?": "O sea, ¿no me baño?",
   "Maybe tomorrow. Look at the wave, it’s huge!": "Quizás mañana. ¡Mira la ola, es enorme!",
   "OK, I get it. Shall we go eat fish?": "Vale, lo pillo. ¿Vamos a comer pescado?",
-  "Let’s go! Like always.": "¡Vamos! Como siempre."
+  "Let’s go! Like always.": "¡Vamos! Como siempre.",
+  "The sprint opens after 8 words": "El sprint se abre tras 8 palabras",
+  "{n} day of atay in a row": "{n} día de atay seguido",
+  "Today’s glass is full. See you tomorrow for the next one.": "El vaso de hoy está lleno. Hasta mañana para el siguiente.",
+  "{c} is still ahead": "{c} llegará más adelante",
+  "Finish {p} to get here.": "Termina {p} para llegar aquí.",
+  "Coming with Wakha Plus: jump to any city whenever you like.": "Muy pronto con Wakha Plus: salta a cualquier ciudad cuando quieras.",
+  "No sound? Show text": "¿Sin sonido? Mostrar texto",
+  "Text size": "Tamaño del texto",
+  "my grandma": "mi abuela",
+  "My grandma makes the best tajine.": "Mi abuela hace el mejor tajín."
  },
  "de": {
   "Feed": "Feed",
@@ -2795,7 +2805,17 @@
   "So, I shouldn’t swim?": "Also soll ich nicht schwimmen?",
   "Maybe tomorrow. Look at the wave, it’s huge!": "Vielleicht morgen. Schau die Welle, riesig!",
   "OK, I get it. Shall we go eat fish?": "Okay, verstanden. Gehen wir Fisch essen?",
-  "Let’s go! Like always.": "Los! Wie immer."
+  "Let’s go! Like always.": "Los! Wie immer.",
+  "The sprint opens after 8 words": "Der Sprint öffnet nach 8 Wörtern",
+  "{n} day of atay in a row": "{n} Tag Atay in Folge",
+  "Today’s glass is full. See you tomorrow for the next one.": "Das heutige Glas ist voll. Bis morgen zum nächsten.",
+  "{c} is still ahead": "{c} kommt später",
+  "Finish {p} to get here.": "Schließ {p} ab, um hierher zu kommen.",
+  "Coming with Wakha Plus: jump to any city whenever you like.": "Bald mit Wakha Plus: spring in jede Stadt, wann du willst.",
+  "No sound? Show text": "Kein Ton? Text zeigen",
+  "Text size": "Textgröße",
+  "my grandma": "meine Oma",
+  "My grandma makes the best tajine.": "Meine Oma macht die beste Tajine."
  },
  "nl": {
   "Feed": "Feed",
@@ -4194,7 +4214,17 @@
   "So, I shouldn’t swim?": "Dus ik ga niet zwemmen?",
   "Maybe tomorrow. Look at the wave, it’s huge!": "Misschien morgen. Kijk die golf, enorm!",
   "OK, I get it. Shall we go eat fish?": "Oké, ik snap het. Zullen we vis gaan eten?",
-  "Let’s go! Like always.": "Kom op! Zoals altijd."
+  "Let’s go! Like always.": "Kom op! Zoals altijd.",
+  "The sprint opens after 8 words": "De sprint opent na 8 woorden",
+  "{n} day of atay in a row": "{n} dag atay op rij",
+  "Today’s glass is full. See you tomorrow for the next one.": "Het glas van vandaag is vol. Tot morgen voor het volgende.",
+  "{c} is still ahead": "{c} komt later",
+  "Finish {p} to get here.": "Rond {p} af om hier te komen.",
+  "Coming with Wakha Plus: jump to any city whenever you like.": "Binnenkort met Wakha Plus: spring naar elke stad wanneer je wilt.",
+  "No sound? Show text": "Geen geluid? Tekst tonen",
+  "Text size": "Tekstgrootte",
+  "my grandma": "mijn oma",
+  "My grandma makes the best tajine.": "Mijn oma maakt de lekkerste tajine."
  },
  "it": {
   "Feed": "Feed",
@@ -5593,6 +5623,16 @@
   "So, I shouldn’t swim?": "Quindi, non nuoto?",
   "Maybe tomorrow. Look at the wave, it’s huge!": "Forse domani. Guarda l’onda, è enorme!",
   "OK, I get it. Shall we go eat fish?": "Ok, ho capito. Andiamo a mangiare pesce?",
-  "Let’s go! Like always.": "Andiamo! Come sempre."
+  "Let’s go! Like always.": "Andiamo! Come sempre.",
+  "The sprint opens after 8 words": "Lo sprint si apre dopo 8 parole",
+  "{n} day of atay in a row": "{n} giorno di atay di fila",
+  "Today’s glass is full. See you tomorrow for the next one.": "Il bicchiere di oggi è pieno. A domani per il prossimo.",
+  "{c} is still ahead": "{c} arriva più avanti",
+  "Finish {p} to get here.": "Finisci {p} per arrivare qui.",
+  "Coming with Wakha Plus: jump to any city whenever you like.": "Presto con Wakha Plus: salta in qualsiasi città quando vuoi.",
+  "No sound? Show text": "Niente audio? Mostra il testo",
+  "Text size": "Dimensione del testo",
+  "my grandma": "mia nonna",
+  "My grandma makes the best tajine.": "Mia nonna fa il tajine più buono."
  }
 }

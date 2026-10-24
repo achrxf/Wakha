@@ -6,7 +6,18 @@ ICON.journey = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
 ICON.mark = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--accent)"/><path d="M6.5 9.5l2.3 6 3.2-6.8 3.2 6.8 2.3-6" fill="none" stroke="var(--bg)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 ICON.play = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.6-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg>`;
 
-function applyTheme() { const th = S.theme || "auto"; if (th === "auto") delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = th; }
+function openCitySheet(ui) {
+  const c = cityOf(ui), prev = cityOf(ui - 1), sh = $("#nsheet");
+  sh.className = `nsheet cv${ui}`;
+  sh.innerHTML = `<div class="cs-top"><span class="cs-badge">${cityBadge(ui)}</span><div><small>${esc(c.ar)}</small><h3>${esc(t("cityAheadT", { c:cityName(c) }))}</h3></div></div>
+    <p>${esc(L(c.scene))}</p><p><b>${esc(t("cityAheadS", { p:cityName(prev) }))}</b></p><p class="plus-note">${esc(t("plusNote"))}</p>
+    <button class="ghost block sh-ok" data-act="sheet-close">${esc(t("gotIt"))}</button>`;
+  $("[data-act=sheet-close]", sh).addEventListener("click", closeNodeSheet);
+  clearTimeout(Session.sheetT); sh.style.transform = ""; $("#sheet-scrim").classList.remove("leaving");
+  sh.hidden = false; $("#sheet-scrim").hidden = false;
+}
+function applyTextSize() { const v = S.textSize || 0; if (v) document.documentElement.dataset.ts = v; else delete document.documentElement.dataset.ts; }
+function applyTheme() { applyTextSize(); const th = S.theme || "auto"; if (th === "auto") delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = th; }
 // language picker (a native select: the phone shows its own picker)
 function langSelect(id) { return `<label class="lang-pick"><span class="sr">${esc(t("lang"))}</span><select class="lang-select" id="${id}" aria-label="${esc(t("lang"))}">${LANGS.map(([k, n]) => `<option value="${k}"${S.lang === k ? " selected" : ""}>${n}</option>`).join("")}</select>${ICON.down || ""}</label>`; }
 function setLang(k) {
@@ -78,7 +89,7 @@ function renderToday() {
   const storiesAll = PATH.filter((p) => p.kind === "story").length, storiesDone = PATH.filter((p) => p.kind === "story" && S.lessons[p.id]).length;
   const stopsDone = PATH.filter((p) => S.lessons[p.id]).length, curUnit = n ? n.unit : UNITS.length;
   const dateLabel = new Date().toLocaleDateString(locale(), { weekday:"long", day:"numeric", month:"long" });
-  const line = !shownStreak() ? t("streakStart") : rec.goalMet ? t("goalMetLine") : t("streakKeep");
+  const line = rec.goalMet ? t("goalMetLine") : rec.day ? t("dayDoneLine") : !shownStreak() ? t("streakStart") : t("streakKeep");
   const words = n && n.words && n.words.length ? n.words.slice(0, 3) : [];
   const lead = n ? `<section class="td-lead cv${ui}"><span class="td-badge">${cityBadge(ui)}</span>
       <div class="where"><span>${esc(t("stopOf", { c:cityName(c), a:k, b:states.length }))}</span><span class="ar" lang="ar">${esc(c.ar)}</span></div>
@@ -106,7 +117,7 @@ function renderToday() {
       <button class="ghost td-wotd${dr.wotd ? " is-done" : ""}" data-daily="wotd">${dr.wotd ? ICON.check : ""}${esc(dr.wotd ? t("doneL") : t("learnIt"))}</button>
     </section>
     <button class="route" data-act="journey">
-      <span class="hd">${esc(t("tripT"))}<span>${esc(t("stopsN", { a:stopsDone, b:PATH.length }))}</span></span>
+      <span class="hd">${esc(t("tripT"))}<span>${esc(tn("stopsN", { a:stopsDone, b:PATH.length }, stopsDone))}</span></span>
       <span class="dots">${CITIES.map((x, i) => `<i class="${i < curUnit ? "done" : i === curUnit ? "now cv" + i : ""}"></i>`).join("")}</span>
       <span class="dotnames"><span>${esc(cityName(CITIES[0]))}</span><b>${esc(cityName(cityOf(Math.min(curUnit, UNITS.length - 1))))}</b><span>${esc(cityName(CITIES[CITIES.length - 1]))}</span></span>
     </button>
@@ -143,7 +154,7 @@ function renderJourney() {
     if (!open) return head;
     return `<div class="copen cv${ui}">${head}<p class="cscene">${esc(L(c.scene))}</p><div class="stops">${nodes.map(({ n, idx }, k) => rowHTML(n, idx, states[k])).join("")}</div></div>`;
   }).join("");
-  el.innerHTML = `<div class="journey scroll-pad"><h1 class="jt">${esc(t("journey"))}</h1><p class="jsub">${esc(t("stopsWords", { a:stopsDone, b:stopsAll, c:learnedIds().length, d:CORE.length + COLL.length }))}</p><div class="cities">${rows}</div></div>`;
+  el.innerHTML = `<div class="journey scroll-pad"><h1 class="jt">${esc(t("journey"))}</h1><p class="jsub">${esc(tn("stopsWords", { a:stopsDone, b:stopsAll, c:learnedIds().length, d:CORE.length + COLL.length }, stopsDone))}</p><div class="cities">${rows}</div></div>`;
 }
 function renderLearn(justDone) {
   if (view === "today" || !$("#v-today").hidden) renderToday();
@@ -170,7 +181,7 @@ function bindHome() {
     const ch = e.target.closest("[data-city]");
     if (ch) {
       const ui = +ch.dataset.city; Sound.play("tap");
-      if (ch.classList.contains("locked")) { toast(t("cityLocked", { c:cityName(cityOf(ui - 1)) }), ICON.lock); return; }
+      if (ch.classList.contains("locked")) { openCitySheet(ui); return; }
       Session.jrOpen = Session.jrOpen === ui ? -1 : ui; renderJourney();
       const o = $("#v-journey .copen"); if (o && !reduced) o.animate([{ opacity:0, transform:"translateY(-6px)" }, { opacity:1, transform:"none" }], { duration:220, easing:EASE_OUT });
       return;

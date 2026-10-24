@@ -130,11 +130,11 @@ const LESSON_SCENES = {
 // tile names map to card palettes in CSS
 // v1.6: two more lessons in every city (six words each city)
 // Tangier: greetings
-w("ahlan","Ahlan","أهلا","hi there","coucou","hello",{ex:["Ahlan sa7bi, labas?","Hi there, my friend, how are you?","Coucou mon ami, ça va ?"]});
+w("ahlan","Ahlan","أهلا","hi there","coucou","hello",{grp:"hi",ex:["Ahlan sa7bi, labas?","Hi there, my friend, how are you?","Coucou mon ami, ça va ?"]});
 w("wnta","W nta?","ونتا؟","and you? (to a man)","et toi ? (à un homme)","hello",{ex:["Bikhir, l7amdoulillah. W nta?","Fine, thank God. And you?","Bien, grâce à Dieu. Et toi ?"],note:["Ask a woman “W nti?”. Darija marks who you are talking to.","À une femme, on dit « W nti? ». Le darija marque à qui l’on parle."]});
 w("wnti","W nti?","ونتي؟","and you? (to a woman)","et toi ? (à une femme)","hello",{ex:["Ana hani. W nti?","I’m good. And you?","Je vais bien. Et toi ?"]});
 w("kifdayra","Kif dayra?","كيف دايرة؟","how are you? (to a woman)","comment tu vas ? (à une femme)","hello",{ex:["Salam Salma, kif dayra?","Hi Salma, how are you?","Salut Salma, comment tu vas ?"]});
-w("hani","Hani","هاني","I’m good / I’m fine","je vais bien","hello",{ex:["Ana hani, l7amdoulillah.","I’m good, thank God.","Je vais bien, grâce à Dieu."]});
+w("hani","Hani","هاني","I’m good / I’m fine","je vais bien","hello",{grp:"good",ex:["Ana hani, l7amdoulillah.","I’m good, thank God.","Je vais bien, grâce à Dieu."]});
 w("twe7chtek","Twe7chtek","توحشتك","I missed you","tu m’as manqué","hello",{ex:["Twe7chtek bzzaf, sa7bi!","I missed you so much, my friend!","Tu m’as beaucoup manqué, mon ami !"]});
 // Chefchaouen: manners
 w("allahy7fdek","Allah y7fdek","الله يحفظك","God keep you (a warm thanks)","que Dieu te garde (un merci chaleureux)","polite",{ex:["Choukran bzzaf, Allah y7fdek.","Thanks a lot, God keep you.","Merci beaucoup, que Dieu te garde."]});
@@ -223,7 +223,7 @@ w("tnach","Tnach","طناش","twelve","douze","num",{ex:["Tnach d lbid, 3afak.",
 w("khmstach","Khmstach","خمسطاش","fifteen","quinze","num",{ex:["Khmstach dirham, safi.","Fifteen dirhams, that’s it.","Quinze dirhams, c’est tout."]});
 w("tlatin","Tlatin","تلاتين","thirty","trente","num",{ex:["Tlatin dirham? Ghali!","Thirty dirhams? Too expensive!","Trente dirhams ? Trop cher !"]});
 w("jeddi","Jeddi","جدي","my grandpa","mon grand-père","family",{ex:["Jeddi sakn f Ouarzazate.","My grandpa lives in Ouarzazate.","Mon grand-père habite à Ouarzazate."]});
-w("jedda","Jedda","جدة","grandmother (more formal than Mima)","grand-mère (plus formel que Mima)","family",{ex:["Jedda katsayeb a7sen tajine.","Grandma makes the best tajine.","Grand-mère fait le meilleur tajine."]});
+w("jeddati","Jeddati","جدتي","my grandma","ma grand-mère","family",{ex:["Jeddati katsayeb a7sen tajine.","My grandma makes the best tajine.","Ma grand-mère fait le meilleur tajine."]});
 w("3amti","3amti","عمتي","my aunt (dad’s sister)","ma tante (sœur du père)","family",{ex:["3amti jat mn Fransa.","My aunt came from France.","Ma tante est venue de France."]});
 w("khalti","Khalti","خالتي","my aunt (mum’s sister)","ma tante (sœur de la mère)","family",{ex:["Khalti katbghini bzzaf.","My aunt loves me so much.","Ma tante m’adore."]});
 w("lkhayma","Lkhayma","الخيمة","the tent","la tente","travel",{ex:["Ghadi nn3so f lkhayma.","We’ll sleep in the tent.","On va dormir sous la tente."]});
@@ -283,7 +283,7 @@ const NEW_CITIES = {
     unit:{ d:"Tnach", en:"Counting to thirty", fr:"Compter jusqu’à trente", tile:"night", words:["rb3a","setta","sb3a","tmenya","tes3a","3ichrin","tnach","khmstach","tlatin"] } },
   u18:{ after:"u7", city:{ en:"Ouarzazate", fr:"Ouarzazate", ar:"ورزازات", wall:"#D9A27E", niche:"#E3B697", accent:"#7C3B22", g:["#7C3B22","#C98A4B","#2F6F8F"], field:"#1A1411",
     scene:["Ouarzazate, the door of the desert. The whole family is waiting at the kasbah.","Ouarzazate, la porte du désert. Toute la famille t’attend à la kasbah."] },
-    unit:{ d:"Jeddi w jedda", en:"The whole family", fr:"Toute la famille", tile:"plum", words:["3ami","khali","3amti","khalti","mrati","rajli","jeddi","jedda","mqelle9"] } },
+    unit:{ d:"Jeddi w jeddati", en:"The whole family", fr:"Toute la famille", tile:"plum", words:["3ami","khali","3amti","khalti","mrati","rajli","jeddi","jeddati","mqelle9"] } },
   u19:{ after:"u8", city:{ en:"Zagora", fr:"Zagora", ar:"زاكورة", wall:"#E8C48E", niche:"#EED2A8", accent:"#6B4423", g:["#6B4423","#3F7D4E","#E0A631"], field:"#1A1612",
     scene:["Palm groves, then sand. From Zagora you ride out and sleep under the stars.","Des palmeraies, puis le sable. De Zagora, on part à dos de chameau dormir sous les étoiles."] },
     unit:{ d:"Nnjoum", en:"Into the desert", fr:"Vers le désert", tile:"teal", words:["lmo7atta","tran","nzelhna","lkhrita","jmel","rmel","lkhayma","nnjoum","chems"] } },
@@ -574,7 +574,7 @@ Object.assign(UI.en, {
   reviewTile:"Review", bossTile:"Souk", nextT:"Next", lockedT:"Locked", tapMed:"Each finished lesson glazes a ring of this city’s zellige.",
   catIntro:"I’m Mchicha, a street cat from Tangier. I’ll show you around Morocco, one city at a time.", catName:"Mchicha", theme:"Appearance", themeSys:"Auto", themeLight:"Light", themeDark:"Dark",
   today:"Today", journey:"Journey", dayTrip:"Day {n} of your trip", dayTrip1:"Your trip starts in Tangier.", todayH:"Today", weekH:"This week",
-  wotd:"Word of the day", sprint:"Daily sprint", sprintS:"20 seconds, once a day", sprintBest:"Today: {n} right", sprintLock:"Learn 8 words to unlock",
+  wotd:"Word of the day", sprint:"Daily sprint", sprintS:"20 seconds, once a day", sprintBest:"Today: {n} right", sprintLock:"The sprint opens after 8 words",
   reviewC:"Review", reviewS:"{n} words are ready", reviewNone:"Nothing due", cont:"Continue", startT:"Start", lessonsOf:"{a} of {b} lessons",
   storyK:"Story", storyListen:"Listen to the story", storyTap:"Tap a line to see what it means.", storyQ:"What does this line mean?", storyQ2:"Which line means this?",
   cityLocked:"Finish {c} to unlock this city.", wordsL:"words", streakL:"day streak", kenzL:"rare words", kenzH:"Kenz", doneT:"Done",
@@ -603,7 +603,7 @@ Object.assign(UI.fr, {
   reviewTile:"Révision", bossTile:"Souk", nextT:"Suivant", lockedT:"Verrouillé", tapMed:"Chaque leçon terminée émaille un anneau du zellige de cette ville.",
   catIntro:"Moi c’est Mchicha, un chat des rues de Tanger. Je te fais visiter le Maroc, une ville à la fois.", catName:"Mchicha", theme:"Apparence", themeSys:"Auto", themeLight:"Clair", themeDark:"Sombre",
   today:"Aujourd’hui", journey:"Voyage", dayTrip:"Jour {n} de ton voyage", dayTrip1:"Ton voyage commence à Tanger.", todayH:"Aujourd’hui", weekH:"Cette semaine",
-  wotd:"Le mot du jour", sprint:"Sprint du jour", sprintS:"20 secondes, une fois par jour", sprintBest:"Aujourd’hui : {n} bonnes", sprintLock:"Apprends 8 mots pour débloquer",
+  wotd:"Le mot du jour", sprint:"Sprint du jour", sprintS:"20 secondes, une fois par jour", sprintBest:"Aujourd’hui : {n} bonnes", sprintLock:"Le sprint s’ouvre après 8 mots",
   reviewC:"Révision", reviewS:"{n} mots sont prêts", reviewNone:"Rien à revoir", cont:"Continuer", startT:"Commencer", lessonsOf:"{a} leçons sur {b}",
   storyK:"Histoire", storyListen:"Écoute l’histoire", storyTap:"Touche une ligne pour voir ce qu’elle veut dire.", storyQ:"Que veut dire cette phrase ?", storyQ2:"Quelle phrase veut dire ça ?",
   cityLocked:"Termine {c} pour débloquer cette ville.", wordsL:"mots", streakL:"jours de suite", kenzL:"mots rares", kenzH:"Kenz", doneT:"Fait",
@@ -632,6 +632,8 @@ Object.assign(UI.en, {
   shieldT:"Spare glass", shieldS:"Miss a day and a spare glass fills in for it. You have {n}.", shieldUsed:"A spare glass filled in for yesterday.",
   goalS:"XP fills your tea glass. Fill one every day.", comebackS:"Your tray is waiting. {n} words want a review.", comebackS0:"Fill today’s glass to keep your run going.",
   streakTip:"Fill a glass every day and watch your tray fill up.", trayL:"{n} days of atay in a row",
+  trayL1:"{n} day of atay in a row", stopsN1:"{a} of {b} stops", stopsWords1:"{a} of {b} stops · {c} of {d} words", dayDoneLine:"Today’s glass is full. See you tomorrow for the next one.",
+  cityAheadT:"{c} is still ahead", cityAheadS:"Finish {p} to get here.", plusNote:"Coming with Wakha Plus: jump to any city whenever you like.", showText:"No sound? Show text", textSize:"Text size",
   sayIt:"Say it out loud", tapRecord:"Record", tapStop:"Tap to stop", yourVoice:"You", sayHint:"Listen, then record yourself saying it.",
   compareHint:"Hear Mchicha, then you. Did yours sound the same?", noMic:"Say it out loud, then tap below.", micOff:"The microphone is off. Say it out loud, then tap below.",
   again:"Again", notYet:"Not yet", soundsRight:"Sounded right", saidIt:"I said it", cantTalk:"Can’t talk right now", hearBuild:"Tap the words you hear",
@@ -646,6 +648,8 @@ Object.assign(UI.fr, {
   shieldT:"Verre de secours", shieldS:"Rate un jour, un verre de secours le remplit pour toi. Tu en as {n}.", shieldUsed:"Un verre de secours a rempli hier.",
   goalS:"Les XP remplissent ton verre de thé. Remplis-en un chaque jour.", comebackS:"Ton plateau t’attend. {n} mots veulent une révision.", comebackS0:"Remplis le verre du jour pour continuer ta suite.",
   streakTip:"Remplis un verre chaque jour et regarde ton plateau se remplir.", trayL:"{n} jours d’atay d’affilée",
+  trayL1:"{n} jour d’atay d’affilée", stopsN1:"{a} étape sur {b}", stopsWords1:"{a} étape sur {b} · {c} mots sur {d}", dayDoneLine:"Le verre du jour est plein. À demain pour le suivant.",
+  cityAheadT:"{c}, c’est pour plus tard", cityAheadS:"Termine {p} pour arriver ici.", plusNote:"Bientôt avec Wakha Plus : saute vers n’importe quelle ville quand tu veux.", showText:"Pas de son ? Afficher le texte", textSize:"Taille du texte",
   sayIt:"Dis-le à voix haute", tapRecord:"Enregistrer", tapStop:"Touche pour arrêter", yourVoice:"Toi", sayHint:"Écoute, puis enregistre-toi en le disant.",
   compareHint:"Écoute Mchicha, puis toi. Ça sonnait pareil ?", noMic:"Dis-le à voix haute, puis touche en dessous.", micOff:"Le micro est coupé. Dis-le à voix haute, puis touche en dessous.",
   again:"Encore", notYet:"Pas encore", soundsRight:"C’était bien", saidIt:"Je l’ai dit", cantTalk:"Je ne peux pas parler", hearBuild:"Touche les mots que tu entends",
@@ -690,7 +694,7 @@ DIALOGS.push(
   { id:"oldfriend", tile:"majorelle", t:["An old friend in Asilah","Un vieil ami à Asilah"], who:[["Karim","Karim"],["You","Toi"]], lines:[
     ["A","Ahlan! Fin had lghiba?","Hey! Long time no see!","Coucou ! Ça fait longtemps !"],
     ["B","Ch7al hadi! Twe7chtek bzzaf.","It’s been ages! I missed you so much.","Ça fait une éternité ! Tu m’as beaucoup manqué."],
-    ["A","Kidayr? Kolchi mzyan?","How are you? All good?","Comment ça va ? Tout va bien ?"],
+    ["A","Ki dayr? Kolchi mzyan?","How are you? All good?","Comment ça va ? Tout va bien ?"],
     ["B","Hani, l7amdoulillah. W nta?","I’m good, thank God. And you?","Je vais bien, grâce à Dieu. Et toi ?"],
     ["A","Bikhir. Sellem liya 3la yemmak!","Fine. Say hi to your mum for me!","Bien. Passe le bonjour à ta mère !"] ] },
   { id:"guest", tile:"emerald", t:["Lunch at a home in Tetouan","Déjeuner chez des gens à Tétouan"], who:[["Host","Hôte"],["You","Toi"]], lines:[
@@ -731,8 +735,8 @@ DIALOGS.push(
     ["B","Wakha, 3tini jouj kilo.","OK, give me two kilos.","D’accord, donne-m’en deux kilos."] ] },
   { id:"kasbah", tile:"plum", t:["The family at the kasbah","La famille à la kasbah"], who:[["Grandma","Grand-mère"],["You","Toi"]], lines:[
     ["A","Mer7ba a weldi! Twe7chtek.","Welcome, my boy! I missed you.","Bienvenue, mon fils ! Tu m’as manqué."],
-    ["B","Labas a jedda? Fin jeddi?","Are you well, grandma? Where’s grandpa?","Ça va, grand-mère ? Où est grand-père ?"],
-    ["A","Jeddi m3a 3amek w khalek.","Grandpa is with your uncles.","Grand-père est avec tes oncles."],
+    ["B","Labas a jeddati? Fin jeddi?","Are you well, grandma? Where’s grandpa?","Ça va, grand-mère ? Où est grand-père ?"],
+    ["A","Jeddek m3a 3amek w khalek.","Grandpa is with your uncles.","Grand-père est avec tes oncles."],
     ["B","W 3amti w khalti?","And my aunts?","Et mes tantes ?"],
     ["A","F lkozina. Yallah, tajine wajed!","In the kitchen. Come on, the tajine is ready!","Dans la cuisine. Allez, le tajine est prêt !"] ] },
   { id:"desertnight", tile:"teal", t:["A night in the desert near Zagora","Une nuit dans le désert près de Zagora"], who:[["Guide","Guide"],["You","Toi"]], lines:[

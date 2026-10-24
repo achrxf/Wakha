@@ -1,0 +1,775 @@
+no,batch_file,voice_list,darija,arabic,english,kind,who,app_key
+N001,N-001-025,neutral,Salam,سلام,hi,word,,salam
+N002,N-001-025,neutral,Labas?,لاباس؟,how are you?,word,,labas
+N003,N-001-025,neutral,Wakha,واخا,OK,word,,wakha
+N004,N-001-025,neutral,Bzzaf,بزاف,a lot / very,word,,bzzaf
+N005,N-001-025,neutral,Choukran,شكرا,thank you,word,,choukran
+N006,N-001-025,neutral,Chwiya,شوية,a little,word,,chwiya
+N007,N-001-025,neutral,Iyeh,إيه,yes,word,,iyeh
+N008,N-001-025,neutral,La,لا,no,word,,la
+N009,N-001-025,neutral,Bghit,بغيت,I want,word,,bghit
+N010,N-001-025,neutral,Atay,أتاي,tea,word,,atay
+N011,N-001-025,neutral,B chhal?,بشحال؟,how much?,word,,b chhal
+N012,N-001-025,neutral,Ghali,غالي,expensive,word,,ghali
+N013,N-001-025,neutral,Daba,دابا,now,word,,daba
+N014,N-001-025,neutral,Mzyan,مزيان,good,word,,mzyan
+N015,N-001-025,neutral,Bslama,بسلامة,bye,word,,bslama
+N016,N-001-025,neutral,Fin?,فين؟,where?,word,,fin
+N017,N-001-025,neutral,Zwin,زوين,beautiful / nice,word,,zwin
+N018,N-001-025,neutral,Smeh liya,سمح ليا,sorry / excuse me,word,,smeh liya
+N019,N-001-025,neutral,3afak,عافاك,please,word,,3afak
+N020,N-001-025,neutral,Ma3lich,ماعليش,no worries,word,,ma3lich
+N021,N-001-025,neutral,Lma,الما,water,word,,lma
+N022,N-001-025,neutral,Khobz,خبز,bread,word,,khobz
+N023,N-001-025,neutral,L7amdoulillah,الحمد لله,thank God / all good,word,,l7amdoulillah
+N024,N-001-025,neutral,Ki dayr?,كي داير؟,how’s it going?,word,,ki dayr
+N025,N-001-025,neutral,Bikhir,بخير,fine / well,word,,bikhir
+N026,N-026-050,neutral,Mer7ba,مرحبا,welcome,word,,mer7ba
+N027,N-026-050,neutral,Smiti…,سميتي,my name is…,word,,smiti
+N028,N-026-050,neutral,Ach smitek?,أش سميتك؟,what’s your name?,word,,ach smitek
+N029,N-026-050,neutral,Achnou?,أشنو؟,what?,word,,achnou
+N030,N-026-050,neutral,Kifach?,كيفاش؟,how?,word,,kifach
+N031,N-026-050,neutral,3lach?,علاش؟,why?,word,,3lach
+N032,N-026-050,neutral,Imta?,إمتى؟,when?,word,,imta
+N033,N-026-050,neutral,Chkoun?,شكون؟,who?,word,,chkoun
+N034,N-026-050,neutral,Wach…?,واش,is it…? (question starter),word,,wach
+N035,N-026-050,neutral,Kayn,كاين,there is,word,,kayn
+N036,N-026-050,neutral,Makaynch,ماكاينش,there isn’t,word,,makaynch
+N037,N-026-050,neutral,Ma fhemtch,ما فهمتش,I didn’t get it,word,,ma fhemtch
+N038,N-026-050,neutral,3awed,عاود,again / repeat,word,,3awed
+N039,N-026-050,neutral,Hder bchwiya,هضر بشوية,speak slowly,word,,hder bchwiya
+N040,N-026-050,neutral,Ma3reftch,ما عرفتش,I don’t know,word,,ma3reftch
+N041,N-026-050,neutral,Yallah,يالاه,let’s go!,word,,yallah
+N042,N-026-050,neutral,Safi,صافي,"OK, enough",word,,safi
+N043,N-026-050,neutral,Lyoum,اليوم,today,word,,lyoum
+N044,N-026-050,neutral,Ghedda,غدا,tomorrow,word,,ghedda
+N045,N-026-050,neutral,Lbare7,البارح,yesterday,word,,lbare7
+N046,N-026-050,neutral,Bnin,بنين,delicious,word,,bnin
+N047,N-026-050,neutral,Fiya jjo3,فيا الجوع,I’m hungry,word,,fiya jjo3
+N048,N-026-050,neutral,Na3na3,نعناع,mint,word,,na3na3
+N049,N-026-050,neutral,Sokkar,سكر,sugar,word,,sokkar
+N050,N-026-050,neutral,Rkhis,رخيص,cheap,word,,rkhis
+N051,N-051-075,neutral,Nqss chwiya,نقص شوية,lower it a bit,word,,nqss chwiya
+N052,N-051-075,neutral,Akhir taman?,آخر ثمن؟,final price?,word,,akhir taman
+N053,N-051-075,neutral,Lflous,الفلوس,money,word,,lflous
+N054,N-051-075,neutral,Dar,دار,house / home,word,,dar
+N055,N-051-075,neutral,Yemma,يما,mom,word,,yemma
+N056,N-051-075,neutral,Baba,بابا,dad,word,,baba
+N057,N-051-075,neutral,Khouya,خويا,my brother / bro,word,,khouya
+N058,N-051-075,neutral,Khti,ختي,my sister,word,,khti
+N059,N-051-075,neutral,Mima,ميمة,grandma,word,,mima
+N060,N-051-075,neutral,Sa7bi,صاحبي,my friend,word,,sa7bi
+N061,N-051-075,neutral,Kanbghik,كنبغيك,I love you,word,,kanbghik
+N062,N-051-075,neutral,Mabrouk!,مبروك,congrats!,word,,mabrouk
+N063,N-051-075,neutral,Inchallah,إن شاء الله,God willing / hopefully,word,,inchallah
+N064,N-051-075,neutral,Tobis,طوبيس,bus,word,,tobis
+N065,N-051-075,neutral,Simana,سيمانة,week,word,,simana
+N066,N-051-075,neutral,Kozina,كوزينة,kitchen,word,,kozina
+N067,N-051-075,neutral,Tomobil,طوموبيل,car,word,,tomobil
+N068,N-051-075,neutral,Wqef hna,وقف هنا,stop here,word,,wqef hna
+N069,N-051-075,neutral,Sir nichan,سير نيشان,go straight,word,,sir nichan
+N070,N-051-075,neutral,3la limen,على ليمن,to the right,word,,3la limen
+N071,N-051-075,neutral,3la lisar,على ليسار,to the left,word,,3la lisar
+N072,N-051-075,neutral,Dghya,دغيا,quickly,word,,dghya
+N073,N-051-075,neutral,Khayb,خايب,bad / ugly,word,,khayb
+N074,N-051-075,neutral,Skhoun,سخون,hot,word,,skhoun
+N075,N-051-075,neutral,3yit,عييت,I’m tired,word,,3yit
+N076,N-076-100,neutral,Wa7ed,واحد,one,word,,wa7ed
+N077,N-076-100,neutral,Jouj,جوج,two,word,,jouj
+N078,N-076-100,neutral,Tlata,تلاتة,three,word,,tlata
+N079,N-076-100,neutral,Khamsa,خمسة,five,word,,khamsa
+N080,N-076-100,neutral,3achra,عشرة,ten,word,,3achra
+N081,N-076-100,neutral,Mya,مية,a hundred,word,,mya
+N082,N-076-100,neutral,Lbrd,البرد,the cold,word,,lbrd
+N083,N-076-100,neutral,9hwa,قهوة,coffee,word,,9hwa
+N084,N-076-100,neutral,Tsb7 3la khir,تصبح على خير,good night,word,,tsb7 3la khir
+N085,N-076-100,neutral,Sba7 lkhir,صباح الخير,good morning,word,,sba7 lkhir
+N086,N-076-100,neutral,Bla mzyya,بلا مزية,you’re welcome,word,,bla mzyya
+N087,N-076-100,neutral,Bssa7a!,بالصحة,"enjoy it! (new look, meal, hammam)",word,,bssa7a
+N088,N-076-100,neutral,Hchouma,حشومة,shame! / so embarrassing,word,,hchouma
+N089,N-076-100,neutral,Llah ykhlik,الله يخليك,please (the warm one),word,,llah ykhlik
+N090,N-076-100,neutral,Mskin,مسكين,poor thing,word,,mskin
+N091,N-076-100,neutral,Drari,دراري,the kids / the guys,word,,drari
+N092,N-076-100,neutral,Mcha l7al,مشا الحال,it’s late,word,,mcha l7al
+N093,N-076-100,neutral,Chb3t,شبعت,I’m full,word,,chb3t
+N094,N-076-100,neutral,Wa3er,واعر,awesome / insane,word,,wa3er
+N095,N-076-100,neutral,Nadi,نادي,excellent,word,,nadi
+N096,N-076-100,neutral,9afez,قافز,street-smart / sly,word,,9afez
+N097,N-076-100,neutral,Zzhr,الزهر,luck,word,,zzhr
+N098,N-076-100,neutral,Tberguig,تبركيك,nosy gossip,word,,tberguig
+N099,N-076-100,neutral,Daba daba,دابا دابا,"right now, for real",word,,daba daba
+N100,N-076-100,neutral,Tbarkellah,تبارك الله,bless! / well done,word,,tbarkellah
+N101,N-101-125,neutral,Llah yr7am lwalidin,الله يرحم الوالدين,please / thanks (the magic one),word,,llah yr7am lwalidin
+N102,N-101-125,neutral,Zaama,زعما,"like… / yeah, right",word,,zaama
+N103,N-101-125,neutral,Khamsa w khmis,خمسة وخميس,touch wood! (against the evil eye),word,,khamsa w khmis
+N104,N-101-125,neutral,Msa lkhir,مسا الخير,good evening,word,,msa lkhir
+N105,N-101-125,neutral,Mtcharfin,متشرفين,nice to meet you,word,,mtcharfin
+N106,N-101-125,neutral,Tfddel,تفضل,here you go / go ahead,word,,tfddel
+N107,N-101-125,neutral,Ma kayn mochkil,ما كاين مشكل,no problem,word,,ma kayn mochkil
+N108,N-101-125,neutral,Mnin nta?,منين نتا؟,where are you from?,word,,mnin nta
+N109,N-101-125,neutral,Fin ghadi?,فين غادي؟,where are you going?,word,,fin ghadi
+N110,N-101-125,neutral,Tajine,طاجين,tagine,word,,tajine
+N111,N-101-125,neutral,"L7sab, 3afak",الحساب عافاك,"the bill, please",word,,l7sab 3afak
+N112,N-101-125,neutral,Zid,زيد,more / add,word,,zid
+N113,N-101-125,neutral,Hada,هادا,this one,word,,hada
+N114,N-101-125,neutral,Ghir kanchouf,غير كنشوف,just looking,word,,ghir kanchouf
+N115,N-101-125,neutral,Ma 3ndich,ما عنديش,I don’t have (it),word,,ma 3ndich
+N116,N-101-125,neutral,Chhal f sa3a?,شحال فالساعة؟,what time is it?,word,,chhal f sa3a
+N117,N-101-125,neutral,Mn ba3d,من بعد,later,word,,mn ba3d
+N118,N-101-125,neutral,Ba9i,باقي,still / not yet,word,,ba9i
+N119,N-101-125,neutral,Weld,ولد,boy / son,word,,weld
+N120,N-101-125,neutral,Bent,بنت,girl / daughter,word,,bent
+N121,N-101-125,neutral,Fer7an,فرحان,happy,word,,fer7an
+N122,N-101-125,neutral,Ghadi,غادي,going / going to,word,,ghadi
+N123,N-101-125,neutral,B3id,بعيد,far,word,,b3id
+N124,N-101-125,neutral,9rib,قريب,close / near,word,,9rib
+N125,N-101-125,neutral,Bsse7?,بصح؟,really?,word,,bsse7
+N126,N-126-150,neutral,Wallah,والله,I swear / honestly,word,,wallah
+N127,N-126-150,neutral,Nchoufek ghedda,نشوفك غدا,see you tomorrow,word,,nchoufek ghedda
+N128,N-126-150,neutral,Lkoura,الكورة,football / the ball,word,,lkoura
+N129,N-126-150,neutral,Lmatch,الماتش,the match,word,,lmatch
+N130,N-126-150,neutral,Lmountakhab,المنتخب,the national team,word,,lmountakhab
+N131,N-126-150,neutral,Marka,ماركا,he scored,word,,marka
+N132,N-126-150,neutral,Gool!,كول!,goal!,word,,gool
+N133,N-126-150,neutral,Ljmhour,الجمهور,the fans / the crowd,word,,ljmhour
+N134,N-126-150,neutral,Rbe7na!,ربحنا!,we won!,word,,rbe7na
+N135,N-126-150,neutral,Khsserna,خسرنا,we lost,word,,khsserna
+N136,N-126-150,neutral,Ta3adol,تعادل,a draw,word,,ta3adol
+N137,N-126-150,neutral,L7akam,الحكم,the referee,word,,l7akam
+N138,N-126-150,neutral,Bennalti,بنالتي,penalty,word,,bennalti
+N139,N-126-150,neutral,Tiran,تيران,the pitch,word,,tiran
+N140,N-126-150,neutral,Dima Maghrib!,ديما مغرب!,always Morocco!,word,,dima maghrib
+N141,N-126-150,neutral,Sir!,سير!,go! / go on!,word,,sir
+N142,N-126-150,neutral,Dir niya,دير النية,have faith,word,,dir niya
+N143,N-126-150,neutral,Ahlan,أهلا,hi there,word,,ahlan
+N144,N-126-150,neutral,W nta?,ونتا؟,and you? (to a man),word,,w nta
+N145,N-126-150,neutral,W nti?,ونتي؟,and you? (to a woman),word,,w nti
+N146,N-126-150,neutral,Kif dayra?,كيف دايرة؟,how are you? (to a woman),word,,kif dayra
+N147,N-126-150,neutral,Hani,هاني,I’m good / I’m fine,word,,hani
+N148,N-126-150,neutral,Twe7chtek,توحشتك,I missed you,word,,twe7chtek
+N149,N-126-150,neutral,Allah y7fdek,الله يحفظك,God keep you (a warm thanks),word,,allah y7fdek
+N150,N-126-150,neutral,Allah ybarek fik,الله يبارك فيك,God bless you (a reply to thanks),word,,allah ybarek fik
+N151,N-151-175,neutral,Bssa7tek,بصحتك,enjoy it / good for you,word,,bssa7tek
+N152,N-151-175,neutral,Ila bghiti,إلا بغيتي,if you like / please,word,,ila bghiti
+N153,N-151-175,neutral,Allah ysahel,الله يسهل,may God make it easy (a polite no),word,,allah ysahel
+N154,N-151-175,neutral,Allah yhennik,الله يهنيك,"God give you peace (thanks, take care)",word,,allah yhennik
+N155,N-151-175,neutral,L7aris,الحارس,the goalkeeper,word,,l7aris
+N156,N-151-175,neutral,Lpas,الباص,the pass,word,,lpas
+N157,N-151-175,neutral,Lkas,الكاس,the cup / the trophy,word,,lkas
+N158,N-151-175,neutral,Tsfira,التصفيرة,the whistle,word,,tsfira
+N159,N-151-175,neutral,Kart sfer,كارط صفر,yellow card,word,,kart sfer
+N160,N-151-175,neutral,Kart 7mer,كارط حمر,red card,word,,kart 7mer
+N161,N-151-175,neutral,Ach kat9oul?,أش كتقول؟,what are you saying?,word,,ach kat9oul
+N162,N-151-175,neutral,Wach fhemti?,واش فهمتي؟,did you understand?,word,,wach fhemti
+N163,N-151-175,neutral,Ach bghiti?,أش بغيتي؟,what do you want?,word,,ach bghiti
+N164,N-151-175,neutral,M3a men?,مع من؟,with whom?,word,,m3a men
+N165,N-151-175,neutral,Achmen…?,أشمن…؟,which…?,word,,achmen
+N166,N-151-175,neutral,Fin sakn?,فين ساكن؟,where do you live?,word,,fin sakn
+N167,N-151-175,neutral,Lftour,الفطور,breakfast,word,,lftour
+N168,N-151-175,neutral,Msemmen,مسمن,msemmen (square pan-fried flatbread),word,,msemmen
+N169,N-151-175,neutral,Lhrira,الحريرة,harira (tomato and lentil soup),word,,lhrira
+N170,N-151-175,neutral,Zitoun,الزيتون,olives,word,,zitoun
+N171,N-151-175,neutral,Lmel7a,الملحة,salt,word,,lmel7a
+N172,N-151-175,neutral,Bla sokkar,بلا سكر,without sugar,word,,bla sokkar
+N173,N-151-175,neutral,Ghadi nakhdo,غادي ناخدو,I’ll take it,word,,ghadi nakhdo
+N174,N-151-175,neutral,Sarf,الصرف,change (coins and small notes),word,,sarf
+N175,N-151-175,neutral,Kbir,كبير,big,word,,kbir
+N176,N-176-200,neutral,Sghir,صغير,small,word,,sghir
+N177,N-176-200,neutral,Lwen,اللون,colour,word,,lwen
+N178,N-176-200,neutral,Jdid,جديد,new,word,,jdid
+N179,N-176-200,neutral,Rb3a,ربعة,four,word,,rb3a
+N180,N-176-200,neutral,Setta,ستة,six,word,,setta
+N181,N-176-200,neutral,Sb3a,سبعة,seven,word,,sb3a
+N182,N-176-200,neutral,Tmenya,تمنية,eight,word,,tmenya
+N183,N-176-200,neutral,Tes3a,تسعة,nine,word,,tes3a
+N184,N-176-200,neutral,3ichrin,عشرين,twenty,word,,3ichrin
+N185,N-176-200,neutral,Lwerd,الورد,roses,word,,lwerd
+N186,N-176-200,neutral,3ami,عمي,my uncle (dad’s brother),word,,3ami
+N187,N-176-200,neutral,Khali,خالي,my uncle (mum’s brother),word,,khali
+N188,N-176-200,neutral,Mrati,مراتي,my wife,word,,mrati
+N189,N-176-200,neutral,Rajli,راجلي,my husband,word,,rajli
+N190,N-176-200,neutral,Mqelle9,مقلق,upset / annoyed,word,,mqelle9
+N191,N-176-200,neutral,Jmel,جمل,camel,word,,jmel
+N192,N-176-200,neutral,Rmel,رمل,sand,word,,rmel
+N193,N-176-200,neutral,Lmo7atta,المحطة,the station,word,,lmo7atta
+N194,N-176-200,neutral,Tran,التران,train,word,,tran
+N195,N-176-200,neutral,Nzel hna,نزل هنا,get off here,word,,nzel hna
+N196,N-176-200,neutral,Lkhrita,الخريطة,the map,word,,lkhrita
+N197,N-176-200,neutral,Bhal,بحال,like / the same as,word,,bhal
+N198,N-176-200,neutral,Ya3ni,يعني,I mean / so,word,,ya3ni
+N199,N-176-200,neutral,"Safi, fhemt",صافي فهمت,"OK, I get it",word,,safi fhemt
+N200,N-176-200,neutral,Wa9ila,واقيلا,maybe,word,,wa9ila
+N201,N-201-225,neutral,Lbe7r,البحر,the sea,word,,lbe7r
+N202,N-201-225,neutral,Rri7,الريح,the wind,word,,rri7
+N203,N-201-225,neutral,Fin had lghiba?,فين هاد الغيبة؟,where have you been? (long time no see),word,,fin had lghiba
+N204,N-201-225,neutral,Ch7al hadi!,شحال هادي!,it’s been ages!,word,,ch7al hadi
+N205,N-201-225,neutral,Sellem liya 3la…,سلم ليا على…,say hi to … for me,word,,sellem liya 3la
+N206,N-201-225,neutral,Allah yjazik bikhir,الله يجازيك بخير,may God reward you (deep thanks),word,,allah yjazik bikhir
+N207,N-201-225,neutral,3la slamtek,على سلامتك,glad you’re safe / welcome back,word,,3la slamtek
+N208,N-201-225,neutral,Bismillah,بسم الله,in God’s name (before eating or starting),word,,bismillah
+N209,N-201-225,neutral,Lmal3ab,الملعب,the stadium,word,,lmal3ab
+N210,N-201-225,neutral,Lkorner,الكورنر,corner kick,word,,lkorner
+N211,N-201-225,neutral,Tmarin,التمارين,training,word,,tmarin
+N212,N-201-225,neutral,Ch7al f 3mrek?,شحال ف عمرك؟,how old are you?,word,,ch7al f 3mrek
+N213,N-201-225,neutral,Ach katdir?,أش كتدير؟,what are you doing?,word,,ach katdir
+N214,N-201-225,neutral,3lach la?,علاش لا؟,why not?,word,,3lach la
+N215,N-201-225,neutral,L3sel,العسل,honey,word,,l3sel
+N216,N-201-225,neutral,Zzebda,الزبدة,butter,word,,zzebda
+N217,N-201-225,neutral,Lbid,البيض,eggs,word,,lbid
+N218,N-201-225,neutral,3tini…,عطيني…,give me…,word,,3tini
+N219,N-201-225,neutral,Wa7ed akhor,واحد آخر,another one,word,,wa7ed akhor
+N220,N-201-225,neutral,Fin nkhlles?,فين نخلص؟,where do I pay?,word,,fin nkhlles
+N221,N-201-225,neutral,Tnach,طناش,twelve,word,,tnach
+N222,N-201-225,neutral,Khmstach,خمسطاش,fifteen,word,,khmstach
+N223,N-201-225,neutral,Tlatin,تلاتين,thirty,word,,tlatin
+N224,N-201-225,neutral,Jeddi,جدي,my grandpa,word,,jeddi
+N225,N-201-225,neutral,Jeddati,جدتي,my grandma,word,,jeddati
+N226,N-226-250,neutral,3amti,عمتي,my aunt (dad’s sister),word,,3amti
+N227,N-226-250,neutral,Khalti,خالتي,my aunt (mum’s sister),word,,khalti
+N228,N-226-250,neutral,Lkhayma,الخيمة,the tent,word,,lkhayma
+N229,N-226-250,neutral,Nnjoum,النجوم,the stars,word,,nnjoum
+N230,N-226-250,neutral,Chems,الشمس,the sun,word,,chems
+N231,N-226-250,neutral,L7out,الحوت,fish,word,,l7out
+N232,N-226-250,neutral,Lmouja,الموجة,the wave,word,,lmouja
+N233,N-226-250,neutral,N3oum,نعوم,to swim,word,,n3oum
+N234,N-226-250,neutral,Tbarkellah 3lik,تبارك الله عليك,Well done!,mchicha,,tbarkellah 3lik
+N235,N-226-250,neutral,Ssou9,السوق,Shopping at the souk,title,,ssou9
+N236,N-226-250,neutral,3tini wa7ed,عطيني… واحد,Buying and paying,title,,3tini wa7ed
+N237,N-226-250,neutral,Lfamilia,الفاميليا,Family and feelings,title,,lfamilia
+N238,N-226-250,neutral,Jeddi w jeddati,جدي و جدتي,The whole family,title,,jeddi w jeddati
+N239,N-226-250,neutral,Trig,طريق,Getting around,title,,trig
+N240,N-226-250,neutral,Lhedra,الهضرة,Keeping the conversation going,title,,lhedra
+N241,N-226-250,neutral,Lbe7r w rri7,البحر و الريح,"Sea, wind and small talk",title,,lbe7r w rri7
+N242,N-226-250,neutral,Mzyan bzzaf!,مزيان بزاف!,Very good!,mchicha,,mzyan bzzaf
+N243,N-226-250,neutral,Hakka!,هاكا!,That’s it!,mchicha,,hakka
+N244,N-226-250,neutral,Machi mouchkil.,ماشي مشكيل.,Not a problem.,mchicha,,machi mouchkil
+N245,N-226-250,neutral,"Salam, labas?",سلام، لاباس؟,"Hi, how are you?",example,,salam labas
+N246,N-226-250,neutral,Labas 3lik?,لاباس عليك؟,Are you OK?,example,,labas 3lik
+N247,N-226-250,neutral,"Wakha, yallah!",واخا، يالاه!,"OK, let’s go!",example,,wakha yallah
+N248,N-226-250,neutral,Zwin bzzaf!,زوين بزاف!,So beautiful!,example,,zwin bzzaf
+N249,N-226-250,neutral,Choukran bzzaf!,شكرا بزاف!,Thanks a lot!,example,,choukran bzzaf
+N250,N-226-250,neutral,Kanhder chwiya d darija.,كنهضر شوية دالدارجة.,I speak a little Darija.,example,,kanhder chwiya d darija
+N251,N-251-275,neutral,"La, choukran.",لا، شكرا.,"No, thanks.",example,,la choukran
+N252,N-251-275,neutral,Bghit atay.,بغيت أتاي.,I want tea.,example,,bghit atay
+N253,N-251-275,neutral,Atay b na3na3,أتاي بنعناع,Mint tea,example,,atay b na3na3
+N254,N-251-275,neutral,B chhal hada?,بشحال هادا؟,How much is this?,example,,b chhal hada
+N255,N-251-275,neutral,Ghali bzzaf!,غالي بزاف!,Way too expensive!,example,,ghali bzzaf
+N256,N-251-275,neutral,Kolchi mzyan?,كلشي مزيان؟,Everything good?,example,,kolchi mzyan
+N257,N-251-275,neutral,"Bslama, nchoufek ghedda!",بسلامة، نشوفك غدا!,"Bye, see you tomorrow!",example,,bslama nchoufek ghedda
+N258,N-251-275,neutral,Fin kayn bit lma?,فين كاين بيت الما؟,Where’s the bathroom?,example,,fin kayn bit lma
+N259,N-251-275,neutral,Had lblad zwina.,هاد البلاد زوينة.,This country is beautiful.,example,,had lblad zwina
+N260,N-251-275,neutral,"Smeh liya, fin kayn ttobis?",سمح ليا، فين كاين الطوبيس؟,"Excuse me, where’s the bus?",example,,smeh liya fin kayn ttobis
+N261,N-251-275,neutral,"3tini lma, 3afak.",عطيني… الما، عافاك.,"Give me water, please.",example,,3tini lma 3afak
+N262,N-251-275,neutral,"Ma3lich, machi mouchkil.",ماعليش، ماشي مشكيل.,"No worries, it’s not a problem.",example,,ma3lich machi mouchkil
+N263,N-251-275,neutral,Khobz skhoun,خبز سخون,Warm bread,example,,khobz skhoun
+N264,N-251-275,neutral,"Ana bikhir, l7amdoulillah.",أنا بخير، الحمد لله.,"I’m good, thank God.",example,,ana bikhir l7amdoulillah
+N265,N-251-275,neutral,Mer7ba bik f lmghrib!,مرحبا بيك فالمغريب!,Welcome to Morocco!,example,,mer7ba bik f lmghrib
+N266,N-251-275,neutral,Smiti Yasmine.,سميتي ياسمين.,My name is Yasmine.,example,,smiti yasmine
+N267,N-251-275,neutral,Achnou hada?,أشنو هادا؟,What’s this?,example,,achnou hada
+N268,N-251-275,neutral,Kifach ngoul… b darija?,كيفاش نكول… بالدارجة؟,How do I say… in Darija?,example,,kifach ngoul b darija
+N269,N-251-275,neutral,Wach nta mghribi?,واش نتا مغريبي؟,Are you Moroccan?,example,,wach nta mghribi
+N270,N-251-275,neutral,Wach kayn lwifi?,واش كاين الويفي؟,Is there wifi?,example,,wach kayn lwifi
+N271,N-251-275,neutral,Makaynch mouchkil.,ماكاينش مشكيل.,No problem.,example,,makaynch mouchkil
+N272,N-251-275,neutral,"3awed, 3afak?",عاود، عافاك؟,"Again, please?",example,,3awed 3afak
+N273,N-251-275,neutral,"Hder bchwiya, 3afak.",هضر بشوية، عافاك.,"Speak slowly, please.",example,,hder bchwiya 3afak
+N274,N-251-275,neutral,"Safi, chb3t!",صافي، شبعت!,"Enough, I’m full!",example,,safi chb3t
+N275,N-251-275,neutral,Had ttajin bnin bzzaf!,هاد الطاجين بنين بزاف!,This tajine is so good!,example,,had ttajin bnin bzzaf
+N276,N-276-300,neutral,Ana f ddar.,أنا فالدار.,I’m at home.,example,,ana f ddar
+N277,N-276-300,neutral,Ljaw khayb lyoum.,الجاو خايب اليوم.,The weather’s bad today.,example,,ljaw khayb lyoum
+N278,N-276-300,neutral,Atay skhoun!,أتاي سخون!,The tea is hot!,example,,atay skhoun
+N279,N-276-300,neutral,Kayn lbrd lyoum.,كاين البرد اليوم.,It’s cold today.,example,,kayn lbrd lyoum
+N280,N-276-300,neutral,3ndek zzhr!,عندك الزهر!,You’re so lucky!,example,,3ndek zzhr
+N281,N-276-300,neutral,"Msa lkhir, labas?",مسا الخير، لاباس؟,"Good evening, how are you?",example,,msa lkhir labas
+N282,N-276-300,neutral,Smiti Adam. Mtcharfin!,سميتي آدم. متشرفين!,I’m Adam. Nice to meet you!,example,,smiti adam mtcharfin
+N283,N-276-300,neutral,Kolchi mzyan f dar?,كلشي مزيان فدار؟,All good at home?,example,,kolchi mzyan f dar
+N284,N-276-300,neutral,"Tfddel, atay dyalek.",تفضل، أتاي ديالك.,"Here you go, your tea.",example,,tfddel atay dyalek
+N285,N-276-300,neutral,"Ma kayn mochkil, sa7bi.",ما كاين مشكل، صاحبي.,"No problem, my friend.",example,,ma kayn mochkil sa7bi
+N286,N-276-300,neutral,Choukran bzzaf 3la atay!,شكرا بزاف على أتاي!,Thanks a lot for the tea!,example,,choukran bzzaf 3la atay
+N287,N-276-300,neutral,Mnin nta? Ana mn Fes.,منين نتا؟ أنا من فاس.,Where are you from? I’m from Fes.,example,,mnin nta ana mn fes
+N288,N-276-300,neutral,Fin ghadi f had lwe9t?,فين غادي فهاد الوقت؟,Where are you going at this hour?,example,,fin ghadi f had lwe9t
+N289,N-276-300,neutral,Achnou hada? Bnin!,أشنو هادا؟ بنين!,What’s this? Delicious!,example,,achnou hada bnin
+N290,N-276-300,neutral,Tajine b l7em w l9e9,طاجين باللحم و القق,Tagine with meat and prunes,example,,tajine b l7em w l9e9
+N291,N-276-300,neutral,"L7sab, 3afak. Choukran!",الحساب، عافاك. شكرا!,"The bill, please. Thanks!",example,,l7sab 3afak choukran
+N292,N-276-300,neutral,"Zid chwiya d atay, 3afak.",زيد شوية دأتاي، عافاك.,"A bit more tea, please.",example,,zid chwiya d atay 3afak
+N293,N-276-300,neutral,"Bghit hada, 3afak.",بغيت هادا، عافاك.,"I want this one, please.",example,,bghit hada 3afak
+N294,N-276-300,neutral,"La choukran, ghir kanchouf.",لا شكرا، غير كنشوف.,"No thanks, just looking.",example,,la choukran ghir kanchouf
+N295,N-276-300,neutral,Ma 3ndich sarf.,ما عنديش الصرف.,I don’t have change.,example,,ma 3ndich sarf
+N296,N-276-300,neutral,"Smeh liya, chhal f sa3a?",سمح ليا، شحال فالساعة؟,"Excuse me, what time is it?",example,,smeh liya chhal f sa3a
+N297,N-276-300,neutral,Nchoufek mn ba3d!,نشوفك من بعد!,See you later!,example,,nchoufek mn ba3d
+N298,N-276-300,neutral,Ba9i ma jach.,باقي ما جاش.,He hasn’t come yet.,example,,ba9i ma jach
+N299,N-276-300,neutral,Hada weldi.,هادا ولدي.,This is my son.,example,,hada weldi
+N300,N-276-300,neutral,Bent khti,بنت ختي,My sister’s daughter,example,,bent khti
+N301,N-301-325,neutral,Ghadi l Merzouga.,غادي لمرزوكة.,I’m going to Merzouga.,example,,ghadi l merzouga
+N302,N-301-325,neutral,Wach b3id?,واش بعيد؟,Is it far?,example,,wach b3id
+N303,N-301-325,neutral,"9rib, ghir hna.",قريب، غير هنا.,"Close, just here.",example,,9rib ghir hna
+N304,N-301-325,neutral,Bsse7? Ma 3reftch!,بصح؟ ما عرفتش!,Really? I didn’t know!,example,,bsse7 ma 3reftch
+N305,N-301-325,neutral,Wallah bnin!,والله بنين!,"Honestly, delicious!",example,,wallah bnin
+N306,N-301-325,neutral,Kanbghi lkoura bzzaf!,كانبغي الكورة بزاف!,I love football so much!,example,,kanbghi lkoura bzzaf
+N307,N-301-325,neutral,"Lmatch bda, yallah!",الماتش بدا، يالاه!,"The match has started, come on!",example,,lmatch bda yallah
+N308,N-301-325,neutral,Lmountakhab dyalna zwin bzzaf.,المنتخب ديالنا زوين بزاف.,Our national team is so good.,example,,lmountakhab dyalna zwin bzzaf
+N309,N-301-325,neutral,Marka f d9i9a lkhra!,ماركا فالدقيقة اللخرة!,He scored in the last minute!,example,,marka f d9i9a lkhra
+N310,N-301-325,neutral,Goool! Dima Maghrib!,كووول! ديما مغرب!,Goal! Always Morocco!,example,,goool dima maghrib
+N311,N-301-325,neutral,Ljmhour kaygheni!,الجمهور كايغني!,The crowd is singing!,example,,ljmhour kaygheni
+N312,N-301-325,neutral,"Rbe7na, l7amdoulillah!",ربحنا، الحمد لله!,"We won, thank God!",example,,rbe7na l7amdoulillah
+N313,N-301-325,neutral,"Khsserna, walakin ma3lich.",خسرنا، ولاكن ماعليش.,"We lost, but never mind.",example,,khsserna walakin ma3lich
+N314,N-301-325,neutral,"Ta3adol, wa7ed wa7ed.",تعادل، واحد واحد.,"A draw, one all.",example,,ta3adol wa7ed wa7ed
+N315,N-301-325,neutral,Ach dar had l7akam?!,أش دار هاد الحكم؟!,What is this referee doing?!,example,,ach dar had l7akam
+N316,N-301-325,neutral,Bennalti f d9i9a 90!,بنالتي فالدقيقة تسعين!,A penalty in the 90th minute!,example,,bennalti f d9i9a 90
+N317,N-301-325,neutral,Yallah nl3bou f tiran!,يالاه نلعبو فتيران!,Let’s go play on the pitch!,example,,yallah nl3bou f tiran
+N318,N-301-325,neutral,"Dima Maghrib, dima!",ديما مغرب، ديما!,"Morocco, always!",example,,dima maghrib dima
+N319,N-301-325,neutral,Sir! Sir! Sir!,سير! سير! سير!,Go! Go! Go!,example,,sir sir sir
+N320,N-301-325,neutral,"Dir niya, ghadi nrb7ou!",دير النية، غادي نربحو!,"Have faith, we’re going to win!",example,,dir niya ghadi nrb7ou
+N321,N-301-325,neutral,"Ahlan sa7bi, labas?",أهلا صاحبي، لاباس؟,"Hi there, my friend, how are you?",example,,ahlan sa7bi labas
+N322,N-301-325,neutral,"Bikhir, l7amdoulillah. W nta?",بخير، الحمد لله. ونتا؟,"Fine, thank God. And you?",example,,bikhir l7amdoulillah w nta
+N323,N-301-325,neutral,Ana hani. W nti?,أنا هاني. ونتي؟,I’m good. And you?,example,,ana hani w nti
+N324,N-301-325,neutral,"Salam Salma, kif dayra?",سلام سلمى، كيف دايرة؟,"Hi Salma, how are you?",example,,salam salma kif dayra
+N325,N-301-325,neutral,"Ana hani, l7amdoulillah.",أنا هاني، الحمد لله.,"I’m good, thank God.",example,,ana hani l7amdoulillah
+N326,N-326-350,neutral,"Twe7chtek bzzaf, sa7bi!",توحشتك بزاف، صاحبي!,"I missed you so much, my friend!",example,,twe7chtek bzzaf sa7bi
+N327,N-326-350,neutral,"Choukran bzzaf, Allah y7fdek.",شكرا بزاف، الله يحفظك.,"Thanks a lot, God keep you.",example,,choukran bzzaf allah y7fdek
+N328,N-326-350,neutral,Mabrouk! Allah ybarek fik.,مبروك! الله يبارك فيك.,Congrats! God bless you.,example,,mabrouk allah ybarek fik
+N329,N-326-350,neutral,Tfddel atay. Bssa7tek!,تفضل أتاي. بصحتك!,Here’s your tea. Enjoy!,example,,tfddel atay bssa7tek
+N330,N-326-350,neutral,"3tini lma, ila bghiti.",عطيني… الما، إلا بغيتي.,"Give me some water, if you like.",example,,3tini lma ila bghiti
+N331,N-326-350,neutral,"La, choukran. Allah ysahel.",لا، شكرا. الله يسهل.,No thanks. May God make it easy.,example,,la choukran allah ysahel
+N332,N-326-350,neutral,"Choukran 3la kolchi, Allah yhennik.",شكرا على كلشي، الله يهنيك.,"Thanks for everything, God give you peace.",example,,choukran 3la kolchi allah yhennik
+N333,N-326-350,neutral,L7aris dyalna wa3er!,الحارس ديالنا واعر!,Our goalkeeper is amazing!,example,,l7aris dyalna wa3er
+N334,N-326-350,neutral,"3tini lpas, ana khawi!",عطيني… الباص، أنا خاوي!,"Pass it to me, I’m free!",example,,3tini lpas ana khawi
+N335,N-326-350,neutral,Had l3am bghina lkas!,هاد العام بغينا الكاس!,This year we want the cup!,example,,had l3am bghina lkas
+N336,N-326-350,neutral,"Tsfira lkhra, rbe7na!",التصفيرة اللخرة، ربحنا!,"The final whistle, we won!",example,,tsfira lkhra rbe7na
+N337,N-326-350,neutral,L7akam 3tah kart sfer.,الحكم عتاه كارط صفر.,The referee gave him a yellow card.,example,,l7akam 3tah kart sfer
+N338,N-326-350,neutral,Kart 7mer! Khrej!,كارط حمر! خرج!,Red card! He’s off!,example,,kart 7mer khrej
+N339,N-326-350,neutral,Ach kat9oul? Ma fhemtch.,أش كتقول؟ ما فهمتش.,What are you saying? I didn’t get it.,example,,ach kat9oul ma fhemtch
+N340,N-326-350,neutral,"Wach fhemti, wla n3awed?",واش فهمتي، ولا نعاود؟,"Did you get it, or shall I repeat?",example,,wach fhemti wla n3awed
+N341,N-326-350,neutral,Ach bghiti takol?,أش بغيتي تاكول؟,What do you want to eat?,example,,ach bghiti takol
+N342,N-326-350,neutral,M3a men ghadi l Fes?,مع من غادي لفاس؟,Who are you going to Fes with?,example,,m3a men ghadi l fes
+N343,N-326-350,neutral,Achmen wa7ed bghiti?,أشمن… واحد بغيتي؟,Which one do you want?,example,,achmen wa7ed bghiti
+N344,N-326-350,neutral,"Lftour wajed, yallah!",الفطور واجد، يالاه!,"Breakfast is ready, come on!",example,,lftour wajed yallah
+N345,N-326-350,neutral,Msemmen b l3sel w atay.,مسمن بالعسل و أتاي.,Msemmen with honey and tea.,example,,msemmen b l3sel w atay
+N346,N-326-350,neutral,"Lhrira skhouna, bssa7tek!",الحريرة سخونا، بصحتك!,"The harira is hot, enjoy!",example,,lhrira skhouna bssa7tek
+N347,N-326-350,neutral,"Zid chwiya d zitoun, 3afak.",زيد شوية دالزيتون، عافاك.,"Add a few more olives, please.",example,,zid chwiya d zitoun 3afak
+N348,N-326-350,neutral,"3tini lmel7a, 3afak.",عطيني… الملحة، عافاك.,"Pass me the salt, please.",example,,3tini lmel7a 3afak
+N349,N-326-350,neutral,"Atay bla sokkar, 3afak.",أتاي بلا سكر، عافاك.,"Tea without sugar, please.",example,,atay bla sokkar 3afak
+N350,N-326-350,neutral,"Wakha, ghadi nakhdo.",واخا، غادي ناخدو.,"OK, I’ll take it.",example,,wakha ghadi nakhdo
+N351,N-351-375,neutral,"Ma 3ndich sarf, smeh liya.",ما عنديش الصرف، سمح ليا.,"I don’t have change, sorry.",example,,ma 3ndich sarf smeh liya
+N352,N-351-375,neutral,Bghit wa7ed kbir.,بغيت واحد كبير.,I want a big one.,example,,bghit wa7ed kbir
+N353,N-351-375,neutral,Hada sghir bzzaf.,هادا صغير بزاف.,This one is too small.,example,,hada sghir bzzaf
+N354,N-351-375,neutral,Kayn chi lwen akhor?,كاين شي اللون أخور؟,Is there another colour?,example,,kayn chi lwen akhor
+N355,N-351-375,neutral,Had lbelgha jdida?,هاد البلغة جديدا؟,Are these slippers new?,example,,had lbelgha jdida
+N356,N-351-375,neutral,"Rb3a d latay, 3afak.",ربعة دلاتاي، عافاك.,"Four teas, please.",example,,rb3a d latay 3afak
+N357,N-351-375,neutral,Setta dyal lkhobz.,ستة ديال الخوبز.,Six loaves of bread.,example,,setta dyal lkhobz
+N358,N-351-375,neutral,Ana f sb3a d sba7.,أنا فسبعة دصباح.,I’m there at seven in the morning.,example,,ana f sb3a d sba7
+N359,N-351-375,neutral,Tmenya d drahem.,تمنية ددراهم.,Eight dirhams.,example,,tmenya d drahem
+N360,N-351-375,neutral,Lmatch f tes3a d lil.,الماتش فتسعة دليل.,The match is at nine at night.,example,,lmatch f tes3a d lil
+N361,N-351-375,neutral,"3ichrin dirham, akhir taman.",عشرين درهم، آخر ثمن.,"Twenty dirhams, final price.",example,,3ichrin dirham akhir taman
+N362,N-351-375,neutral,Lwerd f M’Gouna zwin bzzaf.,الورد فمكونة زوين بزاف.,The roses in M’Gouna are so beautiful.,example,,lwerd f mgouna zwin bzzaf
+N363,N-351-375,neutral,"Hada 3ami, khou baba.",هادا عمي، خو بابا.,"This is my uncle, my dad’s brother.",example,,hada 3ami khou baba
+N364,N-351-375,neutral,Khali sakn f Casa.,خالي ساكن فكازا.,My uncle lives in Casa.,example,,khali sakn f casa
+N365,N-351-375,neutral,Rkebt 3la jmel f Merzouga!,ركبت على جمل فمرزوكة!,I rode a camel in Merzouga!,example,,rkebt 3la jmel f merzouga
+N366,N-351-375,neutral,Rmel skhoun bzzaf f l3chiya.,رمل سخون بزاف فالعشيا.,The sand is very hot in the afternoon.,example,,rmel skhoun bzzaf f l3chiya
+N367,N-351-375,neutral,"Fin kayna lmo7atta, 3afak?",فين كاينة المحطة، عافاك؟,"Where is the station, please?",example,,fin kayna lmo7atta 3afak
+N368,N-351-375,neutral,Tran ghadi l Marrakech.,التران غادي لمراكش.,The train is going to Marrakech.,example,,tran ghadi l marrakech
+N369,N-351-375,neutral,"Nzel hna, lmo7atta 9riba.",نزل هنا، المحطة قريبة.,"Get off here, the station is close.",example,,nzel hna lmo7atta 9riba
+N370,N-351-375,neutral,3ndek lkhrita?,عندك الخريطة؟,Do you have the map?,example,,3ndek lkhrita
+N371,N-351-375,neutral,Bhal hakka?,بحال هاكا؟,Like this?,example,,bhal hakka
+N372,N-351-375,neutral,"Ya3ni, ghadi ntla9aw ghedda?",يعني، غادي نتلاقاو غدا؟,"So, we’ll meet tomorrow?",example,,ya3ni ghadi ntla9aw ghedda
+N373,N-351-375,neutral,"Safi, fhemt, choukran!",صافي، فهمت، شكرا!,"OK, I get it, thanks!",example,,safi fhemt choukran
+N374,N-351-375,neutral,Wa9ila nji ghedda.,واقيلا نجي غدا.,Maybe I’ll come tomorrow.,example,,wa9ila nji ghedda
+N375,N-351-375,neutral,Lbe7r zwin f Essaouira.,البحر زوين فالصويرة.,The sea is beautiful in Essaouira.,example,,lbe7r zwin f essaouira
+N376,N-376-400,neutral,Kayn rri7 bzzaf lyoum!,كاين الريح بزاف اليوم!,It’s really windy today!,example,,kayn rri7 bzzaf lyoum
+N377,N-376-400,neutral,Ahlan! Fin had lghiba?,أهلا! فين هاد الغيبة؟,Hey! Long time no see!,example,,ahlan fin had lghiba
+N378,N-376-400,neutral,Ch7al hadi ma chefnak!,شحال هادي ما شفناك!,It’s been ages since we saw you!,example,,ch7al hadi ma chefnak
+N379,N-376-400,neutral,Sellem liya 3la yemmak.,سلم ليا على… يماك.,Say hi to your mum for me.,example,,sellem liya 3la yemmak
+N380,N-376-400,neutral,"Allah yjazik bikhir, 3awnti bzzaf.",الله يجازيك بخير، عاونتي بزاف.,"God reward you, you helped me so much.",example,,allah yjazik bikhir 3awnti bzzaf
+N381,N-376-400,neutral,Wslti? 3la slamtek!,وسلتي؟ على سلامتك!,You made it? Glad you’re safe!,example,,wslti 3la slamtek
+N382,N-376-400,neutral,"Bismillah, yallah nakoulo.",بسم الله، يالاه ناكولو.,"Bismillah, let’s eat.",example,,bismillah yallah nakoulo
+N383,N-376-400,neutral,Lmal3ab 3amer!,الملعب عامر!,The stadium is packed!,example,,lmal3ab 3amer
+N384,N-376-400,neutral,3tawna lkorner!,عتاونا الكورنر!,They gave us a corner!,example,,3tawna lkorner
+N385,N-376-400,neutral,3ndi tmarin f l3chiya.,عندي التمارين فالعشيا.,I have training this afternoon.,example,,3ndi tmarin f l3chiya
+N386,N-376-400,neutral,Ch7al f 3mrek? Ana 3ndi 3ichrin.,شحال فعمرك؟ أنا عندي عشرين.,How old are you? I’m twenty.,example,,ch7al f 3mrek ana 3ndi 3ichrin
+N387,N-376-400,neutral,Ach katdir daba?,أش كتدير دابا؟,What are you doing right now?,example,,ach katdir daba
+N388,N-376-400,neutral,Nmchiw l Ifrane? 3lach la!,نمشيو لإفران؟ علاش لا!,Shall we go to Ifrane? Why not!,example,,nmchiw l ifrane 3lach la
+N389,N-376-400,neutral,"Khobz b l3sel, bnin!",خبز بالعسل، بنين!,"Bread with honey, delicious!",example,,khobz b l3sel bnin
+N390,N-376-400,neutral,"3tini zzebda, 3afak.",عطيني… الزبدة، عافاك.,"Pass me the butter, please.",example,,3tini zzebda 3afak
+N391,N-376-400,neutral,Bghit lbid m9li.,بغيت البيض مقلي.,I’d like fried eggs.,example,,bghit lbid m9li
+N392,N-376-400,neutral,"3tini jouj, 3afak.",عطيني… جوج، عافاك.,"Give me two, please.",example,,3tini jouj 3afak
+N393,N-376-400,neutral,Bghit wa7ed akhor.,بغيت واحد آخر.,I want another one.,example,,bghit wa7ed akhor
+N394,N-376-400,neutral,"Smeh liya, fin nkhlles?",سمح ليا، فين نخلص؟,"Excuse me, where do I pay?",example,,smeh liya fin nkhlles
+N395,N-376-400,neutral,"Tnach d lbid, 3afak.",طناش دالبيض، عافاك.,"Twelve eggs, please.",example,,tnach d lbid 3afak
+N396,N-376-400,neutral,"Khmstach dirham, safi.",خمسطاش درهم، صافي.,"Fifteen dirhams, that’s it.",example,,khmstach dirham safi
+N397,N-376-400,neutral,Tlatin dirham? Ghali!,تلاتين درهم؟ غالي!,Thirty dirhams? Too expensive!,example,,tlatin dirham ghali
+N398,N-376-400,neutral,Jeddi sakn f Ouarzazate.,جدي ساكن فأأرزازات.,My grandpa lives in Ouarzazate.,example,,jeddi sakn f ouarzazate
+N399,N-376-400,neutral,Jeddati katsayeb a7sen tajine.,جدتي كاتسايب أحسن طاجين.,My grandma makes the best tajine.,example,,jeddati katsayeb a7sen tajine
+N400,N-376-400,neutral,3amti jat mn Fransa.,عمتي جات من فرانسا.,My aunt came from France.,example,,3amti jat mn fransa
+N401,N-401-425,neutral,Khalti katbghini bzzaf.,خالتي كاتبغيني بزاف.,My aunt loves me so much.,example,,khalti katbghini bzzaf
+N402,N-401-425,neutral,Ghadi nn3so f lkhayma.,غادي النعسو فالخيمة.,We’ll sleep in the tent.,example,,ghadi nn3so f lkhayma
+N403,N-401-425,neutral,"Chouf nnjoum, zwinin bzzaf!",شوف النجوم، زوينين بزاف!,"Look at the stars, they’re so beautiful!",example,,chouf nnjoum zwinin bzzaf
+N404,N-401-425,neutral,Chems skhouna bzzaf lyoum.,الشمس سخونا بزاف اليوم.,The sun is really hot today.,example,,chems skhouna bzzaf lyoum
+N405,N-401-425,neutral,L7out f Dakhla tri bzzaf.,الحوت فداخلا تري بزاف.,The fish in Dakhla is really fresh.,example,,l7out f dakhla tri bzzaf
+N406,N-401-425,neutral,"Chouf lmouja, kbira!",شوف الموجة، كبيرة!,"Look at that wave, it’s huge!",example,,chouf lmouja kbira
+N407,N-401-425,neutral,Bghit n3oum f lbe7r.,بغيت نعوم فالبحر.,I want to swim in the sea.,example,,bghit n3oum f lbe7r
+N408,N-401-425,neutral,"Wakha, choukran!",واخا، شكرا!,"OK, thanks!",situation,,wakha choukran
+N409,N-401-425,neutral,"Smeh liya, fin kayn lbab?",سمح ليا، فين كاين الباب؟,"Excuse me, where’s the gate?",situation,,smeh liya fin kayn lbab
+N410,N-401-425,neutral,"Wqef hna, 3afak.",وقف هنا، عافاك.,"Stop here, please.",situation,,wqef hna 3afak
+N411,N-401-425,neutral,Mskina.,مسكينا.,Poor thing.,situation,,mskina
+N412,N-401-425,neutral,"Dghya, dghya!",دغيا، دغيا!,"Faster, faster!",situation,,dghya dghya
+N413,N-401-425,neutral,"Labas, l7amdoulillah.",لاباس، الحمد لله.,"Fine, thank God.",situation,,labas l7amdoulillah
+N414,N-401-425,neutral,"Mcha l7al, ghadi nmchi.",مشا الحال، غادي نمشي.,"It’s late, I’m heading out.",situation,,mcha l7al ghadi nmchi
+N415,N-401-425,neutral,Zid atay!,زيد أتاي!,More tea!,situation,,zid atay
+N416,N-401-425,neutral,Hadchi tberguig!,هادشي تبركيك!,That’s just nosy gossip!,situation,,hadchi tberguig
+N417,N-401-425,neutral,Nta 9afez!,نتا قافز!,You’re so sly!,situation,,nta 9afez
+N418,N-401-425,neutral,Drari f zzen9a.,دراري فالزنقا.,The kids are out in the street.,situation,,drari f zzen9a
+N419,N-401-425,neutral,"Jibli 9hwa, llah ykhlik.",جيبلي قهوة، الله يخليك.,"Bring me a coffee, please.",situation,,jibli 9hwa llah ykhlik
+N420,N-401-425,neutral,"Jibli 9hwa, daba!",جيبلي قهوة، دابا!,Bring me a coffee. NOW!,situation,,jibli 9hwa daba
+N421,N-401-425,neutral,Ma bghitch.,ما بغيتش.,I don’t want it.,situation,,ma bghitch
+N422,N-401-425,neutral,Fin kayn tobis?,فين كاين طوبيس؟,Where’s the bus?,situation,,fin kayn tobis
+N423,N-401-425,neutral,Zid chwiya.,زيد شوية.,A bit more.,situation,,zid chwiya
+N424,N-401-425,neutral,Rbe7na zouj zero!,ربحنا زوج زيرو!,We won two-nil!,situation,,rbe7na zouj zero
+N425,N-401-425,neutral,Twe7chtek bzzaf!,توحشتك بزاف!,I missed you so much!,situation,,twe7chtek bzzaf
+N426,N-426-450,neutral,Goool!,كووول!,Goal!,situation,,goool
+N427,N-426-450,neutral,"La, bla sokkar, 3afak!",لا، بلا سكر، عافاك!,"No, without sugar, please!",situation,,la bla sokkar 3afak
+N428,N-426-450,neutral,Kbir bzzaf.,كبير بزاف.,Too big.,situation,,kbir bzzaf
+N429,N-426-450,neutral,"Smeh liya, ma 3ndich sarf.",سمح ليا، ما عنديش الصرف.,"Sorry, I don’t have change.",situation,,smeh liya ma 3ndich sarf
+N430,N-426-450,neutral,Lbe7r zwin.,البحر زوين.,The sea is nice.,situation,,lbe7r zwin
+N431,N-426-450,neutral,Fin kayn tran?,فين كاين التران؟,Where’s the train?,situation,,fin kayn tran
+N432,N-426-450,neutral,Noud! Nzel hna!,نود! نزل هنا!,Get up! Get off here!,situation,,noud nzel hna
+N433,N-426-450,neutral,Zid zitoun.,زيد الزيتون.,More olives.,situation,,zid zitoun
+N434,N-426-450,neutral,"Hada sghir, kayn kbir?",هادا صغير، كاين كبير؟,"This is small, is there a big one?",situation,,hada sghir kayn kbir
+N435,N-426-450,neutral,Mer7ba bik!,مرحبا بيك!,Welcome!,situation,,mer7ba bik
+N436,N-426-450,neutral,Lkas dyalna!,الكاس ديالنا!,The cup is ours!,situation,,lkas dyalna
+N437,N-426-450,neutral,"Ahlan Salma, kif dayra?",أهلا سلمى، كيف دايرة؟,"Hi Salma, how are you?",situation,,ahlan salma kif dayra
+N438,N-426-450,neutral,Kayn rri7 bzzaf!,كاين الريح بزاف!,It’s so windy!,situation,,kayn rri7 bzzaf
+N439,N-426-450,neutral,Achmen wa7ed?,أشمن… واحد؟,Which one?,situation,,achmen wa7ed
+N440,N-426-450,neutral,"Hani, choukran.",هاني، شكرا.,"I’m fine, thanks.",situation,,hani choukran
+N441,N-426-450,neutral,"Wa9ila, nchoufo.",واقيلا، نشوفو.,"Maybe, we’ll see.",situation,,wa9ila nchoufo
+N442,N-426-450,neutral,"Lmel7a, 3afak.",الملحة، عافاك.,"The salt, please.",situation,,lmel7a 3afak
+N443,N-426-450,neutral,bghit atay b na3na3,بغيت أتاي بنعناع,I want mint tea,sentence,,bghit atay b na3na3
+N444,N-426-450,neutral,hada zwin bzzaf,هادا زوين بزاف,This is very beautiful,sentence,,hada zwin bzzaf
+N445,N-426-450,neutral,ana ghadi l ddar,أنا غادي لالدار,I’m going home,sentence,,ana ghadi l ddar
+N446,N-426-450,neutral,makaynch lwifi,ماكاينش الويفي,There’s no wifi,sentence,,makaynch lwifi
+N447,N-426-450,neutral,kolchi mzyan l7amdoulillah,كلشي مزيان الحمد لله,"Everything’s good, thank God",sentence,,kolchi mzyan l7amdoulillah
+N448,N-426-450,neutral,ma 3reftch,ما عرفتش,I don’t know,sentence,,ma 3reftch
+N449,N-426-450,neutral,bghit chwiya d sokkar,بغيت شوية دسكر,I want a little sugar,sentence,,bghit chwiya d sokkar
+N450,N-426-450,neutral,smiti Adam,سميتي آدم,My name is Adam,sentence,,smiti adam
+N451,N-451-475,neutral,wach kayn tobis,واش كاين طوبيس,Is there a bus?,sentence,,wach kayn tobis
+N452,N-451-475,neutral,kanbghik a yemma,كنبغيك آ يما,"I love you, mom",sentence,,kanbghik a yemma
+N453,N-451-475,neutral,3yit bzzaf,عييت بزاف,I’m very tired,sentence,,3yit bzzaf
+N454,N-451-475,neutral,atay bla sokkar,أتاي بلا سكر,Tea without sugar,sentence,,atay bla sokkar
+N455,N-451-475,neutral,kayn rri7 lyoum,كاين الريح اليوم,It’s windy today,sentence,,kayn rri7 lyoum
+N456,N-451-475,neutral,l7akam 3ta kart 7mer,الحكم عتا كارط حمر,The referee gave a red card,sentence,,l7akam 3ta kart 7mer
+N457,N-451-475,neutral,Li bgha l3sel ysber l9ris n7el.,لي بغا العسل يصبر لقريص النحل.,Whoever wants honey puts up with bee stings.,proverb,,li bgha l3sel ysber l9ris n7el
+N458,N-451-475,neutral,Kol 3otla fiha khir.,كل عطلة فيها خير.,Every delay has some good in it.,proverb,,kol 3otla fiha khir
+N459,N-451-475,neutral,Lli fat mat.,لي فات مات.,What’s gone is dead.,proverb,,lli fat mat
+N460,N-451-475,neutral,Dir lkhir w nsah.,دير الخير و نساه.,Do good and forget about it.,proverb,,dir lkhir w nsah
+N461,N-451-475,neutral,"Lli ma 3ndo flous, klamo masous.",لي ما عندو فلوس، كلامو مسوس.,"Without money, your words have no taste.",proverb,,lli ma 3ndo flous klamo masous
+N462,N-451-475,neutral,Ljar 9bel ddar.,الجار قبل الدار.,The neighbor before the house.,proverb,,ljar 9bel ddar
+N463,N-451-475,neutral,Ssbr mfta7 lfaraj.,الصبر مفتاح الفرج.,Patience is the key to relief.,proverb,,ssbr mfta7 lfaraj
+N464,N-451-475,neutral,Lmektoub ma fih hroub.,المكتوب ما فيه هروب.,There’s no running from what’s written.,proverb,,lmektoub ma fih hroub
+N465,N-451-475,neutral,Koul ma bghiti w lbes ma y3jeb nnas.,كول ما بغيتي و لبس ما يعجب الناس.,"Eat what you like, wear what people like.",proverb,,koul ma bghiti w lbes ma y3jeb nnas
+N466,N-451-475,neutral,Sb3 snaye3 w rrz9 dayi3.,سبع صنايع و الرزق ضايع.,Seven trades and the money’s still lost.,proverb,,sb3 snaye3 w rrz9 dayi3
+N467,N-451-475,neutral,"Lli bgha yrbe7, l3am twil.",لي بغا يربح، العام تويل.,"If you want to win, the year is long.",proverb,,lli bgha yrbe7 l3am twil
+N468,N-451-475,neutral,Sa7bek howa lli y3awnek f l7ajja.,ساحبك هو لي يعاونك فالحجا.,Your friend is the one who helps you in need.,proverb,,sa7bek howa lli y3awnek f l7ajja
+N469,N-451-475,neutral,L3in ma t3la 3la l7ajeb.,العين ما تعلا على الحاجب.,The eye doesn’t rise above the eyebrow.,proverb,,l3in ma t3la 3la l7ajeb
+N470,N-451-475,neutral,Chwiya mn lle7ya w chwiya mn l7ajeb.,شوية من اللحيا و شوية من الحاجب.,"A bit from the beard, a bit from the eyebrow.",proverb,,chwiya mn lle7ya w chwiya mn l7ajeb
+N471,N-451-475,neutral,Llah y3tik sa7a,الله يعطيك صحة,God give you health,guide,,llah y3tik sa7a
+N472,N-451-475,neutral,Fermli,فرملي,nurse (French infirmier),guide,,fermli
+N473,N-451-475,neutral,ma fhemt ch,ما فهمت ش,fhemt = I understood. ma fhemtch = I didn’t understand.,reel,,ma fhemt ch
+N474,N-451-475,neutral,ma bghit ch,ما بغيت ش,bghit = I want. ma bghitch = I don’t want.,reel,,ma bghit ch
+N475,N-451-475,neutral,ma kayn ch,ما كاين ش,kayn = there is. makaynch = there isn’t.,reel,,ma kayn ch
+N476,N-476-500,neutral,Alf ryal?,ألف ريال؟,"1,000 ryal (50 DH)",guide,,alf ryal
+N477,N-476-500,neutral,Ah,أه,Yeah. Super casual.,reel,,ah
+N478,N-476-500,neutral,Nhar jjem3a,نهار الجمعة,Friday.,reel,,nhar jjem3a
+N479,N-476-500,neutral,Ana mn Fransa,أنا من فرانسا,I’m from France.,reel,,ana mn fransa
+N480,N-476-500,neutral,ar:عَا,أر:َ,,guide,,ar عَا
+N481,N-476-500,neutral,ar:حَا,أر:َ,,guide,,ar حَا
+N482,N-476-500,neutral,ar:قَا,أر:َ,,guide,,ar قَا
+N483,N-476-500,neutral,ar:غَا,أر:َ,,guide,,ar غَا
+N484,N-476-500,neutral,ar:خَا,أر:َ,,guide,,ar خَا
+N485,N-476-500,neutral,ar:شَا,أر:َ,,guide,,ar شَا
+N486,N-476-500,neutral,Chhal,شحال,,guide,,chhal
+N487,N-476-500,neutral,ar:جَا,أر:َ,,guide,,ar جَا
+N488,N-476-500,neutral,ar:صَا,أر:َ,,guide,,ar صَا
+N489,N-476-500,neutral,Fhemt,فهمت,I understood,guide,,fhemt
+N490,N-476-500,neutral,Ana,أنا,I,guide,,ana
+N491,N-476-500,neutral,Nta,نتا,"you, to a man",guide,,nta
+N492,N-476-500,neutral,Nti,نتي,"you, to a woman",guide,,nti
+N493,N-476-500,neutral,Howa,هو,he,guide,,howa
+N494,N-476-500,neutral,Hiya,هي,she,guide,,hiya
+N495,N-476-500,neutral,7na,حنا,we,guide,,7na
+N496,N-476-500,neutral,Ntouma,نتوما,"you, to a group",guide,,ntouma
+N497,N-476-500,neutral,Homa,هوما,they,guide,,homa
+N498,N-476-500,neutral,Ki dayra?,كي دايرة؟,How are you? (to a woman),guide,,ki dayra
+N499,N-476-500,neutral,Mzyana,مزيانة,good (feminine),guide,,mzyana
+N500,N-476-500,neutral,Sa7bti,صاحبتي,my friend (a girl),guide,,sa7bti
+N501,N-501-525,neutral,3ndi,عندي,I have,guide,,3ndi
+N502,N-501-525,neutral,3ndek,عندك,you have,guide,,3ndek
+N503,N-501-525,neutral,3ndo,عندو,he has,guide,,3ndo
+N504,N-501-525,neutral,3ndha,عندها,she has,guide,,3ndha
+N505,N-501-525,neutral,3ndna,عندنا,we have,guide,,3ndna
+N506,N-501-525,neutral,3ndi khouya w khti.,عندي خويا و ختي.,I have a brother and a sister.,guide,,3ndi khouya w khti
+N507,N-501-525,neutral,Dyali,ديالي,mine,guide,,dyali
+N508,N-501-525,neutral,Dyalek,ديالك,yours,guide,,dyalek
+N509,N-501-525,neutral,Dyalo,ديالو,his,guide,,dyalo
+N510,N-501-525,neutral,Dyalha,ديالها,hers,guide,,dyalha
+N511,N-501-525,neutral,Tomobil dyali,طوموبيل ديالي,my car,guide,,tomobil dyali
+N512,N-501-525,neutral,Wach hada dyalek?,واش هادا ديالك؟,Is this yours?,guide,,wach hada dyalek
+N513,N-501-525,neutral,Kanfhem,كنفهم,I understand,guide,,kanfhem
+N514,N-501-525,neutral,Katfhem,كتفهم,you understand,guide,,katfhem
+N515,N-501-525,neutral,Kayfhem,كيفهم,he understands,guide,,kayfhem
+N516,N-501-525,neutral,Kanfehmou,كنفهمو,we understand,guide,,kanfehmou
+N517,N-501-525,neutral,Ghadi nmchi.,غادي نمشي.,I’m going to go.,guide,,ghadi nmchi
+N518,N-501-525,neutral,Ghadi nakol.,غادي ناكل.,I’m going to eat.,guide,,ghadi nakol
+N519,N-501-525,neutral,Ghadi nchoufek ghedda.,غادي نشوفك غدا.,I’ll see you tomorrow.,guide,,ghadi nchoufek ghedda
+N520,N-501-525,neutral,Klit,كليت,I ate,guide,,klit
+N521,N-501-525,neutral,Mchit,مشيت,I went,guide,,mchit
+N522,N-501-525,neutral,Mchit l ssou9 lbare7.,مشيت لالسوق البارح.,I went to the souk yesterday.,guide,,mchit l ssou9 lbare7
+N523,N-501-525,neutral,Stta,ستة,6,guide,,stta
+N524,N-501-525,neutral,Ts3ud,تسعود,9,guide,,ts3ud
+N525,N-501-525,neutral,3chrin,عشرين,20,guide,,3chrin
+N526,N-526-533,neutral,Jouj d lkisan,جوج دالكيسان,two glasses,guide,,jouj d lkisan
+N527,N-526-533,neutral,3chrin dirham,عشرين درهم,20 dirhams,guide,,3chrin dirham
+N528,N-526-533,neutral,Llah y7fdek,الله يحفظك,God keep you (thank you),guide,,llah y7fdek
+N529,N-526-533,neutral,Llah ybarek fik,الله يبارك فيك,God bless you,guide,,llah ybarek fik
+N530,N-526-533,neutral,Kanfhem chwiya,كنفهم شوية,,other,,kanfhem chwiya
+N531,N-526-533,neutral,Mn l7ouma,من الحوما,,other,,mn l7ouma
+N532,N-526-533,neutral,Sandou9!,ساندوق!,,other,,sandou9
+N533,N-526-533,neutral,Atay wajed!,أتاي واجد!,,other,,atay wajed
+M001,M-001-025,male,Ana jay daba!,أنا جاي دابا!,I’m coming now!,example,,ana jay daba
+M002,M-001-025,male,Ana fer7an bzzaf lyoum!,أنا فرحان بزاف اليوم!,I’m so happy today!,example,,ana fer7an bzzaf lyoum
+M003,M-001-025,male,Fin sakn? Ana sakn f Fes.,فين ساكن؟ أنا ساكن ففاس.,Where do you live? I live in Fes.,example,,fin sakn ana sakn f fes
+M004,M-001-025,male,"Hadi mrati, Salma.",هادي مراتي، سلمى.,"This is my wife, Salma.",example,,hadi mrati salma
+M005,M-001-025,male,Ana mqelle9 chwiya lyoum.,أنا مقلق شوية اليوم.,I’m a bit upset today.,example,,ana mqelle9 chwiya lyoum
+M006,M-001-025,male,Chems ghadi tghreb. Yallah 3la jmel!,الشمس غادي تغرب. يالاه على جمل!,The sun’s going down. Up on the camel!,story,Guide,a|chems ghadi tghreb yallah 3la jmel
+M007,M-001-025,male,Wach lkhayma b3ida?,واش الخيمة بعيدة؟,Is the tent far?,story,You,wach lkhayma b3ida
+M008,M-001-025,male,"La, 9riba. Mor had rmel.",لا، قريبة. مور هاد رمل.,"No, it’s close. Behind this sand.",story,Guide,a|la 9riba mor had rmel
+M009,M-001-025,male,"Hna, nnjoum dima hakka.",هنا، النجوم ديما هاكا.,"Out here, the stars are always like this.",story,Guide,a|hna nnjoum dima hakka
+M010,M-001-025,male,Kayn rri7 bzzaf lyoum!,كاين الريح بزاف اليوم!,It’s really windy today!,story,Friend,a|kayn rri7 bzzaf lyoum
+M011,M-001-025,male,"Ya3ni, ma n3oumch?",يعني، ما نعومش؟,"So, I shouldn’t swim?",story,You,ya3ni ma n3oumch
+M012,M-001-025,male,"Wa9ila ghedda. Chouf lmouja, kbira!",واقيلا غدا. شوف الموجة، كبيرة!,"Maybe tomorrow. Look at the wave, it’s huge!",story,Friend,a|wa9ila ghedda chouf lmouja kbira
+M013,M-001-025,male,"Safi, fhemt. Nmchiw nakoulo l7out?",صافي، فهمت. نمشيو ناكولو الحوت؟,"OK, I get it. Shall we go eat fish?",story,You,safi fhemt nmchiw nakoulo l7out
+M014,M-001-025,male,Yallah! Bhal dima.,يالاه! بحال ديما.,Let’s go! Like always.,story,Friend,a|yallah bhal dima
+M015,M-001-025,male,Ahlan! Fin had lghiba?,أهلا! فين هاد الغيبة؟,Hey! Long time no see!,story,Karim,a|ahlan fin had lghiba
+M016,M-001-025,male,Ch7al hadi! Twe7chtek bzzaf.,شحال هادي! توحشتك بزاف.,It’s been ages! I missed you so much.,story,You,ch7al hadi twe7chtek bzzaf
+M017,M-001-025,male,Ki dayr? Kolchi mzyan?,كي داير؟ كلشي مزيان؟,How are you? All good?,story,Karim,a|ki dayr kolchi mzyan
+M018,M-001-025,male,"Hani, l7amdoulillah. W nta?",هاني، الحمد لله. ونتا؟,"I’m good, thank God. And you?",story,You,hani l7amdoulillah w nta
+M019,M-001-025,male,Bikhir. Sellem liya 3la yemmak!,بخير. سلم ليا على… يماك!,Fine. Say hi to your mum for me!,story,Karim,a|bikhir sellem liya 3la yemmak
+M020,M-001-025,male,"Smeh liya, fin kayna lbanka?",سمح ليا، فين كاينة البانكة؟,"Excuse me, where’s the bank?",story,You,smeh liya fin kayna lbanka
+M021,M-001-025,male,"Sir nichan, w dour 3la limen.",سير نيشان، و دور على ليمن.,"Go straight, then turn right.",story,Passer-by,a|sir nichan w dour 3la limen
+M022,M-001-025,male,Wach b3ida?,واش بعيدة؟,Is it far?,story,You,wach b3ida
+M023,M-001-025,male,"La, 9riba. Khamsa d d9aye9.",لا، قريبة. خمسة ددقايق.,"No, it’s close. Five minutes.",story,Passer-by,a|la 9riba khamsa d d9aye9
+M024,M-001-025,male,Mabrouk! Llah ykemmel bikhir.,مبروك! الله يكمل بخير.,Congrats! May it all go well.,story,Guest,a|mabrouk llah ykemmel bikhir
+M025,M-001-025,male,Llah ybarek fik. Mer7ba bik!,الله يبارك فيك. مرحبا بيك!,God bless you. Welcome!,story,Host,llah ybarek fik mer7ba bik
+M026,M-026-050,male,Lmakla bnina bzzaf!,الماكلة بنينا بزاف!,The food is so good!,story,Guest,a|lmakla bnina bzzaf
+M027,M-026-050,male,Bssa7a! Zid chwiya.,بالصحة! زيد شوية.,Enjoy! Have some more.,story,Host,bssa7a zid chwiya
+M028,M-026-050,male,"Salam, achnou bghiti?",سلام، أشنو بغيتي؟,"Hi, what would you like?",story,Waiter,a|salam achnou bghiti
+M029,M-026-050,male,"Bghit wa7ed atay, 3afak.",بغيت واحد أتاي، عافاك.,"I’d like a tea, please.",story,You,bghit wa7ed atay 3afak
+M030,M-026-050,male,B na3na3?,بنعناع؟,With mint?,story,Waiter,a|b na3na3
+M031,M-026-050,male,"Iyeh, w chwiya d sokkar.",إيه، و شوية دسكر.,"Yes, and a little sugar.",story,You,iyeh w chwiya d sokkar
+M032,M-026-050,male,"Wakha, daba yji.",واخا، دابا يجي.,"OK, it’s coming right up.",story,Waiter,a|wakha daba yji
+M033,M-026-050,male,"Salam, wach 3ndek lma?",سلام، واش عندك الما؟,"Hi, do you have water?",story,You,salam wach 3ndek lma
+M034,M-026-050,male,"Iyeh, kbira wla sghira?",إيه، كبيرة ولا صغيرة؟,"Yes, big or small?",story,Shopkeeper,a|iyeh kbira wla sghira
+M035,M-026-050,male,Kbira. B chhal?,كبيرة. بشحال؟,Big. How much?,story,You,kbira b chhal
+M036,M-026-050,male,Stta dirham.,ستة درهم.,Six dirhams.,story,Shopkeeper,a|stta dirham
+M037,M-026-050,male,"Hak, choukran.",هاك، شكرا.,"Here you go, thanks.",story,You,hak choukran
+M038,M-026-050,male,"Chouf lmal3ab, 3amer!",شوف الملعب، عامر!,"Look at the stadium, it’s packed!",story,Friend,a|chouf lmal3ab 3amer
+M039,M-026-050,male,Korner! 3tawna lkorner!,كورنر! عتاونا الكورنر!,Corner! They gave us a corner!,story,Friend,a|korner 3tawna lkorner
+M040,M-026-050,male,Goool! Rbe7na!,كووول! ربحنا!,Goal! We won!,story,You,goool rbe7na
+M041,M-026-050,male,Tsfira lkhra! Dima Maghrib!,التصفيرة اللخرة! ديما مغرب!,The final whistle! Always Morocco!,story,Friend,a|tsfira lkhra dima maghrib
+M042,M-026-050,male,Sba7 lkhir! Achnou bghiti f lftour?,صباح الخير! أشنو بغيتي فالفطور؟,Good morning! What would you like for breakfast?,story,Waiter,a|sba7 lkhir achnou bghiti f lftour
+M043,M-026-050,male,"Msemmen b l3sel, 3afak.",مسمن بالعسل، عافاك.,"Msemmen with honey, please.",story,You,msemmen b l3sel 3afak
+M044,M-026-050,male,W lbid? W zzebda?,و البيض؟ و الزبدة؟,And eggs? And butter?,story,Waiter,a|w lbid w zzebda
+M045,M-026-050,male,"Iyeh, w atay bla sokkar.",إيه، و أتاي بلا سكر.,"Yes, and tea without sugar.",story,You,iyeh w atay bla sokkar
+M046,M-026-050,male,"Ana mn Casa. W nti, fin sakna?",أنا من كازا. ونتي، فين ساكنا؟,"I’m from Casa. And you, where do you live?",story,You,ana mn casa w nti fin sakna
+M047,M-026-050,male,Jit nchouf ttelj!,جيت نشوف التلج!,I came to see the snow!,story,You,jit nchouf ttelj
+M048,M-026-050,male,"Salam, wach khawi?",سلام، واش خاوي؟,"Hi, are you free?",story,You,salam wach khawi
+M049,M-026-050,male,"Iyeh, fin ghadi?",إيه، فين غادي؟,"Yes, where are you going?",story,Driver,a|iyeh fin ghadi
+M050,M-026-050,male,"L lmdina l9dima, 3afak.",لالمدينة القديمة، عافاك.,"To the old medina, please.",story,You,l lmdina l9dima 3afak
+M051,M-051-075,male,"Wakha, tla3.",واخا، طلع.,"OK, get in.",story,Driver,a|wakha tla3
+M052,M-051-075,male,"Wqef hna, choukran!",وقف هنا، شكرا!,"Stop here, thanks!",story,You,wqef hna choukran
+M053,M-051-075,male,Mer7ba bik! 3la slamtek.,مرحبا بيك! على سلامتك.,Welcome! Glad you made it safely.,story,Host,a|mer7ba bik 3la slamtek
+M054,M-051-075,male,"Tfddel, l9raya wajda. Bismillah.",تفضل، القرايا واجدا. بسم الله.,"Please, lunch is ready. Bismillah.",story,Host,a|tfddel l9raya wajda bismillah
+M055,M-051-075,male,Bnin bzzaf! Allah yjazik bikhir.,بنين بزاف! الله يجازيك بخير.,So delicious! God reward you.,story,You,bnin bzzaf allah yjazik bikhir
+M056,M-051-075,male,"Bssa7tek! Zid chwiya, ila bghiti.",بصحتك! زيد شوية، إلا بغيتي.,"Enjoy! Have a bit more, if you like.",story,Host,a|bssa7tek zid chwiya ila bghiti
+M057,M-051-075,male,Lmatch bda! Aji tchouf!,الماتش بدا! أجي تشوف!,The match has started! Come and watch!,story,Friend,a|lmatch bda aji tchouf
+M058,M-051-075,male,Chhal f nnatija?,شحال فالنتيجة؟,What’s the score?,story,You,chhal f nnatija
+M059,M-051-075,male,Ba9i zero zero.,باقي زيرو زيرو.,Still nil-nil.,story,Friend,a|ba9i zero zero
+M060,M-051-075,male,"Dir niya, ghadi nmarkiw!",دير النية، غادي نماركيو!,"Have faith, we’re going to score!",story,You,dir niya ghadi nmarkiw
+M061,M-051-075,male,Goool! Dima Maghrib!,كووول! ديما مغرب!,Goal! Always Morocco!,story,Friend,a|goool dima maghrib
+M062,M-051-075,male,Ana mn Kaza,أنا من كازا,I’m from Casa.,story,Adam,ana mn kaza
+M063,M-051-075,male,"Ana f tri9, yemma.",أنا فطريق، يما.,"I’m on my way, mom.",story,You,ana f tri9 yemma
+M064,M-051-075,male,"Salam, 3tini had lbelgha, 3afak.",سلام، عطيني… هاد البلغة، عافاك.,"Hi, give me these slippers, please.",story,You,salam 3tini had lbelgha 3afak
+M065,M-051-075,male,Hadi sghira 3lik. Bghiti kbira?,هادي صغيرة عليك. بغيتي كبيرة؟,These are small for you. Want bigger ones?,story,Vendor,a|hadi sghira 3lik bghiti kbira
+M066,M-051-075,male,"Iyeh, w f lwen akhor.",إيه، و فاللون أخور.,"Yes, and in another colour.",story,You,iyeh w f lwen akhor
+M067,M-051-075,male,"Hak, jdida. Mya dirham.",هاك، جديدا. مية درهم.,"Here, brand new. A hundred dirhams.",story,Vendor,a|hak jdida mya dirham
+M068,M-051-075,male,"Wakha, ghadi nakhdo. Fin nkhlles?",واخا، غادي ناخدو. فين نخلص؟,"OK, I’ll take them. Where do I pay?",story,You,wakha ghadi nakhdo fin nkhlles
+M069,M-051-075,male,Labas a jeddati? Fin jeddi?,لاباس آ جدتي؟ فين جدي؟,"Are you well, grandma? Where’s grandpa?",story,You,labas a jeddati fin jeddi
+M070,M-051-075,male,W 3amti w khalti?,و عمتي و خالتي؟,And my aunts?,story,You,w 3amti w khalti
+M071,M-051-075,male,B chhal l7out?,بشحال الحوت؟,How much is the fish?,story,You,b chhal l7out
+M072,M-051-075,male,Tlatin dirham l kilo.,تلاتين درهم لكيلو.,Thirty dirhams a kilo.,story,Fisherman,a|tlatin dirham l kilo
+M073,M-051-075,male,Ghali! Khmstach?,غالي! خمسطاش؟,Too expensive! Fifteen?,story,You,ghali khmstach
+M074,M-051-075,male,"La, 3ichrin, akhir taman.",لا، عشرين، آخر ثمن.,"No, twenty, final price.",story,Fisherman,a|la 3ichrin akhir taman
+M075,M-051-075,male,"Wakha, 3tini jouj kilo.",واخا، عطيني… جوج كيلو.,"OK, give me two kilos.",story,You,wakha 3tini jouj kilo
+M076,M-076-100,male,Fin ghadi lyoum?,فين غادي اليوم؟,Where are you going today?,story,Friend,a|fin ghadi lyoum
+M077,M-076-100,male,Ma3reftch. W nta?,ما عرفتش. ونتا؟,I don’t know. And you?,story,You,ma3reftch w nta
+M078,M-076-100,male,Yallah l b7er!,يالاه لالبحر!,Let’s go to the beach!,story,Friend,a|yallah l b7er
+M079,M-076-100,male,Ghali bzzaf! Nqss chwiya.,غالي بزاف! نقص شوية.,,other,,ghali bzzaf nqss chwiya
+M080,M-076-100,male,Ghanakhodha b 110.,غاناخدها بمية وعشرة.,,other,,ghanakhodha b 110
+M081,M-076-100,male,"Safi, bslama!",صافي، بسلامة!,,other,,safi bslama
+M082,M-076-100,male,"Wakha, mzyan!",واخا، مزيان!,,other,,wakha mzyan
+M083,M-076-100,male,Ghanakhodha b 840.,غاناخدها بتمنمية وربعين.,,other,,ghanakhodha b 840
+M084,M-076-100,male,Ghanakhdou b 160.,غاناخدو بمية وستين.,,other,,ghanakhdou b 160
+M085,M-076-100,male,Ghanakhdou b 210.,غاناخدو بميتين وعشرة.,,other,,ghanakhdou b 210
+M086,M-076-100,male,Ghanakhdou b 90.,غاناخدو بتسعين.,,other,,ghanakhdou b 90
+M087,M-076-100,male,3ndi a7san taman f ssou9!,عندي أحسن تمن فالسوق!,,souk,,v|3ndi a7san taman f ssou9
+M088,M-076-100,male,Mer7ba bik! Had lbelgha ghir b 300 dirham.,مرحبا بيك! هاد البلغة غير بتلاتمية درهم.,,souk,,v|mer7ba bik had lbelgha ghir b 300 dirham
+M089,M-076-100,male,"Wakha, 3la wjhek: 230.",واخا، على وجهك: ميتين وتلاتين.,,souk,,v|wakha 3la wjhek 230
+M090,M-076-100,male,Ma n9derch n9ass ktar. 230 w safi.,ما نقدرش نقص كتر. ميتين وتلاتين و صافي.,,souk,,v|ma n9derch n9ass ktar 230 w safi
+M091,M-076-100,male,Akhir taman: 190.,آخر ثمن: مية وتسعين.,,souk,,v|akhir taman 190
+M092,M-076-100,male,"Safi, akhir klma: 190.",صافي، آخر كلمة: مية وتسعين.,,souk,,v|safi akhir klma 190
+M093,M-076-100,male,"Tbarkellah 3lik! Safi, 150. Bssa7tek!",تبارك الله عليك! صافي، مية وخمسين. بصحتك!,,souk,,v|tbarkellah 3lik safi 150 bssa7tek
+M094,M-076-100,male,Mabrouk 3lik! 190.,مبروك عليك! مية وتسعين.,,souk,,v|mabrouk 3lik 190
+M095,M-076-100,male,"Ghedda taman ghadi ytla3! Yallah, 200.",غدا تمن غادي يطلع! يالاه، ميتين.,,souk,,v|ghedda taman ghadi ytla3 yallah 200
+M096,M-076-100,male,"Aji, aji! 160, 3la wjhek!",أجي، أجي! مية وستين، على وجهك!,,souk,,v|aji aji 160 3la wjhek
+M097,M-076-100,male,"Safi, akhir klma: 160.",صافي، آخر كلمة: مية وستين.,,souk,,v|safi akhir klma 160
+M098,M-076-100,male,"Tbarkellah 3lik! Safi, 140. Bssa7tek!",تبارك الله عليك! صافي، مية وربعين. بصحتك!,,souk,,v|tbarkellah 3lik safi 140 bssa7tek
+M099,M-076-100,male,Mabrouk 3lik! 160.,مبروك عليك! مية وستين.,,souk,,v|mabrouk 3lik 160
+M100,M-076-100,male,"Ghedda taman ghadi ytla3! Yallah, 170.",غدا تمن غادي يطلع! يالاه، مية وسبعين.,,souk,,v|ghedda taman ghadi ytla3 yallah 170
+M101,M-101-125,male,7tta ana! Walakin 230.,حتا أنا! ولاكن ميتين وتلاتين.,,souk,,v|7tta ana walakin 230
+M102,M-101-125,male,"Safi, akhir klma: 230.",صافي، آخر كلمة: ميتين وتلاتين.,,souk,,v|safi akhir klma 230
+M103,M-101-125,male,"Tbarkellah 3lik! Safi, 170. Bssa7tek!",تبارك الله عليك! صافي، مية وسبعين. بصحتك!,,souk,,v|tbarkellah 3lik safi 170 bssa7tek
+M104,M-101-125,male,Mabrouk 3lik! 230.,مبروك عليك! ميتين وتلاتين.,,souk,,v|mabrouk 3lik 230
+M105,M-101-125,male,"Ghedda taman ghadi ytla3! Yallah, 240.",غدا تمن غادي يطلع! يالاه، ميتين وربعين.,,souk,,v|ghedda taman ghadi ytla3 yallah 240
+M106,M-101-125,male,Bssa7tek! Llah ybarek fik.,بصحتك! الله يبارك فيك.,,souk,,v|bssa7tek llah ybarek fik
+M107,M-101-125,male,"Hhh, 7tta ana! Walakin taman howa howa.",هه، حتا أنا! ولاكن تمن هو هو.,,souk,,v|hhh 7tta ana walakin taman howa howa
+M108,M-101-125,male,Ma n9derch n9ass ktar. 300 w safi.,ما نقدرش نقص كتر. تلاتمية و صافي.,,souk,,v|ma n9derch n9ass ktar 300 w safi
+M109,M-101-125,male,Akhir taman: 250.,آخر ثمن: ميتين وخمسين.,,souk,,v|akhir taman 250
+M110,M-101-125,male,"Safi, akhir klma: 250.",صافي، آخر كلمة: ميتين وخمسين.,,souk,,v|safi akhir klma 250
+M111,M-101-125,male,"Tbarkellah 3lik! Safi, 180. Bssa7tek!",تبارك الله عليك! صافي، مية وتمانين. بصحتك!,,souk,,v|tbarkellah 3lik safi 180 bssa7tek
+M112,M-101-125,male,Mabrouk 3lik! 250.,مبروك عليك! ميتين وخمسين.,,souk,,v|mabrouk 3lik 250
+M113,M-101-125,male,"Ghedda taman ghadi ytla3! Yallah, 270.",غدا تمن غادي يطلع! يالاه، ميتين وسبعين.,,souk,,v|ghedda taman ghadi ytla3 yallah 270
+M114,M-101-125,male,"Aji, aji! 210, 3la wjhek!",أجي، أجي! ميتين وعشرة، على وجهك!,,souk,,v|aji aji 210 3la wjhek
+M115,M-101-125,male,"Safi, akhir klma: 210.",صافي، آخر كلمة: ميتين وعشرة.,,souk,,v|safi akhir klma 210
+M116,M-101-125,male,"Tbarkellah 3lik! Safi, 160. Bssa7tek!",تبارك الله عليك! صافي، مية وستين. بصحتك!,,souk,,v|tbarkellah 3lik safi 160 bssa7tek
+M117,M-101-125,male,Mabrouk 3lik! 210.,مبروك عليك! ميتين وعشرة.,,souk,,v|mabrouk 3lik 210
+M118,M-101-125,male,"Ghedda taman ghadi ytla3! Yallah, 220.",غدا تمن غادي يطلع! يالاه، ميتين وعشرين.,,souk,,v|ghedda taman ghadi ytla3 yallah 220
+M119,M-101-125,male,7tta ana! Walakin 300.,حتا أنا! ولاكن تلاتمية.,,souk,,v|7tta ana walakin 300
+M120,M-101-125,male,"Safi, akhir klma: 300.",صافي، آخر كلمة: تلاتمية.,,souk,,v|safi akhir klma 300
+M121,M-101-125,male,"Tbarkellah 3lik! Safi, 210. Bssa7tek!",تبارك الله عليك! صافي، ميتين وعشرة. بصحتك!,,souk,,v|tbarkellah 3lik safi 210 bssa7tek
+M122,M-101-125,male,Mabrouk 3lik! 300.,مبروك عليك! تلاتمية.,,souk,,v|mabrouk 3lik 300
+M123,M-101-125,male,"Ghedda taman ghadi ytla3! Yallah, 320.",غدا تمن غادي يطلع! يالاه، تلاتمية وعشرين.,,souk,,v|ghedda taman ghadi ytla3 yallah 320
+M124,M-101-125,male,Mer7ba bik! Had zzrbiya ghir b 2400 dirham.,مرحبا بيك! هاد الزربية غير بألفين وربعمية درهم.,,souk,,v|mer7ba bik had zzrbiya ghir b 2400 dirham
+M125,M-101-125,male,"Wakha, 3la wjhek: 1800.",واخا، على وجهك: ألف وتمنمية.,,souk,,v|wakha 3la wjhek 1800
+M126,M-126-150,male,Ma n9derch n9ass ktar. 1800 w safi.,ما نقدرش نقص كتر. ألف وتمنمية و صافي.,,souk,,v|ma n9derch n9ass ktar 1800 w safi
+M127,M-126-150,male,Akhir taman: 1480.,آخر ثمن: ألف وربعمية وتمانين.,,souk,,v|akhir taman 1480
+M128,M-126-150,male,"Safi, akhir klma: 1480.",صافي، آخر كلمة: ألف وربعمية وتمانين.,,souk,,v|safi akhir klma 1480
+M129,M-126-150,male,"Tbarkellah 3lik! Safi, 1160. Bssa7tek!",تبارك الله عليك! صافي، ألف ومية وستين. بصحتك!,,souk,,v|tbarkellah 3lik safi 1160 bssa7tek
+M130,M-126-150,male,Mabrouk 3lik! 1480.,مبروك عليك! ألف وربعمية وتمانين.,,souk,,v|mabrouk 3lik 1480
+M131,M-126-150,male,"Ghedda taman ghadi ytla3! Yallah, 1570.",غدا تمن غادي يطلع! يالاه، ألف وخمسمية وسبعين.,,souk,,v|ghedda taman ghadi ytla3 yallah 1570
+M132,M-126-150,male,"Aji, aji! 1260, 3la wjhek!",أجي، أجي! ألف وميتين وستين، على وجهك!,,souk,,v|aji aji 1260 3la wjhek
+M133,M-126-150,male,"Safi, akhir klma: 1260.",صافي، آخر كلمة: ألف وميتين وستين.,,souk,,v|safi akhir klma 1260
+M134,M-126-150,male,"Tbarkellah 3lik! Safi, 1050. Bssa7tek!",تبارك الله عليك! صافي، ألف وخمسين. بصحتك!,,souk,,v|tbarkellah 3lik safi 1050 bssa7tek
+M135,M-126-150,male,Mabrouk 3lik! 1260.,مبروك عليك! ألف وميتين وستين.,,souk,,v|mabrouk 3lik 1260
+M136,M-126-150,male,"Ghedda taman ghadi ytla3! Yallah, 1340.",غدا تمن غادي يطلع! يالاه، ألف وتلاتمية وربعين.,,souk,,v|ghedda taman ghadi ytla3 yallah 1340
+M137,M-126-150,male,7tta ana! Walakin 1800.,حتا أنا! ولاكن ألف وتمنمية.,,souk,,v|7tta ana walakin 1800
+M138,M-126-150,male,"Safi, akhir klma: 1800.",صافي، آخر كلمة: ألف وتمنمية.,,souk,,v|safi akhir klma 1800
+M139,M-126-150,male,"Tbarkellah 3lik! Safi, 1320. Bssa7tek!",تبارك الله عليك! صافي، ألف وتلاتمية وعشرين. بصحتك!,,souk,,v|tbarkellah 3lik safi 1320 bssa7tek
+M140,M-126-150,male,Mabrouk 3lik! 1800.,مبروك عليك! ألف وتمنمية.,,souk,,v|mabrouk 3lik 1800
+M141,M-126-150,male,"Ghedda taman ghadi ytla3! Yallah, 1910.",غدا تمن غادي يطلع! يالاه، ألف وتسعمية وعشرة.,,souk,,v|ghedda taman ghadi ytla3 yallah 1910
+M142,M-126-150,male,Ma n9derch n9ass ktar. 2400 w safi.,ما نقدرش نقص كتر. ألفين وربعمية و صافي.,,souk,,v|ma n9derch n9ass ktar 2400 w safi
+M143,M-126-150,male,Akhir taman: 1970.,آخر ثمن: ألف وتسعمية وسبعين.,,souk,,v|akhir taman 1970
+M144,M-126-150,male,"Safi, akhir klma: 1970.",صافي، آخر كلمة: ألف وتسعمية وسبعين.,,souk,,v|safi akhir klma 1970
+M145,M-126-150,male,"Tbarkellah 3lik! Safi, 1410. Bssa7tek!",تبارك الله عليك! صافي، ألف وربعمية وعشرة. بصحتك!,,souk,,v|tbarkellah 3lik safi 1410 bssa7tek
+M146,M-126-150,male,Mabrouk 3lik! 1970.,مبروك عليك! ألف وتسعمية وسبعين.,,souk,,v|mabrouk 3lik 1970
+M147,M-126-150,male,"Ghedda taman ghadi ytla3! Yallah, 2090.",غدا تمن غادي يطلع! يالاه، ألفين وتسعين.,,souk,,v|ghedda taman ghadi ytla3 yallah 2090
+M148,M-126-150,male,"Aji, aji! 1680, 3la wjhek!",أجي، أجي! ألف وستمية وتمانين، على وجهك!,,souk,,v|aji aji 1680 3la wjhek
+M149,M-126-150,male,"Safi, akhir klma: 1680.",صافي، آخر كلمة: ألف وستمية وتمانين.,,souk,,v|safi akhir klma 1680
+M150,M-126-150,male,"Tbarkellah 3lik! Safi, 1260. Bssa7tek!",تبارك الله عليك! صافي، ألف وميتين وستين. بصحتك!,,souk,,v|tbarkellah 3lik safi 1260 bssa7tek
+M151,M-151-175,male,Mabrouk 3lik! 1680.,مبروك عليك! ألف وستمية وتمانين.,,souk,,v|mabrouk 3lik 1680
+M152,M-151-175,male,"Ghedda taman ghadi ytla3! Yallah, 1780.",غدا تمن غادي يطلع! يالاه، ألف وسبعمية وتمانين.,,souk,,v|ghedda taman ghadi ytla3 yallah 1780
+M153,M-151-175,male,7tta ana! Walakin 2400.,حتا أنا! ولاكن ألفين وربعمية.,,souk,,v|7tta ana walakin 2400
+M154,M-151-175,male,"Safi, akhir klma: 2400.",صافي، آخر كلمة: ألفين وربعمية.,,souk,,v|safi akhir klma 2400
+M155,M-151-175,male,"Tbarkellah 3lik! Safi, 1620. Bssa7tek!",تبارك الله عليك! صافي، ألف وستمية وعشرين. بصحتك!,,souk,,v|tbarkellah 3lik safi 1620 bssa7tek
+M156,M-151-175,male,Mabrouk 3lik! 2400.,مبروك عليك! ألفين وربعمية.,,souk,,v|mabrouk 3lik 2400
+M157,M-151-175,male,"Ghedda taman ghadi ytla3! Yallah, 2540.",غدا تمن غادي يطلع! يالاه، ألفين وخمسمية وربعين.,,souk,,v|ghedda taman ghadi ytla3 yallah 2540
+M158,M-151-175,male,Mer7ba bik! Had lfanar ghir b 450 dirham.,مرحبا بيك! هاد الفنار غير بربعمية وخمسين درهم.,,souk,,v|mer7ba bik had lfanar ghir b 450 dirham
+M159,M-151-175,male,"Wakha, 3la wjhek: 340.",واخا، على وجهك: تلاتمية وربعين.,,souk,,v|wakha 3la wjhek 340
+M160,M-151-175,male,Ma n9derch n9ass ktar. 340 w safi.,ما نقدرش نقص كتر. تلاتمية وربعين و صافي.,,souk,,v|ma n9derch n9ass ktar 340 w safi
+M161,M-151-175,male,Akhir taman: 280.,آخر ثمن: ميتين وتمانين.,,souk,,v|akhir taman 280
+M162,M-151-175,male,"Safi, akhir klma: 280.",صافي، آخر كلمة: ميتين وتمانين.,,souk,,v|safi akhir klma 280
+M163,M-151-175,male,"Tbarkellah 3lik! Safi, 220. Bssa7tek!",تبارك الله عليك! صافي، ميتين وعشرين. بصحتك!,,souk,,v|tbarkellah 3lik safi 220 bssa7tek
+M164,M-151-175,male,Mabrouk 3lik! 280.,مبروك عليك! ميتين وتمانين.,,souk,,v|mabrouk 3lik 280
+M165,M-151-175,male,"Ghedda taman ghadi ytla3! Yallah, 300.",غدا تمن غادي يطلع! يالاه، تلاتمية.,,souk,,v|ghedda taman ghadi ytla3 yallah 300
+M166,M-151-175,male,"Aji, aji! 240, 3la wjhek!",أجي، أجي! ميتين وربعين، على وجهك!,,souk,,v|aji aji 240 3la wjhek
+M167,M-151-175,male,"Safi, akhir klma: 240.",صافي، آخر كلمة: ميتين وربعين.,,souk,,v|safi akhir klma 240
+M168,M-151-175,male,"Tbarkellah 3lik! Safi, 200. Bssa7tek!",تبارك الله عليك! صافي، ميتين. بصحتك!,,souk,,v|tbarkellah 3lik safi 200 bssa7tek
+M169,M-151-175,male,Mabrouk 3lik! 240.,مبروك عليك! ميتين وربعين.,,souk,,v|mabrouk 3lik 240
+M170,M-151-175,male,"Ghedda taman ghadi ytla3! Yallah, 250.",غدا تمن غادي يطلع! يالاه، ميتين وخمسين.,,souk,,v|ghedda taman ghadi ytla3 yallah 250
+M171,M-151-175,male,7tta ana! Walakin 340.,حتا أنا! ولاكن تلاتمية وربعين.,,souk,,v|7tta ana walakin 340
+M172,M-151-175,male,"Safi, akhir klma: 340.",صافي، آخر كلمة: تلاتمية وربعين.,,souk,,v|safi akhir klma 340
+M173,M-151-175,male,"Tbarkellah 3lik! Safi, 250. Bssa7tek!",تبارك الله عليك! صافي، ميتين وخمسين. بصحتك!,,souk,,v|tbarkellah 3lik safi 250 bssa7tek
+M174,M-151-175,male,Mabrouk 3lik! 340.,مبروك عليك! تلاتمية وربعين.,,souk,,v|mabrouk 3lik 340
+M175,M-151-175,male,"Ghedda taman ghadi ytla3! Yallah, 360.",غدا تمن غادي يطلع! يالاه، تلاتمية وستين.,,souk,,v|ghedda taman ghadi ytla3 yallah 360
+M176,M-176-200,male,Ma n9derch n9ass ktar. 450 w safi.,ما نقدرش نقص كتر. ربعمية وخمسين و صافي.,,souk,,v|ma n9derch n9ass ktar 450 w safi
+M177,M-176-200,male,Akhir taman: 370.,آخر ثمن: تلاتمية وسبعين.,,souk,,v|akhir taman 370
+M178,M-176-200,male,"Safi, akhir klma: 370.",صافي، آخر كلمة: تلاتمية وسبعين.,,souk,,v|safi akhir klma 370
+M179,M-176-200,male,"Tbarkellah 3lik! Safi, 270. Bssa7tek!",تبارك الله عليك! صافي، ميتين وسبعين. بصحتك!,,souk,,v|tbarkellah 3lik safi 270 bssa7tek
+M180,M-176-200,male,Mabrouk 3lik! 370.,مبروك عليك! تلاتمية وسبعين.,,souk,,v|mabrouk 3lik 370
+M181,M-176-200,male,"Ghedda taman ghadi ytla3! Yallah, 390.",غدا تمن غادي يطلع! يالاه، تلاتمية وتسعين.,,souk,,v|ghedda taman ghadi ytla3 yallah 390
+M182,M-176-200,male,"Aji, aji! 320, 3la wjhek!",أجي، أجي! تلاتمية وعشرين، على وجهك!,,souk,,v|aji aji 320 3la wjhek
+M183,M-176-200,male,"Safi, akhir klma: 320.",صافي، آخر كلمة: تلاتمية وعشرين.,,souk,,v|safi akhir klma 320
+M184,M-176-200,male,"Tbarkellah 3lik! Safi, 240. Bssa7tek!",تبارك الله عليك! صافي، ميتين وربعين. بصحتك!,,souk,,v|tbarkellah 3lik safi 240 bssa7tek
+M185,M-176-200,male,Mabrouk 3lik! 320.,مبروك عليك! تلاتمية وعشرين.,,souk,,v|mabrouk 3lik 320
+M186,M-176-200,male,"Ghedda taman ghadi ytla3! Yallah, 340.",غدا تمن غادي يطلع! يالاه، تلاتمية وربعين.,,souk,,v|ghedda taman ghadi ytla3 yallah 340
+M187,M-176-200,male,7tta ana! Walakin 450.,حتا أنا! ولاكن ربعمية وخمسين.,,souk,,v|7tta ana walakin 450
+M188,M-176-200,male,"Safi, akhir klma: 450.",صافي، آخر كلمة: ربعمية وخمسين.,,souk,,v|safi akhir klma 450
+M189,M-176-200,male,"Tbarkellah 3lik! Safi, 310. Bssa7tek!",تبارك الله عليك! صافي، تلاتمية وعشرة. بصحتك!,,souk,,v|tbarkellah 3lik safi 310 bssa7tek
+M190,M-176-200,male,Mabrouk 3lik! 450.,مبروك عليك! ربعمية وخمسين.,,souk,,v|mabrouk 3lik 450
+M191,M-176-200,male,"Ghedda taman ghadi ytla3! Yallah, 480.",غدا تمن غادي يطلع! يالاه، ربعمية وتمانين.,,souk,,v|ghedda taman ghadi ytla3 yallah 480
+M192,M-176-200,male,Mer7ba bik! Had lberrad ghir b 600 dirham.,مرحبا بيك! هاد البراد غير بستمية درهم.,,souk,,v|mer7ba bik had lberrad ghir b 600 dirham
+M193,M-176-200,male,"Wakha, 3la wjhek: 450.",واخا، على وجهك: ربعمية وخمسين.,,souk,,v|wakha 3la wjhek 450
+M194,M-176-200,male,"Tbarkellah 3lik! Safi, 290. Bssa7tek!",تبارك الله عليك! صافي، ميتين وتسعين. بصحتك!,,souk,,v|tbarkellah 3lik safi 290 bssa7tek
+M195,M-176-200,male,"Tbarkellah 3lik! Safi, 330. Bssa7tek!",تبارك الله عليك! صافي، تلاتمية وتلاتين. بصحتك!,,souk,,v|tbarkellah 3lik safi 330 bssa7tek
+M196,M-176-200,male,Ma n9derch n9ass ktar. 600 w safi.,ما نقدرش نقص كتر. ستمية و صافي.,,souk,,v|ma n9derch n9ass ktar 600 w safi
+M197,M-176-200,male,Akhir taman: 490.,آخر ثمن: ربعمية وتسعين.,,souk,,v|akhir taman 490
+M198,M-176-200,male,"Safi, akhir klma: 490.",صافي، آخر كلمة: ربعمية وتسعين.,,souk,,v|safi akhir klma 490
+M199,M-176-200,male,"Tbarkellah 3lik! Safi, 350. Bssa7tek!",تبارك الله عليك! صافي، تلاتمية وخمسين. بصحتك!,,souk,,v|tbarkellah 3lik safi 350 bssa7tek
+M200,M-176-200,male,Mabrouk 3lik! 490.,مبروك عليك! ربعمية وتسعين.,,souk,,v|mabrouk 3lik 490
+M201,M-201-225,male,"Ghedda taman ghadi ytla3! Yallah, 520.",غدا تمن غادي يطلع! يالاه، خمسمية وعشرين.,,souk,,v|ghedda taman ghadi ytla3 yallah 520
+M202,M-201-225,male,"Aji, aji! 420, 3la wjhek!",أجي، أجي! ربعمية وعشرين، على وجهك!,,souk,,v|aji aji 420 3la wjhek
+M203,M-201-225,male,"Safi, akhir klma: 420.",صافي، آخر كلمة: ربعمية وعشرين.,,souk,,v|safi akhir klma 420
+M204,M-201-225,male,"Tbarkellah 3lik! Safi, 320. Bssa7tek!",تبارك الله عليك! صافي، تلاتمية وعشرين. بصحتك!,,souk,,v|tbarkellah 3lik safi 320 bssa7tek
+M205,M-201-225,male,Mabrouk 3lik! 420.,مبروك عليك! ربعمية وعشرين.,,souk,,v|mabrouk 3lik 420
+M206,M-201-225,male,"Ghedda taman ghadi ytla3! Yallah, 450.",غدا تمن غادي يطلع! يالاه، ربعمية وخمسين.,,souk,,v|ghedda taman ghadi ytla3 yallah 450
+M207,M-201-225,male,7tta ana! Walakin 600.,حتا أنا! ولاكن ستمية.,,souk,,v|7tta ana walakin 600
+M208,M-201-225,male,"Safi, akhir klma: 600.",صافي، آخر كلمة: ستمية.,,souk,,v|safi akhir klma 600
+M209,M-201-225,male,"Tbarkellah 3lik! Safi, 410. Bssa7tek!",تبارك الله عليك! صافي، ربعمية وعشرة. بصحتك!,,souk,,v|tbarkellah 3lik safi 410 bssa7tek
+M210,M-201-225,male,Mabrouk 3lik! 600.,مبروك عليك! ستمية.,,souk,,v|mabrouk 3lik 600
+M211,M-201-225,male,"Ghedda taman ghadi ytla3! Yallah, 640.",غدا تمن غادي يطلع! يالاه، ستمية وربعين.,,souk,,v|ghedda taman ghadi ytla3 yallah 640
+M212,M-201-225,male,Mer7ba bik! Had ttajin ghir b 250 dirham.,مرحبا بيك! هاد الطاجين غير بميتين وخمسين درهم.,,souk,,v|mer7ba bik had ttajin ghir b 250 dirham
+M213,M-201-225,male,"Wakha, 3la wjhek: 190.",واخا، على وجهك: مية وتسعين.,,souk,,v|wakha 3la wjhek 190
+M214,M-201-225,male,Ma n9derch n9ass ktar. 190 w safi.,ما نقدرش نقص كتر. مية وتسعين و صافي.,,souk,,v|ma n9derch n9ass ktar 190 w safi
+M215,M-201-225,male,Akhir taman: 160.,آخر ثمن: مية وستين.,,souk,,v|akhir taman 160
+M216,M-201-225,male,"Tbarkellah 3lik! Safi, 130. Bssa7tek!",تبارك الله عليك! صافي، مية وتلاتين. بصحتك!,,souk,,v|tbarkellah 3lik safi 130 bssa7tek
+M217,M-201-225,male,"Aji, aji! 130, 3la wjhek!",أجي، أجي! مية وتلاتين، على وجهك!,,souk,,v|aji aji 130 3la wjhek
+M218,M-201-225,male,"Safi, akhir klma: 130.",صافي، آخر كلمة: مية وتلاتين.,,souk,,v|safi akhir klma 130
+M219,M-201-225,male,"Tbarkellah 3lik! Safi, 110. Bssa7tek!",تبارك الله عليك! صافي، مية وعشرة. بصحتك!,,souk,,v|tbarkellah 3lik safi 110 bssa7tek
+M220,M-201-225,male,Mabrouk 3lik! 130.,مبروك عليك! مية وتلاتين.,,souk,,v|mabrouk 3lik 130
+M221,M-201-225,male,"Ghedda taman ghadi ytla3! Yallah, 140.",غدا تمن غادي يطلع! يالاه، مية وربعين.,,souk,,v|ghedda taman ghadi ytla3 yallah 140
+M222,M-201-225,male,7tta ana! Walakin 190.,حتا أنا! ولاكن مية وتسعين.,,souk,,v|7tta ana walakin 190
+M223,M-201-225,male,Ma n9derch n9ass ktar. 250 w safi.,ما نقدرش نقص كتر. ميتين وخمسين و صافي.,,souk,,v|ma n9derch n9ass ktar 250 w safi
+M224,M-201-225,male,Akhir taman: 210.,آخر ثمن: ميتين وعشرة.,,souk,,v|akhir taman 210
+M225,M-201-225,male,"Aji, aji! 180, 3la wjhek!",أجي، أجي! مية وتمانين، على وجهك!,,souk,,v|aji aji 180 3la wjhek
+M226,M-226-229,male,"Safi, akhir klma: 180.",صافي، آخر كلمة: مية وتمانين.,,souk,,v|safi akhir klma 180
+M227,M-226-229,male,Mabrouk 3lik! 180.,مبروك عليك! مية وتمانين.,,souk,,v|mabrouk 3lik 180
+M228,M-226-229,male,"Ghedda taman ghadi ytla3! Yallah, 190.",غدا تمن غادي يطلع! يالاه، مية وتسعين.,,souk,,v|ghedda taman ghadi ytla3 yallah 190
+M229,M-226-229,male,7tta ana! Walakin 250.,حتا أنا! ولاكن ميتين وخمسين.,,souk,,v|7tta ana walakin 250
+F001,F-001-012,female,Rajli kaybghi lkoura.,راجلي كايبغي الكورة.,My husband loves football.,example,,rajli kaybghi lkoura
+F002,F-001-012,female,Salam! Mnin nta?,سلام! منين نتا؟,Hi! Where are you from?,story,Salma,a|salam mnin nta
+F003,F-001-012,female,F Fes. Ach katdir hna?,ففاس. أش كتدير هنا؟,In Fes. What are you doing here?,story,Salma,a|f fes ach katdir hna
+F004,F-001-012,female,Ghedda nmchiw l ghaba? 3lach la!,غدا نمشيو لغابا؟ علاش لا!,Shall we go to the forest tomorrow? Why not!,story,Salma,a|ghedda nmchiw l ghaba 3lach la
+F005,F-001-012,female,"Salam, ana Yasmine. Ach smitek?",سلام، أنا ياسمين. أش سميتك؟,"Hi, I’m Yasmine. What’s your name?",story,Yasmine,a|salam ana yasmine ach smitek
+F006,F-001-012,female,Mtcharfin. Mnin nta?,متشرفين. منين نتا؟,Nice to meet you. Where are you from?,story,Yasmine,a|mtcharfin mnin nta
+F007,F-001-012,female,"Alo, fin nta?",ألو، فين نتا؟,"Hello, where are you?",story,Mom,a|alo fin nta
+F008,F-001-012,female,Imta ghadi tji?,إمتى غادي تجي؟,When are you coming?,story,Mom,a|imta ghadi tji
+F009,F-001-012,female,Zaama…,زعما…,"Yeah, right…",story,Mom,a|zaama
+F010,F-001-012,female,Mer7ba a weldi! Twe7chtek.,مرحبا آ ولدي! توحشتك.,"Welcome, my boy! I missed you.",story,Grandma,a|mer7ba a weldi twe7chtek
+F011,F-001-012,female,Jeddek m3a 3amek w khalek.,جدك معا عامك و خالك.,Grandpa is with your uncles.,story,Grandma,a|jeddek m3a 3amek w khalek
+F012,F-001-012,female,"F lkozina. Yallah, tajine wajed!",فالكوزينا. يالاه، طاجين واجد!,"In the kitchen. Come on, the tajine is ready!",story,Grandma,a|f lkozina yallah tajine wajed

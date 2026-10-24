@@ -26,9 +26,9 @@ w("ma3lich","Ma3lich","ماعليش","no worries","pas grave","polite",{ex:["Ma3
 w("lma","Lma","الما","water","l’eau","food");
 w("khobz","Khobz","خبز","bread","pain","food",{ex:["Khobz skhoun","Warm bread","Pain chaud"]});
 w("hamdoulillah","L7amdoulillah","الحمد لله","thank God / all good","Dieu merci","hello",{grp:"good",note:["The standard reply to “labas?”","La réponse classique à « labas ? »"]});
-w("kidayr","Ki dayr?","كيداير؟","how’s it going?","comment ça va ?","hello",{grp:"howru",note:["To a woman: ki dayra?","À une femme : ki dayra ?"]});
-w("bikhir","Bikhir","بيخير","fine / well","bien","hello",{grp:"good",ex:["Ana bikhir, l7amdoulillah.","I’m good, thank God.","Je vais bien, Dieu merci."]});
-w("merhba","Mer7ba","مرحبا","welcome","bienvenue","hello",{ex:["Mer7ba bik f lmghrib!","Welcome to Morocco!","Bienvenue au Maroc !"]});
+w("kidayr","Ki dayr?","كي داير؟","how’s it going?","comment ça va ?","hello",{grp:"howru",note:["To a woman: ki dayra?","À une femme : ki dayra ?"]});
+w("bikhir","Bikhir","بخير","fine / well","bien","hello",{grp:"good",ex:["Ana bikhir, l7amdoulillah.","I’m good, thank God.","Je vais bien, Dieu merci."]});
+w("merhba","Mer7ba","مرحبا","welcome","bienvenue","hello",{grp:"hi",ex:["Mer7ba bik f lmghrib!","Welcome to Morocco!","Bienvenue au Maroc !"]});
 w("smiti","Smiti…","سميتي","my name is…","je m’appelle…","hello",{ex:["Smiti Yasmine.","My name is Yasmine.","Je m’appelle Yasmine."]});
 w("achsmitek","Ach smitek?","أش سميتك؟","what’s your name?","comment tu t’appelles ?","q");
 w("achnou","Achnou?","أشنو؟","what?","quoi ?","q",{ex:["Achnou hada?","What’s this?","C’est quoi ça ?"]});

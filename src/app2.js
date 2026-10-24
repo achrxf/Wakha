@@ -148,12 +148,14 @@ function exListen(sp, host) {
   $(".card-in", el).innerHTML = `
     <h2 class="qtitle a1">${esc(mean ? t("listenMean") : t("listenPick"))}</h2>
     <div class="listen plays a2"><button class="play-big" data-act="play" aria-label="${esc(t("hearIt"))}">${ICON.speak}</button><button class="play-slow" data-act="slow" aria-label="${esc(t("slow"))}">${ICON.speak}<span>${esc(t("slow"))}</span></button></div>
+    <button class="show-txt a3" data-act="showtxt">${esc(t("showText"))}</button><p class="reveal" hidden>${mean ? `${esc(wd.d)}<span class="ar" lang="ary">${esc(wd.ar)}</span>` : esc(meaning(wd))}</p>
     <div class="opts a4">${opts.map((id) => `<button class="opt" data-id="${esc(id)}">${mean ? `<span>${esc(meaning(W[id]))}</span>` : `<span class="d" lang="ary-Latn">${esc(W[id].d)}</span>`}<span class="mk"></span></button>`).join("")}</div>
     <div class="fbx"></div>`;
   const play = (rate) => Voice.play(wd.d, { rate, btn:$(rate < 1 ? ".play-slow" : ".play-big", el) });
   const card = { el, kind:"listen", done:false, enter() { setTimeout(() => host.isActive(card) && !card.done && Session.gesture && play(1), 380); } };
   el.addEventListener("click", (e) => {
     if (e.target.closest("[data-act=next]")) { host.next(card); return; }
+    if (e.target.closest("[data-act=showtxt]")) { $(".reveal", el).hidden = false; e.target.closest("[data-act=showtxt]").hidden = true; return; }
     const a = e.target.closest("[data-act=play],[data-act=slow]");
     if (a) { Sound.unlock(); Session.gesture = true; play(a.dataset.act === "slow" ? 0.68 : 1); return; }
     const b = e.target.closest(".opt"); if (!b || card.done) return;
@@ -204,7 +206,8 @@ function exBuild(sp, host) {
   const sentence = buildSay(tok);
   $(".card-in", el).innerHTML = (hear ? `
     <h2 class="qtitle a1">${esc(t("hearBuild"))}</h2>
-    <div class="listen plays a2"><button class="play-big" data-act="play" aria-label="${esc(t("hearIt"))}">${ICON.speak}</button><button class="play-slow" data-act="slow" aria-label="${esc(t("slow"))}">${ICON.speak}<span>${esc(t("slow"))}</span></button></div>` : `
+    <div class="listen plays a2"><button class="play-big" data-act="play" aria-label="${esc(t("hearIt"))}">${ICON.speak}</button><button class="play-slow" data-act="slow" aria-label="${esc(t("slow"))}">${ICON.speak}<span>${esc(t("slow"))}</span></button></div>
+    <button class="show-txt a3" data-act="showtxt">${esc(t("showText"))}</button><p class="reveal" hidden>${esc(X(en, fr))}</p>` : `
     <div class="kicker a1"><span class="tag solid">${esc(t("buildK"))}</span></div>
     <p class="prompt a1">${esc(t("say"))}</p>
     <h2 class="prompt-big a2">${esc(X(en, fr))}</h2>`) + `
@@ -237,6 +240,7 @@ function exBuild(sp, host) {
   };
   el.addEventListener("click", (e) => {
     if (e.target.closest("[data-act=next]")) { host.next(card); return; }
+    if (e.target.closest("[data-act=showtxt]")) { $(".reveal", el).hidden = false; e.target.closest("[data-act=showtxt]").hidden = true; return; }
     const pa = e.target.closest("[data-act=play],[data-act=slow]");
     if (pa) { Sound.unlock(); Session.gesture = true; play(pa.dataset.act === "slow" ? 0.68 : 1); return; }
     if (card.done) return;
@@ -587,7 +591,7 @@ function exComeback(sp, host) {
     <div class="kicker a1"><span class="tag solid">${esc(t("comebackK"))}</span></div>
     <div class="a2" style="display:flex;align-items:center;gap:14px"><div style="width:56px;height:76px">${teaGlass(1, "cb-glass")}</div><h2 class="word">${esc(t("dayN", { n:Math.max(1, S.dayCount || 1) }))}</h2></div>
     <p class="mean a3">${esc(due ? t("comebackS", { n:due }) : st > 0 ? t("comebackS0") : t("comebackNew"))}</p>
-    <div class="a4" style="display:flex;gap:8px;flex-wrap:wrap">${st > 0 ? `<span class="tag">${esc(t("trayL", { n:st }))}</span>` : ""}${S.shields ? `<span class="tag">${ICON.shield} ${S.shields}</span>` : ""}</div>
+    <div class="a4" style="display:flex;gap:8px;flex-wrap:wrap">${st > 0 ? `<span class="tag">${esc(tn("trayL", { n:st }, st))}</span>` : ""}${S.shields ? `<span class="tag">${ICON.shield} ${S.shields}</span>` : ""}</div>
     <p class="swipe-cue a5">${ICON.up}<span>${esc(t("swipe"))}</span></p>`;
   return { el, kind:"comeback", firstEnter() { FG.force = dueWords().slice(0, 6); if (FG.force.length) Feed.rebuildAhead(false); } };
 }
@@ -887,6 +891,7 @@ const Lesson = {
       S.lessons[nodeId] = { stars:Math.max(stars, prev ? prev.stars : 0), done:today(), n:(prev ? prev.n : 0) + 1 };
     }
     S.stats.lessons++;
+    markDay(); refreshHUD();
     this.progress(true);
     const secs = Math.round((Date.now() - st.t0) / 1000);
     const el = shell("end", "wall");
@@ -900,7 +905,7 @@ const Lesson = {
     el.innerHTML = `<div class="l-end">${art}<h2>${esc(head)}</h2>
       ${before ? `<p class="sub">${esc(cityName(c))}, ${esc(t("glazedN", { a:glazedNow, b:before.length }))}</p>` : ""}
       <div class="stars anim">${[1, 2, 3].map((k) => ICON.star.replace("<svg", `<svg class="${k <= stars ? "on" : ""}"`)).join("")}</div>
-      <div class="l-stats"><div><b class="xpv">0</b><span>${esc(t("xpL"))}</span></div><div><b class="accv">0%</b><span>${esc(t("accuracy"))}</span></div><div><b>${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, "0")}</b><span>${esc(t("timeL"))}</span></div></div></div>`;
+      <div class="l-stats"><div><b class="xpv">–</b><span>${esc(t("xpL"))}</span></div><div><b class="accv">–</b><span>${esc(t("accuracy"))}</span></div><div><b>${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, "0")}</b><span>${esc(t("timeL"))}</span></div></div></div>`;
     $("#lesson .l-body").appendChild(el);
     const pnl = $(".l-end .panel", el); if (pnl) pnl.insertAdjacentHTML("beforeend", `<div class="cat-sit">${mascot(perfect ? "wow" : "happy", "")}</div>`);
     setTimeout(() => pnl && catPlay(pnl, "jump"), reduced ? 0 : 1500);
@@ -1290,6 +1295,7 @@ function renderMe() {
     ${kenzHTML()}
     <div class="panel-c"><h3>${esc(t("bestDeal"))}</h3><p class="sub" style="margin:0">${bd ? esc(t("paid", { p:bd.price, s:bd.start })) : esc(t("none"))}</p></div>
     <div class="panel-c"><h3>${esc(t("settings"))}</h3>
+      <div class="setrow"><span>${esc(t("textSize"))}</span><div class="seg">${[0, 1, 2].map((k) => `<button data-ts-set="${k}" class="${(S.textSize || 0) === k ? "on" : ""}" aria-label="${esc(t("textSize"))} ${k + 1}"><span style="font-size:${13 + k * 3}px">A</span>${k ? "+".repeat(k) : ""}</button>`).join("")}</div></div>
       <div class="setrow"><span>${esc(t("theme"))}</span><div class="seg">${["auto", "light", "dark"].map((k) => `<button data-theme-set="${k}" class="${(S.theme || "auto") === k ? "on" : ""}">${esc(t(k === "auto" ? "themeSys" : k === "light" ? "themeLight" : "themeDark"))}</button>`).join("")}</div></div>
       <div class="setrow"><span>${esc(t("lang"))}</span>${langSelect("me-lang")}</div>
       <div class="setrow"><span>${esc(t("voiceAuto"))}</span><button class="switch" role="switch" id="sw-voice" aria-checked="${S.voiceAuto}" aria-label="${esc(t("voiceAuto"))}"></button></div>
@@ -1308,7 +1314,7 @@ function refreshHUD() {
   sEl.innerHTML = teaTray() + `<b>${st}</b>`;
   $("#hud-mark").innerHTML = `${ICON.mark}<span class="wm">Wakha</span><span class="ar" lang="ar">واخا</span>`;
   sEl.classList.toggle("cold", !dayRec().goalMet);
-  sEl.setAttribute("aria-label", t("trayL", { n:st }));
+  sEl.setAttribute("aria-label", tn("trayL", { n:st }, st));
   const rec = dayRec(), pct = Math.min(1, rec.xp / S.goal);
   const gEl = $("#hud-goal");
   gEl.innerHTML = teaGlass(pct, "gl") + `<span class="bar"><i style="width:${(pct * 100).toFixed(1)}%"></i></span><b>${Math.min(rec.xp, 999)}/${S.goal}</b>`;
@@ -1397,6 +1403,7 @@ function start(data) {
     setLang(sel.value);
   });
   $("#v-me").addEventListener("click", (e) => {
+    const ts = e.target.closest("[data-ts-set]"); if (ts) { S.textSize = +ts.dataset.tsSet; applyTextSize(); persist(); renderMe(); return; }
     const th = e.target.closest("[data-theme-set]"); if (th) { S.theme = th.dataset.themeSet; applyTheme(); persist(); renderMe(); return; }
     const lg = e.target.closest("[data-lang]"); if (lg) { S.lang = lg.dataset.lang; persist(); renderMe(); refreshHUD(); if (Feed.started) Feed.rebuildAhead(); $("#nav-hint").textContent = t("navHint"); return; }
     const gl = e.target.closest("[data-goal]"); if (gl) { S.goal = +gl.dataset.goal; S.goalChosen = true; checkGoal(); persist(); renderMe(); refreshHUD(); return; }

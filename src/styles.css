@@ -1327,3 +1327,28 @@ svg{display:block}
 
 .sc-med{width:72px;height:82px}
 .sc-med .cbadge{width:100%;height:100%}
+
+/* v1.8: feed cards sit on saturated tiles, so their inner components always use the dark token set
+   (white text on dark glass), in both themes. Fixes white-on-white words and washed-out labels. */
+.card.jewel{--card:rgba(17,17,17,.42); --raised:rgba(17,17,17,.5); --ink:#FFFFFF; --ink-2:#F4F3EF; --ink-soft:rgba(255,255,255,.82); --ink-faint:rgba(255,255,255,.66);
+  --line:rgba(255,255,255,.16); --line-2:rgba(255,255,255,.3); --maj:#F2F2F0; --on-maj:#111111; --good-wash:rgba(93,189,176,.28); --good-ink:#BFF0E8;
+  --bad-wash:rgba(196,50,31,.35); --bad-ink:#FFD2CC; --accent:#5DBDB0; --on-accent:#0B1F1C; color:#fff}
+.card.jewel .tag{background:rgba(255,255,255,.16);color:#fff;border-color:transparent}
+.card.jewel .tag.solid{color:#fff}
+/* no accidental text selection when tapping fast */
+.card,.ov-box,.l-end,.welcome,.nsheet{-webkit-user-select:none;user-select:none}
+/* the welcome screen calms down in dark mode */
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .welcome::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.42);z-index:-1;pointer-events:none}}
+:root[data-theme="dark"] .welcome::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.42);z-index:-1;pointer-events:none}
+
+/* v1.8: locked city sheet */
+.cs-top{display:flex;gap:14px;align-items:center;margin-bottom:6px}.cs-badge{width:54px;height:62px;flex:none}.cs-badge .cbadge{width:100%;height:100%}
+.nsheet .plus-note{background:var(--card);border-radius:14px;padding:10px 12px;font-size:14px;color:var(--ink-soft)}
+/* v1.8: text size (Me → settings) */
+:root[data-ts="1"] .view,:root[data-ts="1"] #lesson .l-body,:root[data-ts="1"] .nsheet{zoom:1.12}
+:root[data-ts="2"] .view,:root[data-ts="2"] #lesson .l-body,:root[data-ts="2"] .nsheet{zoom:1.25}
+/* v1.8: listening without sound */
+.show-txt{display:block;margin:10px 0 0;font-size:13px;color:var(--ink-soft);text-decoration:underline;text-underline-offset:3px;padding:6px 0}
+.reveal{margin:4px 0 0;font:600 18px/1.4 var(--font)}.reveal .ar{font:400 20px/1.5 var(--font-ar);color:var(--ink-soft);margin-left:8px}
+
+:root[data-ts] .setrow{flex-wrap:wrap;row-gap:8px}

@@ -49,6 +49,7 @@ def arabic(sentence):
     # one-letter prepositions join the next word, as Darija is usually written: ف الدار -> فالدار
     return re.sub(r"(^|\s)([بفلد]) (?=\S)", r"\1\2", "".join(out))
 
-out = {s: arabic(s) for s in data["ex"]}
-json.dump(out, open(os.path.join(HERE, "ex_ar.json"), "w"), ensure_ascii=False, indent=0)
-print(len(out), "example sentences")
+if __name__ == "__main__":
+    out = {s: arabic(s) for s in data["ex"]}
+    json.dump(out, open(os.path.join(HERE, "ex_ar.json"), "w"), ensure_ascii=False, indent=0)
+    print(len(out), "example sentences")

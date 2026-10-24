@@ -745,8 +745,8 @@
   "c": "ui"
  },
  {
-  "en": "Learn 8 words to unlock",
-  "fr": "Apprends 8 mots pour débloquer",
+  "en": "The sprint opens after 8 words",
+  "fr": "Le sprint s’ouvre après 8 mots",
   "c": "ui"
  },
  {
@@ -1125,6 +1125,51 @@
   "c": "ui"
  },
  {
+  "en": "{n} day of atay in a row",
+  "fr": "{n} jour d’atay d’affilée",
+  "c": "ui"
+ },
+ {
+  "en": "{a} of {b} stops",
+  "fr": "{a} étape sur {b}",
+  "c": "ui"
+ },
+ {
+  "en": "{a} of {b} stops · {c} of {d} words",
+  "fr": "{a} étape sur {b} · {c} mots sur {d}",
+  "c": "ui"
+ },
+ {
+  "en": "Today’s glass is full. See you tomorrow for the next one.",
+  "fr": "Le verre du jour est plein. À demain pour le suivant.",
+  "c": "ui"
+ },
+ {
+  "en": "{c} is still ahead",
+  "fr": "{c}, c’est pour plus tard",
+  "c": "ui"
+ },
+ {
+  "en": "Finish {p} to get here.",
+  "fr": "Termine {p} pour arriver ici.",
+  "c": "ui"
+ },
+ {
+  "en": "Coming with Wakha Plus: jump to any city whenever you like.",
+  "fr": "Bientôt avec Wakha Plus : saute vers n’importe quelle ville quand tu veux.",
+  "c": "ui"
+ },
+ {
+  "en": "No sound? Show text",
+  "fr": "Pas de son ? Afficher le texte",
+  "c": "ui"
+ },
+ {
+  "en": "Text size",
+  "fr": "Taille du texte",
+  "c": "ui"
+ },
+ {
   "en": "Say it out loud",
   "fr": "Dis-le à voix haute",
   "c": "ui"
@@ -1197,16 +1242,6 @@
  {
   "en": "{a} of {b}",
   "fr": "{a} sur {b}",
-  "c": "ui"
- },
- {
-  "en": "{a} of {b} stops · {c} of {d} words",
-  "fr": "{a} étapes sur {b} · {c} mots sur {d}",
-  "c": "ui"
- },
- {
-  "en": "{a} of {b} stops",
-  "fr": "{a} étapes sur {b}",
   "c": "ui"
  },
  {
@@ -3520,14 +3555,14 @@
   "c": "example: Jeddi sakn f Ouarzazate."
  },
  {
-  "en": "grandmother (more formal than Mima)",
-  "fr": "grand-mère (plus formel que Mima)",
-  "c": "word meaning: Jedda"
+  "en": "my grandma",
+  "fr": "ma grand-mère",
+  "c": "word meaning: Jeddati"
  },
  {
-  "en": "Grandma makes the best tajine.",
-  "fr": "Grand-mère fait le meilleur tajine.",
-  "c": "example: Jedda katsayeb a7sen tajine."
+  "en": "My grandma makes the best tajine.",
+  "fr": "Ma grand-mère fait le meilleur tajine.",
+  "c": "example: Jeddati katsayeb a7sen tajine."
  },
  {
   "en": "my aunt (dad’s sister)",
@@ -5181,7 +5216,7 @@
  {
   "en": "How are you? All good?",
   "fr": "Comment ça va ? Tout va bien ?",
-  "c": "line: Kidayr? Kolchi mzyan?"
+  "c": "line: Ki dayr? Kolchi mzyan?"
  },
  {
   "en": "I’m good, thank God. And you?",
@@ -5396,12 +5431,12 @@
  {
   "en": "Are you well, grandma? Where’s grandpa?",
   "fr": "Ça va, grand-mère ? Où est grand-père ?",
-  "c": "line: Labas a jedda? Fin jeddi?"
+  "c": "line: Labas a jeddati? Fin jeddi?"
  },
  {
   "en": "Grandpa is with your uncles.",
   "fr": "Grand-père est avec tes oncles.",
-  "c": "line: Jeddi m3a 3amek w khalek."
+  "c": "line: Jeddek m3a 3amek w khalek."
  },
  {
   "en": "And my aunts?",
@@ -6806,7 +6841,7 @@
  {
   "en": "The whole family",
   "fr": "Toute la famille",
-  "c": "unit topic: Jeddi w jedda"
+  "c": "unit topic: Jeddi w jeddati"
  },
  {
   "en": "Into the desert",

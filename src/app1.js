@@ -54,6 +54,8 @@ const t = (k, vars) => {
   if (vars && typeof s === "string") for (const [a, b] of Object.entries(vars)) s = s.split("{" + a + "}").join(b);
   return s;
 };
+// singular forms ("1 day", "1 étape") when the language has them
+const tn = (k, vars, n) => (n === 1 || (n === 0 && S.lang === "fr")) && (UI.en[k + "1"] != null) ? t(k + "1", vars) : t(k, vars);
 const meaning = (wd) => X(wd.en, wd.fr);
 const exTr = (ex) => X(ex[1], ex[2]);
 const triTr = (tri) => X(tri[1], tri[2]);
@@ -507,7 +509,7 @@ function teaTray() {
   const d0 = today(); let out = "";
   for (let k = 6; k >= 0; k--) {
     const key = addDays(d0, -k), rec = S.days[key];
-    const pct = k === 0 ? Math.min(1, ((rec && rec.xp) || 0) / S.goal) : rec && rec.goalMet ? 1 : 0;
+    const pct = rec && (rec.day || rec.goalMet) ? 1 : k === 0 ? Math.min(1, ((rec && rec.xp) || 0) / S.goal) : 0;
     const top = 3 + (1 - pct) * 11, id = "tt" + (++glassUid);
     out += `<svg class="tg${k === 0 ? " now" : ""}${pct >= 1 ? " full" : ""}" viewBox="0 0 10 16" aria-hidden="true"><defs><clipPath id="${id}"><path d="M1 2h8l-1 12.2a1 1 0 0 1-1 .8H3a1 1 0 0 1-1-.8Z"/></clipPath></defs>
       <rect x="0" y="${top.toFixed(2)}" width="10" height="16" fill="#D98A2B" clip-path="url(#${id})"/><path d="M1 2h8l-1 12.2a1 1 0 0 1-1 .8H3a1 1 0 0 1-1-.8Z" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
@@ -623,16 +625,24 @@ function award(n, fromEl, opts = {}) {
   persist();
   return amt;
 }
-function checkGoal() {
+// today's glass: poured by the first finished lesson or by reaching the daily goal, whichever comes first
+function markDay() {
   const d = today(), rec = dayRec(d);
-  if (rec.goalMet || rec.xp < S.goal) return;
-  rec.goalMet = true;
+  if (rec.day) return { usedShield:false };
+  rec.day = true;
   let usedShield = false;
   if (S.lastGoalDay === d) { /* counted */ }
   else if (S.lastGoalDay === addDays(d, -1)) S.streak += 1;
   else if (S.lastGoalDay && diffDays(S.lastGoalDay, d) === 2 && S.shields > 0) { S.shields--; S.streak += 1; usedShield = true; }
   else S.streak = 1;
   S.lastGoalDay = d; S.best = Math.max(S.best, S.streak);
+  return { usedShield };
+}
+function checkGoal() {
+  const d = today(), rec = dayRec(d);
+  if (rec.goalMet || rec.xp < S.goal) return;
+  rec.goalMet = true;
+  const { usedShield } = markDay();
   queueOverlay({ kind:"goal", streak:S.streak, usedShield });
 }
 // ok/wrong bookkeeping shared by feed and lessons; returns XP awarded
