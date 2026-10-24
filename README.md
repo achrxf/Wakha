@@ -129,6 +129,7 @@ Wakha is on **v1**. Every update from here is a v1.x release. The commits follow
 | **v1.4** | Motion and **3D** (three.js medallion), **Mchicha** the cat with a tagiya, and full **dark mode**. |
 | **v1.5** | **Six languages** (EN/FR/ES/DE/NL/IT), the **⚽ Dima Maghrib football stop**, large automated test suites, and an **audio fix**: if a browser or embedded preview blocks `data:` audio, the app now plays the clips through Web Audio instead of staying silent. |
 | **v1.6** | **New design system** (light and dark), board layouts for Today, Journey and lessons, premium motion, **Mchicha redrawn** with **20 city badges**, **10 new cities** with stories (100+ stops), **Say it out loud** and **Tap the words you hear** exercises, a feed that rests cards so it doesn't repeat, and the **tea tray** in place of a streak. |
+| **v1.7** | Fixes from a **1,000-user swarm test**: the phone **Back button** now closes the top layer (celebration, sheet, lesson) instead of leaving the app; the locked-stop sheet has a **Got it** button; keyboard and screen-reader focus stays inside whatever is on top (welcome, lesson, overlay); the lesson intro shows the city badge. |
 
 ## Known limitations
 - The voice is a computer voice (an Arabic TTS model reading Darija through transliteration). It sounds clear but not native. Recordings by a real Moroccan speaker would be the biggest upgrade.

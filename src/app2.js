@@ -612,7 +612,7 @@ function exScene(sp, host) {
   const ws = (node.words || []).slice(0, node.kind === "lesson" ? 4 : 6);
   const exW = ws.map((id) => W[id]).find((wd) => wd && wd.ex);
   $(".card-in", el).innerHTML = `
-    <div class="sc-top a1"><div class="sc-med">${medallion(ui, unitStates(ui))}</div><div><p class="eyebrow">${esc(nodeLabel(node))}</p><h2 class="sc-city${cityName(c).length > 9 ? " long" : ""}">${esc(cityName(c))}</h2><p class="sc-ar" lang="ar">${esc(c.ar)}</p></div></div>
+    <div class="sc-top a1"><div class="sc-med">${cityBadge(ui)}</div><div><p class="eyebrow">${esc(nodeLabel(node))}</p><h2 class="sc-city${cityName(c).length > 9 ? " long" : ""}">${esc(cityName(c))}</h2><p class="sc-ar" lang="ar">${esc(c.ar)}</p></div></div>
     <p class="sc-txt a2">${esc(L(line))}</p>
     ${node.kind === "boss" ? `<p class="note a3">${ICON.tagI}<span>${esc(t("haggleS"))}</span></p>` : node.kind === "story" ? `<p class="note a3">${ICON.chat}<span>${esc(t("storyListen"))}</span></p>` : exW ? `<div class="sc-quote a3"><div><p class="d">${dj(exW.ex[0])}</p><p class="t">${esc(exTr(exW.ex))}</p></div>${sayBtn(exW.ex[0])}</div>` : ""}
     <div class="sc-words a4">${node.kind === "boss" || node.kind === "story" ? "" : ws.map((id) => `<span class="chip">${esc(W[id].d)}${sayBtn(W[id].d)}</span>`).join("")}</div>`;
@@ -1179,7 +1179,8 @@ function openNodeSheet(idx) {
     ${LESSON_SCENES[n.id] ? `<p>${esc(L(LESSON_SCENES[n.id]))}</p>` : ""}
     ${n.kind === "story" ? "" : n.kind !== "boss" ? `<div class="chips">${n.words.slice(0, 8).map((id) => `<span class="chip">${esc(W[id].d)}${sayBtn(W[id].d)}</span>`).join("")}</div>` : `<p>${esc(t("haggleS"))}</p>`}
     ${st === "done" ? `<div class="stars" style="justify-content:flex-start">${[1, 2, 3].map((k) => ICON.star.replace("<svg", `<svg class="${k <= stars ? "on" : ""}"`)).join("")}</div>` : ""}
-    ${st === "locked" ? `<p>${esc(t("locked"))}</p>` : `<button class="cta block" data-start="${idx}">${esc(st === "done" ? t("practiceAgain") : t("start"))}</button>`}`;
+    ${st === "locked" ? `<p>${esc(t("locked"))}</p><button class="ghost block sh-ok" data-act="sheet-close">${esc(t("gotIt"))}</button>` : `<button class="cta block" data-start="${idx}">${esc(st === "done" ? t("practiceAgain") : t("start"))}</button>`}`;
+  const okB = $("[data-act=sheet-close]", sh); okB && okB.addEventListener("click", closeNodeSheet);
   clearTimeout(Session.sheetT); sh.style.transform = ""; $("#sheet-scrim").classList.remove("leaving");
   sh.hidden = false; $("#sheet-scrim").hidden = false;
 }
@@ -1423,6 +1424,32 @@ function start(data) {
     if (["ArrowDown", "PageDown", "j"].includes(e.key)) { e.preventDefault(); Feed.go(1); }
     else if (["ArrowUp", "PageUp", "k"].includes(e.key)) { e.preventDefault(); Feed.go(-1); }
     else if (/^[1-4]$/.test(e.key)) { const c = Feed.cards[Feed.active]; const b = c && $$(".opts .opt, .h-opts .opt", c.el)[+e.key - 1]; b && b.click(); }
+  });
+  // keyboard focus and screen readers stay inside whatever is on top: everything underneath goes inert
+  const LAYERS = ["overlay", "welcome", "lesson", "nsheet"];
+  const syncInert = () => {
+    const top = LAYERS.map((id) => document.getElementById(id)).find((el) => el && !el.hidden);
+    for (const el of $("#stage").children) {
+      if (el.id === "toast" || el.id === "fx" || (top && top.id === "nsheet" && el.id === "sheet-scrim")) { el.inert = false; continue; }
+      el.inert = !!top && el !== top;
+    }
+    if (top && top.id === "welcome" && !top.contains(document.activeElement)) setTimeout(() => { const b = $("#welcome .cta, #welcome button"); b && b.focus({ preventScroll:true }); }, 450);
+  };
+  const lmo = new MutationObserver(syncInert);
+  LAYERS.forEach((id) => { const el = document.getElementById(id); el && lmo.observe(el, { attributes:true, attributeFilter:["hidden"] }); });
+  syncInert();
+  // the phone's Back button closes whatever is on top (celebration, sheet, lesson, another tab) instead of
+  // leaving the app; only a Back on Today with nothing open lets the browser leave
+  try { history.replaceState({ wk:0 }, ""); history.pushState({ wk:1 }, ""); } catch (e) {}
+  addEventListener("popstate", () => {
+    let handled = true;
+    const ovB = $("#overlay [data-ov=close]");
+    if (!$("#overlay").hidden && ovB) ovB.click();
+    else if (!$("#nsheet").hidden) closeNodeSheet();
+    else if (Lesson.active) { const c = $("#lesson .l-confirm"); if (c) c.hidden = !c.hidden; }
+    else if (view !== "today") setView("today");
+    else handled = false;
+    if (handled) try { history.pushState({ wk:1 }, ""); } catch (e) {}
   });
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) { flushSaves(); Voice.stop(); if (view === "feed") Feed.pause(); }

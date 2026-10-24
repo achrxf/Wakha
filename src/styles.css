@@ -1322,3 +1322,8 @@ svg{display:block}
 #stage[data-view="feed"] .hud .p-streak{background:rgba(0,0,0,.28);padding:0 14px;color:#fff}
 #stage[data-view="feed"] .p-streak .tray,#stage[data-view="feed"] .p-streak .tg.now,#stage[data-view="feed"] .p-streak b{color:#fff}
 .cb-glass{width:100%;height:100%;color:var(--ink)}
+
+.nsheet .sh-ok{margin-top:14px;width:100%;min-height:48px;border-radius:999px;background:var(--card);color:var(--ink);font:600 15px/1 var(--font)}
+
+.sc-med{width:72px;height:82px}
+.sc-med .cbadge{width:100%;height:100%}
