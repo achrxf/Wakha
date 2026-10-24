@@ -618,7 +618,7 @@ function exScene(sp, host) {
     <div class="sc-words a4">${node.kind === "boss" || node.kind === "story" ? "" : ws.map((id) => `<span class="chip">${esc(W[id].d)}${sayBtn(W[id].d)}</span>`).join("")}</div>`;
   return { el, kind:"scene" };
 }
-// v7 speaking: hear the clip, record yourself, play the two back to back, then say honestly how it went.
+// v1.6 speaking: hear the clip, record yourself, play the two back to back, then say honestly how it went.
 // Nothing is uploaded; the recording lives in memory until the card goes away.
 const Rec = {
   supported() { return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder); },

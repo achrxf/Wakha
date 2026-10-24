@@ -4,7 +4,7 @@
 
 
 
-// v4: three more words per city
+// v1.3: three more words per city
 w("msalkhir","Msa lkhir","مسا الخير","good evening","bonsoir","hello",{ex:["Msa lkhir, labas?","Good evening, how are you?","Bonsoir, ça va ?"],note:["From late afternoon on, swap sba7 for msa.","À partir de la fin d’après-midi, on remplace sba7 par msa."]});
 w("mtcharfin","Mtcharfin","متشرفين","nice to meet you","enchanté","hello",{ex:["Smiti Adam. Mtcharfin!","I’m Adam. Nice to meet you!","Je m’appelle Adam. Enchanté !"]});
 w("kolchi","Kolchi mzyan?","كلشي مزيان؟","is everything good?","tout va bien ?","hello",{ex:["Kolchi mzyan f dar?","All good at home?","Tout va bien à la maison ?"],note:["Ask about the family too. It’s polite to ask twice.","Demande aussi pour la famille. C’est poli de demander deux fois."]});
@@ -33,7 +33,7 @@ w("bsse7","Bsse7?","بصح؟","really?","c’est vrai ?","expr",{ex:["Bsse7? Ma 
 w("wallah","Wallah","والله","I swear / honestly","je te jure","expr",{ex:["Wallah bnin!","Honestly, delicious!","Je te jure, c’est délicieux !"],note:["Moroccans use it for everything from big promises to good soup.","On l’utilise pour tout, des grandes promesses à une bonne soupe."]});
 w("nchoufek","Nchoufek ghedda","نشوفك غدا","see you tomorrow","à demain","expr",{ex:["Bslama, nchoufek ghedda!","Bye, see you tomorrow!","Salut, à demain !"]});
 
-// v6: football and match day
+// v1.5: football and match day
 w("lkoura","Lkoura","الكورة","football / the ball","le foot / le ballon","foot",{ex:["Kanbghi lkoura bzzaf!","I love football so much!","J’adore le foot !"],note:["The same word means the game and the ball itself.","Le même mot veut dire le jeu et le ballon lui-même."]});
 w("lmatch","Lmatch","الماتش","the match","le match","foot",{ex:["Lmatch bda, yallah!","The match has started, come on!","Le match a commencé, allez !"]});
 w("lmountakhab","Lmountakhab","المنتخب","the national team","l’équipe nationale","foot",{ex:["Lmountakhab dyalna zwin bzzaf.","Our national team is so good.","Notre équipe nationale est trop forte."],note:["Morocco’s team are also called the Atlas Lions.","L’équipe du Maroc, ce sont aussi les Lions de l’Atlas."]});
@@ -128,7 +128,7 @@ const LESSON_SCENES = {
 };
 
 // tile names map to card palettes in CSS
-// v7: two more lessons in every city (six words each city)
+// v1.6: two more lessons in every city (six words each city)
 // Tangier: greetings
 w("ahlan","Ahlan","أهلا","hi there","coucou","hello",{ex:["Ahlan sa7bi, labas?","Hi there, my friend, how are you?","Coucou mon ami, ça va ?"]});
 w("wnta","W nta?","ونتا؟","and you? (to a man)","et toi ? (à un homme)","hello",{ex:["Bikhir, l7amdoulillah. W nta?","Fine, thank God. And you?","Bien, grâce à Dieu. Et toi ?"],note:["Ask a woman “W nti?”. Darija marks who you are talking to.","À une femme, on dit « W nti? ». Le darija marque à qui l’on parle."]});
@@ -200,7 +200,7 @@ w("wa9ila","Wa9ila","واقيلا","maybe","peut-être","basics",{ex:["Wa9ila nj
 w("lbe7r","Lbe7r","البحر","the sea","la mer","travel",{ex:["Lbe7r zwin f Essaouira.","The sea is beautiful in Essaouira.","La mer est belle à Essaouira."]});
 w("rri7","Rri7","الريح","the wind","le vent","basics",{ex:["Kayn rri7 bzzaf lyoum!","It’s really windy today!","Il y a beaucoup de vent aujourd’hui !"],note:["Essaouira is called the windy city. Surfers love it.","On appelle Essaouira la ville du vent. Les surfeurs adorent."]});
 
-// v7 cities: three more words for each new stop
+// v1.6 cities: three more words for each new stop
 w("finhadlghiba","Fin had lghiba?","فين هاد الغيبة؟","where have you been? (long time no see)","t’étais où ? (ça fait longtemps)","hello",{ex:["Ahlan! Fin had lghiba?","Hey! Long time no see!","Coucou ! Ça fait longtemps !"]});
 w("ch7alhadi","Ch7al hadi!","شحال هادي!","it’s been ages!","ça fait une éternité !","hello",{ex:["Ch7al hadi ma chefnak!","It’s been ages since we saw you!","Ça fait une éternité qu’on ne t’a pas vu !"]});
 w("sellemliya","Sellem liya 3la…","سلم ليا على…","say hi to … for me","passe le bonjour à…","hello",{ex:["Sellem liya 3la yemmak.","Say hi to your mum for me.","Passe le bonjour à ta mère."]});
@@ -258,7 +258,7 @@ const UNITS = [
 
 // split each unit into lessons of 3 to 4 words, then a review (or the souk boss)
 const STORY_OF = { u10:"match", u1:"meet", u2:"hanout", u3:"lost", u4:"cafe", u6:"friend", u7:"mom", u8:"taxi", u9:"wedding" };
-// v7: ten more cities. Each takes the second half of its neighbour's topic, so the trip has twenty stops on the map
+// v1.6: ten more cities. Each takes the second half of its neighbour's topic, so the trip has twenty stops on the map
 const NEW_CITIES = {
   u11:{ after:"u1", city:{ en:"Asilah", fr:"Asilah", ar:"أصيلة", wall:"#E9EEF0", niche:"#DCE5EA", accent:"#2C5D8A", g:["#2C5D8A","#4FA3B8","#E8B04A"], field:"#121820",
     scene:["White walls covered in murals. In Asilah, old friends keep stopping you in the street.","Des murs blancs couverts de fresques. À Asilah, de vieux amis t’arrêtent dans la rue."] },
@@ -626,7 +626,7 @@ Object.assign(UI.fr, {
   heard:"Écoute", navHint:"Ou les flèches du clavier", noResults:"Aucun mot ne correspond.", rare:"Rare", tapToHear:"Touche n’importe quel mot en darija pour l’entendre",
 });
 
-// v7: the board's Today, Journey and lesson layouts
+// v1.6: the board's Today, Journey and lesson layouts
 Object.assign(UI.en, {
   stStreak:"days of atay", stBest:"longest run", streakL:"days of atay", goalDoneS:"Your glass is full. {n} days of atay in a row.",
   shieldT:"Spare glass", shieldS:"Miss a day and a spare glass fills in for it. You have {n}.", shieldUsed:"A spare glass filled in for yesterday.",
@@ -656,7 +656,7 @@ Object.assign(UI.fr, {
   storiesT:"Histoires écoutées", tripT:"Ton voyage", learnIt:"L’apprendre", dayU:"jour", daysU:"jours",
 });
 
-// v7: more feed cards, built on the new words, so the feed has more to rotate through
+// v1.6: more feed cards, built on the new words, so the feed has more to rotate through
 SITS.push(
   ["miss","🫂",["You see your cousin for the first time in a year.","Tu revois ton cousin pour la première fois depuis un an."],"twe7chtek",[["Twe7chtek bzzaf!","I missed you so much!","Tu m’as beaucoup manqué !"],["Ghali bzzaf!","Way too expensive!","Beaucoup trop cher !"],["Nzel hna.","Get off here.","Descends ici."],["Bla sokkar.","Without sugar.","Sans sucre."]]],
   ["beggar","🙏",["Someone asks you for a coin and you have none.","Quelqu’un te demande une pièce et tu n’en as pas."],"allahysahel",[["Allah ysahel.","May God make it easy.","Que Dieu facilite."],["Bssa7tek!","Enjoy!","Profite !"],["Goool!","Goal!","But !"],["Ana jay daba.","I’m coming now.","J’arrive tout de suite."]]],
@@ -685,7 +685,7 @@ PROVERBS.push(
   ["proverb-eye","L3in ma t3la 3la l7ajeb.","The eye doesn’t rise above the eyebrow.","L’œil ne monte pas au-dessus du sourcil.","Respect your elders.","Respecte tes aînés."],
   ["proverb-little","Chwiya mn lle7ya w chwiya mn l7ajeb.","A bit from the beard, a bit from the eyebrow.","Un peu de la barbe, un peu du sourcil.","Meet halfway.","Chacun fait un pas."]);
 
-// v7: a story for each of the ten new cities
+// v1.6: a story for each of the ten new cities
 DIALOGS.push(
   { id:"oldfriend", tile:"majorelle", t:["An old friend in Asilah","Un vieil ami à Asilah"], who:[["Karim","Karim"],["You","Toi"]], lines:[
     ["A","Ahlan! Fin had lghiba?","Hey! Long time no see!","Coucou ! Ça fait longtemps !"],

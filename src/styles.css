@@ -1,4 +1,4 @@
-/* Wakha v7 design system.
+/* Wakha v1.6 design system.
    Type: Instrument Sans for the interface and Latin Darija (proportional digits so 3/7/9 read as letters,
    tabular figures for counts), Instrument Serif for the greeting only, Noto Naskh Arabic for Arabic script (18px+).
    Colour: white ground, warm neutral surfaces, near-black ink, one teal for what you can hear and do.
@@ -971,7 +971,7 @@ svg{display:block}
 @media (max-height:690px){ .reward{gap:6px} .reward .r-sub{font-size:14px;line-height:1.35} .chest.open{width:min(28vw,110px)} }
 
 /* =====================================================================
-   v7: design system on the lessons tab (Journey, node sheet, lesson flow)
+   v1.6: design system on the lessons tab (Journey, node sheet, lesson flow)
    ===================================================================== */
 @media (min-width:560px){ body{background:var(--bg-2);background-image:none} .stage{box-shadow:0 0 0 1px var(--line)} }
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
@@ -1135,7 +1135,7 @@ svg{display:block}
 
 
 /* =====================================================================
-   v7 board layouts: lesson steps, feedback box, Today
+   v1.6 board layouts: lesson steps, feedback box, Today
    ===================================================================== */
 /* lesson frame: content reads from the top, scrolls if it must, the footer button stays put */
 .lesson .card-in{justify-content:flex-start;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;gap:16px;padding-top:calc(var(--hud-h) + 18px)}
@@ -1266,7 +1266,7 @@ svg{display:block}
 .tab.on svg{animation:none}
 .view.enter{animation:fade 160ms ease}
 
-/* v7: zellige. A khatam (eight-point star) lattice, drawn as a mask so it takes the ink colour in both themes,
+/* v1.6: zellige. A khatam (eight-point star) lattice, drawn as a mask so it takes the ink colour in both themes,
    fading out from one corner of the city cards. The keyhole-arch badge sits on it. */
 :root{--zellige:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%23000' stroke-width='1.3'%3E%3Cpath d='M9 9h14v14H9Z'/%3E%3Cpath d='M16 6.1L25.9 16 16 25.9 6.1 16Z'/%3E%3Cpath d='M0 16h6.1M25.9 16H32M16 0v6.1M16 25.9V32'/%3E%3C/g%3E%3C/svg%3E")}
 .td-lead,.copen{position:relative;isolation:isolate}
@@ -1282,7 +1282,7 @@ svg{display:block}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .td-lead::before,:root:not([data-theme="light"]) .copen::before{filter:brightness(1.6) saturate(.7);opacity:.35}}
 :root[data-theme="dark"] .td-lead::before,:root[data-theme="dark"] .copen::before{filter:brightness(1.6) saturate(.7);opacity:.35}
 
-/* v7: Say it out loud */
+/* v1.6: Say it out loud */
 .say-card{background:var(--card);border-radius:22px;padding:20px 20px 18px;margin:14px 0 18px;text-align:center}
 .say-card .lat{font:600 34px/1.15 var(--font);letter-spacing:-.02em}
 .say-card .lat.long{font-size:24px}
@@ -1310,7 +1310,7 @@ svg{display:block}
 .say-skip{display:block;margin:12px auto 0;font-size:13px;color:var(--ink-soft);text-decoration:underline;text-underline-offset:3px;padding:8px}
 @media (prefers-reduced-motion:reduce){.say-btn.mic.on .lv{transform:none}}
 
-/* v7: the tea tray replaces the flame streak. Seven small glasses, no pill; the run count in the serif of the wordmark */
+/* v1.6: the tea tray replaces the flame streak. Seven small glasses, no pill; the run count in the serif of the wordmark */
 .hud .p-streak{background:none;padding:0 2px 0 6px;gap:10px;height:44px}
 .p-streak .tray{display:flex;align-items:flex-end;gap:3px;color:var(--ink-faint)}
 .p-streak .tg{width:10px;height:16px;display:block}

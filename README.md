@@ -118,17 +118,17 @@ To test another build, set `APP=/path/to/wakha.html`. Set `WITH3D=1` to include 
 
 ## Version history
 
-The commits follow how the app grew. Each one is tagged and includes its own built `dist/wakha.html`, so you can open any version.
+Wakha is on **v1**. Every update from here is a v1.x release. The commits follow how the app grew, and each one includes its own built `dist/wakha.html`, so you can open any version.
 
-| Tag | What changed |
+| Version | What changed |
 |---|---|
-| **v1** | First version: a German-style feed app made for Darija. Full-screen swipe feed of zellige-tiled cards, glass header, four tabs, browser text-to-speech. |
-| **v2** | More premium look, a **levels path** next to the feed (the feed becomes secondary), **real recorded audio** for every Darija word, phrase and story, the **Guide** for sounds like 7 and 9, and a less repetitive feed. |
-| **v3** | Learn tab redesigned so it doesn't look like Duolingo: a **Journey through Moroccan cities**, each a zellige medallion that is glazed ring by ring. New typography (Amiri, Bodoni Moda, Reem Kufi). *This is a reconstructed snapshot of that stage.* |
-| **v4** | Built for daily use: a **Today** home, word of the day, daily sprint, streak shields, a cleaner and less crowded layout, and more content per city. |
-| **v5** | Motion and **3D** (three.js medallion), **Mchicha** the cat with a tagiya, and full **dark mode**. |
-| **v6** | **Six languages** (EN/FR/ES/DE/NL/IT), the **⚽ Dima Maghrib football stop**, large automated test suites, and an **audio fix**: if a browser or embedded preview blocks `data:` audio, the app now plays the clips through Web Audio instead of staying silent. |
-| **v7** | **New design system** (light and dark), board layouts for Today, Journey and lessons, premium motion, **Mchicha redrawn** with **20 city badges**, **10 new cities** with stories (100+ stops), **Say it out loud** and **Tap the words you hear** exercises, a feed that rests cards so it doesn't repeat, and the **tea tray** in place of a streak. |
+| **v1.0** | First version: a German-style feed app made for Darija. Full-screen swipe feed of zellige-tiled cards, glass header, four tabs, browser text-to-speech. |
+| **v1.1** | More premium look, a **levels path** next to the feed (the feed becomes secondary), **real recorded audio** for every Darija word, phrase and story, the **Guide** for sounds like 7 and 9, and a less repetitive feed. |
+| **v1.2** | Learn tab redesigned so it doesn't look like Duolingo: a **Journey through Moroccan cities**, each a zellige medallion that is glazed ring by ring. New typography (Amiri, Bodoni Moda, Reem Kufi). *This is a reconstructed snapshot of that stage.* |
+| **v1.3** | Built for daily use: a **Today** home, word of the day, daily sprint, streak shields, a cleaner and less crowded layout, and more content per city. |
+| **v1.4** | Motion and **3D** (three.js medallion), **Mchicha** the cat with a tagiya, and full **dark mode**. |
+| **v1.5** | **Six languages** (EN/FR/ES/DE/NL/IT), the **⚽ Dima Maghrib football stop**, large automated test suites, and an **audio fix**: if a browser or embedded preview blocks `data:` audio, the app now plays the clips through Web Audio instead of staying silent. |
+| **v1.6** | **New design system** (light and dark), board layouts for Today, Journey and lessons, premium motion, **Mchicha redrawn** with **20 city badges**, **10 new cities** with stories (100+ stops), **Say it out loud** and **Tap the words you hear** exercises, a feed that rests cards so it doesn't repeat, and the **tea tray** in place of a streak. |
 
 ## Known limitations
 - The voice is a computer voice (an Arabic TTS model reading Darija through transliteration). It sounds clear but not native. Recordings by a real Moroccan speaker would be the biggest upgrade.
