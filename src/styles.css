@@ -482,7 +482,7 @@ svg{display:block}
 .td-practice{display:flex;align-items:center;gap:12px;margin:10px max(22px,env(safe-area-inset-right,0px)) 0 max(22px,env(safe-area-inset-left,0px))}
 
 /* ---------- JOURNEY ---------- */
-#v-journey{overflow:hidden}
+#v-journey{overflow-y:auto;-webkit-overflow-scrolling:touch}
 .jr-track{position:absolute;inset:0;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
 .jr-track::-webkit-scrollbar{display:none}
 .jr-page{position:relative;flex:none;width:100%;height:100%;overflow-y:auto;overflow-x:hidden;scroll-snap-align:center;scroll-snap-stop:always;scrollbar-width:none;background:var(--wall);isolation:isolate}
@@ -845,7 +845,7 @@ svg{display:block}
    150ms fades; colour, opacity and press feedback stay so a tap still reads as heard. */
 @media (prefers-reduced-motion: reduce){
   .cat,.cat *,.steam,.td-med .zwrap,.td-go::after,.l-foot .cta::after,.welcome .cta::after,.ov-box::before,.p-streak svg path,.td-week .d.met svg path,
-  .jr-row.current .go::after,.zel .seg.current .pc,.next-btn.nudge svg,.swipe-cue svg,.chest,.play-big::before,.play-big::after,.shimmer{animation:none!important}
+  .jr-row.current .go::after,.td-go i::after,.zel .seg.current .pc,.next-btn.nudge svg,.swipe-cue svg,.chest,.play-big::before,.play-big::after,.shimmer{animation:none!important}
   .view.enter,.card.play [class*=" a"],.l-end .panel,.l-end h2,.l-end .sub,.l-stats,.ov-box,.cat-say,.slots .tok,.bub,.banner.inline{animation:fade 150ms ease both!important}
   .banner,.nsheet,.l-confirm .box{transition:opacity 150ms ease!important;transform:none!important}
   .banner.leaving,.nsheet.leaving{opacity:0}
@@ -952,10 +952,9 @@ svg{display:block}
 .ov-box{isolation:isolate}
 .td-med{perspective:900px}
 .td-go{transition:scale .55s var(--spring),box-shadow .3s}
-.jr-row.current .go{animation:gopulse 2s ease-in-out infinite}
-@keyframes gopulse{0%,100%{box-shadow:0 0 0 0 rgba(59,51,196,.45)}50%{box-shadow:0 0 0 8px rgba(59,51,196,0)}}
-.td-go i{animation:gopulse2 2.2s ease-in-out infinite}
-@keyframes gopulse2{0%,100%{box-shadow:0 0 0 0 rgba(43,27,0,.35)}50%{box-shadow:0 0 0 9px rgba(43,27,0,0)}}
+/* v1.12: start-button pulses are a ring that scales and fades (GPU only), not an animated box-shadow that repaints every frame */
+.td-go i{position:relative}
+.td-go i::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 2px var(--saf-ink);opacity:0;pointer-events:none;animation:goring 2.2s var(--ease-out) 900ms 4}
 .l-bar i.done{box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
 .stars.anim svg.on{filter:drop-shadow(0 4px 8px rgba(217,146,22,.6))}
 /* language picker */
@@ -1076,7 +1075,9 @@ svg{display:block}
 .p-streak .u{color:var(--ink-soft);font-weight:400}
 .p-streak svg{width:15px;height:17px}
 .on-dark .pill{background:var(--card);color:var(--ink);box-shadow:none}
-#stage[data-view="feed"] .hud-mark{visibility:hidden}
+.hud-mark{transition:opacity 200ms ease}
+.hud .pill{transition:background-color 220ms ease,color 220ms ease}
+#stage[data-view="feed"] .hud-mark{opacity:0;pointer-events:none}
 #stage[data-view="feed"] .hud .pill{background:rgba(0,0,0,.28);color:#fff}
 #stage[data-view="feed"] .hud .p-streak .u{color:rgba(255,255,255,.8)}
 
@@ -1095,8 +1096,14 @@ svg{display:block}
 .crow .c{font-size:13px;color:var(--ink-soft);font-variant-numeric:tabular-nums;text-align:right}
 .crow .c.full{color:var(--ink)}
 .crow.locked .nm b{color:var(--ink-soft);font-weight:500}
-.copen{background:var(--wall);border-radius:22px;padding:14px 16px 10px;margin:2px 0 6px}
-.copen .crow{padding-top:0}
+/* cities fold open in place: the card colour fades in and the stops unfold by animating the grid row from 0fr to 1fr */
+.city{position:relative;isolation:isolate;margin:0 -10px;padding:0 10px;border-radius:22px;background-color:transparent;transition:background-color 320ms ease}
+.city.copen{background-color:var(--wall)}
+.cbody{display:grid;grid-template-rows:0fr;transition:grid-template-rows 420ms var(--ease-out)}
+.copen > .cbody{grid-template-rows:1fr}
+.cbody-in{min-height:0;overflow:hidden;margin:0 -6px;padding:0 6px;opacity:0;transform:translateY(-8px);transition:opacity 180ms ease,transform 420ms var(--ease-out)}
+.copen .cbody-in{opacity:1;transform:none;transition:opacity 260ms ease 80ms,transform 420ms var(--ease-out)}
+.cbody-in .stops{padding-bottom:10px}
 .cscene{font-size:14px;line-height:1.45;color:var(--ink-soft);margin:2px 0 8px}
 .stops{display:grid}
 .stops .jr-row{display:grid;grid-template-columns:24px 1fr auto;gap:12px;align-items:center;width:100%;min-height:46px;padding:0;text-align:left;font-size:14px;color:var(--ink)}
@@ -1264,23 +1271,28 @@ svg{display:block}
 .tab::before{display:none}
 .tab.on{color:var(--ink);font-weight:600}
 .tab.on svg{animation:none}
-.view.enter{animation:fade 160ms ease}
+/* v1.12 tab change: the new screen rises a few pixels as it fades in, over the old one fading out (no blank frame) */
+.view.enter{z-index:2;animation:viewrise 260ms var(--ease-out) 60ms both}
+.view.leave{z-index:1;pointer-events:none;animation:viewfade 110ms ease-out forwards}
+@keyframes viewrise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes viewfade{to{opacity:0}}
 
 /* v1.6: zellige. A khatam (eight-point star) lattice, drawn as a mask so it takes the ink colour in both themes,
    fading out from one corner of the city cards. The keyhole-arch badge sits on it. */
 :root{--zellige:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%23000' stroke-width='1.3'%3E%3Cpath d='M9 9h14v14H9Z'/%3E%3Cpath d='M16 6.1L25.9 16 16 25.9 6.1 16Z'/%3E%3Cpath d='M0 16h6.1M25.9 16H32M16 0v6.1M16 25.9V32'/%3E%3C/g%3E%3C/svg%3E")}
-.td-lead,.copen{position:relative;isolation:isolate}
-.td-lead::before,.copen::before{content:"";position:absolute;z-index:-1;top:0;right:0;width:190px;height:150px;border-top-right-radius:22px;pointer-events:none;
+.td-lead{position:relative;isolation:isolate}
+.td-lead::before,.city[data-ui]::before{content:"";position:absolute;z-index:-1;top:0;right:0;width:190px;height:150px;border-top-right-radius:22px;pointer-events:none;
   background:var(--wall-raw);opacity:.9;filter:brightness(.82) saturate(1.2);
   -webkit-mask:var(--zellige) 0 0/32px 32px,radial-gradient(120% 100% at 100% 0,#000 20%,transparent 75%);-webkit-mask-composite:source-in;
   mask:var(--zellige) 0 0/32px 32px,radial-gradient(120% 100% at 100% 0,#000 20%,transparent 75%);mask-composite:intersect}
-.copen::before{border-top-right-radius:18px}
+.city[data-ui]::before{border-top-right-radius:18px;transition:opacity 320ms ease}
+.city[data-ui]:not(.copen)::before{opacity:0!important}
 .td-badge{position:absolute;top:16px;right:18px;width:58px;height:66px}
 .td-lead .where{padding-right:76px}
 .td-lead .where .ar{display:none}
 .td-lead h3,.td-lead .sc{padding-right:72px}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .td-lead::before,:root:not([data-theme="light"]) .copen::before{filter:brightness(1.6) saturate(.7);opacity:.35}}
-:root[data-theme="dark"] .td-lead::before,:root[data-theme="dark"] .copen::before{filter:brightness(1.6) saturate(.7);opacity:.35}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .td-lead::before,:root:not([data-theme="light"]) .city.copen::before{filter:brightness(1.6) saturate(.7);opacity:.35}}
+:root[data-theme="dark"] .td-lead::before,:root[data-theme="dark"] .city.copen::before{filter:brightness(1.6) saturate(.7);opacity:.35}
 
 /* v1.6: Say it out loud */
 .say-card{background:var(--card);border-radius:22px;padding:20px 20px 18px;margin:14px 0 18px;text-align:center}
@@ -1449,3 +1461,9 @@ svg{display:block}
 .jewel .cat,.adlayer .cat,.welcome .cat{filter:drop-shadow(0 0 1.2px rgba(255,255,255,.6))}
 
 .sheet-scrim.leaving,.nsheet.leaving{pointer-events:none}
+
+@media (prefers-reduced-motion:reduce){
+  .city,.city::before,.cbody,.cbody-in,.hud-mark,.hud .pill{transition:none!important}
+  .view.enter{animation:fade 150ms ease both}
+  .view.leave{animation:none;display:none}
+}

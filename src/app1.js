@@ -4,7 +4,7 @@
 const LS_KEY = "wakha.v2";
 const INTERVALS = [0, 1, 3, 7, 14, 30];
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const EASE_OUT = "cubic-bezier(0.23, 1, 0.32, 1)", EASE_IN_OUT = "cubic-bezier(0.77, 0, 0.175, 1)";
+const EASE_OUT = "cubic-bezier(0.23, 1, 0.32, 1)", EASE_IN_OUT = "cubic-bezier(0.77, 0, 0.175, 1)", EASE_DRAWER = "cubic-bezier(0.32, 0.72, 0, 1)";
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
 const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));

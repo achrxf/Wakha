@@ -69,7 +69,7 @@ function openLesson(node, fromMed) {
   fromMed.style.viewTransitionName = "med";
   const vt = document.startViewTransition(() => {
     fromMed.style.viewTransitionName = "";
-    Lesson.open(node);
+    Lesson.noSlide = true; Lesson.open(node); Lesson.noSlide = false;
     const m = $("#lesson .sc-med"); if (m && m.offsetParent) m.style.viewTransitionName = "med";
   });
   vt.finished.finally(() => { const m = $("#lesson .sc-med"); if (m) m.style.viewTransitionName = ""; });
@@ -160,12 +160,37 @@ function renderJourney() {
     const locked = !plus && (gate === "plus" || (states.every((x) => x === "locked") && ui > curUnit && !(gate === "ad" && reached)));
     const open = ui === Session.jrOpen && !locked && gate !== "ad";
     const right = gate === "plus" ? `<span class="pill-plus">Plus</span>` : gate === "ad" && reached ? `<span class="pill-ad">${esc(t("openAdShort"))}</span>` : `<span class="c${done === states.length ? " full" : ""}">${esc(t("aOfB", { a:done, b:states.length }))}</span>`;
-    const head = `<button class="crow${locked ? " locked" : ""}${gate === "plus" ? " plus-locked" : ""}${open ? " open" : ""}" data-city="${ui}" data-gate="${gate || ""}" data-reached="${reached ? 1 : 0}" aria-expanded="${open}"><span class="sw">${cityBadge(ui)}</span><span class="nm"><b>${esc(cityName(c))}</b><span class="ar" lang="ar">${esc(c.ar)}</span></span>${right}</button>`;
-    if (!open) return head;
-    return `<div class="copen cv${ui}">${head}<p class="cscene">${esc(L(c.scene))}</p><div class="stops">${nodes.map(({ n, idx }, k) => rowHTML(n, idx, states[k])).join("")}</div></div>`;
+    const canOpen = !locked && gate !== "ad";
+    const head = `<button class="crow${locked ? " locked" : ""}${gate === "plus" ? " plus-locked" : ""}${open ? " open" : ""}" data-city="${ui}" data-gate="${gate || ""}" data-reached="${reached ? 1 : 0}"${canOpen ? ` aria-expanded="${open}"` : ""}><span class="sw">${cityBadge(ui)}</span><span class="nm"><b>${esc(cityName(c))}</b><span class="ar" lang="ar">${esc(c.ar)}</span></span>${right}</button>`;
+    if (!canOpen) return `<div class="city">${head}</div>`;
+    // every open-able city keeps its stops in the page, folded; opening animates the fold instead of re-rendering
+    return `<div class="city cv${ui}${open ? " copen" : ""}" data-ui="${ui}">${head}<div class="cbody"${open ? "" : " inert"}><div class="cbody-in"><p class="cscene">${esc(L(c.scene))}</p><div class="stops">${nodes.map(({ n, idx }, k) => rowHTML(n, idx, states[k])).join("")}</div></div></div></div>`;
   }).join("");
   const test = `<button class="pl-card" data-act="placement">${runStar()}<span><b>${esc(t("plCardT"))}</b><small>${esc(plus ? t("plCardS") : t("plCardFree"))}</small></span>${plus ? "" : `<span class="pill-plus">Plus</span>`}</button>`;
   el.innerHTML = `<div class="journey scroll-pad"><h1 class="jt">${esc(t("journey"))}</h1><p class="jsub">${esc(tn("stopsWords", { a:stopsDone, b:stopsAll, c:learnedIds().length, d:CORE.length + COLL.length }, stopsDone))}</p>${test}<div class="cities">${rows}</div>${plus ? "" : `<p class="jr-free">${esc(t("freeCitiesNote", { n:FREE_CITIES }))}</p>`}</div>`;
+}
+// fold one city open (and the previous one shut) in place; CSS animates the height, so nothing jumps
+function toggleCity(ui) {
+  const root = $("#v-journey"), next = Session.jrOpen === ui ? -1 : ui;
+  Session.jrOpen = next;
+  $$(".city[data-ui]", root).forEach((c) => {
+    const on = +c.dataset.ui === next;
+    if (c.classList.contains("copen") === on) return;
+    c.classList.toggle("copen", on);
+    $(".crow", c).setAttribute("aria-expanded", on);
+    $(".crow", c).classList.toggle("open", on);
+    $(".cbody", c).inert = !on;
+  });
+  if (next < 0) return;
+  // once the fold settles, bring the opened city fully into view if it ended up below the fold
+  clearTimeout(Session.jrScrollT);
+  Session.jrScrollT = setTimeout(() => {
+    const c = $(`.city[data-ui="${next}"]`, root); if (!c) return;
+    const r = c.getBoundingClientRect(), vr = root.getBoundingClientRect(), dock = 84;
+    const over = r.bottom - (vr.bottom - dock), under = vr.top + 70 - r.top;
+    if (under > 0) root.scrollBy({ top:-under, behavior:reduced ? "auto" : "smooth" });
+    else if (over > 0) root.scrollBy({ top:Math.min(over, r.top - vr.top - 70), behavior:reduced ? "auto" : "smooth" });
+  }, reduced ? 0 : 380);
 }
 function renderLearn(justDone) {
   if (view === "today" || !$("#v-today").hidden) renderToday();
@@ -196,8 +221,7 @@ function bindHome() {
       if (ch.dataset.gate === "plus") { plusCitySheet(ui); return; }
       if (ch.dataset.gate === "ad") { if (ch.dataset.reached === "1") openCityWithAd(ui); else openCitySheet(ui); return; }
       if (ch.classList.contains("locked")) { openCitySheet(ui); return; }
-      Session.jrOpen = Session.jrOpen === ui ? -1 : ui; renderJourney();
-      const o = $("#v-journey .copen"); if (o && !reduced) o.animate([{ opacity:0, transform:"translateY(-6px)" }, { opacity:1, transform:"none" }], { duration:220, easing:EASE_OUT });
+      toggleCity(ui);
       return;
     }
     if (e.target.closest("[data-act=placement]")) { Sound.play("tap"); openPlacement(); return; }

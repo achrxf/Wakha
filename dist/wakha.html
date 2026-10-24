@@ -490,7 +490,7 @@ svg{display:block}
 .td-practice{display:flex;align-items:center;gap:12px;margin:10px max(22px,env(safe-area-inset-right,0px)) 0 max(22px,env(safe-area-inset-left,0px))}
 
 /* ---------- JOURNEY ---------- */
-#v-journey{overflow:hidden}
+#v-journey{overflow-y:auto;-webkit-overflow-scrolling:touch}
 .jr-track{position:absolute;inset:0;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
 .jr-track::-webkit-scrollbar{display:none}
 .jr-page{position:relative;flex:none;width:100%;height:100%;overflow-y:auto;overflow-x:hidden;scroll-snap-align:center;scroll-snap-stop:always;scrollbar-width:none;background:var(--wall);isolation:isolate}
@@ -853,7 +853,7 @@ svg{display:block}
    150ms fades; colour, opacity and press feedback stay so a tap still reads as heard. */
 @media (prefers-reduced-motion: reduce){
   .cat,.cat *,.steam,.td-med .zwrap,.td-go::after,.l-foot .cta::after,.welcome .cta::after,.ov-box::before,.p-streak svg path,.td-week .d.met svg path,
-  .jr-row.current .go::after,.zel .seg.current .pc,.next-btn.nudge svg,.swipe-cue svg,.chest,.play-big::before,.play-big::after,.shimmer{animation:none!important}
+  .jr-row.current .go::after,.td-go i::after,.zel .seg.current .pc,.next-btn.nudge svg,.swipe-cue svg,.chest,.play-big::before,.play-big::after,.shimmer{animation:none!important}
   .view.enter,.card.play [class*=" a"],.l-end .panel,.l-end h2,.l-end .sub,.l-stats,.ov-box,.cat-say,.slots .tok,.bub,.banner.inline{animation:fade 150ms ease both!important}
   .banner,.nsheet,.l-confirm .box{transition:opacity 150ms ease!important;transform:none!important}
   .banner.leaving,.nsheet.leaving{opacity:0}
@@ -960,10 +960,9 @@ svg{display:block}
 .ov-box{isolation:isolate}
 .td-med{perspective:900px}
 .td-go{transition:scale .55s var(--spring),box-shadow .3s}
-.jr-row.current .go{animation:gopulse 2s ease-in-out infinite}
-@keyframes gopulse{0%,100%{box-shadow:0 0 0 0 rgba(59,51,196,.45)}50%{box-shadow:0 0 0 8px rgba(59,51,196,0)}}
-.td-go i{animation:gopulse2 2.2s ease-in-out infinite}
-@keyframes gopulse2{0%,100%{box-shadow:0 0 0 0 rgba(43,27,0,.35)}50%{box-shadow:0 0 0 9px rgba(43,27,0,0)}}
+/* v1.12: start-button pulses are a ring that scales and fades (GPU only), not an animated box-shadow that repaints every frame */
+.td-go i{position:relative}
+.td-go i::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 2px var(--saf-ink);opacity:0;pointer-events:none;animation:goring 2.2s var(--ease-out) 900ms 4}
 .l-bar i.done{box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
 .stars.anim svg.on{filter:drop-shadow(0 4px 8px rgba(217,146,22,.6))}
 /* language picker */
@@ -1084,7 +1083,9 @@ svg{display:block}
 .p-streak .u{color:var(--ink-soft);font-weight:400}
 .p-streak svg{width:15px;height:17px}
 .on-dark .pill{background:var(--card);color:var(--ink);box-shadow:none}
-#stage[data-view="feed"] .hud-mark{visibility:hidden}
+.hud-mark{transition:opacity 200ms ease}
+.hud .pill{transition:background-color 220ms ease,color 220ms ease}
+#stage[data-view="feed"] .hud-mark{opacity:0;pointer-events:none}
 #stage[data-view="feed"] .hud .pill{background:rgba(0,0,0,.28);color:#fff}
 #stage[data-view="feed"] .hud .p-streak .u{color:rgba(255,255,255,.8)}
 
@@ -1103,8 +1104,14 @@ svg{display:block}
 .crow .c{font-size:13px;color:var(--ink-soft);font-variant-numeric:tabular-nums;text-align:right}
 .crow .c.full{color:var(--ink)}
 .crow.locked .nm b{color:var(--ink-soft);font-weight:500}
-.copen{background:var(--wall);border-radius:22px;padding:14px 16px 10px;margin:2px 0 6px}
-.copen .crow{padding-top:0}
+/* cities fold open in place: the card colour fades in and the stops unfold by animating the grid row from 0fr to 1fr */
+.city{position:relative;isolation:isolate;margin:0 -10px;padding:0 10px;border-radius:22px;background-color:transparent;transition:background-color 320ms ease}
+.city.copen{background-color:var(--wall)}
+.cbody{display:grid;grid-template-rows:0fr;transition:grid-template-rows 420ms var(--ease-out)}
+.copen > .cbody{grid-template-rows:1fr}
+.cbody-in{min-height:0;overflow:hidden;margin:0 -6px;padding:0 6px;opacity:0;transform:translateY(-8px);transition:opacity 180ms ease,transform 420ms var(--ease-out)}
+.copen .cbody-in{opacity:1;transform:none;transition:opacity 260ms ease 80ms,transform 420ms var(--ease-out)}
+.cbody-in .stops{padding-bottom:10px}
 .cscene{font-size:14px;line-height:1.45;color:var(--ink-soft);margin:2px 0 8px}
 .stops{display:grid}
 .stops .jr-row{display:grid;grid-template-columns:24px 1fr auto;gap:12px;align-items:center;width:100%;min-height:46px;padding:0;text-align:left;font-size:14px;color:var(--ink)}
@@ -1272,23 +1279,28 @@ svg{display:block}
 .tab::before{display:none}
 .tab.on{color:var(--ink);font-weight:600}
 .tab.on svg{animation:none}
-.view.enter{animation:fade 160ms ease}
+/* v1.12 tab change: the new screen rises a few pixels as it fades in, over the old one fading out (no blank frame) */
+.view.enter{z-index:2;animation:viewrise 260ms var(--ease-out) 60ms both}
+.view.leave{z-index:1;pointer-events:none;animation:viewfade 110ms ease-out forwards}
+@keyframes viewrise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes viewfade{to{opacity:0}}
 
 /* v1.6: zellige. A khatam (eight-point star) lattice, drawn as a mask so it takes the ink colour in both themes,
    fading out from one corner of the city cards. The keyhole-arch badge sits on it. */
 :root{--zellige:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%23000' stroke-width='1.3'%3E%3Cpath d='M9 9h14v14H9Z'/%3E%3Cpath d='M16 6.1L25.9 16 16 25.9 6.1 16Z'/%3E%3Cpath d='M0 16h6.1M25.9 16H32M16 0v6.1M16 25.9V32'/%3E%3C/g%3E%3C/svg%3E")}
-.td-lead,.copen{position:relative;isolation:isolate}
-.td-lead::before,.copen::before{content:"";position:absolute;z-index:-1;top:0;right:0;width:190px;height:150px;border-top-right-radius:22px;pointer-events:none;
+.td-lead{position:relative;isolation:isolate}
+.td-lead::before,.city[data-ui]::before{content:"";position:absolute;z-index:-1;top:0;right:0;width:190px;height:150px;border-top-right-radius:22px;pointer-events:none;
   background:var(--wall-raw);opacity:.9;filter:brightness(.82) saturate(1.2);
   -webkit-mask:var(--zellige) 0 0/32px 32px,radial-gradient(120% 100% at 100% 0,#000 20%,transparent 75%);-webkit-mask-composite:source-in;
   mask:var(--zellige) 0 0/32px 32px,radial-gradient(120% 100% at 100% 0,#000 20%,transparent 75%);mask-composite:intersect}
-.copen::before{border-top-right-radius:18px}
+.city[data-ui]::before{border-top-right-radius:18px;transition:opacity 320ms ease}
+.city[data-ui]:not(.copen)::before{opacity:0!important}
 .td-badge{position:absolute;top:16px;right:18px;width:58px;height:66px}
 .td-lead .where{padding-right:76px}
 .td-lead .where .ar{display:none}
 .td-lead h3,.td-lead .sc{padding-right:72px}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .td-lead::before,:root:not([data-theme="light"]) .copen::before{filter:brightness(1.6) saturate(.7);opacity:.35}}
-:root[data-theme="dark"] .td-lead::before,:root[data-theme="dark"] .copen::before{filter:brightness(1.6) saturate(.7);opacity:.35}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .td-lead::before,:root:not([data-theme="light"]) .city.copen::before{filter:brightness(1.6) saturate(.7);opacity:.35}}
+:root[data-theme="dark"] .td-lead::before,:root[data-theme="dark"] .city.copen::before{filter:brightness(1.6) saturate(.7);opacity:.35}
 
 /* v1.6: Say it out loud */
 .say-card{background:var(--card);border-radius:22px;padding:20px 20px 18px;margin:14px 0 18px;text-align:center}
@@ -1457,6 +1469,12 @@ svg{display:block}
 .jewel .cat,.adlayer .cat,.welcome .cat{filter:drop-shadow(0 0 1.2px rgba(255,255,255,.6))}
 
 .sheet-scrim.leaving,.nsheet.leaving{pointer-events:none}
+
+@media (prefers-reduced-motion:reduce){
+  .city,.city::before,.cbody,.cbody-in,.hud-mark,.hud .pill{transition:none!important}
+  .view.enter{animation:fade 150ms ease both}
+  .view.leave{animation:none;display:none}
+}
 
 </style>
 
@@ -2713,7 +2731,7 @@ const Zel = (() => {
 const LS_KEY = "wakha.v2";
 const INTERVALS = [0, 1, 3, 7, 14, 30];
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const EASE_OUT = "cubic-bezier(0.23, 1, 0.32, 1)", EASE_IN_OUT = "cubic-bezier(0.77, 0, 0.175, 1)";
+const EASE_OUT = "cubic-bezier(0.23, 1, 0.32, 1)", EASE_IN_OUT = "cubic-bezier(0.77, 0, 0.175, 1)", EASE_DRAWER = "cubic-bezier(0.32, 0.72, 0, 1)";
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
 const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
@@ -4360,7 +4378,11 @@ const Lesson = {
     el.innerHTML = `<div class="l-top"><button class="l-x" data-act="quit" aria-label="${esc(t("quit"))}">${ICON.x}</button><div class="l-prog" id="l-bar"><i></i></div><span class="l-count" id="l-count"></span><div class="l-combo" id="l-combo" hidden></div></div>
       <div class="l-body"></div><div class="l-foot" hidden></div>
       <div class="l-confirm" hidden><div class="box"><p>${esc(t("quitQ"))}</p><button class="cta block" data-act="stay">${esc(t("keepLearning"))}</button><button class="btn-bad" data-act="leave">${esc(t("leave"))}</button></div></div>`;
+    el.getAnimations().forEach((a) => a.cancel());
+    const wasHidden = el.hidden;
     el.hidden = false;
+    // the lesson rises over the screen like a sheet; the first card's own entrance plays on top
+    if (wasHidden && !reduced && !this.noSlide) el.animate([{ transform:"translateY(100%)" }, { transform:"none" }], { duration:480, easing:EASE_DRAWER });
     el.onclick = (e) => {
       const a = e.target.closest("[data-act]"); if (!a) return;
       if (a.dataset.act === "quit") { $(".l-confirm", el).hidden = false; }
@@ -4389,8 +4411,8 @@ const Lesson = {
       const oe = old.el; oe.classList.add("leaving"); oe.classList.remove("is-active");
       if (oe.animate) oe.animate(reduced
         ? [{ opacity:1 }, { opacity:0 }]
-        : [{ transform:"none", opacity:1 }, { transform:"perspective(1200px) translateX(-22%) rotateY(16deg) scale(.96)", opacity:0 }],
-        { duration:reduced ? 150 : 180, easing:EASE_OUT, fill:"forwards" }).finished.then(() => oe.remove(), () => oe.remove());
+        : [{ transform:"none", opacity:1 }, { transform:"translateX(-56px)", opacity:0 }],
+        { duration:reduced ? 150 : 200, easing:"cubic-bezier(0.4, 0, 1, 1)", fill:"forwards" }).finished.then(() => oe.remove(), () => oe.remove());
       else oe.remove();
     }
     const sp = this.specs[this.i];
@@ -4400,13 +4422,18 @@ const Lesson = {
     body.appendChild(card.el);
     if (old && card.el.animate) card.el.animate(reduced
       ? [{ opacity:0 }, { opacity:1 }]
-      : [{ transform:"perspective(1200px) translateX(22%) rotateY(-14deg) scale(.96)", opacity:0 }, { transform:"none", opacity:1 }],
-      { duration:reduced ? 150 : 280, delay:reduced ? 0 : 60, easing:EASE_OUT, fill:"backwards" });
+      : [{ transform:"translateX(72px)", opacity:0 }, { transform:"none", opacity:1 }],
+      { duration:reduced ? 150 : 420, delay:reduced ? 0 : 110, easing:EASE_OUT, fill:"backwards" });
     card.firstEnter && card.firstEnter();
     card.enter && card.enter();
     this.progress();
     const foot = $("#lesson .l-foot");
-    if (sp.t === "learn" || sp.t === "scene" || sp.t === "story") { foot.innerHTML = `<button class="cta block" data-act="cont">${esc(sp.t === "scene" ? t("sceneStart") : t("continueL"))}${sp.t === "scene" ? ICON.right : ""}</button>`; foot.hidden = false; }
+    if (sp.t === "learn" || sp.t === "scene" || sp.t === "story") { const was = foot.hidden; foot.innerHTML = `<button class="cta block" data-act="cont">${esc(sp.t === "scene" ? t("sceneStart") : t("continueL"))}${sp.t === "scene" ? ICON.right : ""}</button>`; foot.hidden = false; if (was && old) footIn(foot); }
+    else if (!foot.hidden && old && !reduced && foot.firstElementChild) {
+      // the button that's no longer needed sinks away instead of vanishing
+      const b = foot.firstElementChild; b.disabled = true;
+      b.animate([{ transform:"none", opacity:1 }, { transform:"translateY(14px)", opacity:0 }], { duration:160, easing:"ease-in", fill:"forwards" }).finished.then(() => { if (foot.firstElementChild === b) { foot.innerHTML = ""; foot.hidden = true; } }, () => {});
+    }
     else { foot.innerHTML = ""; foot.hidden = true; }
     $("#lesson").classList.toggle("nofoot", sp.t === "haggle" || sp.t === "lightning");
   },
@@ -4424,7 +4451,9 @@ const Lesson = {
     let fbx = $(".fbx", card.el);
     if (!fbx) { fbx = document.createElement("div"); fbx.className = "fbx"; $(".card-in", card.el).appendChild(fbx); }
     fbx.innerHTML = fbHTML(ok, info, moods[(this.st.right + this.st.wrong) % moods.length]);
+    const wasHidden = foot.hidden;
     foot.innerHTML = `<button class="cta block" data-act="cont">${esc(t("continueL"))}</button>`; foot.hidden = false;
+    if (wasHidden) footIn(foot);
     const ci = $(".card-in", card.el); if (ci && ci.scrollHeight > ci.clientHeight) ci.scrollTo({ top:ci.scrollHeight, behavior:reduced ? "auto" : "smooth" });
     if (info.say && !info.noAuto) setTimeout(() => this.card === card && autoSay(info.say, info.voice), ok ? 200 : 350);
     setTimeout(() => { const c = $(".cta", foot); c && c.focus({ preventScroll:true }); }, 60);
@@ -4501,8 +4530,11 @@ const Lesson = {
     Voice.stop();
     if (this.card) { this.card.leave && this.card.leave(); this.card = null; }
     if (this.banner) { this.banner.remove(); this.banner = null; }
-    const el = $("#lesson"); el.hidden = true; el.innerHTML = "";
+    const el = $("#lesson");
     this.active = false; combo = 0; renderCombo();
+    const done = () => { if (this.active) return; el.hidden = true; el.innerHTML = ""; };
+    if (reduced || el.hidden) done();
+    else { el.getAnimations().forEach((a) => a.cancel()); el.animate([{ transform:"none" }, { transform:"translateY(100%)" }], { duration:360, easing:"cubic-bezier(0.4, 0, 0.9, 0.6)", fill:"forwards" }).finished.then(done, () => {}); }
     refreshHUD(); renderLearn(completed ? this.justDone : null); if (view === "today" && Med3D.host) Med3D.go();
     $("#desk-nav").hidden = view !== "feed";
     if (Session.overlayQ.length) { clearTimeout(Session.ovTimer); Session.ovTimer = setTimeout(nextOverlay, 500); }
@@ -4710,6 +4742,11 @@ function nodeState(idx) {
   if (idx !== PATH.findIndex((p) => !S.lessons[p.id])) return "locked";
   return cityGate(n.unit) ? "locked" : "current";
 }
+// the footer button glides up instead of popping in
+function footIn(foot) {
+  const b = foot.firstElementChild; if (!b || reduced) return;
+  b.animate([{ transform:"translateY(18px)", opacity:0 }, { transform:"none", opacity:1 }], { duration:320, easing:EASE_OUT });
+}
 function setView(k) {
   if (k === "learn") k = "today"; if (k === "kenz") k = "me";
   if (Lesson.active) return;
@@ -4717,7 +4754,16 @@ function setView(k) {
   view = k; $("#stage").dataset.view = k;
   setTimeout(syncFeedLock, 0);
   $$(".tab").forEach((b) => { b.classList.toggle("on", b.dataset.tab === k); b.setAttribute("aria-current", b.dataset.tab === k ? "page" : "false"); });
-  for (const v of ["today", "journey", "feed", "guide", "me"]) { const el = $("#v-" + v); el.hidden = v !== k; }
+  // the screen you leave fades out underneath while the new one fades in, so there is never a blank frame
+  const prevK = Session.lastView, prevEl = prevK && prevK !== k ? $("#v-" + prevK) : null;
+  for (const v of ["today", "journey", "feed", "guide", "me"]) {
+    const el = $("#v-" + v); clearTimeout(el._leaveT); el.classList.remove("leave");
+    el.hidden = v !== k;
+  }
+  if (prevEl && !reduced) {
+    prevEl.hidden = false; prevEl.classList.add("leave");
+    prevEl._leaveT = setTimeout(() => { prevEl.classList.remove("leave"); if (view !== prevK) prevEl.hidden = true; }, 200);
+  }
   $("#hud").classList.remove("on-dark");
   const order = ["today", "journey", "feed", "guide", "me"];
   const el = $("#v-" + k); el.style.setProperty("--dx", (order.indexOf(k) >= order.indexOf(Session.lastView || "today") ? 26 : -26) + "px"); Session.lastView = k;
@@ -4923,8 +4969,17 @@ function refreshTabs() {
 }
 
 /* ---------- welcome ---------- */
-function showWelcome(step = 1) {
+function showWelcome(step = 1, swapped = false) {
   const el = $("#welcome");
+  // moving to the next step: the old step lifts away first, then the new one rises in, line by line
+  if (step > 1 && !swapped && !el.hidden && el.firstElementChild && !reduced && !el.dataset.swapping) {
+    el.dataset.swapping = "1";
+    const kids = [...el.children];
+    kids.forEach((c, k) => c.animate([{ opacity:1, transform:"none" }, { opacity:0, transform:"translateY(-14px)" }], { duration:200, delay:k * 15, easing:"ease-in", fill:"forwards" }));
+    setTimeout(() => { delete el.dataset.swapping; if (!el.hidden) showWelcome(step, true); }, 200 + kids.length * 15);
+    return;
+  }
+  el.getAnimations({ subtree:true }).forEach((a) => a.cancel());
   el.className = "welcome plaster cv0";
   if (step === 1) {
     el.innerHTML = `<div class="w-lang">${langSelect("w-lang")}</div><div class="stage-art">${panelHTML(0, ["done", "done", "done", "done"])}<div class="cat-sit">${mascot("happy", "hi")}</div></div>
@@ -4938,13 +4993,20 @@ function showWelcome(step = 1) {
       <div class="goal-picks">${g.map(([n, k, p, l]) => `<button class="goal-pick" data-goal="${n}">${teaGlass(p, "gl")}<span><b>${esc(t(k))}</b><span>${esc(t("perDay", { n }))}, ${esc(t(l === 1 ? "aboutLesson" : "aboutLessons", { n:l }))}</span></span></button>`).join("")}</div>`;
   }
   el.hidden = false;
+  if (step > 1 && !reduced) [...el.children].forEach((c, k) => c.animate([{ opacity:0, transform:"translateY(22px)" }, { opacity:1, transform:"none" }], { duration:520, delay:60 + k * 55, easing:EASE_OUT, fill:"backwards" }));
   el.onclick = (e) => {
     if (e.target.closest("[data-w=next]")) { Sound.play("tap"); showWelcome(2); return; }
     const gp = e.target.closest(".goal-pick");
     if (gp) {
       $$(".goal-pick", el).forEach((x) => x.classList.toggle("sel", x === gp));
+      el.onclick = null;
       S.goal = +gp.dataset.goal; S.goalChosen = true; S.onboarded = true; persist(); Sound.play("good");
-      setTimeout(() => { el.hidden = true; el.innerHTML = ""; refreshHUD(); renderLearn(); Lesson.open(PATH[0]); }, 380);
+      // the first lesson rises while the welcome screen fades away over it
+      setTimeout(() => {
+        refreshHUD(); renderLearn(); Lesson.open(PATH[0]);
+        const bye = () => { el.hidden = true; el.innerHTML = ""; };
+        if (reduced) bye(); else el.animate([{ opacity:1 }, { opacity:0 }], { duration:380, easing:"ease-out", fill:"forwards" }).finished.then(() => { bye(); el.getAnimations().forEach((a) => a.cancel()); });
+      }, 380);
     }
   };
 }
@@ -5058,7 +5120,7 @@ function start(data) {
     const ovB = $("#overlay [data-ov=close]");
     if (!$("#adlayer").hidden) { /* an ad can't be skipped with Back */ }
     else if (!$("#paywall").hidden) closePaywall();
-    else if (!$("#placement").hidden) { $("#placement").hidden = true; $("#placement").innerHTML = ""; }
+    else if (!$("#placement").hidden) closePlacement();
     else if (!$("#overlay").hidden && ovB) ovB.click();
     else if (!$("#nsheet").hidden) closeNodeSheet();
     else if (Lesson.active) { const c = $("#lesson .l-confirm"); if (c) c.hidden = !c.hidden; }
@@ -5153,7 +5215,7 @@ function openLesson(node, fromMed) {
   fromMed.style.viewTransitionName = "med";
   const vt = document.startViewTransition(() => {
     fromMed.style.viewTransitionName = "";
-    Lesson.open(node);
+    Lesson.noSlide = true; Lesson.open(node); Lesson.noSlide = false;
     const m = $("#lesson .sc-med"); if (m && m.offsetParent) m.style.viewTransitionName = "med";
   });
   vt.finished.finally(() => { const m = $("#lesson .sc-med"); if (m) m.style.viewTransitionName = ""; });
@@ -5244,12 +5306,37 @@ function renderJourney() {
     const locked = !plus && (gate === "plus" || (states.every((x) => x === "locked") && ui > curUnit && !(gate === "ad" && reached)));
     const open = ui === Session.jrOpen && !locked && gate !== "ad";
     const right = gate === "plus" ? `<span class="pill-plus">Plus</span>` : gate === "ad" && reached ? `<span class="pill-ad">${esc(t("openAdShort"))}</span>` : `<span class="c${done === states.length ? " full" : ""}">${esc(t("aOfB", { a:done, b:states.length }))}</span>`;
-    const head = `<button class="crow${locked ? " locked" : ""}${gate === "plus" ? " plus-locked" : ""}${open ? " open" : ""}" data-city="${ui}" data-gate="${gate || ""}" data-reached="${reached ? 1 : 0}" aria-expanded="${open}"><span class="sw">${cityBadge(ui)}</span><span class="nm"><b>${esc(cityName(c))}</b><span class="ar" lang="ar">${esc(c.ar)}</span></span>${right}</button>`;
-    if (!open) return head;
-    return `<div class="copen cv${ui}">${head}<p class="cscene">${esc(L(c.scene))}</p><div class="stops">${nodes.map(({ n, idx }, k) => rowHTML(n, idx, states[k])).join("")}</div></div>`;
+    const canOpen = !locked && gate !== "ad";
+    const head = `<button class="crow${locked ? " locked" : ""}${gate === "plus" ? " plus-locked" : ""}${open ? " open" : ""}" data-city="${ui}" data-gate="${gate || ""}" data-reached="${reached ? 1 : 0}"${canOpen ? ` aria-expanded="${open}"` : ""}><span class="sw">${cityBadge(ui)}</span><span class="nm"><b>${esc(cityName(c))}</b><span class="ar" lang="ar">${esc(c.ar)}</span></span>${right}</button>`;
+    if (!canOpen) return `<div class="city">${head}</div>`;
+    // every open-able city keeps its stops in the page, folded; opening animates the fold instead of re-rendering
+    return `<div class="city cv${ui}${open ? " copen" : ""}" data-ui="${ui}">${head}<div class="cbody"${open ? "" : " inert"}><div class="cbody-in"><p class="cscene">${esc(L(c.scene))}</p><div class="stops">${nodes.map(({ n, idx }, k) => rowHTML(n, idx, states[k])).join("")}</div></div></div></div>`;
   }).join("");
   const test = `<button class="pl-card" data-act="placement">${runStar()}<span><b>${esc(t("plCardT"))}</b><small>${esc(plus ? t("plCardS") : t("plCardFree"))}</small></span>${plus ? "" : `<span class="pill-plus">Plus</span>`}</button>`;
   el.innerHTML = `<div class="journey scroll-pad"><h1 class="jt">${esc(t("journey"))}</h1><p class="jsub">${esc(tn("stopsWords", { a:stopsDone, b:stopsAll, c:learnedIds().length, d:CORE.length + COLL.length }, stopsDone))}</p>${test}<div class="cities">${rows}</div>${plus ? "" : `<p class="jr-free">${esc(t("freeCitiesNote", { n:FREE_CITIES }))}</p>`}</div>`;
+}
+// fold one city open (and the previous one shut) in place; CSS animates the height, so nothing jumps
+function toggleCity(ui) {
+  const root = $("#v-journey"), next = Session.jrOpen === ui ? -1 : ui;
+  Session.jrOpen = next;
+  $$(".city[data-ui]", root).forEach((c) => {
+    const on = +c.dataset.ui === next;
+    if (c.classList.contains("copen") === on) return;
+    c.classList.toggle("copen", on);
+    $(".crow", c).setAttribute("aria-expanded", on);
+    $(".crow", c).classList.toggle("open", on);
+    $(".cbody", c).inert = !on;
+  });
+  if (next < 0) return;
+  // once the fold settles, bring the opened city fully into view if it ended up below the fold
+  clearTimeout(Session.jrScrollT);
+  Session.jrScrollT = setTimeout(() => {
+    const c = $(`.city[data-ui="${next}"]`, root); if (!c) return;
+    const r = c.getBoundingClientRect(), vr = root.getBoundingClientRect(), dock = 84;
+    const over = r.bottom - (vr.bottom - dock), under = vr.top + 70 - r.top;
+    if (under > 0) root.scrollBy({ top:-under, behavior:reduced ? "auto" : "smooth" });
+    else if (over > 0) root.scrollBy({ top:Math.min(over, r.top - vr.top - 70), behavior:reduced ? "auto" : "smooth" });
+  }, reduced ? 0 : 380);
 }
 function renderLearn(justDone) {
   if (view === "today" || !$("#v-today").hidden) renderToday();
@@ -5280,8 +5367,7 @@ function bindHome() {
       if (ch.dataset.gate === "plus") { plusCitySheet(ui); return; }
       if (ch.dataset.gate === "ad") { if (ch.dataset.reached === "1") openCityWithAd(ui); else openCitySheet(ui); return; }
       if (ch.classList.contains("locked")) { openCitySheet(ui); return; }
-      Session.jrOpen = Session.jrOpen === ui ? -1 : ui; renderJourney();
-      const o = $("#v-journey .copen"); if (o && !reduced) o.animate([{ opacity:0, transform:"translateY(-6px)" }, { opacity:1, transform:"none" }], { duration:220, easing:EASE_OUT });
+      toggleCity(ui);
       return;
     }
     if (e.target.closest("[data-act=placement]")) { Sound.play("tap"); openPlacement(); return; }
@@ -5601,10 +5687,10 @@ const Ads = {
           : `<div class="ad-slot"><b>${esc(t("adSlotT"))}</b><p>${esc(t("adSlotS"))}</p></div>`}</div>
         <p class="ad-note">${esc(kind === "rewarded" ? t("adRewardNote") : t("adNote"))}</p>
         <button class="ad-close" data-ad="close" disabled>${esc(t("adWait"))}</button>`;
-      el.hidden = false;
+      layerIn(el, "fade");
       let left = secs; const cnt = $(".ad-count", el), btn = $(".ad-close", el);
       const timer = setInterval(() => { left--; cnt.textContent = Math.max(0, left); if (left <= 0) { clearInterval(timer); btn.disabled = false; btn.textContent = kind === "rewarded" ? t("adClaim") : t("adClose"); cnt.textContent = "✓"; } }, 1000);
-      const finish = (ok) => { clearInterval(timer); el.hidden = true; el.innerHTML = ""; el.onclick = null; this.busy = false; resolve(ok); };
+      const finish = (ok) => { clearInterval(timer); el.onclick = null; this.busy = false; layerOut(el, () => { el.innerHTML = ""; }, "fade"); resolve(ok); };
       el.onclick = (e) => {
         const a = e.target.closest("[data-ad]"); if (!a) return;
         if (a.dataset.ad === "close" && left <= 0) finish(true);
@@ -5650,6 +5736,25 @@ async function openCityWithAd(ui) {
 }
 function afterLessonAd(done) { if (isPlus()) { done(); return; } Ads.show("interstitial", "lesson").then(done); }
 
+/* ---------- full-screen layers slide up and back down (paywall, test) or fade (ads) ---------- */
+function layerIn(el, kind = "slide") {
+  el.getAnimations().forEach((a) => a.cancel());
+  el.hidden = false;
+  if (reduced) return;
+  if (kind === "fade") el.animate([{ opacity:0 }, { opacity:1 }], { duration:220, easing:"ease-out" });
+  else el.animate([{ transform:"translateY(100%)" }, { transform:"none" }], { duration:480, easing:EASE_DRAWER });
+}
+function layerOut(el, cleanup, kind = "slide") {
+  const done = () => { el.hidden = true; el.getAnimations().forEach((a) => a.cancel()); cleanup && cleanup(); };
+  if (reduced || el.hidden) { done(); return; }
+  el.getAnimations().forEach((a) => a.cancel());
+  const a = kind === "fade"
+    ? el.animate([{ opacity:1 }, { opacity:0 }], { duration:180, easing:"ease-in", fill:"forwards" })
+    : el.animate([{ transform:"none" }, { transform:"translateY(100%)" }], { duration:340, easing:"cubic-bezier(0.4, 0, 0.9, 0.6)", fill:"forwards" });
+  el.style.pointerEvents = "none";
+  a.finished.then(() => { el.style.pointerEvents = ""; done(); }, () => { el.style.pointerEvents = ""; });
+}
+
 /* ---------- paywall ---------- */
 function openPaywall(reason = "") {
   const el = $("#paywall"), p = plan();
@@ -5664,7 +5769,7 @@ function openPaywall(reason = "") {
     </div>
     <button class="cta block pw-go" data-pw="buy">${esc(p.sub ? t("planKeep") : t("subscribe"))}</button>
     <p class="pw-fine">${esc(t("pwFine"))}</p><button class="sh-link" data-pw="restore">${esc(t("restore"))}</button></div>`;
-  el.hidden = false; el.dataset.reason = reason;
+  layerIn(el); el.dataset.reason = reason;
   let choice = "yearly";
   el.onclick = (e) => {
     const pl = e.target.closest("[data-plan]"); if (pl) { choice = pl.dataset.plan; $$(".pw-plan", el).forEach((b) => b.classList.toggle("on", b === pl)); return; }
@@ -5674,11 +5779,12 @@ function openPaywall(reason = "") {
     if (a.dataset.pw === "restore") toast(t("protoRestore"), "");
   };
 }
-function closePaywall() { const el = $("#paywall"); el.hidden = true; el.innerHTML = ""; el.onclick = null; }
+function closePaywall() { const el = $("#paywall"); el.onclick = null; layerOut(el, () => { el.innerHTML = ""; }); }
 function refreshAll() { refreshHUD(); renderLearn(); if (view === "me") renderMe(); if (view === "guide") renderGuide(); if (view === "feed") Feed.restart(); }
 
 /* ---------- placement test (Plus) ---------- */
 const TOPICS = [["hello", "u1", "u11"], ["polite", "u2", "u12"], ["foot", "u10", "u13"], ["q", "u3", "u14"], ["food", "u4", "u15"], ["souk", "u5", "u16"], ["num", "u6", "u17"], ["family", "u7", "u18"], ["travel", "u8", "u19"], ["basics", "u9", "u20"]];
+function closePlacement() { const el = $("#placement"); layerOut(el, () => { el.innerHTML = ""; }); }
 function openPlacement() {
   if (!isPlus()) { openPaywall("test"); return; }
   const el = $("#placement");
@@ -5686,7 +5792,15 @@ function openPlacement() {
   const qs = base.map((ui) => { const ws = UNITS[ui].words.filter((id) => W[id] && !W[id].rar); return ws[Math.floor(Math.random() * Math.min(ws.length, 6))]; });
   const st = { step:0, topics:new Set(), known:[] };
   const topicName = (k) => L(CAT[k] || [k, k]);
+  // each question slides in from the right, a beat apart, and the progress bar grows from where it was
+  const stepIn = () => {
+    if (reduced || st.step === 0) return;
+    $$(".pl-in > :not(.pw-x):not(.pl-prog)", el).forEach((c, k) => c.animate([{ transform:"translateX(36px)", opacity:0 }, { transform:"none", opacity:1 }], { duration:420, delay:k * 40, easing:EASE_OUT, fill:"backwards" }));
+    const bar = $(".pl-prog i", el), n = qs.length;
+    if (bar && st.step > 1 && st.step <= n) bar.animate([{ transform:`scaleX(${((st.step - 2) / n).toFixed(3)})` }, { transform:`scaleX(${((st.step - 1) / n).toFixed(3)})` }], { duration:500, easing:EASE_OUT });
+  };
   const draw = () => {
+    queueMicrotask(stepIn);
     if (st.step === 0) {
       el.innerHTML = `<div class="pl-in"><button class="pw-x" data-pl="close" aria-label="${esc(t("quit"))}">${ICON.x}</button><p class="eyebrow">${esc(t("plTestK"))}</p><h2>${esc(t("plTopicsT"))}</h2><p class="soft">${esc(t("plTopicsS"))}</p>
         <div class="pl-topics">${TOPICS.map(([k]) => `<button class="pl-chip${st.topics.has(k) ? " on" : ""}" data-topic="${k}">${esc(topicName(k))}</button>`).join("")}</div>
@@ -5716,16 +5830,16 @@ function openPlacement() {
     S.placement = { at:Date.now(), known:knownN, topics:[...st.topics], recs:recs.map((r) => r.ui) }; persist();
   };
   el.onclick = (e) => {
-    if (e.target.closest("[data-pl=close]")) { el.hidden = true; el.innerHTML = ""; return; }
+    if (e.target.closest("[data-pl=close]")) { closePlacement(); return; }
     const tp = e.target.closest("[data-topic]"); if (tp) { const k = tp.dataset.topic; st.topics.has(k) ? st.topics.delete(k) : st.topics.add(k); tp.classList.toggle("on"); return; }
     if (e.target.closest("[data-pl=next]")) { st.step = 1; draw(); return; }
     const an = e.target.closest("[data-ans]");
     if (an) { st.known[st.step - 1] = an.dataset.ans === qs[st.step - 1]; Sound.play(an.dataset.ans === qs[st.step - 1] ? "good" : "tap"); st.step++; draw(); return; }
     const sv = e.target.closest("[data-say]"); if (sv) return;
     const rc = e.target.closest("[data-city]");
-    if (rc) { const ui = +rc.dataset.city; S.focusUnit = ui; Session.jrOpen = ui; persist(); el.hidden = true; el.innerHTML = ""; setView("journey"); renderLearn(); toast(t("plChosen", { c:cityName(cityOf(ui)) }), ""); }
+    if (rc) { const ui = +rc.dataset.city; S.focusUnit = ui; Session.jrOpen = ui; persist(); closePlacement(); setView("journey"); renderLearn(); toast(t("plChosen", { c:cityName(cityOf(ui)) }), ""); }
   };
-  el.hidden = false; draw();
+  layerIn(el); draw();
 }
 
 /* ---------- feed: 5 minutes a day on the free tier ---------- */

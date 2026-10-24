@@ -801,7 +801,11 @@ const Lesson = {
     el.innerHTML = `<div class="l-top"><button class="l-x" data-act="quit" aria-label="${esc(t("quit"))}">${ICON.x}</button><div class="l-prog" id="l-bar"><i></i></div><span class="l-count" id="l-count"></span><div class="l-combo" id="l-combo" hidden></div></div>
       <div class="l-body"></div><div class="l-foot" hidden></div>
       <div class="l-confirm" hidden><div class="box"><p>${esc(t("quitQ"))}</p><button class="cta block" data-act="stay">${esc(t("keepLearning"))}</button><button class="btn-bad" data-act="leave">${esc(t("leave"))}</button></div></div>`;
+    el.getAnimations().forEach((a) => a.cancel());
+    const wasHidden = el.hidden;
     el.hidden = false;
+    // the lesson rises over the screen like a sheet; the first card's own entrance plays on top
+    if (wasHidden && !reduced && !this.noSlide) el.animate([{ transform:"translateY(100%)" }, { transform:"none" }], { duration:480, easing:EASE_DRAWER });
     el.onclick = (e) => {
       const a = e.target.closest("[data-act]"); if (!a) return;
       if (a.dataset.act === "quit") { $(".l-confirm", el).hidden = false; }
@@ -830,8 +834,8 @@ const Lesson = {
       const oe = old.el; oe.classList.add("leaving"); oe.classList.remove("is-active");
       if (oe.animate) oe.animate(reduced
         ? [{ opacity:1 }, { opacity:0 }]
-        : [{ transform:"none", opacity:1 }, { transform:"perspective(1200px) translateX(-22%) rotateY(16deg) scale(.96)", opacity:0 }],
-        { duration:reduced ? 150 : 180, easing:EASE_OUT, fill:"forwards" }).finished.then(() => oe.remove(), () => oe.remove());
+        : [{ transform:"none", opacity:1 }, { transform:"translateX(-56px)", opacity:0 }],
+        { duration:reduced ? 150 : 200, easing:"cubic-bezier(0.4, 0, 1, 1)", fill:"forwards" }).finished.then(() => oe.remove(), () => oe.remove());
       else oe.remove();
     }
     const sp = this.specs[this.i];
@@ -841,13 +845,18 @@ const Lesson = {
     body.appendChild(card.el);
     if (old && card.el.animate) card.el.animate(reduced
       ? [{ opacity:0 }, { opacity:1 }]
-      : [{ transform:"perspective(1200px) translateX(22%) rotateY(-14deg) scale(.96)", opacity:0 }, { transform:"none", opacity:1 }],
-      { duration:reduced ? 150 : 280, delay:reduced ? 0 : 60, easing:EASE_OUT, fill:"backwards" });
+      : [{ transform:"translateX(72px)", opacity:0 }, { transform:"none", opacity:1 }],
+      { duration:reduced ? 150 : 420, delay:reduced ? 0 : 110, easing:EASE_OUT, fill:"backwards" });
     card.firstEnter && card.firstEnter();
     card.enter && card.enter();
     this.progress();
     const foot = $("#lesson .l-foot");
-    if (sp.t === "learn" || sp.t === "scene" || sp.t === "story") { foot.innerHTML = `<button class="cta block" data-act="cont">${esc(sp.t === "scene" ? t("sceneStart") : t("continueL"))}${sp.t === "scene" ? ICON.right : ""}</button>`; foot.hidden = false; }
+    if (sp.t === "learn" || sp.t === "scene" || sp.t === "story") { const was = foot.hidden; foot.innerHTML = `<button class="cta block" data-act="cont">${esc(sp.t === "scene" ? t("sceneStart") : t("continueL"))}${sp.t === "scene" ? ICON.right : ""}</button>`; foot.hidden = false; if (was && old) footIn(foot); }
+    else if (!foot.hidden && old && !reduced && foot.firstElementChild) {
+      // the button that's no longer needed sinks away instead of vanishing
+      const b = foot.firstElementChild; b.disabled = true;
+      b.animate([{ transform:"none", opacity:1 }, { transform:"translateY(14px)", opacity:0 }], { duration:160, easing:"ease-in", fill:"forwards" }).finished.then(() => { if (foot.firstElementChild === b) { foot.innerHTML = ""; foot.hidden = true; } }, () => {});
+    }
     else { foot.innerHTML = ""; foot.hidden = true; }
     $("#lesson").classList.toggle("nofoot", sp.t === "haggle" || sp.t === "lightning");
   },
@@ -865,7 +874,9 @@ const Lesson = {
     let fbx = $(".fbx", card.el);
     if (!fbx) { fbx = document.createElement("div"); fbx.className = "fbx"; $(".card-in", card.el).appendChild(fbx); }
     fbx.innerHTML = fbHTML(ok, info, moods[(this.st.right + this.st.wrong) % moods.length]);
+    const wasHidden = foot.hidden;
     foot.innerHTML = `<button class="cta block" data-act="cont">${esc(t("continueL"))}</button>`; foot.hidden = false;
+    if (wasHidden) footIn(foot);
     const ci = $(".card-in", card.el); if (ci && ci.scrollHeight > ci.clientHeight) ci.scrollTo({ top:ci.scrollHeight, behavior:reduced ? "auto" : "smooth" });
     if (info.say && !info.noAuto) setTimeout(() => this.card === card && autoSay(info.say, info.voice), ok ? 200 : 350);
     setTimeout(() => { const c = $(".cta", foot); c && c.focus({ preventScroll:true }); }, 60);
@@ -942,8 +953,11 @@ const Lesson = {
     Voice.stop();
     if (this.card) { this.card.leave && this.card.leave(); this.card = null; }
     if (this.banner) { this.banner.remove(); this.banner = null; }
-    const el = $("#lesson"); el.hidden = true; el.innerHTML = "";
+    const el = $("#lesson");
     this.active = false; combo = 0; renderCombo();
+    const done = () => { if (this.active) return; el.hidden = true; el.innerHTML = ""; };
+    if (reduced || el.hidden) done();
+    else { el.getAnimations().forEach((a) => a.cancel()); el.animate([{ transform:"none" }, { transform:"translateY(100%)" }], { duration:360, easing:"cubic-bezier(0.4, 0, 0.9, 0.6)", fill:"forwards" }).finished.then(done, () => {}); }
     refreshHUD(); renderLearn(completed ? this.justDone : null); if (view === "today" && Med3D.host) Med3D.go();
     $("#desk-nav").hidden = view !== "feed";
     if (Session.overlayQ.length) { clearTimeout(Session.ovTimer); Session.ovTimer = setTimeout(nextOverlay, 500); }
@@ -1151,6 +1165,11 @@ function nodeState(idx) {
   if (idx !== PATH.findIndex((p) => !S.lessons[p.id])) return "locked";
   return cityGate(n.unit) ? "locked" : "current";
 }
+// the footer button glides up instead of popping in
+function footIn(foot) {
+  const b = foot.firstElementChild; if (!b || reduced) return;
+  b.animate([{ transform:"translateY(18px)", opacity:0 }, { transform:"none", opacity:1 }], { duration:320, easing:EASE_OUT });
+}
 function setView(k) {
   if (k === "learn") k = "today"; if (k === "kenz") k = "me";
   if (Lesson.active) return;
@@ -1158,7 +1177,16 @@ function setView(k) {
   view = k; $("#stage").dataset.view = k;
   setTimeout(syncFeedLock, 0);
   $$(".tab").forEach((b) => { b.classList.toggle("on", b.dataset.tab === k); b.setAttribute("aria-current", b.dataset.tab === k ? "page" : "false"); });
-  for (const v of ["today", "journey", "feed", "guide", "me"]) { const el = $("#v-" + v); el.hidden = v !== k; }
+  // the screen you leave fades out underneath while the new one fades in, so there is never a blank frame
+  const prevK = Session.lastView, prevEl = prevK && prevK !== k ? $("#v-" + prevK) : null;
+  for (const v of ["today", "journey", "feed", "guide", "me"]) {
+    const el = $("#v-" + v); clearTimeout(el._leaveT); el.classList.remove("leave");
+    el.hidden = v !== k;
+  }
+  if (prevEl && !reduced) {
+    prevEl.hidden = false; prevEl.classList.add("leave");
+    prevEl._leaveT = setTimeout(() => { prevEl.classList.remove("leave"); if (view !== prevK) prevEl.hidden = true; }, 200);
+  }
   $("#hud").classList.remove("on-dark");
   const order = ["today", "journey", "feed", "guide", "me"];
   const el = $("#v-" + k); el.style.setProperty("--dx", (order.indexOf(k) >= order.indexOf(Session.lastView || "today") ? 26 : -26) + "px"); Session.lastView = k;
@@ -1364,8 +1392,17 @@ function refreshTabs() {
 }
 
 /* ---------- welcome ---------- */
-function showWelcome(step = 1) {
+function showWelcome(step = 1, swapped = false) {
   const el = $("#welcome");
+  // moving to the next step: the old step lifts away first, then the new one rises in, line by line
+  if (step > 1 && !swapped && !el.hidden && el.firstElementChild && !reduced && !el.dataset.swapping) {
+    el.dataset.swapping = "1";
+    const kids = [...el.children];
+    kids.forEach((c, k) => c.animate([{ opacity:1, transform:"none" }, { opacity:0, transform:"translateY(-14px)" }], { duration:200, delay:k * 15, easing:"ease-in", fill:"forwards" }));
+    setTimeout(() => { delete el.dataset.swapping; if (!el.hidden) showWelcome(step, true); }, 200 + kids.length * 15);
+    return;
+  }
+  el.getAnimations({ subtree:true }).forEach((a) => a.cancel());
   el.className = "welcome plaster cv0";
   if (step === 1) {
     el.innerHTML = `<div class="w-lang">${langSelect("w-lang")}</div><div class="stage-art">${panelHTML(0, ["done", "done", "done", "done"])}<div class="cat-sit">${mascot("happy", "hi")}</div></div>
@@ -1379,13 +1416,20 @@ function showWelcome(step = 1) {
       <div class="goal-picks">${g.map(([n, k, p, l]) => `<button class="goal-pick" data-goal="${n}">${teaGlass(p, "gl")}<span><b>${esc(t(k))}</b><span>${esc(t("perDay", { n }))}, ${esc(t(l === 1 ? "aboutLesson" : "aboutLessons", { n:l }))}</span></span></button>`).join("")}</div>`;
   }
   el.hidden = false;
+  if (step > 1 && !reduced) [...el.children].forEach((c, k) => c.animate([{ opacity:0, transform:"translateY(22px)" }, { opacity:1, transform:"none" }], { duration:520, delay:60 + k * 55, easing:EASE_OUT, fill:"backwards" }));
   el.onclick = (e) => {
     if (e.target.closest("[data-w=next]")) { Sound.play("tap"); showWelcome(2); return; }
     const gp = e.target.closest(".goal-pick");
     if (gp) {
       $$(".goal-pick", el).forEach((x) => x.classList.toggle("sel", x === gp));
+      el.onclick = null;
       S.goal = +gp.dataset.goal; S.goalChosen = true; S.onboarded = true; persist(); Sound.play("good");
-      setTimeout(() => { el.hidden = true; el.innerHTML = ""; refreshHUD(); renderLearn(); Lesson.open(PATH[0]); }, 380);
+      // the first lesson rises while the welcome screen fades away over it
+      setTimeout(() => {
+        refreshHUD(); renderLearn(); Lesson.open(PATH[0]);
+        const bye = () => { el.hidden = true; el.innerHTML = ""; };
+        if (reduced) bye(); else el.animate([{ opacity:1 }, { opacity:0 }], { duration:380, easing:"ease-out", fill:"forwards" }).finished.then(() => { bye(); el.getAnimations().forEach((a) => a.cancel()); });
+      }, 380);
     }
   };
 }
@@ -1499,7 +1543,7 @@ function start(data) {
     const ovB = $("#overlay [data-ov=close]");
     if (!$("#adlayer").hidden) { /* an ad can't be skipped with Back */ }
     else if (!$("#paywall").hidden) closePaywall();
-    else if (!$("#placement").hidden) { $("#placement").hidden = true; $("#placement").innerHTML = ""; }
+    else if (!$("#placement").hidden) closePlacement();
     else if (!$("#overlay").hidden && ovB) ovB.click();
     else if (!$("#nsheet").hidden) closeNodeSheet();
     else if (Lesson.active) { const c = $("#lesson .l-confirm"); if (c) c.hidden = !c.hidden; }

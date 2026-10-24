@@ -57,10 +57,10 @@ const Ads = {
           : `<div class="ad-slot"><b>${esc(t("adSlotT"))}</b><p>${esc(t("adSlotS"))}</p></div>`}</div>
         <p class="ad-note">${esc(kind === "rewarded" ? t("adRewardNote") : t("adNote"))}</p>
         <button class="ad-close" data-ad="close" disabled>${esc(t("adWait"))}</button>`;
-      el.hidden = false;
+      layerIn(el, "fade");
       let left = secs; const cnt = $(".ad-count", el), btn = $(".ad-close", el);
       const timer = setInterval(() => { left--; cnt.textContent = Math.max(0, left); if (left <= 0) { clearInterval(timer); btn.disabled = false; btn.textContent = kind === "rewarded" ? t("adClaim") : t("adClose"); cnt.textContent = "✓"; } }, 1000);
-      const finish = (ok) => { clearInterval(timer); el.hidden = true; el.innerHTML = ""; el.onclick = null; this.busy = false; resolve(ok); };
+      const finish = (ok) => { clearInterval(timer); el.onclick = null; this.busy = false; layerOut(el, () => { el.innerHTML = ""; }, "fade"); resolve(ok); };
       el.onclick = (e) => {
         const a = e.target.closest("[data-ad]"); if (!a) return;
         if (a.dataset.ad === "close" && left <= 0) finish(true);
@@ -106,6 +106,25 @@ async function openCityWithAd(ui) {
 }
 function afterLessonAd(done) { if (isPlus()) { done(); return; } Ads.show("interstitial", "lesson").then(done); }
 
+/* ---------- full-screen layers slide up and back down (paywall, test) or fade (ads) ---------- */
+function layerIn(el, kind = "slide") {
+  el.getAnimations().forEach((a) => a.cancel());
+  el.hidden = false;
+  if (reduced) return;
+  if (kind === "fade") el.animate([{ opacity:0 }, { opacity:1 }], { duration:220, easing:"ease-out" });
+  else el.animate([{ transform:"translateY(100%)" }, { transform:"none" }], { duration:480, easing:EASE_DRAWER });
+}
+function layerOut(el, cleanup, kind = "slide") {
+  const done = () => { el.hidden = true; el.getAnimations().forEach((a) => a.cancel()); cleanup && cleanup(); };
+  if (reduced || el.hidden) { done(); return; }
+  el.getAnimations().forEach((a) => a.cancel());
+  const a = kind === "fade"
+    ? el.animate([{ opacity:1 }, { opacity:0 }], { duration:180, easing:"ease-in", fill:"forwards" })
+    : el.animate([{ transform:"none" }, { transform:"translateY(100%)" }], { duration:340, easing:"cubic-bezier(0.4, 0, 0.9, 0.6)", fill:"forwards" });
+  el.style.pointerEvents = "none";
+  a.finished.then(() => { el.style.pointerEvents = ""; done(); }, () => { el.style.pointerEvents = ""; });
+}
+
 /* ---------- paywall ---------- */
 function openPaywall(reason = "") {
   const el = $("#paywall"), p = plan();
@@ -120,7 +139,7 @@ function openPaywall(reason = "") {
     </div>
     <button class="cta block pw-go" data-pw="buy">${esc(p.sub ? t("planKeep") : t("subscribe"))}</button>
     <p class="pw-fine">${esc(t("pwFine"))}</p><button class="sh-link" data-pw="restore">${esc(t("restore"))}</button></div>`;
-  el.hidden = false; el.dataset.reason = reason;
+  layerIn(el); el.dataset.reason = reason;
   let choice = "yearly";
   el.onclick = (e) => {
     const pl = e.target.closest("[data-plan]"); if (pl) { choice = pl.dataset.plan; $$(".pw-plan", el).forEach((b) => b.classList.toggle("on", b === pl)); return; }
@@ -130,11 +149,12 @@ function openPaywall(reason = "") {
     if (a.dataset.pw === "restore") toast(t("protoRestore"), "");
   };
 }
-function closePaywall() { const el = $("#paywall"); el.hidden = true; el.innerHTML = ""; el.onclick = null; }
+function closePaywall() { const el = $("#paywall"); el.onclick = null; layerOut(el, () => { el.innerHTML = ""; }); }
 function refreshAll() { refreshHUD(); renderLearn(); if (view === "me") renderMe(); if (view === "guide") renderGuide(); if (view === "feed") Feed.restart(); }
 
 /* ---------- placement test (Plus) ---------- */
 const TOPICS = [["hello", "u1", "u11"], ["polite", "u2", "u12"], ["foot", "u10", "u13"], ["q", "u3", "u14"], ["food", "u4", "u15"], ["souk", "u5", "u16"], ["num", "u6", "u17"], ["family", "u7", "u18"], ["travel", "u8", "u19"], ["basics", "u9", "u20"]];
+function closePlacement() { const el = $("#placement"); layerOut(el, () => { el.innerHTML = ""; }); }
 function openPlacement() {
   if (!isPlus()) { openPaywall("test"); return; }
   const el = $("#placement");
@@ -142,7 +162,15 @@ function openPlacement() {
   const qs = base.map((ui) => { const ws = UNITS[ui].words.filter((id) => W[id] && !W[id].rar); return ws[Math.floor(Math.random() * Math.min(ws.length, 6))]; });
   const st = { step:0, topics:new Set(), known:[] };
   const topicName = (k) => L(CAT[k] || [k, k]);
+  // each question slides in from the right, a beat apart, and the progress bar grows from where it was
+  const stepIn = () => {
+    if (reduced || st.step === 0) return;
+    $$(".pl-in > :not(.pw-x):not(.pl-prog)", el).forEach((c, k) => c.animate([{ transform:"translateX(36px)", opacity:0 }, { transform:"none", opacity:1 }], { duration:420, delay:k * 40, easing:EASE_OUT, fill:"backwards" }));
+    const bar = $(".pl-prog i", el), n = qs.length;
+    if (bar && st.step > 1 && st.step <= n) bar.animate([{ transform:`scaleX(${((st.step - 2) / n).toFixed(3)})` }, { transform:`scaleX(${((st.step - 1) / n).toFixed(3)})` }], { duration:500, easing:EASE_OUT });
+  };
   const draw = () => {
+    queueMicrotask(stepIn);
     if (st.step === 0) {
       el.innerHTML = `<div class="pl-in"><button class="pw-x" data-pl="close" aria-label="${esc(t("quit"))}">${ICON.x}</button><p class="eyebrow">${esc(t("plTestK"))}</p><h2>${esc(t("plTopicsT"))}</h2><p class="soft">${esc(t("plTopicsS"))}</p>
         <div class="pl-topics">${TOPICS.map(([k]) => `<button class="pl-chip${st.topics.has(k) ? " on" : ""}" data-topic="${k}">${esc(topicName(k))}</button>`).join("")}</div>
@@ -172,16 +200,16 @@ function openPlacement() {
     S.placement = { at:Date.now(), known:knownN, topics:[...st.topics], recs:recs.map((r) => r.ui) }; persist();
   };
   el.onclick = (e) => {
-    if (e.target.closest("[data-pl=close]")) { el.hidden = true; el.innerHTML = ""; return; }
+    if (e.target.closest("[data-pl=close]")) { closePlacement(); return; }
     const tp = e.target.closest("[data-topic]"); if (tp) { const k = tp.dataset.topic; st.topics.has(k) ? st.topics.delete(k) : st.topics.add(k); tp.classList.toggle("on"); return; }
     if (e.target.closest("[data-pl=next]")) { st.step = 1; draw(); return; }
     const an = e.target.closest("[data-ans]");
     if (an) { st.known[st.step - 1] = an.dataset.ans === qs[st.step - 1]; Sound.play(an.dataset.ans === qs[st.step - 1] ? "good" : "tap"); st.step++; draw(); return; }
     const sv = e.target.closest("[data-say]"); if (sv) return;
     const rc = e.target.closest("[data-city]");
-    if (rc) { const ui = +rc.dataset.city; S.focusUnit = ui; Session.jrOpen = ui; persist(); el.hidden = true; el.innerHTML = ""; setView("journey"); renderLearn(); toast(t("plChosen", { c:cityName(cityOf(ui)) }), ""); }
+    if (rc) { const ui = +rc.dataset.city; S.focusUnit = ui; Session.jrOpen = ui; persist(); closePlacement(); setView("journey"); renderLearn(); toast(t("plChosen", { c:cityName(cityOf(ui)) }), ""); }
   };
-  el.hidden = false; draw();
+  layerIn(el); draw();
 }
 
 /* ---------- feed: 5 minutes a day on the free tier ---------- */
