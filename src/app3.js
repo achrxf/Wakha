@@ -3,6 +3,7 @@
    ========================================================= */
 ICON.today = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M12 2.8l2.1 4.3 4.5-1.6-1.6 4.5 4.3 2.1-4.3 2.1 1.6 4.5-4.5-1.6L12 21.2l-2.1-4.3-4.5 1.6 1.6-4.5L2.8 12l4.3-2.1-1.6-4.5 4.5 1.6Z"/><circle cx="12" cy="12" r="3.2"/></svg>`;
 ICON.journey = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.4"/><circle cx="18" cy="6" r="2.4"/><path d="M8.4 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.6" stroke-dasharray="2.2 2.6"/></svg>`;
+ICON.mark = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--accent)"/><path d="M6.5 9.5l2.3 6 3.2-6.8 3.2 6.8 2.3-6" fill="none" stroke="var(--bg)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 ICON.play = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.6-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg>`;
 
 function applyTheme() { const th = S.theme || "auto"; if (th === "auto") delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = th; }
@@ -63,104 +64,87 @@ function openLesson(node, fromMed) {
   vt.finished.finally(() => { const m = $("#lesson .sc-med"); if (m) m.style.viewTransitionName = ""; });
 }
 
-/* ---------- TODAY ---------- */
+/* ---------- TODAY ----------
+   The board's home: a greeting, the next lesson on the city's wall tint (its words, one line from
+   Mchicha, Start), four tiles, the word of the day set like a street sign, and the trip so far. */
 function renderToday() {
   const el = $("#v-today");
   const cur = currentNode(), n = PATH[cur];
   const ui = n ? n.unit : UNITS.length - 1, c = cityOf(ui), states = unitStates(ui);
-  const done = states.filter((x) => x === "done").length;
+  const k = n ? PATH.filter((p) => p.unit === ui).indexOf(n) + 1 : states.length;
   const dr = dailyRec(), wid = wordOfDay(), wd = W[wid];
-  const due = dueWords().length, learned = learnedIds().length;
-  const sprintOpen = learned >= 8;
-  const go = n ? `<button class="td-go" data-start="${cur}"><span><b>${esc(Object.keys(S.lessons).length ? t("cont") : t("startJourney"))}: ${esc(nodeLabel(n))}</b><small>${esc(L(LESSON_SCENES[n.id] || c.scene))}</small></span><i>${ICON.play}</i></button>`
-    : `<p class="td-city"><small>${esc(t("allDoneT"))}</small></p>`;
-  const days = [];
-  for (let k = 6; k >= 0; k--) {
-    const key = addDays(today(), -k), [y, m, d] = key.split("-").map(Number);
-    const label = new Date(y, m - 1, d).toLocaleDateString(locale(), { weekday:"narrow" });
-    const met = S.days[key] && S.days[key].goalMet;
-    days.push(`<div class="d${met ? " met" : ""}${k === 0 ? " now" : ""}"><i>${met ? flameSVG() : ""}</i><span>${esc(label)}</span></div>`);
-  }
+  const due = dueWords().length, learned = learnedIds().length, total = CORE.length + COLL.length;
+  const rec = dayRec(), sprintOpen = learned >= 8;
+  const storiesAll = PATH.filter((p) => p.kind === "story").length, storiesDone = PATH.filter((p) => p.kind === "story" && S.lessons[p.id]).length;
+  const stopsDone = PATH.filter((p) => S.lessons[p.id]).length, curUnit = n ? n.unit : UNITS.length;
   const dateLabel = new Date().toLocaleDateString(locale(), { weekday:"long", day:"numeric", month:"long" });
-  el.innerHTML = `<div class="today">
-    <section class="td-hero hero">
-      <div class="td-cat" data-act="cat" role="button" aria-label="${esc(t("catName"))}">${mascot("happy", Session.catHi ? "" : "hi")}</div>
-      <div class="td-greet"><h1>${dj(greeting())}</h1><p>${esc(S.stats.lessons ? t("dayTrip", { n:Math.max(1, S.dayCount || 1) }) : t("dayTrip1"))}</p></div>
-      <div class="td-med${Session.assembled ? "" : " assemble"}" data-act="journey" role="button" aria-label="${esc(t("journey"))}">${medRing(ui, states)}</div>
-      <div class="td-city"><b>${esc(cityName(c))}<span lang="ar">${esc(c.ar)}</span></b><small>${esc(t("lessonsOf", { a:done, b:states.length }))}</small></div>
-      ${go}
-    </section>
-    <div class="td-sec"><h2>${esc(t("todayH"))}</h2><span>${esc(dateLabel)}</span></div>
-    <div class="td-row">
-      <button class="td-card j-saffron${dr.wotd ? " is-done" : ""}" data-daily="wotd">${dr.wotd ? `<span class="done">${ICON.check}</span>` : ""}<span class="ic">${ICON.sparkle}</span>
-        <span><small style="margin:0 0 4px">${esc(t("wotd"))}</small><span class="big" lang="ary-Latn">${esc(wd.d)}</span><small>${esc(meaning(wd))}</small></span></button>
-      <button class="td-card j-plum${dr.sprint != null ? " is-done" : ""}" data-daily="sprint"${sprintOpen ? "" : ` aria-disabled="true"`}>${dr.sprint != null ? `<span class="done">${ICON.check}</span>` : ""}<span class="ic">${sprintOpen ? ICON.bolt : ICON.lock}</span>
-        <span><b>${esc(t("sprint"))}</b><small>${esc(!sprintOpen ? t("sprintLock") : dr.sprint != null ? t("sprintBest", { n:dr.sprint }) : t("sprintS"))}</small></span></button>
-      <button class="td-card j-emerald${due ? "" : " is-done"}" data-act="practice"${learned ? "" : ` aria-disabled="true"`}><span class="ic">${ICON.loop}</span>
-        <span><b>${esc(t("reviewC"))}</b><small>${esc(due ? t("reviewS", { n:due }) : t("reviewNone"))}</small></span></button>
+  const line = !shownStreak() ? t("streakStart") : rec.goalMet ? t("goalMetLine") : t("streakKeep");
+  const words = n && n.words && n.words.length ? n.words.slice(0, 3) : [];
+  const lead = n ? `<section class="td-lead cv${ui}"><span class="td-badge">${cityBadge(ui)}</span>
+      <div class="where"><span>${esc(t("stopOf", { c:cityName(c), a:k, b:states.length }))}</span><span class="ar" lang="ar">${esc(c.ar)}</span></div>
+      <h3>${esc(n.kind === "lesson" ? L([UNITS[ui].en, UNITS[ui].fr]) : nodeLabel(n))}</h3>
+      <p class="sc">${esc(L(LESSON_SCENES[n.id] || c.scene))}</p>
+      ${words.length ? `<div class="wordrow">${words.map((id) => `<div class="wchip"><b lang="ary-Latn">${esc(W[id].d)}</b><span lang="ary">${esc(W[id].ar)}</span></div>`).join("")}</div>` : ""}
+      <div class="td-cat catline" data-act="cat" role="button" aria-label="${esc(t("catName"))}">${mascot("happy", Session.catHi ? "" : "hi")}<p><b>${esc(t("catName"))}</b> · ${esc(line)}</p></div>
+      <button class="cta block td-go" data-start="${cur}">${esc(t("startLesson"))} <span>· ${esc(t("minN", { n:STOP_MIN[n.kind] || 4 }))}</span></button>
+    </section>` : `<section class="td-lead"><h3>${esc(t("allDoneT"))}</h3></section>`;
+  el.innerHTML = `<div class="today scroll-pad">
+    <div class="td-greet"><h1>${dj(greeting())}</h1><span class="ar" lang="ar">${esc(GREET_AR[greeting()] || "")}</span></div>
+    <p class="td-date">${esc(dateLabel)}</p>
+    ${lead}
+    <div class="td-tiles">
+      <button class="td-tile" data-act="kenz"><span class="l">${esc(t("words"))}</span><span class="v">${learned}<small>/ ${total}</small></span><span class="bar"><i style="transform:scaleX(${(learned / total).toFixed(3)})"></i></span></button>
+      <button class="td-tile" data-daily="sprint"${sprintOpen ? "" : ` aria-disabled="true"`}><span class="l">${esc(t("goalT"))}</span><span class="v">${Math.min(rec.xp, 999)}<small>/ ${S.goal} XP</small></span><span class="bar"><i style="transform:scaleX(${Math.min(1, rec.xp / S.goal).toFixed(3)})"></i></span><span class="s">${esc(!sprintOpen ? t("sprintLock") : dr.sprint != null ? t("sprintBest", { n:dr.sprint }) : t("sprint"))}</span></button>
+      <button class="td-tile" data-act="practice"${learned ? "" : ` aria-disabled="true"`}><span class="l">${esc(t("dueT"))}</span><span class="v">${due}<small>${esc(t("wordsL"))}</small></span></button>
+      <button class="td-tile" data-act="journey"><span class="l">${esc(t("storiesT"))}</span><span class="v">${storiesDone}<small>/ ${storiesAll}</small></span></button>
     </div>
-    <div class="td-sec"><h2>${esc(t("weekH"))}</h2><span>${esc(shownStreak() + " " + t("streakL"))}</span></div>
-    <div class="td-week">${days.join("")}</div>
-    <div class="td-stats"><div><b class="cu" data-to="${learned}">${learned}</b><span>${esc(t("wordsL"))}</span></div><div><b>${S.xp}</b><span>XP</span></div><div><b>${COLL.filter((id) => S.kenz[id]).length}</b><span>${esc(t("kenzL"))}</span></div></div>
+    <section class="plate">
+      <div class="hd">${esc(t("wotd"))}<span>${esc(L(CAT[wd.cat] || ["", ""]))}</span></div>
+      <div class="sign"><span class="lat" lang="ary-Latn">${dj(wd.d)}</span><span class="ar" lang="ary">${esc(wd.ar)}</span></div>
+      <p class="mean">${esc(meaning(wd))}</p>
+      ${wd.ex ? `<div class="exrow">${sayBtn(wd.ex[0], "fill")}<div><b lang="ary-Latn">${esc(wd.ex[0])}</b><span>${esc(exTr(wd.ex))}</span></div></div>` : ""}
+      <button class="ghost td-wotd${dr.wotd ? " is-done" : ""}" data-daily="wotd">${dr.wotd ? ICON.check : ""}${esc(dr.wotd ? t("doneL") : t("learnIt"))}</button>
+    </section>
+    <button class="route" data-act="journey">
+      <span class="hd">${esc(t("tripT"))}<span>${esc(t("stopsN", { a:stopsDone, b:PATH.length }))}</span></span>
+      <span class="dots">${CITIES.map((x, i) => `<i class="${i < curUnit ? "done" : i === curUnit ? "now cv" + i : ""}"></i>`).join("")}</span>
+      <span class="dotnames"><span>${esc(cityName(CITIES[0]))}</span><b>${esc(cityName(cityOf(Math.min(curUnit, UNITS.length - 1))))}</b><span>${esc(cityName(CITIES[CITIES.length - 1]))}</span></span>
+    </button>
   </div>`;
-  Session.assembled = true; Session.catHi = true;
-  Med3D.mount($(".td-med .zwrap", el), ui, states);
-  if (!Session.counted) { Session.counted = true; $$(".td-stats b", el).forEach((b) => { const n = parseInt(b.textContent, 10) || 0; b.textContent = "0"; setTimeout(() => countUp(b, n, 1100), 500); }); }
-  $("#hud").classList.toggle("on-dark", view === "today" && el.scrollTop < 300);
+  Session.catHi = true;
 }
+const GREET_AR = { "Sba7 lkhir":"صباح الخير", "Msa lkhir":"مسا الخير", "Tsb7 3la khir":"تصبح على خير" };
 
-/* ---------- JOURNEY ---------- */
-function rowHTML(n, idx, st, glaze) {
-  const stars = S.lessons[n.id] ? S.lessons[n.id].stars : 0;
-  const face = st === "done" ? ICON.check : n.kind === "story" ? ICON.chat : n.kind === "review" ? ICON.loop : n.kind === "boss" ? ICON.tagI : String(PATH.filter((p) => p.unit === n.unit && p.kind === "lesson").indexOf(n) + 1);
-  const end = st === "done" ? `<span class="st">${[1, 2, 3].map((k) => ICON.star.replace("<svg", `<svg class="${k <= stars ? "on" : ""}"`)).join("")}</span>`
-    : st === "current" ? `<span class="go">${ICON.play}</span>` : `<span class="lk">${ICON.lock}</span>`;
-  return `<button class="jr-row ${st}" data-node="${idx}" style="--t:${glaze}" aria-label="${esc(nodeLabel(n))}, ${esc(st === "locked" ? t("lockedT") : st)}"><span class="tl">${face}</span><span class="tx"><b>${esc(nodeLabel(n))}</b><small>${esc(nodeLine(n))}</small></span>${end}</button>`;
+/* ---------- JOURNEY ----------
+   One list of the ten cities, each with its own wall colour. The open city (the current one unless the
+   learner opens another) shows its stops: done, the next one with Start, the rest with their length. */
+const STOP_MIN = { lesson:4, story:6, review:5, boss:7 };
+function stopTitle(n) {
+  if (n.kind === "lesson") return n.words.map((id) => W[id].d).join(" · ");
+  if (n.kind === "story") return `${nodeLabel(n)}: ${nodeLine(n)}`;
+  return nodeLabel(n);
 }
-function renderJourney(justDone) {
+function rowHTML(n, idx, st) {
+  const end = st === "done" ? `<em class="dn">${esc(t("doneL"))}</em>`
+    : st === "current" ? `<span class="go">${esc(t("start"))}</span>`
+    : `<em>${esc(t("minN", { n:STOP_MIN[n.kind] || 4 }))}</em>`;
+  return `<button class="jr-row ${st}" data-node="${idx}" aria-label="${esc(nodeLabel(n))}, ${esc(st === "locked" ? t("lockedT") : st)}"><i class="dot"></i><b lang="ary-Latn">${esc(stopTitle(n))}</b>${end}</button>`;
+}
+function renderJourney() {
   const el = $("#v-journey");
   const cur = currentNode(), curUnit = PATH[cur] ? PATH[cur].unit : UNITS.length - 1;
-  const keep = $(".jr-track", el) ? Session.jrPage : null;
-  const pages = UNITS.map((u, ui) => {
-    const c = cityOf(ui);
-    const nodes = PATH.map((n, idx) => ({ n, idx })).filter((x) => x.n.unit === ui);
-    const states = nodes.map((x) => nodeState(x.idx));
-    const locked = states.every((x) => x === "locked");
-    const rows = nodes.map(({ n, idx }, k) => rowHTML(n, idx, states[k], c.g[k % 3] === "#F0E9DA" ? c.g[0] : c.g[k % 3])).join("");
-    return `<section class="jr-page cv${ui}" id="unit-${ui}" data-ui="${ui}"><div class="jr-in">
-      <div class="jr-head"><p class="eyebrow">${esc(t("stopN", { n:ui + 1 }))}</p><h2 class="${cityName(c).length > 10 ? "long" : ""}">${esc(cityName(c))}</h2><span class="ar" lang="ar">${esc(c.ar)}</span></div>
-      <div class="jr-med">${medallion(ui, states)}</div>
-      <p class="jr-scene">${esc(L(c.scene))}</p>
-      ${locked && ui > 0 ? `<p class="jr-lockmsg">${esc(t("cityLocked", { c:cityName(cityOf(ui - 1)) }))}</p>` : ""}
-      <div class="jr-list">${rows}</div></div></section>`;
+  if (Session.jrOpen == null || Session.jrOpen > curUnit) Session.jrOpen = curUnit;
+  const stopsAll = PATH.length, stopsDone = PATH.filter((p) => S.lessons[p.id]).length;
+  const rows = UNITS.map((u, ui) => {
+    const c = cityOf(ui), nodes = PATH.map((n, idx) => ({ n, idx })).filter((x) => x.n.unit === ui);
+    const states = nodes.map((x) => nodeState(x.idx)), done = states.filter((x) => x === "done").length;
+    const locked = states.every((x) => x === "locked") && ui > curUnit, open = ui === Session.jrOpen && !locked;
+    const head = `<button class="crow${locked ? " locked" : ""}${open ? " open" : ""}" data-city="${ui}" aria-expanded="${open}"><span class="sw">${cityBadge(ui)}</span><span class="nm"><b>${esc(cityName(c))}</b><span class="ar" lang="ar">${esc(c.ar)}</span></span><span class="c${done === states.length ? " full" : ""}">${esc(t("aOfB", { a:done, b:states.length }))}</span></button>`;
+    if (!open) return head;
+    return `<div class="copen cv${ui}">${head}<p class="cscene">${esc(L(c.scene))}</p><div class="stops">${nodes.map(({ n, idx }, k) => rowHTML(n, idx, states[k])).join("")}</div></div>`;
   }).join("");
-  el.innerHTML = `<div class="jr-nav"><div class="jr-nav-in">${CITIES.map((c, i) => `<button class="jr-chip${i < curUnit ? " done" : ""}" data-city="${i}" aria-label="${esc(cityName(c))}"></button>`).join("")}</div></div><div class="jr-track">${pages}</div>`;
-  const track = $(".jr-track", el);
-  const page = justDone ? curUnit : keep != null ? keep : curUnit;
-  requestAnimationFrame(() => { track.scrollLeft = page * track.clientWidth; jrSync(); });
-  track.addEventListener("scroll", () => { if (!Session.jrRaf) Session.jrRaf = requestAnimationFrame(jrSync); }, { passive:true });
-  if (justDone) {
-    const idx = PATH.findIndex((p) => p.id === justDone);
-    const row = $(`.jr-row[data-node="${idx}"]`, el);
-    if (row && !reduced) setTimeout(() => row.animate([{ transform:"scale(.94)", background:"rgba(246,185,50,.35)" }, { transform:"none", background:"transparent" }], { duration:900, easing:"cubic-bezier(.3,1.4,.5,1)" }), 250);
-  }
+  el.innerHTML = `<div class="journey scroll-pad"><h1 class="jt">${esc(t("journey"))}</h1><p class="jsub">${esc(t("stopsWords", { a:stopsDone, b:stopsAll, c:learnedIds().length, d:CORE.length + COLL.length }))}</p><div class="cities">${rows}</div></div>`;
 }
-// pager dots follow the swipe; each city's medallion drifts with a little parallax
-function jrSync() {
-  Session.jrRaf = 0;
-  const track = $("#v-journey .jr-track"); if (!track) return;
-  const w = track.clientWidth || 1, x = track.scrollLeft, p = Math.round(x / w);
-  Session.jrPage = p;
-  $$("#v-journey .jr-chip").forEach((b, i) => b.classList.toggle("on", i === p));
-  if (reduced) return;
-  $$("#v-journey .jr-page").forEach((pg, i) => {
-    const off = (i * w - x) / w;
-    if (Math.abs(off) > 1.2) return;
-    const m = $(".jr-med", pg); if (m) m.style.transform = `perspective(800px) translateX(${(off * 70).toFixed(1)}px) rotateY(${(off * -55).toFixed(1)}deg) rotate(${(off * 30).toFixed(1)}deg) scale(${(1 - Math.min(0.2, Math.abs(off) * 0.2)).toFixed(3)})`;
-    const inn = $(".jr-in", pg); if (inn) { inn.style.transform = Math.abs(off) < 0.002 ? "" : `perspective(1400px) rotateY(${(off * -22).toFixed(2)}deg) scale(${(1 - Math.abs(off) * 0.08).toFixed(3)})`; inn.style.transformOrigin = off > 0 ? "0% 50%" : "100% 50%"; }
-  });
-}
-
 function renderLearn(justDone) {
   if (view === "today" || !$("#v-today").hidden) renderToday();
   renderJourney(justDone);
@@ -169,7 +153,8 @@ function renderLearn(justDone) {
 /* ---------- home + journey events ---------- */
 function bindHome() {
   $("#v-today").addEventListener("click", (e) => {
-    const s = e.target.closest("[data-start]"); if (s) { Sound.play("tap"); openLesson(PATH[+s.dataset.start], $("#v-today .td-med .zwrap")); return; }
+    const s = e.target.closest("[data-start]"); if (s) { Sound.play("tap"); openLesson(PATH[+s.dataset.start], null); return; }
+    if (e.target.closest("[data-act=kenz]")) { Sound.play("tap"); setView("me"); return; }
     if (e.target.closest("[data-act=journey]")) { Sound.play("tap"); setView("journey"); return; }
     const cb = e.target.closest("[data-act=cat]"); if (cb) { catTalk(cb); return; }
     if (e.target.closest("[data-act=practice]")) { if (learnedIds().length) startPractice(); return; }
@@ -181,16 +166,21 @@ function bindHome() {
       else toast(t("sprintLock"), ICON.lock);
     }
   });
-  $("#v-today").addEventListener("scroll", () => { $("#hud").classList.toggle("on-dark", $("#v-today").scrollTop < 300); }, { passive:true });
   $("#v-journey").addEventListener("click", (e) => {
     const ch = e.target.closest("[data-city]");
-    if (ch) { const tr = $("#v-journey .jr-track"); tr.scrollTo({ left:+ch.dataset.city * tr.clientWidth, behavior:reduced ? "auto" : "smooth" }); return; }
+    if (ch) {
+      const ui = +ch.dataset.city; Sound.play("tap");
+      if (ch.classList.contains("locked")) { toast(t("cityLocked", { c:cityName(cityOf(ui - 1)) }), ICON.lock); return; }
+      Session.jrOpen = Session.jrOpen === ui ? -1 : ui; renderJourney();
+      const o = $("#v-journey .copen"); if (o && !reduced) o.animate([{ opacity:0, transform:"translateY(-6px)" }, { opacity:1, transform:"none" }], { duration:220, easing:EASE_OUT });
+      return;
+    }
     const r = e.target.closest("[data-node]");
     if (r) {
       const idx = +r.dataset.node;
       if (nodeState(idx) === "locked") { Sound.play("tap"); openNodeSheet(idx); return; }
       Sound.play("tap");
-      openLesson(PATH[idx], $(".jr-med", r.closest(".jr-page")));
+      openLesson(PATH[idx], null);
     }
   });
   // feed cards get depth as you swipe: the leaving card tips back, the next one rises
@@ -296,7 +286,19 @@ function exStoryQ(sp, host) {
 const CAT_LINES = ["yallah", "wakha", "merhba", "zwin", "mzyan", "bslama", "inchallah"];
 function catPlay(holder, cls) {
   const svg = $(".cat", holder); if (!svg) return;
-  svg.classList.remove("jump", "hi", "droop", "hop"); void svg.getBoundingClientRect(); svg.classList.add(cls);
+  svg.classList.remove("jump", "hi", "droop", "hop", "cheer", "sorry", "wag"); void svg.getBoundingClientRect(); svg.classList.add(cls);
+  // after a reaction he goes back to resting: four slow wags, then still
+  clearTimeout(svg._rest); svg._rest = setTimeout(() => { if (!svg.classList.contains(cls)) return; svg.classList.remove(cls); void svg.getBoundingClientRect(); svg.classList.add("wag"); }, 1000);
+}
+// blinks: one 140ms squash on every visible cat, every 4-7s; nothing animates in between
+function catBlinks() {
+  setTimeout(() => {
+    if (!document.hidden) for (const c of $$(".cat")) {
+      if (!c.querySelector(".cat-eyes") || c.classList.contains("sorry") || c.classList.contains("droop") || !c.getClientRects().length) continue;
+      c.classList.add("blink"); setTimeout(() => c.classList.remove("blink"), 140);
+    }
+    catBlinks();
+  }, 4000 + Math.random() * 3000);
 }
 function catTalk(holder) {
   Session.gesture = true; Sound.unlock();

@@ -12,21 +12,24 @@ Every Darija word, phrase, dialog line and story in the app has its own recorded
 
 | Tab | What it does |
 |---|---|
-| **Today** | Your daily home screen: streak, the next lesson, the **word of the day** (a 30-second mini lesson), the **daily sprint** (a timed run against your own best score) and the reviews that are due. |
-| **Journey** | The main path, a trip through **10 Moroccan cities** with **60 stops** (41 lessons, 9 stories, 9 reviews and a final boss). Each city is a **zellige medallion**: every lesson you finish glazes another ring of tiles, so the city fills in as you learn. |
-| **Feed** | A vertical swipe feed of short cards: reels with real facts about Morocco, proverbs, situations ("what do you say when…"), sentence builders, mini quizzes. It is a side dish to the Journey and is varied so it doesn't repeat. |
+| **Today** | Your daily home screen: your tea tray, the next lesson, the **word of the day** (a 30-second mini lesson), the **daily sprint** (a timed run against your own best score) and the reviews that are due. |
+| **Journey** | The main path, a trip through **20 Moroccan cities**, from Tangier to Dakhla, with **110 stops** (71 lessons, 19 stories, 19 reviews and a souk boss in Marrakech). Each city has its own colours, opening scene and a badge of Mchicha in a keyhole arch with something from that city. |
+| **Feed** | A vertical swipe feed of short cards: reels with real facts about Morocco, proverbs, situations ("what do you say when…"), sentence builders, mini quizzes. It is a side dish to the Journey. Each card rests for a while after you see it (up to three days), so the feed doesn't repeat. |
 | **Guide** | The reference corner you can always come back to: the sounds Darija writes with numbers (**3, 7, 9, 2, gh, kh**…) with audio, plus 13 short grammar and usage rules. |
 | **Me / Kenz** | Your collection ("kenz" = treasure): every word you've learned, rare words you unlocked, stats, settings, dark mode and language. |
 
 ### Lessons and exercises
 - **Listen and pick**, **meaning match**, **build the sentence**, **fill the gap** and **"what would you say?"** situations.
-- **Stories:** short dialogs (9 of them, with a different voice for each speaker), followed by comprehension questions.
+- **Tap the words you hear:** build a sentence from audio only.
+- **Say it out loud:** hear the clip, record yourself, play both back and rate yourself. Recordings never leave the phone; without a microphone it falls back to "I said it".
+- **Stories:** short dialogs (19 of them, with a different voice for each speaker), followed by comprehension questions.
 - **Souk haggle:** bargain with a vendor in Darija. Push too hard and he walks away; play it well and you get the deal.
 - **Spaced review:** words you get wrong come back sooner; words you know come back later.
 
 ### Personality
-- **Mchicha**, the app's cat mascot (*mchicha* means "kitty" in Darija), wears a red Moroccan **tagiya** and reacts to how you're doing.
-- A **3D zellige medallion** (three.js) on the Journey. On slow devices it falls back to an animated SVG version automatically.
+- **Mchicha**, the app's cat mascot (*mchicha* means "kitty" in Darija), is a sand-coloured tabby in a white **tagiya**. She reacts to right and wrong answers, blinks and wags her tail.
+- **The tea tray** instead of a streak: seven small tea glasses for the last seven days, today's filling as you earn XP, and the number of days of atay in a row.
+- A faint **zellige** (khatam star) pattern on the city cards.
 - Motion throughout: page transitions, glazing animations, celebrations on milestones, and haptics where the phone supports it.
 - **Dark mode**: follows the system setting, or can be set by hand.
 
@@ -34,14 +37,14 @@ Every Darija word, phrase, dialog line and story in the app has its own recorded
 **English, Français, Español, Deutsch, Nederlands, Italiano.** The language is picked automatically from the browser and can be changed in settings. The Darija itself stays Darija; only the explanations and translations change.
 
 ### ⚽ Football stop
-Rabat (city 3) includes **"Dima Maghrib"**, a football unit made for Moroccans abroad (UK, France, NL, Spain…) and for football fans:
+Rabat and Agadir include **"Dima Maghrib"**, a football unit made for Moroccans abroad (UK, France, NL, Spain…) and for football fans:
 - 15 match words (*gool!*, *bennalti*, *l7akam* the referee, *tiran* the pitch, *rbe7na!* we won…)
 - a dialog story set at a match
 - stadium situations and sentence builders
 - reels about the Atlas Lions (2022 World Cup semi-final, AFCON 2025 in Morocco, the 2030 World Cup)
 
 ### Content in numbers
-145 words (128 core and 17 rare) · 10 units · 60 path stops · 9 stories · 28 situations · 25 sentence builders · 18 reels · 10 proverbs · 10 sounds · 13 rules · 5 haggles · 522 audio clips.
+236 words · 20 cities · 110 path stops · 19 stories · 40 situations · 33 sentence builders · 18 reels · 14 proverbs · 10 sounds · 13 rules · 5 haggles · 774 audio clips.
 
 ---
 
@@ -125,6 +128,7 @@ The commits follow how the app grew. Each one is tagged and includes its own bui
 | **v4** | Built for daily use: a **Today** home, word of the day, daily sprint, streak shields, a cleaner and less crowded layout, and more content per city. |
 | **v5** | Motion and **3D** (three.js medallion), **Mchicha** the cat with a tagiya, and full **dark mode**. |
 | **v6** | **Six languages** (EN/FR/ES/DE/NL/IT), the **⚽ Dima Maghrib football stop**, large automated test suites, and an **audio fix**: if a browser or embedded preview blocks `data:` audio, the app now plays the clips through Web Audio instead of staying silent. |
+| **v7** | **New design system** (light and dark), board layouts for Today, Journey and lessons, premium motion, **Mchicha redrawn** with **20 city badges**, **10 new cities** with stories (100+ stops), **Say it out loud** and **Tap the words you hear** exercises, a feed that rests cards so it doesn't repeat, and the **tea tray** in place of a streak. |
 
 ## Known limitations
 - The voice is a computer voice (an Arabic TTS model reading Darija through transliteration). It sounds clear but not native. Recordings by a real Moroccan speaker would be the biggest upgrade.

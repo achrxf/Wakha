@@ -128,6 +128,111 @@ const LESSON_SCENES = {
 };
 
 // tile names map to card palettes in CSS
+// v7: two more lessons in every city (six words each city)
+// Tangier: greetings
+w("ahlan","Ahlan","أهلا","hi there","coucou","hello",{ex:["Ahlan sa7bi, labas?","Hi there, my friend, how are you?","Coucou mon ami, ça va ?"]});
+w("wnta","W nta?","ونتا؟","and you? (to a man)","et toi ? (à un homme)","hello",{ex:["Bikhir, l7amdoulillah. W nta?","Fine, thank God. And you?","Bien, grâce à Dieu. Et toi ?"],note:["Ask a woman “W nti?”. Darija marks who you are talking to.","À une femme, on dit « W nti? ». Le darija marque à qui l’on parle."]});
+w("wnti","W nti?","ونتي؟","and you? (to a woman)","et toi ? (à une femme)","hello",{ex:["Ana hani. W nti?","I’m good. And you?","Je vais bien. Et toi ?"]});
+w("kifdayra","Kif dayra?","كيف دايرة؟","how are you? (to a woman)","comment tu vas ? (à une femme)","hello",{ex:["Salam Salma, kif dayra?","Hi Salma, how are you?","Salut Salma, comment tu vas ?"]});
+w("hani","Hani","هاني","I’m good / I’m fine","je vais bien","hello",{ex:["Ana hani, l7amdoulillah.","I’m good, thank God.","Je vais bien, grâce à Dieu."]});
+w("twe7chtek","Twe7chtek","توحشتك","I missed you","tu m’as manqué","hello",{ex:["Twe7chtek bzzaf, sa7bi!","I missed you so much, my friend!","Tu m’as beaucoup manqué, mon ami !"]});
+// Chefchaouen: manners
+w("allahy7fdek","Allah y7fdek","الله يحفظك","God keep you (a warm thanks)","que Dieu te garde (un merci chaleureux)","polite",{ex:["Choukran bzzaf, Allah y7fdek.","Thanks a lot, God keep you.","Merci beaucoup, que Dieu te garde."]});
+w("allahybarek","Allah ybarek fik","الله يبارك فيك","God bless you (a reply to thanks)","que Dieu te bénisse (réponse à un merci)","polite",{ex:["Mabrouk! Allah ybarek fik.","Congrats! God bless you.","Félicitations ! Que Dieu te bénisse."]});
+w("bssa7tek","Bssa7tek","بصحتك","enjoy it / good for you","bon appétit / profites-en","polite",{ex:["Tfddel atay. Bssa7tek!","Here’s your tea. Enjoy!","Voilà ton thé. Profite !"],note:["Said when someone eats, drinks or gets something new.","Se dit quand quelqu’un mange, boit ou s’offre quelque chose de neuf."]});
+w("ilabghiti","Ila bghiti","إلا بغيتي","if you like / please","si tu veux / s’il te plaît","polite",{ex:["3tini lma, ila bghiti.","Give me some water, if you like.","Donne-moi de l’eau, si tu veux."]});
+w("allahysahel","Allah ysahel","الله يسهل","may God make it easy (a polite no)","que Dieu facilite (un refus poli)","polite",{ex:["La, choukran. Allah ysahel.","No thanks. May God make it easy.","Non merci. Que Dieu facilite."],note:["The kind way to say no to someone asking for money or selling something.","La façon gentille de dire non à quelqu’un qui demande ou qui vend quelque chose."]});
+w("allahyhennik","Allah yhennik","الله يهنيك","God give you peace (thanks, take care)","que Dieu te donne la paix (merci, prends soin de toi)","polite",{ex:["Choukran 3la kolchi, Allah yhennik.","Thanks for everything, God give you peace.","Merci pour tout, que Dieu te donne la paix."]});
+// Rabat: football
+w("l7aris","L7aris","الحارس","the goalkeeper","le gardien","foot",{ex:["L7aris dyalna wa3er!","Our goalkeeper is amazing!","Notre gardien est génial !"]});
+w("lpas","Lpas","الباص","the pass","la passe","foot",{ex:["3tini lpas, ana khawi!","Pass it to me, I’m free!","Fais-moi la passe, je suis libre !"]});
+w("lkas","Lkas","الكاس","the cup / the trophy","la coupe","foot",{ex:["Had l3am bghina lkas!","This year we want the cup!","Cette année on veut la coupe !"]});
+w("tsfira","Tsfira","التصفيرة","the whistle","le coup de sifflet","foot",{ex:["Tsfira lkhra, rbe7na!","The final whistle, we won!","Coup de sifflet final, on a gagné !"]});
+w("kartsfer","Kart sfer","كارط صفر","yellow card","carton jaune","foot",{ex:["L7akam 3tah kart sfer.","The referee gave him a yellow card.","L’arbitre lui a donné un carton jaune."]});
+w("kart7mer","Kart 7mer","كارط حمر","red card","carton rouge","foot",{ex:["Kart 7mer! Khrej!","Red card! He’s off!","Carton rouge ! Il sort !"]});
+// Fes: questions
+w("achkat9oul","Ach kat9oul?","أش كتقول؟","what are you saying?","qu’est-ce que tu dis ?","q",{ex:["Ach kat9oul? Ma fhemtch.","What are you saying? I didn’t get it.","Qu’est-ce que tu dis ? Je n’ai pas compris."]});
+w("wachfhemti","Wach fhemti?","واش فهمتي؟","did you understand?","tu as compris ?","q",{ex:["Wach fhemti, wla n3awed?","Did you get it, or shall I repeat?","Tu as compris, ou je répète ?"]});
+w("achbghiti","Ach bghiti?","أش بغيتي؟","what do you want?","qu’est-ce que tu veux ?","q",{ex:["Ach bghiti takol?","What do you want to eat?","Qu’est-ce que tu veux manger ?"]});
+w("m3amen","M3a men?","مع من؟","with whom?","avec qui ?","q",{ex:["M3a men ghadi l Fes?","Who are you going to Fes with?","Avec qui tu vas à Fès ?"]});
+w("achmen","Achmen…?","أشمن…؟","which…?","quel… ?","q",{ex:["Achmen wa7ed bghiti?","Which one do you want?","Lequel tu veux ?"]});
+w("finsakn","Fin sakn?","فين ساكن؟","where do you live?","où tu habites ?","q",{ex:["Fin sakn? Ana sakn f Fes.","Where do you live? I live in Fes.","Où tu habites ? J’habite à Fès."]});
+// Meknes: tea and food
+w("lftour","Lftour","الفطور","breakfast","le petit-déjeuner","food",{ex:["Lftour wajed, yallah!","Breakfast is ready, come on!","Le petit-déjeuner est prêt, allez !"]});
+w("msemmen","Msemmen","مسمن","msemmen (square pan-fried flatbread)","msemmen (crêpe feuilletée carrée)","food",{ex:["Msemmen b l3sel w atay.","Msemmen with honey and tea.","Msemmen au miel avec du thé."]});
+w("lhrira","Lhrira","الحريرة","harira (tomato and lentil soup)","la harira (soupe tomate et lentilles)","food",{ex:["Lhrira skhouna, bssa7tek!","The harira is hot, enjoy!","La harira est chaude, bon appétit !"],note:["Every table has it in Ramadan, with dates and chebakia.","Sur toutes les tables pendant le Ramadan, avec des dattes et des chebakia."]});
+w("zitoun","Zitoun","الزيتون","olives","les olives","food",{ex:["Zid chwiya d zitoun, 3afak.","Add a few more olives, please.","Rajoute quelques olives, s’il te plaît."]});
+w("lmel7a","Lmel7a","الملحة","salt","le sel","food",{ex:["3tini lmel7a, 3afak.","Pass me the salt, please.","Passe-moi le sel, s’il te plaît."]});
+w("blasokkar","Bla sokkar","بلا سكر","without sugar","sans sucre","food",{ex:["Atay bla sokkar, 3afak.","Tea without sugar, please.","Un thé sans sucre, s’il te plaît."]});
+// Marrakech: the souk
+w("ghadinakhdo","Ghadi nakhdo","غادي ناخدو","I’ll take it","je le prends","souk",{ex:["Wakha, ghadi nakhdo.","OK, I’ll take it.","D’accord, je le prends."]});
+w("sarf","Sarf","الصرف","change (coins and small notes)","la monnaie","souk",{ex:["Ma 3ndich sarf, smeh liya.","I don’t have change, sorry.","Je n’ai pas de monnaie, désolé."]});
+w("kbir","Kbir","كبير","big","grand","souk",{ex:["Bghit wa7ed kbir.","I want a big one.","J’en veux un grand."]});
+w("sghir","Sghir","صغير","small","petit","souk",{ex:["Hada sghir bzzaf.","This one is too small.","Celui-ci est trop petit."]});
+w("lwen","Lwen","اللون","colour","la couleur","souk",{ex:["Kayn chi lwen akhor?","Is there another colour?","Il y a une autre couleur ?"]});
+w("jdid","Jdid","جديد","new","neuf / nouveau","souk",{ex:["Had lbelgha jdida?","Are these slippers new?","Ces babouches sont neuves ?"]});
+// Casablanca: numbers
+w("rb3a","Rb3a","ربعة","four","quatre","num",{ex:["Rb3a d latay, 3afak.","Four teas, please.","Quatre thés, s’il te plaît."]});
+w("setta","Setta","ستة","six","six","num",{ex:["Setta dyal lkhobz.","Six loaves of bread.","Six pains."]});
+w("sb3a","Sb3a","سبعة","seven","sept","num",{ex:["Ana f sb3a d sba7.","I’m there at seven in the morning.","J’y suis à sept heures du matin."]});
+w("tmenya","Tmenya","تمنية","eight","huit","num",{ex:["Tmenya d drahem.","Eight dirhams.","Huit dirhams."]});
+w("tes3a","Tes3a","تسعة","nine","neuf","num",{ex:["Lmatch f tes3a d lil.","The match is at nine at night.","Le match est à neuf heures du soir."]});
+w("3ichrin","3ichrin","عشرين","twenty","vingt","num",{ex:["3ichrin dirham, akhir taman.","Twenty dirhams, final price.","Vingt dirhams, dernier prix."]});
+// Kelaat M’Gouna: family and the valley of roses
+w("lwerd","Lwerd","الورد","roses","les roses","feel",{ex:["Lwerd f M’Gouna zwin bzzaf.","The roses in M’Gouna are so beautiful.","Les roses de M’Gouna sont tellement belles."],note:["Every May the valley holds a rose festival.","Chaque mois de mai, la vallée fête les roses."]});
+w("3ami","3ami","عمي","my uncle (dad’s brother)","mon oncle (frère du père)","family",{ex:["Hada 3ami, khou baba.","This is my uncle, my dad’s brother.","C’est mon oncle, le frère de mon père."]});
+w("khali","Khali","خالي","my uncle (mum’s brother)","mon oncle (frère de la mère)","family",{ex:["Khali sakn f Casa.","My uncle lives in Casa.","Mon oncle habite à Casa."]});
+w("mrati","Mrati","مراتي","my wife","ma femme","family",{ex:["Hadi mrati, Salma.","This is my wife, Salma.","Voici ma femme, Salma."]});
+w("rajli","Rajli","راجلي","my husband","mon mari","family",{ex:["Rajli kaybghi lkoura.","My husband loves football.","Mon mari adore le foot."]});
+w("mqelle9","Mqelle9","مقلق","upset / annoyed","contrarié / énervé","feel",{ex:["Ana mqelle9 chwiya lyoum.","I’m a bit upset today.","Je suis un peu contrarié aujourd’hui."]});
+// Merzouga: getting around the desert
+w("jmel","Jmel","جمل","camel","chameau","travel",{ex:["Rkebt 3la jmel f Merzouga!","I rode a camel in Merzouga!","J’ai fait du chameau à Merzouga !"]});
+w("rmel","Rmel","رمل","sand","sable","travel",{ex:["Rmel skhoun bzzaf f l3chiya.","The sand is very hot in the afternoon.","Le sable est très chaud l’après-midi."]});
+w("lmo7atta","Lmo7atta","المحطة","the station","la gare / la station","travel",{ex:["Fin kayna lmo7atta, 3afak?","Where is the station, please?","Où est la gare, s’il te plaît ?"]});
+w("tran","Tran","التران","train","train","travel",{ex:["Tran ghadi l Marrakech.","The train is going to Marrakech.","Le train va à Marrakech."]});
+w("nzelhna","Nzel hna","نزل هنا","get off here","descends ici","travel",{ex:["Nzel hna, lmo7atta 9riba.","Get off here, the station is close.","Descends ici, la gare est proche."]});
+w("lkhrita","Lkhrita","الخريطة","the map","la carte","travel",{ex:["3ndek lkhrita?","Do you have the map?","Tu as la carte ?"]});
+// Essaouira: keeping the conversation going
+w("bhal","Bhal","بحال","like / the same as","comme","basics",{ex:["Bhal hakka?","Like this?","Comme ça ?"]});
+w("ya3ni","Ya3ni","يعني","I mean / so","c’est-à-dire / genre","basics",{ex:["Ya3ni, ghadi ntla9aw ghedda?","So, we’ll meet tomorrow?","Donc, on se voit demain ?"],note:["You will hear it in almost every sentence. It buys time to think.","On l’entend dans presque chaque phrase. Ça laisse le temps de réfléchir."]});
+w("fhemt","Safi, fhemt","صافي فهمت","OK, I get it","d’accord, j’ai compris","basics",{ex:["Safi, fhemt, choukran!","OK, I get it, thanks!","D’accord, j’ai compris, merci !"]});
+w("wa9ila","Wa9ila","واقيلا","maybe","peut-être","basics",{ex:["Wa9ila nji ghedda.","Maybe I’ll come tomorrow.","Peut-être que je viendrai demain."]});
+w("lbe7r","Lbe7r","البحر","the sea","la mer","travel",{ex:["Lbe7r zwin f Essaouira.","The sea is beautiful in Essaouira.","La mer est belle à Essaouira."]});
+w("rri7","Rri7","الريح","the wind","le vent","basics",{ex:["Kayn rri7 bzzaf lyoum!","It’s really windy today!","Il y a beaucoup de vent aujourd’hui !"],note:["Essaouira is called the windy city. Surfers love it.","On appelle Essaouira la ville du vent. Les surfeurs adorent."]});
+
+// v7 cities: three more words for each new stop
+w("finhadlghiba","Fin had lghiba?","فين هاد الغيبة؟","where have you been? (long time no see)","t’étais où ? (ça fait longtemps)","hello",{ex:["Ahlan! Fin had lghiba?","Hey! Long time no see!","Coucou ! Ça fait longtemps !"]});
+w("ch7alhadi","Ch7al hadi!","شحال هادي!","it’s been ages!","ça fait une éternité !","hello",{ex:["Ch7al hadi ma chefnak!","It’s been ages since we saw you!","Ça fait une éternité qu’on ne t’a pas vu !"]});
+w("sellemliya","Sellem liya 3la…","سلم ليا على…","say hi to … for me","passe le bonjour à…","hello",{ex:["Sellem liya 3la yemmak.","Say hi to your mum for me.","Passe le bonjour à ta mère."]});
+w("allahyjazik","Allah yjazik bikhir","الله يجازيك بخير","may God reward you (deep thanks)","que Dieu te récompense (grand merci)","polite",{ex:["Allah yjazik bikhir, 3awnti bzzaf.","God reward you, you helped me so much.","Que Dieu te récompense, tu m’as beaucoup aidé."]});
+w("3laslamtek","3la slamtek","على سلامتك","glad you’re safe / welcome back","content que tu sois bien arrivé","polite",{ex:["Wslti? 3la slamtek!","You made it? Glad you’re safe!","Tu es arrivé ? Content que tout aille bien !"],note:["Said to someone back from a trip or getting over an illness.","Se dit à quelqu’un qui rentre de voyage ou qui va mieux."]});
+w("bismillah","Bismillah","بسم الله","in God’s name (before eating or starting)","au nom de Dieu (avant de manger ou de commencer)","polite",{ex:["Bismillah, yallah nakoulo.","Bismillah, let’s eat.","Bismillah, allez, on mange."]});
+w("lmal3ab","Lmal3ab","الملعب","the stadium","le stade","foot",{ex:["Lmal3ab 3amer!","The stadium is packed!","Le stade est plein !"]});
+w("lkorner","Lkorner","الكورنر","corner kick","le corner","foot",{ex:["3tawna lkorner!","They gave us a corner!","On a un corner !"]});
+w("tmarin","Tmarin","التمارين","training","l’entraînement","foot",{ex:["3ndi tmarin f l3chiya.","I have training this afternoon.","J’ai entraînement cet après-midi."]});
+w("ch7alf3mrek","Ch7al f 3mrek?","شحال ف عمرك؟","how old are you?","tu as quel âge ?","q",{ex:["Ch7al f 3mrek? Ana 3ndi 3ichrin.","How old are you? I’m twenty.","Tu as quel âge ? Moi, j’ai vingt ans."]});
+w("achkatdir","Ach katdir?","أش كتدير؟","what are you doing?","qu’est-ce que tu fais ?","q",{ex:["Ach katdir daba?","What are you doing right now?","Qu’est-ce que tu fais là ?"]});
+w("3lachla","3lach la?","علاش لا؟","why not?","pourquoi pas ?","q",{ex:["Nmchiw l Ifrane? 3lach la!","Shall we go to Ifrane? Why not!","On va à Ifrane ? Pourquoi pas !"]});
+w("l3sel","L3sel","العسل","honey","le miel","food",{ex:["Khobz b l3sel, bnin!","Bread with honey, delicious!","Du pain au miel, délicieux !"]});
+w("zzebda","Zzebda","الزبدة","butter","le beurre","food",{ex:["3tini zzebda, 3afak.","Pass me the butter, please.","Passe-moi le beurre, s’il te plaît."]});
+w("lbid","Lbid","البيض","eggs","les œufs","food",{ex:["Bghit lbid m9li.","I’d like fried eggs.","Je voudrais des œufs au plat."]});
+w("3tini","3tini…","عطيني…","give me…","donne-moi…","souk",{ex:["3tini jouj, 3afak.","Give me two, please.","Donne-m’en deux, s’il te plaît."]});
+w("wa7edakhor","Wa7ed akhor","واحد آخر","another one","un autre","souk",{ex:["Bghit wa7ed akhor.","I want another one.","J’en veux un autre."]});
+w("finnkhlles","Fin nkhlles?","فين نخلص؟","where do I pay?","où est-ce que je paie ?","souk",{ex:["Smeh liya, fin nkhlles?","Excuse me, where do I pay?","Pardon, où est-ce que je paie ?"]});
+w("tnach","Tnach","طناش","twelve","douze","num",{ex:["Tnach d lbid, 3afak.","Twelve eggs, please.","Douze œufs, s’il te plaît."]});
+w("khmstach","Khmstach","خمسطاش","fifteen","quinze","num",{ex:["Khmstach dirham, safi.","Fifteen dirhams, that’s it.","Quinze dirhams, c’est tout."]});
+w("tlatin","Tlatin","تلاتين","thirty","trente","num",{ex:["Tlatin dirham? Ghali!","Thirty dirhams? Too expensive!","Trente dirhams ? Trop cher !"]});
+w("jeddi","Jeddi","جدي","my grandpa","mon grand-père","family",{ex:["Jeddi sakn f Ouarzazate.","My grandpa lives in Ouarzazate.","Mon grand-père habite à Ouarzazate."]});
+w("jedda","Jedda","جدة","grandmother (more formal than Mima)","grand-mère (plus formel que Mima)","family",{ex:["Jedda katsayeb a7sen tajine.","Grandma makes the best tajine.","Grand-mère fait le meilleur tajine."]});
+w("3amti","3amti","عمتي","my aunt (dad’s sister)","ma tante (sœur du père)","family",{ex:["3amti jat mn Fransa.","My aunt came from France.","Ma tante est venue de France."]});
+w("khalti","Khalti","خالتي","my aunt (mum’s sister)","ma tante (sœur de la mère)","family",{ex:["Khalti katbghini bzzaf.","My aunt loves me so much.","Ma tante m’adore."]});
+w("lkhayma","Lkhayma","الخيمة","the tent","la tente","travel",{ex:["Ghadi nn3so f lkhayma.","We’ll sleep in the tent.","On va dormir sous la tente."]});
+w("nnjoum","Nnjoum","النجوم","the stars","les étoiles","travel",{ex:["Chouf nnjoum, zwinin bzzaf!","Look at the stars, they’re so beautiful!","Regarde les étoiles, elles sont magnifiques !"]});
+w("chems","Chems","الشمس","the sun","le soleil","travel",{ex:["Chems skhouna bzzaf lyoum.","The sun is really hot today.","Le soleil tape fort aujourd’hui."]});
+w("l7out","L7out","الحوت","fish","le poisson","food",{ex:["L7out f Dakhla tri bzzaf.","The fish in Dakhla is really fresh.","Le poisson à Dakhla est super frais."]});
+w("lmouja","Lmouja","الموجة","the wave","la vague","travel",{ex:["Chouf lmouja, kbira!","Look at that wave, it’s huge!","Regarde la vague, elle est énorme !"]});
+w("n3oum","N3oum","نعوم","to swim","nager","travel",{ex:["Bghit n3oum f lbe7r.","I want to swim in the sea.","Je veux nager dans la mer."]});
+
 const UNITS = [
   { id:"u1", d:"Salam", en:"Hello and how are you", fr:"Bonjour et ça va", tile:"majorelle",
     words:["salam","labas","hamdoulillah","bikhir","kidayr","sba7","merhba","bslama","tsb7","msalkhir","mtcharfin","kolchi"] },
@@ -153,6 +258,46 @@ const UNITS = [
 
 // split each unit into lessons of 3 to 4 words, then a review (or the souk boss)
 const STORY_OF = { u10:"match", u1:"meet", u2:"hanout", u3:"lost", u4:"cafe", u6:"friend", u7:"mom", u8:"taxi", u9:"wedding" };
+// v7: ten more cities. Each takes the second half of its neighbour's topic, so the trip has twenty stops on the map
+const NEW_CITIES = {
+  u11:{ after:"u1", city:{ en:"Asilah", fr:"Asilah", ar:"أصيلة", wall:"#E9EEF0", niche:"#DCE5EA", accent:"#2C5D8A", g:["#2C5D8A","#4FA3B8","#E8B04A"], field:"#121820",
+    scene:["White walls covered in murals. In Asilah, old friends keep stopping you in the street.","Des murs blancs couverts de fresques. À Asilah, de vieux amis t’arrêtent dans la rue."] },
+    unit:{ d:"Fin had lghiba?", en:"Old friends, warm hellos", fr:"Vieux amis, bonjours chaleureux", tile:"majorelle", words:["ahlan","wnta","wnti","kifdayra","hani","twe7chtek","finhadlghiba","ch7alhadi","sellemliya"] } },
+  u12:{ after:"u2", city:{ en:"Tetouan", fr:"Tétouan", ar:"تطوان", wall:"#E3ECE2", niche:"#D3E1D1", accent:"#2D6A4F", g:["#2D6A4F","#7FB069","#E6C36A"], field:"#121A16",
+    scene:["Tetouan, the white dove. Here people bless you for everything.","Tétouan, la colombe blanche. Ici, on te bénit pour tout."] },
+    unit:{ d:"Allah y7fdek", en:"Blessings and kind words", fr:"Bénédictions et mots gentils", tile:"emerald", words:["allahy7fdek","allahybarek","bssa7tek","ilabghiti","allahysahel","allahyhennik","allahyjazik","3laslamtek","bismillah"] } },
+  u13:{ after:"u10", city:{ en:"Agadir", fr:"Agadir", ar:"أكادير", wall:"#F1E3C8", niche:"#F6EAD6", accent:"#1E6F8C", g:["#1E6F8C","#E39B47","#C1272D"], field:"#14181A",
+    scene:["A stadium by the ocean in Agadir. Time to follow the game properly.","Un stade au bord de l’océan à Agadir. C’est le moment de suivre le match pour de vrai."] },
+    unit:{ d:"Lmal3ab", en:"At the stadium", fr:"Au stade", tile:"pomegranate", words:["l7aris","lpas","lkas","tsfira","kartsfer","kart7mer","lmal3ab","lkorner","tmarin"] } },
+  u14:{ after:"u3", city:{ en:"Ifrane", fr:"Ifrane", ar:"إفران", wall:"#E6EBEF", niche:"#D8E0E6", accent:"#7A2E2A", g:["#7A2E2A","#2F5D50","#BFD3E0"], field:"#121518",
+    scene:["Snow in Morocco? In Ifrane, yes. Everyone you meet by the fire has questions.","De la neige au Maroc ? À Ifrane, oui. Près du feu, tout le monde a des questions."] },
+    unit:{ d:"Ach katdir?", en:"Getting to know someone", fr:"Apprendre à se connaître", tile:"teal", words:["achkat9oul","wachfhemti","achbghiti","m3amen","achmen","finsakn","ch7alf3mrek","achkatdir","3lachla"] } },
+  u15:{ after:"u4", city:{ en:"Azrou", fr:"Azrou", ar:"أزرو", wall:"#D9E2CF", niche:"#E5ECDD", accent:"#3D5A2A", g:["#3D5A2A","#8C6239","#D9A441"], field:"#141812",
+    scene:["Breakfast in the cedar forest above Azrou, with the monkeys watching.","Petit-déjeuner dans la forêt de cèdres au-dessus d’Azrou, sous l’œil des singes."] },
+    unit:{ d:"Lftour", en:"Breakfast", fr:"Le petit-déjeuner", tile:"saffron", words:["lftour","msemmen","lhrira","zitoun","lmel7a","blasokkar","l3sel","zzebda","lbid"] } },
+  u16:{ after:"u5", city:{ en:"Taroudant", fr:"Taroudant", ar:"تارودانت", wall:"#E7B98E", niche:"#EEC9A6", accent:"#8A4B1F", g:["#8A4B1F","#2F8A5B","#E0A631"], field:"#1A1512",
+    scene:["Taroudant, the little Marrakech. A quieter souk inside the old walls.","Taroudant, la petite Marrakech. Un souk plus calme, derrière les vieux remparts."] },
+    unit:{ d:"3tini wa7ed", en:"Buying and paying", fr:"Acheter et payer", tile:"pomegranate", words:["ghadinakhdo","sarf","kbir","sghir","lwen","jdid","3tini","wa7edakhor","finnkhlles"] } },
+  u17:{ after:"u6", city:{ en:"El Jadida", fr:"El Jadida", ar:"الجديدة", wall:"#E4DED2", niche:"#EDE8DE", accent:"#2B4C6F", g:["#2B4C6F","#A88F6A","#4F9DB8"], field:"#121518",
+    scene:["The old Portuguese town of El Jadida. Count the arches, count the change.","La vieille ville portugaise d’El Jadida. Compte les arches, compte la monnaie."] },
+    unit:{ d:"Tnach", en:"Counting to thirty", fr:"Compter jusqu’à trente", tile:"night", words:["rb3a","setta","sb3a","tmenya","tes3a","3ichrin","tnach","khmstach","tlatin"] } },
+  u18:{ after:"u7", city:{ en:"Ouarzazate", fr:"Ouarzazate", ar:"ورزازات", wall:"#D9A27E", niche:"#E3B697", accent:"#7C3B22", g:["#7C3B22","#C98A4B","#2F6F8F"], field:"#1A1411",
+    scene:["Ouarzazate, the door of the desert. The whole family is waiting at the kasbah.","Ouarzazate, la porte du désert. Toute la famille t’attend à la kasbah."] },
+    unit:{ d:"Jeddi w jedda", en:"The whole family", fr:"Toute la famille", tile:"plum", words:["3ami","khali","3amti","khalti","mrati","rajli","jeddi","jedda","mqelle9"] } },
+  u19:{ after:"u8", city:{ en:"Zagora", fr:"Zagora", ar:"زاكورة", wall:"#E8C48E", niche:"#EED2A8", accent:"#6B4423", g:["#6B4423","#3F7D4E","#E0A631"], field:"#1A1612",
+    scene:["Palm groves, then sand. From Zagora you ride out and sleep under the stars.","Des palmeraies, puis le sable. De Zagora, on part à dos de chameau dormir sous les étoiles."] },
+    unit:{ d:"Nnjoum", en:"Into the desert", fr:"Vers le désert", tile:"teal", words:["lmo7atta","tran","nzelhna","lkhrita","jmel","rmel","lkhayma","nnjoum","chems"] } },
+  u20:{ after:"u9", city:{ en:"Dakhla", fr:"Dakhla", ar:"الداخلة", wall:"#CFE8E6", niche:"#E0F0EF", accent:"#126B73", g:["#126B73","#F2C46D","#E8DCC4"], field:"#0F1A1B",
+    scene:["The last stop: a lagoon, kites in the wind and fresh fish. Talk like a local now.","Dernière étape : une lagune, des kites dans le vent et du poisson frais. Parle comme un local."] },
+    unit:{ d:"Lbe7r w rri7", en:"Sea, wind and small talk", fr:"Mer, vent et petites phrases", tile:"emerald", words:["bhal","ya3ni","fhemt","wa9ila","lbe7r","rri7","l7out","lmouja","n3oum"] } },
+};
+UNITS.find((u) => u.id === "u7").words.push("lwerd");
+Object.assign(STORY_OF, { u11:"oldfriend", u12:"guest", u13:"stadium", u14:"fireside", u15:"breakfast", u16:"slippers", u17:"fishmarket", u18:"kasbah", u19:"desertnight", u20:"lagoon" });
+for (const [id, nc] of Object.entries(NEW_CITIES)) {
+  const at = UNITS.findIndex((u) => u.id === nc.after) + 1;
+  UNITS.splice(at, 0, Object.assign({ id }, nc.unit));
+  CITIES.splice(at, 0, nc.city);
+}
 function buildPath() {
   const nodes = [];
   UNITS.forEach((u, ui) => {
@@ -480,5 +625,127 @@ Object.assign(UI.fr, {
   startLesson1:"Commence ta première leçon", feedLocked:"Ton fil se remplit avec tes mots au fil des leçons. En attendant, un peu de culture.", wordsLearnedN:"{n} mots appris",
   heard:"Écoute", navHint:"Ou les flèches du clavier", noResults:"Aucun mot ne correspond.", rare:"Rare", tapToHear:"Touche n’importe quel mot en darija pour l’entendre",
 });
+
+// v7: the board's Today, Journey and lesson layouts
+Object.assign(UI.en, {
+  stStreak:"days of atay", stBest:"longest run", streakL:"days of atay", goalDoneS:"Your glass is full. {n} days of atay in a row.",
+  shieldT:"Spare glass", shieldS:"Miss a day and a spare glass fills in for it. You have {n}.", shieldUsed:"A spare glass filled in for yesterday.",
+  goalS:"XP fills your tea glass. Fill one every day.", comebackS:"Your tray is waiting. {n} words want a review.", comebackS0:"Fill today’s glass to keep your run going.",
+  streakTip:"Fill a glass every day and watch your tray fill up.", trayL:"{n} days of atay in a row",
+  sayIt:"Say it out loud", tapRecord:"Record", tapStop:"Tap to stop", yourVoice:"You", sayHint:"Listen, then record yourself saying it.",
+  compareHint:"Hear Mchicha, then you. Did yours sound the same?", noMic:"Say it out loud, then tap below.", micOff:"The microphone is off. Say it out loud, then tap below.",
+  again:"Again", notYet:"Not yet", soundsRight:"Sounded right", saidIt:"I said it", cantTalk:"Can’t talk right now", hearBuild:"Tap the words you hear",
+  doneL:"Done", minN:"{n} min", aOfB:"{a} of {b}", stopsWords:"{a} of {b} stops · {c} of {d} words", stopsN:"{a} of {b} stops",
+  correctP:"Correct", inSentence:"In a sentence", stopOf:"{c} · stop {a} of {b}", startLesson:"Start lesson",
+  streakKeep:"Today’s glass is still empty. This lesson fills it.", streakStart:"Your first lesson pours your first glass.",
+  goalMetLine:"Goal met for today. One more lesson glazes another tile.", goalT:"Today’s goal", dueT:"Due to review",
+  storiesT:"Stories heard", tripT:"Your trip", learnIt:"Learn it", dayU:"day", daysU:"days",
+});
+Object.assign(UI.fr, {
+  stStreak:"jours d’atay", stBest:"plus longue suite", streakL:"jours d’atay", goalDoneS:"Ton verre est plein. {n} jours d’atay d’affilée.",
+  shieldT:"Verre de secours", shieldS:"Rate un jour, un verre de secours le remplit pour toi. Tu en as {n}.", shieldUsed:"Un verre de secours a rempli hier.",
+  goalS:"Les XP remplissent ton verre de thé. Remplis-en un chaque jour.", comebackS:"Ton plateau t’attend. {n} mots veulent une révision.", comebackS0:"Remplis le verre du jour pour continuer ta suite.",
+  streakTip:"Remplis un verre chaque jour et regarde ton plateau se remplir.", trayL:"{n} jours d’atay d’affilée",
+  sayIt:"Dis-le à voix haute", tapRecord:"Enregistrer", tapStop:"Touche pour arrêter", yourVoice:"Toi", sayHint:"Écoute, puis enregistre-toi en le disant.",
+  compareHint:"Écoute Mchicha, puis toi. Ça sonnait pareil ?", noMic:"Dis-le à voix haute, puis touche en dessous.", micOff:"Le micro est coupé. Dis-le à voix haute, puis touche en dessous.",
+  again:"Encore", notYet:"Pas encore", soundsRight:"C’était bien", saidIt:"Je l’ai dit", cantTalk:"Je ne peux pas parler", hearBuild:"Touche les mots que tu entends",
+  doneL:"Fait", minN:"{n} min", aOfB:"{a} sur {b}", stopsWords:"{a} étapes sur {b} · {c} mots sur {d}", stopsN:"{a} étapes sur {b}",
+  correctP:"Juste", inSentence:"Dans une phrase", stopOf:"{c} · étape {a} sur {b}", startLesson:"Commencer la leçon",
+  streakKeep:"Le verre du jour est encore vide. Cette leçon le remplit.", streakStart:"Ta première leçon sert ton premier verre.",
+  goalMetLine:"Objectif atteint aujourd’hui. Une leçon de plus émaille un autre carreau.", goalT:"Objectif du jour", dueT:"À réviser",
+  storiesT:"Histoires écoutées", tripT:"Ton voyage", learnIt:"L’apprendre", dayU:"jour", daysU:"jours",
+});
+
+// v7: more feed cards, built on the new words, so the feed has more to rotate through
+SITS.push(
+  ["miss","🫂",["You see your cousin for the first time in a year.","Tu revois ton cousin pour la première fois depuis un an."],"twe7chtek",[["Twe7chtek bzzaf!","I missed you so much!","Tu m’as beaucoup manqué !"],["Ghali bzzaf!","Way too expensive!","Beaucoup trop cher !"],["Nzel hna.","Get off here.","Descends ici."],["Bla sokkar.","Without sugar.","Sans sucre."]]],
+  ["beggar","🙏",["Someone asks you for a coin and you have none.","Quelqu’un te demande une pièce et tu n’en as pas."],"allahysahel",[["Allah ysahel.","May God make it easy.","Que Dieu facilite."],["Bssa7tek!","Enjoy!","Profite !"],["Goool!","Goal!","But !"],["Ana jay daba.","I’m coming now.","J’arrive tout de suite."]]],
+  ["newshoes","👟",["Your friend shows off new trainers.","Ton pote montre ses nouvelles baskets."],"bssa7tek",[["Bssa7tek!","Enjoy them!","Profites-en !"],["Smeh liya.","Sorry.","Pardon."],["Fin sakn?","Where do you live?","Où tu habites ?"],["Allah ysahel.","May God make it easy.","Que Dieu facilite."]]],
+  ["teasugar","🍵",["The waiter is about to pour sugar into your tea.","Le serveur s’apprête à mettre du sucre dans ton thé."],"blasokkar",[["La, bla sokkar, 3afak!","No, without sugar, please!","Non, sans sucre, s’il te plaît !"],["Mabrouk!","Congrats!","Félicitations !"],["Tsb7 3la khir.","Good night.","Bonne nuit."],["Kart 7mer!","Red card!","Carton rouge !"]]],
+  ["repeat","🔁",["You explained the way twice. You check your friend got it.","Tu as expliqué le chemin deux fois. Tu vérifies que ton ami a compris."],"wachfhemti",[["Wach fhemti?","Did you get it?","Tu as compris ?"],["Ach bghiti?","What do you want?","Qu’est-ce que tu veux ?"],["Kbir bzzaf.","Too big.","Trop grand."],["Bslama!","Bye!","Salut !"]]],
+  ["nochange","🪙",["You hand the taxi driver 200 DH for a 15 DH ride.","Tu donnes 200 DH au chauffeur pour une course à 15 DH."],"sarf",[["Smeh liya, ma 3ndich sarf.","Sorry, I don’t have change.","Désolé, je n’ai pas de monnaie."],["Twe7chtek!","I missed you!","Tu m’as manqué !"],["Lbe7r zwin.","The sea is nice.","La mer est belle."],["Wa9ila.","Maybe.","Peut-être."]]],
+  ["redcard","🟥",["A defender takes out Morocco’s striker from behind.","Un défenseur fauche l’attaquant marocain par derrière."],"kart7mer",[["Kart 7mer!","Red card!","Carton rouge !"],["Allah ybarek fik.","God bless you.","Que Dieu te bénisse."],["Hani.","I’m fine.","Je vais bien."],["Fin kayn tran?","Where’s the train?","Il est où, le train ?"]]],
+  ["trainstop","🚆",["The train stops at your station. Your friend is still asleep.","Le train s’arrête à ta gare. Ton ami dort encore."],"nzelhna",[["Noud! Nzel hna!","Get up! Get off here!","Lève-toi ! Descends ici !"],["Bssa7tek.","Enjoy.","Profite."],["Ahlan.","Hi there.","Coucou."],["Zid zitoun.","More olives.","Encore des olives."]]],
+  ["toosmall","👕",["The shirt you tried on is tight everywhere.","La chemise que tu as essayée serre de partout."],"sghir",[["Hada sghir, kayn kbir?","This is small, is there a big one?","C’est petit, il y a plus grand ?"],["Mer7ba bik!","Welcome!","Bienvenue !"],["Wach fhemti?","Did you get it?","Tu as compris ?"],["Lkas dyalna!","The cup is ours!","La coupe est à nous !"]]],
+  ["howareyou","👋",["Your neighbour Salma waves from across the street.","Ta voisine Salma te fait signe de l’autre côté de la rue."],"kifdayra",[["Ahlan Salma, kif dayra?","Hi Salma, how are you?","Coucou Salma, comment tu vas ?"],["Ghadi nakhdo.","I’ll take it.","Je le prends."],["Kart sfer.","Yellow card.","Carton jaune."],["Bla sokkar.","Without sugar.","Sans sucre."]]],
+  ["windy","🌬️",["Your hat flies off on the beach in Essaouira.","Ton chapeau s’envole sur la plage d’Essaouira."],"rri7",[["Kayn rri7 bzzaf!","It’s so windy!","Il y a trop de vent !"],["Bssa7tek!","Enjoy!","Profite !"],["Achmen wa7ed?","Which one?","Lequel ?"],["Hani, choukran.","I’m fine, thanks.","Je vais bien, merci."]]],
+  ["maybe","🤷",["A friend asks if you’re coming to the wedding. You’re not sure yet.","Un ami demande si tu viens au mariage. Tu ne sais pas encore."],"wa9ila",[["Wa9ila, nchoufo.","Maybe, we’ll see.","Peut-être, on verra."],["Kart 7mer!","Red card!","Carton rouge !"],["Lmel7a, 3afak.","The salt, please.","Le sel, s’il te plaît."],["Twe7chtek.","I missed you.","Tu m’as manqué."]]]);
+BUILDS.push(
+  ["missyou","I missed you so much","Tu m’as beaucoup manqué",["twe7chtek","bzzaf"],["chwiya","ghedda"],"twe7chtek"],
+  ["notsugar","Tea without sugar","Un thé sans sucre",["atay","bla","sokkar"],["bzzaf","lma"],"blasokkar"],
+  ["takeit","OK, I’ll take it","D’accord, je le prends",["wakha","ghadi","nakhdo"],["la","ghali"],"ghadinakhdo"],
+  ["wherelive","Where do you live?","Où tu habites ?",["fin","sakn"],["imta","chkoun"],"finsakn"],
+  ["getoff","Get off here","Descends ici",["nzel","hna"],["tla3","daba"],"nzelhna"],
+  ["bigone","I want a big one","J’en veux un grand",["bghit","wa7ed","kbir"],["sghir","bzzaf"],"kbir"],
+  ["windtoday","It’s windy today","Il y a du vent aujourd’hui",["kayn","rri7","lyoum"],["ghedda","lbe7r"],"rri7"],
+  ["redcard2","The referee gave a red card","L’arbitre a donné un carton rouge",["l7akam","3ta","kart","7mer"],["sfer","lkoura"],"kart7mer"]);
+PROVERBS.push(
+  ["proverb-step","Lli bgha yrbe7, l3am twil.","If you want to win, the year is long.","Qui veut gagner a toute l’année devant lui.","There’s always time to make it.","On a toujours le temps d’y arriver."],
+  ["proverb-friend","Sa7bek howa lli y3awnek f l7ajja.","Your friend is the one who helps you in need.","Ton ami, c’est celui qui t’aide dans le besoin.","A friend in need is a friend indeed.","C’est dans le besoin qu’on reconnaît ses amis."],
+  ["proverb-eye","L3in ma t3la 3la l7ajeb.","The eye doesn’t rise above the eyebrow.","L’œil ne monte pas au-dessus du sourcil.","Respect your elders.","Respecte tes aînés."],
+  ["proverb-little","Chwiya mn lle7ya w chwiya mn l7ajeb.","A bit from the beard, a bit from the eyebrow.","Un peu de la barbe, un peu du sourcil.","Meet halfway.","Chacun fait un pas."]);
+
+// v7: a story for each of the ten new cities
+DIALOGS.push(
+  { id:"oldfriend", tile:"majorelle", t:["An old friend in Asilah","Un vieil ami à Asilah"], who:[["Karim","Karim"],["You","Toi"]], lines:[
+    ["A","Ahlan! Fin had lghiba?","Hey! Long time no see!","Coucou ! Ça fait longtemps !"],
+    ["B","Ch7al hadi! Twe7chtek bzzaf.","It’s been ages! I missed you so much.","Ça fait une éternité ! Tu m’as beaucoup manqué."],
+    ["A","Kidayr? Kolchi mzyan?","How are you? All good?","Comment ça va ? Tout va bien ?"],
+    ["B","Hani, l7amdoulillah. W nta?","I’m good, thank God. And you?","Je vais bien, grâce à Dieu. Et toi ?"],
+    ["A","Bikhir. Sellem liya 3la yemmak!","Fine. Say hi to your mum for me!","Bien. Passe le bonjour à ta mère !"] ] },
+  { id:"guest", tile:"emerald", t:["Lunch at a home in Tetouan","Déjeuner chez des gens à Tétouan"], who:[["Host","Hôte"],["You","Toi"]], lines:[
+    ["A","Mer7ba bik! 3la slamtek.","Welcome! Glad you made it safely.","Bienvenue ! Content que tu sois bien arrivé."],
+    ["B","Allah ybarek fik.","God bless you.","Que Dieu te bénisse."],
+    ["A","Tfddel, l9raya wajda. Bismillah.","Please, lunch is ready. Bismillah.","Je t’en prie, le repas est prêt. Bismillah."],
+    ["B","Bnin bzzaf! Allah yjazik bikhir.","So delicious! God reward you.","Trop bon ! Que Dieu te récompense."],
+    ["A","Bssa7tek! Zid chwiya, ila bghiti.","Enjoy! Have a bit more, if you like.","Bon appétit ! Reprends-en un peu, si tu veux."] ] },
+  { id:"stadium", tile:"pomegranate", t:["At the stadium in Agadir","Au stade d’Agadir"], who:[["Friend","Pote"],["You","Toi"]], lines:[
+    ["A","Chouf lmal3ab, 3amer!","Look at the stadium, it’s packed!","Regarde le stade, il est plein !"],
+    ["B","L7aris dyalna wa3er.","Our goalkeeper is amazing.","Notre gardien est génial."],
+    ["A","Korner! 3tawna lkorner!","Corner! They gave us a corner!","Corner ! On a un corner !"],
+    ["B","Goool! Rbe7na!","Goal! We won!","But ! On a gagné !"],
+    ["A","Tsfira lkhra! Dima Maghrib!","The final whistle! Always Morocco!","Coup de sifflet final ! Toujours le Maroc !"] ] },
+  { id:"fireside", tile:"teal", t:["By the fire in Ifrane","Près du feu à Ifrane"], who:[["Salma","Salma"],["You","Toi"]], lines:[
+    ["A","Salam! Mnin nta?","Hi! Where are you from?","Salut ! Tu viens d’où ?"],
+    ["B","Ana mn Casa. W nti, fin sakna?","I’m from Casa. And you, where do you live?","Je suis de Casa. Et toi, tu habites où ?"],
+    ["A","F Fes. Ach katdir hna?","In Fes. What are you doing here?","À Fès. Qu’est-ce que tu fais ici ?"],
+    ["B","Jit nchouf ttelj!","I came to see the snow!","Je suis venu voir la neige !"],
+    ["A","Ghedda nmchiw l ghaba? 3lach la!","Shall we go to the forest tomorrow? Why not!","Demain on va à la forêt ? Pourquoi pas !"] ] },
+  { id:"breakfast", tile:"saffron", t:["Breakfast in Azrou","Petit-déjeuner à Azrou"], who:[["Waiter","Serveur"],["You","Toi"]], lines:[
+    ["A","Sba7 lkhir! Achnou bghiti f lftour?","Good morning! What would you like for breakfast?","Bonjour ! Qu’est-ce que tu veux pour le petit-déj ?"],
+    ["B","Msemmen b l3sel, 3afak.","Msemmen with honey, please.","Un msemmen au miel, s’il te plaît."],
+    ["A","W lbid? W zzebda?","And eggs? And butter?","Et des œufs ? Et du beurre ?"],
+    ["B","Iyeh, w atay bla sokkar.","Yes, and tea without sugar.","Oui, et un thé sans sucre."],
+    ["A","Wakha, daba yji.","OK, coming right up.","D’accord, ça arrive."] ] },
+  { id:"slippers", tile:"pomegranate", t:["New slippers in Taroudant","De nouvelles babouches à Taroudant"], who:[["Vendor","Vendeur"],["You","Toi"]], lines:[
+    ["B","Salam, 3tini had lbelgha, 3afak.","Hi, give me these slippers, please.","Salut, donne-moi ces babouches, s’il te plaît."],
+    ["A","Hadi sghira 3lik. Bghiti kbira?","These are small for you. Want bigger ones?","Elles sont petites pour toi. Tu veux plus grand ?"],
+    ["B","Iyeh, w f lwen akhor.","Yes, and in another colour.","Oui, et dans une autre couleur."],
+    ["A","Hak, jdida. Mya dirham.","Here, brand new. A hundred dirhams.","Tiens, toutes neuves. Cent dirhams."],
+    ["B","Wakha, ghadi nakhdo. Fin nkhlles?","OK, I’ll take them. Where do I pay?","D’accord, je les prends. Où je paie ?"] ] },
+  { id:"fishmarket", tile:"night", t:["The fish market in El Jadida","Le marché aux poissons d’El Jadida"], who:[["Fisherman","Pêcheur"],["You","Toi"]], lines:[
+    ["B","B chhal l7out?","How much is the fish?","C’est combien, le poisson ?"],
+    ["A","Tlatin dirham l kilo.","Thirty dirhams a kilo.","Trente dirhams le kilo."],
+    ["B","Ghali! Khmstach?","Too expensive! Fifteen?","Trop cher ! Quinze ?"],
+    ["A","La, 3ichrin, akhir taman.","No, twenty, final price.","Non, vingt, dernier prix."],
+    ["B","Wakha, 3tini jouj kilo.","OK, give me two kilos.","D’accord, donne-m’en deux kilos."] ] },
+  { id:"kasbah", tile:"plum", t:["The family at the kasbah","La famille à la kasbah"], who:[["Grandma","Grand-mère"],["You","Toi"]], lines:[
+    ["A","Mer7ba a weldi! Twe7chtek.","Welcome, my boy! I missed you.","Bienvenue, mon fils ! Tu m’as manqué."],
+    ["B","Labas a jedda? Fin jeddi?","Are you well, grandma? Where’s grandpa?","Ça va, grand-mère ? Où est grand-père ?"],
+    ["A","Jeddi m3a 3amek w khalek.","Grandpa is with your uncles.","Grand-père est avec tes oncles."],
+    ["B","W 3amti w khalti?","And my aunts?","Et mes tantes ?"],
+    ["A","F lkozina. Yallah, tajine wajed!","In the kitchen. Come on, the tajine is ready!","Dans la cuisine. Allez, le tajine est prêt !"] ] },
+  { id:"desertnight", tile:"teal", t:["A night in the desert near Zagora","Une nuit dans le désert près de Zagora"], who:[["Guide","Guide"],["You","Toi"]], lines:[
+    ["A","Chems ghadi tghreb. Yallah 3la jmel!","The sun’s going down. Up on the camel!","Le soleil se couche. Allez, sur le chameau !"],
+    ["B","Wach lkhayma b3ida?","Is the tent far?","La tente est loin ?"],
+    ["A","La, 9riba. Mor had rmel.","No, it’s close. Behind this sand.","Non, elle est proche. Derrière ce sable."],
+    ["B","Chouf nnjoum! Zwinin bzzaf.","Look at the stars! So beautiful.","Regarde les étoiles ! Trop belles."],
+    ["A","Hna, nnjoum dima hakka.","Out here, the stars are always like this.","Ici, les étoiles sont toujours comme ça."] ] },
+  { id:"lagoon", tile:"emerald", t:["A windy day in Dakhla","Une journée de vent à Dakhla"], who:[["Friend","Pote"],["You","Toi"]], lines:[
+    ["A","Kayn rri7 bzzaf lyoum!","It’s really windy today!","Il y a beaucoup de vent aujourd’hui !"],
+    ["B","Ya3ni, ma n3oumch?","So, I shouldn’t swim?","Donc, je ne nage pas ?"],
+    ["A","Wa9ila ghedda. Chouf lmouja, kbira!","Maybe tomorrow. Look at the wave, it’s huge!","Peut-être demain. Regarde la vague, elle est énorme !"],
+    ["B","Safi, fhemt. Nmchiw nakoulo l7out?","OK, I get it. Shall we go eat fish?","D’accord, j’ai compris. On va manger du poisson ?"],
+    ["A","Yallah! Bhal dima.","Let’s go! Like always.","Allez ! Comme toujours."] ] });
 
 if (typeof module !== "undefined") module.exports = { CITIES, LESSON_SCENES, buildSay, audioKey, LEVELS, W, CORE, COLL, SITS, BUILDS, REELS, DIALOGS, PROVERBS, SOUNDS, RULES, HAGGLE, haggleRounds, hagglePrice, HAGGLE_OPEN, PRAISE, PRAISE2, COMFORT, NO_SAY, UNITS, PATH };

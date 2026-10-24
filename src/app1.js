@@ -4,6 +4,7 @@
 const LS_KEY = "wakha.v2";
 const INTERVALS = [0, 1, 3, 7, 14, 30];
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const EASE_OUT = "cubic-bezier(0.23, 1, 0.32, 1)", EASE_IN_OUT = "cubic-bezier(0.77, 0, 0.175, 1)";
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
 const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
@@ -291,10 +292,11 @@ function installPatterns() {
   st.setProperty("--zl-ivory", `url("${svgURI(zelligeTile("#FFFDF8", 0.2))}")`);
   // one class per city: plaster wall, niche, accent ink, three glazes and the tiled frame band
   const band = (a, b) => `url("${svgURI(`<svg xmlns='http://www.w3.org/2000/svg' width='22' height='22'><rect width='22' height='22' fill='${a}'/><path d='M11 2l2.6 6.4L20 11l-6.4 2.6L11 20l-2.6-6.4L2 11l6.4-2.6z' fill='${b}'/><circle cx='11' cy='11' r='2' fill='#EDE5D6'/></svg>`)}")`;
-  const css = CITIES.map((c, i) => `.cv${i}{--wall:${c.wall};--niche:${c.niche};--accent:${c.accent};--g0:${c.g[0]};--g1:${c.g[1]};--g2:${c.g[2]};--band:${band(c.g[0], c.g[2] === "#F0E9DA" ? c.g[1] : c.g[2])}}`).join("\n");
-  // dark walls: the same plaster at dusk; accents lifted so they still read on it
+  // the city's face: its real wall colour as a swatch (--wall-raw) and as a quiet panel tint (--wall).
+  // Light: 45% wall over white. Dark: 10% wall over #161615. Every text colour stays above 4.5:1 on both.
   const mix = (a, b, t) => { const p = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)); const x = p(a), y = p(b); return "#" + x.map((v, i) => Math.round(v + (y[i] - v) * t).toString(16).padStart(2, "0")).join(""); };
-  const dk = CITIES.map((c, i) => `.cv${i}{--wall:${mix(c.wall, "#100F26", 0.84)};--accent:${mix(c.accent, "#FFFFFF", 0.5)}}`).join("\n");
+  const css = CITIES.map((c, i) => `.cv${i}{--wall:${mix(c.wall, "#FFFFFF", 0.55)};--wall-raw:${c.wall};--niche:${c.niche};--g0:${c.g[0]};--g1:${c.g[1]};--g2:${c.g[2]};--band:${band(c.g[0], c.g[2] === "#F0E9DA" ? c.g[1] : c.g[2])}}`).join("\n");
+  const dk = CITIES.map((c, i) => `.cv${i}{--wall:${mix(c.wall, "#161615", 0.9)}}`).join("\n");
   const css2 = css + `\n@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) ${dk.replace(/\n/g, "\n:root:not([data-theme=\"light\"]) ")}}\n` + dk.split("\n").map((r) => `:root[data-theme="dark"] ${r}`).join("\n");
   const tag = document.createElement("style"); tag.textContent = css2; document.head.appendChild(tag);
 }
@@ -308,54 +310,132 @@ function panelHTML(ui, states, attrs = "") { return `<div class="panel cv${ui}" 
 function medalMark() { return `<svg viewBox="-30 -30 60 60" aria-hidden="true"><polygon points="${starPts(0, 0, 27, 20.5, 8)}" style="fill:var(--g0,#13706F)" stroke="#E9E0CF" stroke-width="1.5" stroke-linejoin="round"/><polygon points="${starPts(0, 0, 13, 9.8, 8, -Math.PI / 2 + Math.PI / 8)}" style="fill:var(--g2,#E0A631)" stroke="#E9E0CF" stroke-width="1.2" stroke-linejoin="round"/></svg>`; }
 const ARCH = `<svg class="arch" viewBox="0 0 200 320" aria-hidden="true"><path d="M30 320V150A70 70 0 1 1 170 150V320" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M46 320V152A54 54 0 1 1 154 152V320" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M100 54l7 12 14 2-10 10 2 14-13-7-13 7 2-14-10-10 14-2z" fill="currentColor" opacity=".7"/></svg>`;
 const INK = "#2A1B3D";
-function mascot(mood = "happy", cls = "") {
-  const O = "#3B2416", F = "#EE9A45", D = "#C8702A", C = "#FCE8CC", P = "#F29AA6";
+// Mchicha: a flat line drawing in the ink colour, with a white tagiya and its teal band.
+// Group classes (cat-tail, cat-head, cat-ear-l/r, cat-eyes, cat-cap, cat-shadow) are what the motion CSS animates.
+// Mchicha: a sand-coloured tabby in a white tagiya. Fixed warm colours so she reads the same in light and dark.
+const CATC = { ink:"#2B231D", fur:"#EDBE7E", shade:"#C98A4B", cream:"#FBF0DC", pink:"#E9A08C", cap:"#FBF8F2" };
+function catHead(mood = "happy") {
+  const C = CATC, K = `stroke="${C.ink}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"`;
+  const hl = (x, y) => `<circle cx="${x}" cy="${y}" r="1.6" fill="#FFFFFF"/>`;
   const eyes = {
-    happy:`<path d="M58 79q7-8 14 0M88 79q7-8 14 0" stroke="${O}" stroke-width="3.6" fill="none" stroke-linecap="round"/>`,
-    normal:`<g class="cat-eyes"><ellipse cx="65" cy="78" rx="6.2" ry="7.6" fill="${O}"/><ellipse cx="95" cy="78" rx="6.2" ry="7.6" fill="${O}"/><circle cx="67.4" cy="75" r="2.4" fill="#fff"/><circle cx="97.4" cy="75" r="2.4" fill="#fff"/></g>`,
-    wow:`<g class="cat-eyes"><ellipse cx="65" cy="77" rx="7.4" ry="9.4" fill="${O}"/><ellipse cx="95" cy="77" rx="7.4" ry="9.4" fill="${O}"/><circle cx="68" cy="73.4" r="3" fill="#fff"/><circle cx="98" cy="73.4" r="3" fill="#fff"/><circle cx="63" cy="81" r="1.4" fill="#fff"/><circle cx="93" cy="81" r="1.4" fill="#fff"/></g>`,
-    sad:`<g class="cat-eyes"><ellipse cx="65" cy="80" rx="5.4" ry="6.4" fill="${O}"/><ellipse cx="95" cy="80" rx="5.4" ry="6.4" fill="${O}"/><circle cx="66.8" cy="77.6" r="2" fill="#fff"/><circle cx="96.8" cy="77.6" r="2" fill="#fff"/></g><path d="M57 74l11-5M103 74l-11-5" stroke="${O}" stroke-width="3" stroke-linecap="round"/>`,
-    wink:`<path d="M58 79q7-8 14 0" stroke="${O}" stroke-width="3.6" fill="none" stroke-linecap="round"/><g class="cat-eyes"><ellipse cx="95" cy="78" rx="6.2" ry="7.6" fill="${O}"/><circle cx="97.4" cy="75" r="2.4" fill="#fff"/></g>`,
+    happy:`<path d="M60 84q6-7 12 0M88 84q6-7 12 0" fill="none" ${K}/>`,
+    normal:`<g class="cat-eyes"><ellipse cx="66" cy="83" rx="4" ry="5" fill="${C.ink}"/><ellipse cx="94" cy="83" rx="4" ry="5" fill="${C.ink}"/>${hl(67.5, 81)}${hl(95.5, 81)}</g>`,
+    wow:`<g class="cat-eyes"><ellipse cx="66" cy="82" rx="5.4" ry="6.2" fill="${C.ink}"/><ellipse cx="94" cy="82" rx="5.4" ry="6.2" fill="${C.ink}"/>${hl(68, 79.6)}${hl(96, 79.6)}</g>`,
+    sad:`<g class="cat-eyes"><ellipse cx="66" cy="85" rx="3.6" ry="4.4" fill="${C.ink}"/><ellipse cx="94" cy="85" rx="3.6" ry="4.4" fill="${C.ink}"/>${hl(67.2, 83.4)}${hl(95.2, 83.4)}</g><path d="M59 76l11-3.5M101 76l-11-3.5" fill="none" ${K}/>`,
+    wink:`<path d="M60 84q6-7 12 0" fill="none" ${K}/><g class="cat-eyes"><ellipse cx="94" cy="83" rx="4" ry="5" fill="${C.ink}"/>${hl(95.5, 81)}</g>`,
   }[mood] || "";
   const mouth = {
-    happy:`<path d="M72 93q8 10 16 0Z" fill="#D9475C" stroke="${O}" stroke-width="2.4" stroke-linejoin="round"/>`,
-    normal:`<path d="M80 90v3M80 93q-4.5 4.5-8.5 1M80 93q4.5 4.5 8.5 1" stroke="${O}" stroke-width="2.4" fill="none" stroke-linecap="round"/>`,
-    wow:`<ellipse cx="80" cy="96" rx="4.6" ry="5.6" fill="${O}"/>`,
-    sad:`<path d="M73 98q7-6 14 0" stroke="${O}" stroke-width="2.6" fill="none" stroke-linecap="round"/>`,
-    wink:`<path d="M72 93q8 10 16 0Z" fill="#D9475C" stroke="${O}" stroke-width="2.4" stroke-linejoin="round"/>`,
-  }[mood] || "";
-  // tagiya: a white crocheted cap with a red and green zellige band and a little top knot
-  const cap = `<g class="cat-cap">
-      <path d="M53 50Q55 22 80 21Q105 22 107 50Q80 57 53 50Z" fill="#F7F1E3" stroke="${O}" stroke-width="2.6" stroke-linejoin="round"/>
-      <path d="M55.5 44Q80 50.5 104.5 44" fill="none" stroke="#C7362F" stroke-width="5"/>
-      <path d="M57 44.6l4-4 4 4 4-4 4 4 4-4 4 4 4-4 4 4 4-4 4 4 4-4 4 4" fill="none" stroke="#1F7A4D" stroke-width="1.8" stroke-linejoin="round"/>
-      <path d="M60 33Q80 29 100 33" fill="none" stroke="#E2D6BC" stroke-width="1.6" stroke-dasharray="2 3"/>
-      <path d="M57 39Q80 35 103 39" fill="none" stroke="#E2D6BC" stroke-width="1.6" stroke-dasharray="2 3"/>
-      <circle cx="80" cy="20.5" r="3.4" fill="#C7362F" stroke="${O}" stroke-width="2"/></g>`;
-  return `<svg xmlns="http://www.w3.org/2000/svg" class="cat mc ${cls}" data-mood="${mood}" viewBox="0 0 160 160" aria-hidden="true">
-    <ellipse class="cat-shadow" cx="80" cy="151" rx="42" ry="5" fill="rgba(30,20,60,.18)"/>
-    <g class="cat-tail"><path d="M108 140Q140 140 138 112Q136 96 124 92" fill="none" stroke="${O}" stroke-width="14.5" stroke-linecap="round"/><path d="M108 140Q140 140 138 112Q136 96 124 92" fill="none" stroke="${F}" stroke-width="9.5" stroke-linecap="round"/><path d="M134.5 103q-6 1-8 6M137.5 118q-6-1-9 3" stroke="${D}" stroke-width="3" stroke-linecap="round" fill="none"/></g>
-    <g class="cat-body">
-      <path d="M48 148Q42 112 60 100Q80 92 100 100Q118 112 112 148Z" fill="${F}" stroke="${O}" stroke-width="2.8" stroke-linejoin="round"/>
-      <path d="M66 148Q62 118 80 108Q98 118 94 148Z" fill="${C}"/>
-      <path d="M52 118q6 1 9 5M50 130q6 0 9 4M108 118q-6 1-9 5M110 130q-6 0-9 4" stroke="${D}" stroke-width="3" stroke-linecap="round" fill="none"/>
-      <ellipse cx="66" cy="148" rx="11" ry="6.5" fill="${C}" stroke="${O}" stroke-width="2.6"/>
-    </g>
-    <g class="cat-paw"><ellipse cx="94" cy="148" rx="11" ry="6.5" fill="${C}" stroke="${O}" stroke-width="2.6"/></g>
-    <g class="cat-head">
-      <g class="cat-ear-l"><path d="M48 66L46 28L72 46Z" fill="${F}" stroke="${O}" stroke-width="2.8" stroke-linejoin="round"/><path d="M52 58L51 36L66 47Z" fill="${P}"/></g>
-      <g class="cat-ear-r"><path d="M112 66L114 28L88 46Z" fill="${F}" stroke="${O}" stroke-width="2.8" stroke-linejoin="round"/><path d="M108 58L109 36L94 47Z" fill="${P}"/></g>
-      <ellipse cx="80" cy="80" rx="40" ry="34" fill="${F}" stroke="${O}" stroke-width="2.8"/>
-      <path d="M44 74q7 1 11 5M42 86q7 0 11 3M116 74q-7 1-11 5M118 86q-7 0-11 3" stroke="${D}" stroke-width="3" stroke-linecap="round" fill="none"/>
-      <ellipse cx="80" cy="94" rx="18" ry="12.5" fill="${C}"/>
+    happy:`<path d="M74 97q6 7 12 0" fill="none" ${K}/>`,
+    wow:`<ellipse cx="80" cy="99" rx="3.6" ry="4.4" fill="#8E3B2E" ${K}/>`,
+    sad:`<path d="M74 101q6-5 12 0" fill="none" ${K}/>`,
+  }[mood] || `<path d="M80 93v2.4M80 95.4q-3.6 3.6-7 1M80 95.4q3.6 3.6 7 1" fill="none" ${K}/>`;
+  const cap = `<g class="cat-cap"><path d="M55 57Q57 31 80 30Q103 31 105 57Q80 63 55 57Z" fill="${C.cap}" ${K}/>
+    <path d="M64 41l3-3 3 3-3 3ZM77 37l3-3 3 3-3 3ZM90 41l3-3 3 3-3 3Z" fill="var(--accent)" opacity=".85"/>
+    <path d="M57.5 51.5Q80 57.5 102.5 51.5" fill="none" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="round"/>
+    <circle cx="80" cy="28.5" r="3.4" fill="var(--accent)" stroke="${C.ink}" stroke-width="2.4"/></g>`;
+  return `<g class="cat-head">
+      <g class="cat-ear-l"><path d="M51 74L47 38L73 55Z" fill="${C.fur}" ${K}/><path d="M53.5 64L51.5 47L64 56Z" fill="${C.pink}"/></g>
+      <g class="cat-ear-r"><path d="M109 74L113 38L87 55Z" fill="${C.fur}" ${K}/><path d="M106.5 64L108.5 47L96 56Z" fill="${C.pink}"/></g>
+      <ellipse cx="80" cy="84" rx="37" ry="31" fill="${C.fur}" ${K}/>
+      <path d="M80 61v7M71.5 62.5l1.6 5M88.5 62.5l-1.6 5M44.5 81h7M45.5 88h6M115.5 81h-7M114.5 88h-6" stroke="${C.shade}" stroke-width="3" stroke-linecap="round"/>
+      <path d="M65 98Q65 88.5 80 89.5Q95 88.5 95 98Q95 107 80 106Q65 107 65 98Z" fill="${C.cream}"/>
+      <ellipse cx="55" cy="96" rx="5.5" ry="3.2" fill="${C.pink}" opacity=".55"/><ellipse cx="105" cy="96" rx="5.5" ry="3.2" fill="${C.pink}" opacity=".55"/>
       ${cap}
       ${eyes}
-      <path d="M75.5 87h9l-4.5 4.6Z" fill="${P}" stroke="${O}" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M76.4 89h7.2L80 93.2Z" fill="${C.pink}" stroke="${C.ink}" stroke-width="2" stroke-linejoin="round"/>
       ${mouth}
-      <path d="M60 91H44M60 96l-14 4M100 91h16M100 96l14 4" stroke="${O}" stroke-width="1.8" stroke-linecap="round" opacity=".75"/>
-      <ellipse cx="55" cy="96" rx="5.5" ry="3.6" fill="${P}" opacity=".55"/><ellipse cx="105" cy="96" rx="5.5" ry="3.6" fill="${P}" opacity=".55"/>
-    </g>
+      <path d="M60 94H47M60 99l-12 3.5M100 94h13M100 99l12 3.5" fill="none" stroke="${C.ink}" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+    </g>`;
+}
+function mascot(mood = "happy", cls = "") {
+  const C = CATC, K = `stroke="${C.ink}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"`;
+  const tail = "M106 140Q138 140 136 113Q134 99 123 95";
+  return `<svg xmlns="http://www.w3.org/2000/svg" class="cat mc ${cls}" data-mood="${mood}" viewBox="0 0 160 160" aria-hidden="true">
+    <ellipse class="cat-shadow" cx="80" cy="151" rx="40" ry="4.5" fill="${C.ink}" opacity=".12"/>
+    <g class="cat-tail"><path d="${tail}" fill="none" stroke="${C.ink}" stroke-width="12.5" stroke-linecap="round"/><path d="${tail}" fill="none" stroke="${C.fur}" stroke-width="6.5" stroke-linecap="round"/>
+      <path d="M132.4 104Q128 97 123 95" fill="none" stroke="${C.shade}" stroke-width="6.5" stroke-linecap="round"/><path d="M128 139.4l1.5-6.5M135.3 125l-6-2" stroke="${C.shade}" stroke-width="3" stroke-linecap="round"/></g>
+    <g class="cat-body"><path d="M50 148Q45 116 62 105Q80 97 98 105Q115 116 110 148Z" fill="${C.fur}" ${K}/>
+      <path d="M67 147Q65 122 80 115Q95 122 93 147Z" fill="${C.cream}"/>
+      <path d="M53 124l7 2M52 133l7 1M107 124l-7 2M108 133l-7 1" stroke="${C.shade}" stroke-width="3" stroke-linecap="round"/>
+      <ellipse cx="70" cy="146" rx="8.5" ry="5" fill="${C.cream}" ${K}/><ellipse cx="90" cy="146" rx="8.5" ry="5" fill="${C.cream}" ${K}/></g>
+    ${catHead(mood)}
   </svg>`;
+}
+// A keyhole-arch badge for each city on the Journey: Mchicha's head in front of something from that city.
+const BADGE_PROPS = {
+  // Tangier: the ferry coming in
+  "Tangier":`<path d="M0 36h62v28H0Z" fill="#7FB4C9"/><path d="M0 37q4-2.5 8 0t8 0 8 0 8 0 8 0 8 0 8 0" fill="none" stroke="#FFFFFF" stroke-width="1.4" opacity=".85"/>
+   <g transform="translate(26 14)"><path d="M0 18h26l-4.5 7H4Z" fill="#FFFFFF" stroke="#2B231D" stroke-width="1.5" stroke-linejoin="round"/><path d="M5 18v-5h14v5" fill="#FFFFFF" stroke="#2B231D" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 15.5h2M12 15.5h2" stroke="#1F45B5" stroke-width="1.6"/><path d="M14 13V7h4v6" fill="#1F45B5" stroke="#2B231D" stroke-width="1.5" stroke-linejoin="round"/><path d="M3 21.5h20" stroke="#1F45B5" stroke-width="1.4"/></g>`,
+  // Chefchaouen: a blue door with studs
+  "Chefchaouen":`<path d="M27 64V27C27 19 31.5 14 37.5 14S48 19 48 27V64Z" fill="#3B79C6" stroke="#22307A" stroke-width="1.5"/><path d="M31 64V28C31 22 34 18 37.5 18S44 22 44 28V64" fill="none" stroke="#22307A" stroke-width="1.2" opacity=".7"/>
+   <g fill="#F0E9DA">${[24, 31, 38].map((y) => [34, 37.5, 41].map((x) => `<circle cx="${x}" cy="${y}" r="1.1"/>`).join("")).join("")}</g><circle cx="42" cy="46" r="1.6" fill="#E0A631"/>`,
+  // Rabat: match day bunting and a ball
+  "Rabat":`<path d="M0 12Q28 22 56 12" fill="none" stroke="#2B231D" stroke-width="1"/><g stroke="#2B231D" stroke-width=".8" stroke-linejoin="round">${[[6, "#C1272D"], [15, "#006233"], [24, "#C1272D"], [33, "#006233"], [42, "#C1272D"], [51, "#006233"]].map(([x, f]) => { const y = 12 + 10 * (1 - Math.pow((x - 28) / 28, 2)) * .5; return `<path d="M${x - 3.2} ${y}h6.4L${x} ${y + 7}Z" fill="${f}"/>`; }).join("")}</g>
+   <circle cx="44" cy="48" r="8" fill="#FFFFFF" stroke="#2B231D" stroke-width="1.5"/><path d="M44 43.6l4 2.9-1.5 4.6h-5l-1.5-4.6Z" fill="#2B231D"/><path d="M44 43.6V40.2M48 46.5l3.2-1M46.5 51.1l2 2.7M41.5 51.1l-2 2.7M40 46.5l-3.2-1" stroke="#2B231D" stroke-width="1"/>`,
+  // Fes: a brass lantern throwing patterned light
+  "Fes":`<circle cx="41" cy="27" r="15" fill="#FFC53D" opacity=".3"/><path d="M41 0v9" stroke="#7A4E00" stroke-width="1.5"/>
+   <g transform="translate(41 9)"><path d="M-6 4L0-1l6 5Z" fill="#E0A631" stroke="#7A4E00" stroke-width="1.4" stroke-linejoin="round"/><path d="M-8 5h16l4 11-4 11H-8l-4-11Z" fill="#FFC53D" stroke="#7A4E00" stroke-width="1.5" stroke-linejoin="round"/>
+   <path d="M0 8l2.4 3-2.4 3-2.4-3ZM-5 15l2 2.4-2 2.4-2-2.4ZM5 15l2 2.4-2 2.4-2-2.4ZM0 19l2.4 3-2.4 3-2.4-3Z" fill="#7A4E00"/><path d="M-6 27l1.5 4h9l1.5-4Z" fill="#E0A631" stroke="#7A4E00" stroke-width="1.3" stroke-linejoin="round"/></g>`,
+  // Meknes: a glass of mint tea, steaming
+  "Meknes":`<path d="M40 30q-2.5-3.5 0-7M45 30q2.5-3.5 0-7" fill="none" stroke="#2B231D" stroke-width="1.3" stroke-linecap="round" opacity=".45"/>
+   <path d="M35 33h15l-2.2 21h-10.6Z" fill="#C7843A" stroke="#2B231D" stroke-width="1.5" stroke-linejoin="round"/><path d="M35.8 38.5h13.4" stroke="#FFFFFF" stroke-width="1.2" opacity=".55"/><path d="M38 41v9" stroke="#FFFFFF" stroke-width="1.4" stroke-linecap="round" opacity=".4"/>
+   <path d="M44 33c2.5-5.5 8.5-5.5 9.5-2.5-2.5 2.6-5.5 3.8-9.5 2.5Z" fill="#2F8A5B" stroke="#1B4F33" stroke-width="1.1"/><path d="M32 57h21" stroke="#2B231D" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>`,
+  // Marrakech: a tajine
+  "Marrakech":`<ellipse cx="42" cy="56" rx="13" ry="3.4" fill="#B4532A" stroke="#4A1F0D" stroke-width="1.5"/><path d="M42 32L52.5 53H31.5Z" fill="#E07A3F" stroke="#4A1F0D" stroke-width="1.5" stroke-linejoin="round"/>
+   <circle cx="42" cy="31.5" r="2.4" fill="#FFC53D" stroke="#4A1F0D" stroke-width="1.2"/><path d="M35.6 45h12.8M33.6 49h16.8" stroke="#FFC53D" stroke-width="1.4"/><path d="M40.2 47l1.8-1.8 1.8 1.8-1.8 1.8Z" fill="#2F3BEB"/>`,
+  // Casablanca: a tall minaret over the Atlantic
+  "Casablanca":`<path d="M0 40h62v24H0Z" fill="#9FC3CC"/><path d="M0 41q5-2 10 0t10 0 10 0 10 0 10 0 10 0" fill="none" stroke="#FFFFFF" stroke-width="1.2" opacity=".8"/>
+   <path d="M36 42V14h10v28Z" fill="#E7DCC6" stroke="#2B231D" stroke-width="1.5" stroke-linejoin="round"/><path d="M37.5 8.5h7v5.5h-7Z" fill="#E7DCC6" stroke="#2B231D" stroke-width="1.4"/><path d="M41 8.5V3" stroke="#2B231D" stroke-width="1.3"/><circle cx="41" cy="3" r="1.2" fill="#B8913E"/>
+   <path d="M36 20h10M36 29h10" stroke="#157A7A" stroke-width="1.5"/><path d="M39.5 22.5h3v4.5h-3ZM39.5 32h3v5h-3Z" fill="#157A7A"/>`,
+  // Kelaat M’Gouna: a damask rose
+  "Kelaat M’Gouna":`<path d="M42 64V46" stroke="#2F8A5B" stroke-width="1.8"/><path d="M42 56c-4-1-7 1-8 3 4 1 6 0 8-3ZM42 52c4-2 7-1 8 1-3 2-6 2-8-1Z" fill="#2F8A5B" stroke="#1B4F33" stroke-width="1"/>
+   <g transform="translate(42 40)"><circle r="8.5" fill="#D9486A" stroke="#7A1E36" stroke-width="1.5"/><path d="M-3.4 0a3.4 3.4 0 1 1 5.2 2.8M-5.8 2a6.2 6.2 0 0 0 11.4 0M-1 -2.6a2 2 0 1 1 2 2" fill="none" stroke="#7A1E36" stroke-width="1.2" stroke-linecap="round"/></g>
+   <path d="M10 14q2.5-2.5 5 0-2.5 2.5-5 0ZM44 12q2.5-2.5 5 0-2.5 2.5-5 0ZM26 8q2-2 4 0-2 2-4 0Z" fill="#D9486A" opacity=".75"/>`,
+  // Merzouga: dunes, a low sun and a camel
+  "Merzouga":`<circle cx="16" cy="18" r="7" fill="#F6B04B"/><path d="M0 40Q18 26 36 37T56 33V64H-2Z" fill="#E3A462"/><path d="M0 52Q22 40 56 50V64H-2Z" fill="#CC8445"/>
+   <g transform="translate(33 22)" fill="none" stroke="#2B231D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M0 9c1-4 4-5 6-2 1.5-4 4.5-4 6 0h2c1.5 0 2-2 2.5-4"/><path d="M16.5 3l2 .5"/><path d="M2 9v6M5 9.5v5.5M11 9.5v5.5M14 9v6"/></g>`,
+  // Essaouira: gulls over a blue fishing boat
+  "Essaouira":`<path d="M0 44h62v20H0Z" fill="#8DB9CF"/><path d="M8 14q3.5-3.5 7 0 3.5-3.5 7 0M36 8q2.5-2.5 5 0 2.5-2.5 5 0" fill="none" stroke="#2B231D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+   <path d="M31 38h22l-3.5 7h-15Z" fill="#2F6FB5" stroke="#2B231D" stroke-width="1.5" stroke-linejoin="round"/><path d="M32 40.5h20" stroke="#FFFFFF" stroke-width="1.2"/><path d="M42 38V26l7 9h-7" fill="#F4F0E8" stroke="#2B231D" stroke-width="1.3" stroke-linejoin="round"/>
+   <path d="M0 50q5-3 9 0t9 0 9 0 9 0 9 0 9 0 9 0" fill="none" stroke="#FFFFFF" stroke-width="1.3" opacity=".8"/>`,
+  // Asilah: a painted mural on a whitewashed wall
+  "Asilah":`<path d="M30 14h22v30H30Z" fill="#FFFFFF" stroke="#2B231D" stroke-width="1.3"/><circle cx="41" cy="25" r="6" fill="#E8B04A"/><path d="M30 34q5.5-5 11 0t11 0V44H30Z" fill="#4FA3B8"/><path d="M30 38q5.5-4 11 0t11 0" fill="none" stroke="#2C5D8A" stroke-width="1.4"/>
+   <path d="M0 50h62" stroke="#2C5D8A" stroke-width="3"/>`,
+  // Tetouan: the white dove over a green door
+  "Tetouan":`<path d="M33 64V36c0-5 3.5-8.5 8-8.5s8 3.5 8 8.5v28Z" fill="#2D6A4F" stroke="#1B4332" stroke-width="1.4"/><circle cx="45" cy="47" r="1.3" fill="#E6C36A"/>
+   <g transform="translate(36 10)"><path d="M0 8c4-1 7 0 9 3 2-4 6-7 11-7-3 2-5 5-6 9-4 2-9 2-14-5Z" fill="#FFFFFF" stroke="#2B231D" stroke-width="1.3" stroke-linejoin="round"/><circle cx="2.4" cy="7.6" r=".7" fill="#2B231D"/></g>`,
+  // Agadir: floodlights over a stadium by the ocean
+  "Agadir":`<path d="M0 40h62v24H0Z" fill="#7FB4C9"/><g transform="translate(-4 6) scale(.9)"><path d="M26 46c0-8 7-12 16-12s16 4 16 12v4H26Z" fill="#F4F0E8" stroke="#2B231D" stroke-width="1.4" stroke-linejoin="round"/><path d="M29 44h26" stroke="#C1272D" stroke-width="1.6"/><path d="M31 40h22" stroke="#2B231D" stroke-width="1" opacity=".4"/>
+   <path d="M30 34V14M54 34V14" stroke="#2B231D" stroke-width="1.4"/><path d="M27 10h6v4h-6ZM51 10h6v4h-6Z" fill="#F6D365" stroke="#2B231D" stroke-width="1.2"/></g>`,
+  // Ifrane: a snowy chalet roof and falling snow
+  "Ifrane":`<path d="M0 50h62v14H0Z" fill="#FFFFFF"/><path d="M32 50V36h18v14Z" fill="#E7DCC6" stroke="#2B231D" stroke-width="1.4"/><path d="M29 37L41 25l12 12Z" fill="#7A2E2A" stroke="#2B231D" stroke-width="1.4" stroke-linejoin="round"/><path d="M31 35.5L41 26l10 9.5" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"/><path d="M38 42h5v8h-5Z" fill="#2F5D50"/>
+   <g fill="#FFFFFF" stroke="#2B231D" stroke-width=".6">${[[12, 10], [24, 6], [36, 12], [50, 8], [18, 20], [46, 18]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="1.6"/>`).join("")}</g>`,
+  // Azrou: a cedar tree
+  "Azrou":`<path d="M41 62V44" stroke="#6B4423" stroke-width="3"/><g fill="#3D5A2A" stroke="#22341A" stroke-width="1.3" stroke-linejoin="round"><path d="M28 48h26l-4-6H32Z"/><path d="M31 41h20l-4-6H35Z"/><path d="M34 34h14l-3.5-6h-7Z"/><path d="M37 27h8l-4-6Z"/></g>`,
+  // Taroudant: the old ochre ramparts and a palm
+  "Taroudant":`<path d="M-2 40h6v-4h5v4h6v-4h5v4h6v-4h5v4h6v-4h5v4h6v-4h5v4h6v24H-2Z" fill="#C98A4B" stroke="#6B3A1E" stroke-width="1.3" stroke-linejoin="round"/>
+   <path d="M44 36V14" stroke="#6B4423" stroke-width="2.4" stroke-linecap="round"/><g fill="#2F8A5B" stroke="#1B4F33" stroke-width="1"><path d="M44 14c-4-3-9-2-11 1 4-1 7 0 11-1Z"/><path d="M44 14c4-3 9-2 11 1-4-1-7 0-11-1Z"/><path d="M44 14c-2-4-6-5-9-4 3 1 6 2 9 4Z"/><path d="M44 14c2-4 6-5 9-4-3 1-6 2-9 4Z"/></g>`,
+  // El Jadida: the arches of the old Portuguese cistern
+  "El Jadida":`<path d="M24 22h38v28H24Z" fill="#E4DED2"/><g fill="#A88F6A" stroke="#5E4B30" stroke-width="1.2">${[26, 37, 48].map((x) => `<path d="M${x} 50V30a5.5 5.5 0 0 1 11 0v20h-2.5V31a3 3 0 0 0-6 0v19Z"/>`).join("")}</g><path d="M24 22h38" stroke="#5E4B30" stroke-width="1.6"/>
+   <path d="M0 50h62v14H0Z" fill="#4F9DB8" opacity=".75"/><path d="M27 54h9M38 56h9M49 54h9" stroke="#FFFFFF" stroke-width="1.2" opacity=".7"/>`,
+  // Ouarzazate: a kasbah tower
+  "Ouarzazate":`<path d="M30 60l3-38h16l3 38Z" fill="#C98A4B" stroke="#6B3A1E" stroke-width="1.4" stroke-linejoin="round"/><path d="M33 22v-4h3v4M39.5 22v-4h3v4M46 22v-4h3v4" fill="#C98A4B" stroke="#6B3A1E" stroke-width="1.2"/>
+   <path d="M35 28l2-2 2 2-2 2ZM43 28l2-2 2 2-2 2Z" fill="#6B3A1E"/><path d="M38.5 36h5v6h-5ZM38.5 48h5v12h-5Z" fill="#6B3A1E"/><path d="M0 60h62v4H0Z" fill="#B3713F"/>`,
+  // Zagora: a palm grove and the road sign into the sand
+  "Zagora":`<path d="M0 46Q20 38 62 46V64H0Z" fill="#E3A462"/><path d="M48 46V28" stroke="#6B4423" stroke-width="1.6"/><path d="M36 22h20l3 3-3 3H36Z" fill="#F4F0E8" stroke="#2B231D" stroke-width="1.3" stroke-linejoin="round"/><path d="M39 25h11" stroke="#2B231D" stroke-width="1.1" stroke-dasharray="2 1.5"/>
+   <path d="M33 46V30" stroke="#6B4423" stroke-width="2" stroke-linecap="round"/><g fill="#3F7D4E" stroke="#1B4F33" stroke-width=".9"><path d="M33 30c-3-2.5-7-2-9 .5 3-1 6 0 9-.5Z"/><path d="M33 30c3-2.5 7-2 9 .5-3-1-6 0-9-.5Z"/><path d="M33 30c-1.5-3.5-5-4-7.5-3 2.5 1 5 1.5 7.5 3Z"/></g>`,
+  // Dakhla: a kite over the lagoon
+  "Dakhla":`<path d="M0 44h62v20H0Z" fill="#5FC1C0"/><path d="M0 48q6-3 12 0t12 0 12 0 12 0 12 0" fill="none" stroke="#FFFFFF" stroke-width="1.3" opacity=".8"/>
+   <path d="M30 14q12-10 24 0l-4 3q-8-6-16 0Z" fill="#F2C46D" stroke="#2B231D" stroke-width="1.3" stroke-linejoin="round"/><path d="M32 16L46 44M52 16L46 44" stroke="#2B231D" stroke-width=".8" opacity=".6"/><path d="M44 44h5l-1 2h-3Z" fill="#126B73" stroke="#2B231D" stroke-width="1"/>`,
+};
+const BADGE_ARCH = "M7 64V33C2 25 5 4 28 4S54 25 49 33V64Z";
+function cityBadge(ui, mood = "happy") {
+  const c = CITIES[ui] || CITIES[0], id = `cb${ui}`;
+  const scarf = c.en === "Rabat" || c.en === "Agadir" ? `<path d="M8.5 60q11.5 5 23 0v4h-23Z" fill="#C1272D" stroke="#2B231D" stroke-width="1.3"/><path d="M14 62v2.5M20 62.6v2M26 62v2.5" stroke="#006233" stroke-width="2.4"/>` : c.en === "Kelaat M’Gouna" ? `<g transform="translate(27.5 41)"><circle r="3" fill="#D9486A" stroke="#7A1E36" stroke-width="1"/><path d="M-1.2 0a1.3 1.3 0 1 1 2 1" fill="none" stroke="#7A1E36" stroke-width=".8"/></g>` : "";
+  return `<svg class="cbadge" viewBox="0 0 56 64" aria-hidden="true"><defs><clipPath id="${id}"><path d="${BADGE_ARCH}"/></clipPath></defs>
+    <g clip-path="url(#${id})"><rect width="56" height="64" fill="${c.wall}"/><g transform="translate(-4.5 0)">${BADGE_PROPS[c.en] || ""}</g>
+      <g transform="translate(20 52.5) scale(.33) translate(-80 -84)">${catHead(mood)}</g>${scarf}</g>
+    <path d="${BADGE_ARCH}" fill="none" stroke="#2B231D" stroke-width="1.6" stroke-linejoin="round"/></svg>`;
 }
 function vendorFace() {
   return `<svg class="face-v" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#FFE3C4"/>
@@ -422,6 +502,19 @@ const ICON = {
 };
 function flameSVG(cls = "") { return `<svg class="${cls}" viewBox="0 0 20 24" aria-hidden="true"><path d="M10 1.5c1.2 3.6-.4 5.6-2 7.4C6.4 10.7 5 12.6 5 15.2A5 5 0 0 0 10 22a5 5 0 0 0 5-5.4c0-2.2-1-3.9-2.3-5.2.2 1.7-.5 3-1.8 3.6.7-3.9-.2-7.4-.9-13.5Z" fill="#FF8A1F"/><path d="M10 12.5c.4 1.8-.3 2.8-1 3.6-.6.7-1.1 1.4-1.1 2.4A2.1 2.1 0 0 0 10 20.8a2.2 2.2 0 0 0 2.2-2.3c0-1.5-.9-2.6-2.2-6Z" fill="#FFC53D"/></svg>`; }
 let glassUid = 0;
+// the tea tray: the last seven days as small glasses, today's filling as you go. Wakha's take on a streak.
+function teaTray() {
+  const d0 = today(); let out = "";
+  for (let k = 6; k >= 0; k--) {
+    const key = addDays(d0, -k), rec = S.days[key];
+    const pct = k === 0 ? Math.min(1, ((rec && rec.xp) || 0) / S.goal) : rec && rec.goalMet ? 1 : 0;
+    const top = 3 + (1 - pct) * 11, id = "tt" + (++glassUid);
+    out += `<svg class="tg${k === 0 ? " now" : ""}${pct >= 1 ? " full" : ""}" viewBox="0 0 10 16" aria-hidden="true"><defs><clipPath id="${id}"><path d="M1 2h8l-1 12.2a1 1 0 0 1-1 .8H3a1 1 0 0 1-1-.8Z"/></clipPath></defs>
+      <rect x="0" y="${top.toFixed(2)}" width="10" height="16" fill="#D98A2B" clip-path="url(#${id})"/><path d="M1 2h8l-1 12.2a1 1 0 0 1-1 .8H3a1 1 0 0 1-1-.8Z" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
+      <path d="M1.6 5h6.8" stroke="#EBC274" stroke-width=".9"/></svg>`;
+  }
+  return `<span class="tray">${out}</span>`;
+}
 function teaGlass(pct, cls = "gl") {
   const id = "tg" + (++glassUid);
   const top = 6 + (1 - Math.max(0, Math.min(1, pct))) * 22;
@@ -446,7 +539,7 @@ const FX = {
   cv:null, g:null, parts:[], raf:0, w:0, h:0,
   init() { this.cv = $("#fx"); this.g = this.cv.getContext("2d"); this.size(); addEventListener("resize", () => this.size()); },
   size() { const r = this.cv.getBoundingClientRect(); const dpr = Math.min(2, devicePixelRatio || 1); this.cv.width = Math.max(1, r.width * dpr); this.cv.height = Math.max(1, r.height * dpr); this.g.setTransform(dpr, 0, 0, dpr, 0, 0); this.w = r.width; this.h = r.height; },
-  cols:["#F6B932", "#FFD36B", "#129C72", "#6153E0", "#FFFFFF", "#DE4459", "#3B33C4"],
+  cols:["#17655E", "#5DBDB0", "#E0A631", "#C9A24F", "#FFFFFF", "#1F201D", "#EFE2D6"],
   burst(x, y, n = 34, power = 1) {
     if (reduced) n = Math.min(n, 8);
     for (let i = 0; i < n; i++) {

@@ -1,45 +1,60 @@
-/* Wakha v4. One sans family (Readex Pro, built for Latin + Arabic), Kufi for Arabic display.
-   Palette: lime-wash white, Majorelle blue, saffron, indigo ink. Each city adds its own glazes. */
+/* Wakha v7 design system.
+   Type: Instrument Sans for the interface and Latin Darija (proportional digits so 3/7/9 read as letters,
+   tabular figures for counts), Instrument Serif for the greeting only, Noto Naskh Arabic for Arabic script (18px+).
+   Colour: white ground, warm neutral surfaces, near-black ink, one teal for what you can hear and do.
+   Each city tints the panels with its own wall colour (set per .cvN in app1.js).
+   Motion: strong ease-out for entrances, ease-in-out for on-screen moves, the drawer curve for sheets,
+   and one gentle spring (damping 0.8, response 0.4) for presses and physical moves. */
 :root{
-  --bg:#F1F3EC; --bg-2:#E6E9DF; --card:#FFFFFF;
-  --ink:#16133B; --ink-2:#33315C; --ink-soft:#5E5C80; --ink-faint:#9391AC;
-  --line:rgba(22,19,59,.08); --line-2:rgba(22,19,59,.15);
-  --maj:#3B33C4; --maj-hi:#6153E0; --maj-deep:#1E1878; --maj-wash:#E4E3FA;
-  --saf:#F6B932; --saf-hi:#FFD36B; --saf-lo:#D99216; --saf-ink:#2B1B00;
-  --good:#129C72; --good-wash:#DDF3EA; --bad:#DE4459; --bad-wash:#FBE3E6;
-  --brass:#C9A24F; --brass-hi:#F4DE9F; --brass-lo:#8C6826; --clay:#D6A88C;
-  --glass:rgba(255,255,255,.84); --glass-2:rgba(255,255,255,.9); --glow:rgba(255,255,255,.55); --tint:22,19,59;
-  --toast:#16133B; --toast-ink:#fff; --maj-ink:#3B33C4; --good-ink:#0B7354; --bad-ink:#B12E42;
-  --gold:var(--saf); --surface-3:rgba(22,19,59,.08); --fg-faint:var(--ink-faint);
-  --font:"Readex Pro",system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Arabic",sans-serif;
+  --bg:#FFFFFF; --bg-2:#F0EEEA; --card:#F6F5F2; --raised:#FFFFFF;
+  --ink:#1F201D; --ink-2:#3A3B37; --ink-soft:#5C5C58; --ink-faint:#6B6B66;
+  --line:#E7E5E0; --line-2:#D5D3CD;
+  --maj:#1F201D; --on-maj:#FFFFFF; --maj-hi:#17655E; --maj-deep:#0E4A44; --maj-wash:#DDEFEC; --maj-ink:#17655E;
+  --saf:#17655E; --saf-hi:#5DBDB0; --saf-lo:#0E4A44; --saf-ink:#FFFFFF;
+  --good:#17655E; --good-wash:#DDEFEC; --good-ink:#0E4A44; --bad:#B42318; --bad-wash:#FDECEA; --bad-ink:#7A1D14;
+  --brass:#C9A24F; --brass-hi:#F4DE9F; --brass-lo:#8C6826; --clay:#D5D3CD;
+  --glass:#FFFFFF; --glass-2:#FFFFFF; --glow:transparent; --tint:31,32,29;
+  --toast:#1F201D; --toast-ink:#FFFFFF;
+  --gold:var(--saf); --surface-3:rgba(31,32,29,.08); --fg-faint:var(--ink-faint);
+  --font:"Instrument Sans",system-ui,-apple-system,"Segoe UI",Roboto,"Noto Naskh Arabic",sans-serif;
   --font-ui:var(--font); --font-display:var(--font);
-  --font-ar:"Amiri","Noto Naskh Arabic","Geeza Pro",serif;
-  --font-kufi:"Reem Kufi","Amiri","Geeza Pro",serif;
+  --font-greet:"Instrument Serif",Georgia,serif;
+  --font-ar:"Noto Naskh Arabic","Geeza Pro","Segoe UI",serif;
+  --font-kufi:var(--font-ar);
   --hud-h:60px; --dock-h:72px;
-  --wall:#E6ECE8; --niche:#D3DFDA; --accent:#126E6C; --g0:#13706F; --g1:#1F45B5; --g2:#E0A631;
-  --spring:linear(0,.009,.035 2.1%,.141,.281 6.7%,.723 12.9%,.938 16.7%,1.017,1.077,1.121,1.149 24.3%,1.159,1.163,1.161,1.154 29.9%,1.129 32.8%,1.051 39.6%,1.017 43.1%,.991,.977 51%,.974 53.8%,.975 57.1%,.997 69.8%,1.003 76.9%,1);
-  --out:cubic-bezier(.2,.8,.2,1);
-  --sh-1:0 1px 2px rgba(22,19,59,.06),0 6px 16px -8px rgba(22,19,59,.18);
-  --sh-2:0 2px 4px rgba(22,19,59,.05),0 18px 40px -18px rgba(30,24,120,.38);
+  --wall:#F4F6F5; --wall-raw:#E6ECE8; --niche:#D3DFDA; --accent:#17655E; --g0:#13706F; --g1:#1F45B5; --g2:#E0A631;
+  --track:#E7E5E0;
+  --ease-out:cubic-bezier(0.23,1,0.32,1);
+  --ease-in-out:cubic-bezier(0.77,0,0.175,1);
+  --ease-drawer:cubic-bezier(0.32,0.72,0,1);
+  /* spring, damping 0.8 / response 0.4: settles in ~520ms with a 1.5% overshoot */
+  --spring:linear(0,0.018,0.066,0.133,0.211,0.296,0.381,0.465,0.544,0.617,0.683,0.742,0.794,0.838,0.876,0.908,0.934,0.955,0.972,0.985,0.995,1.003,1.008,1.012,1.014,1.015,1.015,1.015,1.014,1.013,1.012,1.011,1.009,1.008,1.007,1.006,1.005,1.004,1.003,1.002,1);
+  --out:var(--ease-out);
+  --sh-1:none;
+  --sh-2:0 1px 2px rgba(0,0,0,.04),0 12px 32px -12px rgba(0,0,0,.18);
   color-scheme:light;
 }
 
 /* ---------- dark mode: follows the system unless the learner picks one in Me ---------- */
 @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
-  --bg:#100F26; --bg-2:#1C1B3B; --card:#1F1E42; --ink:#F2F1FA; --ink-2:#D9D7EE; --ink-soft:#A9A7C8; --ink-faint:#77759C;
-  --line:rgba(255,255,255,.08); --line-2:rgba(255,255,255,.16); --maj-wash:#2C2874; --good-wash:#11382D; --bad-wash:#41202B;
-  --glass:rgba(31,30,66,.84); --glass-2:rgba(19,18,44,.92); --glow:rgba(255,255,255,.07); --tint:255,255,255;
-  --toast:#F2F1FA; --toast-ink:#16133B; --maj-ink:#BDB7FF; --good-ink:#62DBAD; --bad-ink:#FF8D9D;
-  --sh-1:0 1px 2px rgba(0,0,0,.35),0 8px 20px -10px rgba(0,0,0,.7); --sh-2:0 2px 4px rgba(0,0,0,.3),0 20px 44px -18px rgba(0,0,0,.8); color-scheme:dark } }
+  --bg:#111111; --bg-2:#232321; --card:#1C1C1A; --raised:#222220; --ink:#F4F3EF; --ink-2:#DADAD5; --ink-soft:#B4B4AE; --ink-faint:#9A9A94;
+  --line:#2E2E2B; --line-2:#4A4A46; --maj:#F2F2F0; --on-maj:#111111; --maj-hi:#5DBDB0; --maj-wash:#16302C; --maj-ink:#5DBDB0;
+  --saf:#5DBDB0; --saf-hi:#5DBDB0; --saf-lo:#5DBDB0; --saf-ink:#0B1F1C;
+  --good-wash:#16302C; --good-ink:#5DBDB0; --bad:#C4321F; --bad-wash:#2C1A1A; --bad-ink:#F08A80;
+  --glass:#1C1C1A; --glass-2:#1C1C1A; --tint:255,255,255; --track:#2E2E2B;
+  --toast:#F4F3EF; --toast-ink:#111111; --accent:#5DBDB0;
+  --sh-2:0 1px 2px rgba(0,0,0,.4),0 16px 40px -14px rgba(0,0,0,.8); color-scheme:dark } }
 :root[data-theme="dark"]{
-  --bg:#100F26; --bg-2:#1C1B3B; --card:#1F1E42; --ink:#F2F1FA; --ink-2:#D9D7EE; --ink-soft:#A9A7C8; --ink-faint:#77759C;
-  --line:rgba(255,255,255,.08); --line-2:rgba(255,255,255,.16); --maj-wash:#2C2874; --good-wash:#11382D; --bad-wash:#41202B;
-  --glass:rgba(31,30,66,.84); --glass-2:rgba(19,18,44,.92); --glow:rgba(255,255,255,.07); --tint:255,255,255;
-  --toast:#F2F1FA; --toast-ink:#16133B; --maj-ink:#BDB7FF; --good-ink:#62DBAD; --bad-ink:#FF8D9D;
-  --sh-1:0 1px 2px rgba(0,0,0,.35),0 8px 20px -10px rgba(0,0,0,.7); --sh-2:0 2px 4px rgba(0,0,0,.3),0 20px 44px -18px rgba(0,0,0,.8); color-scheme:dark }
+  --bg:#111111; --bg-2:#232321; --card:#1C1C1A; --raised:#222220; --ink:#F4F3EF; --ink-2:#DADAD5; --ink-soft:#B4B4AE; --ink-faint:#9A9A94;
+  --line:#2E2E2B; --line-2:#4A4A46; --maj:#F2F2F0; --on-maj:#111111; --maj-hi:#5DBDB0; --maj-wash:#16302C; --maj-ink:#5DBDB0;
+  --saf:#5DBDB0; --saf-hi:#5DBDB0; --saf-lo:#5DBDB0; --saf-ink:#0B1F1C;
+  --good-wash:#16302C; --good-ink:#5DBDB0; --bad:#C4321F; --bad-wash:#2C1A1A; --bad-ink:#F08A80;
+  --glass:#1C1C1A; --glass-2:#1C1C1A; --tint:255,255,255; --track:#2E2E2B;
+  --toast:#F4F3EF; --toast-ink:#111111; --accent:#5DBDB0;
+  --sh-2:0 1px 2px rgba(0,0,0,.4),0 16px 40px -14px rgba(0,0,0,.8); color-scheme:dark }
 html{height:100%;box-sizing:border-box}
 *,*::before,*::after{box-sizing:border-box}
-body{height:100%;margin:0;overflow:hidden;background:#0F0D2B;color:var(--ink);font-family:var(--font);font-size:16px;
+body{height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;
   -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
 button,input{font:inherit;color:inherit}
 button{background:none;border:0;padding:0;margin:0;cursor:pointer;touch-action:manipulation}
@@ -49,9 +64,10 @@ svg{display:block}
 .stage{position:relative;height:100%;max-width:480px;margin:0 auto;overflow:hidden;overflow:clip;background:var(--bg);isolation:isolate}
 @media (min-width:560px){ body{background-image:var(--zl-page);background-size:110px 110px} .stage{box-shadow:0 40px 120px rgba(0,0,0,.55)} }
 
-/* press feel: everything you can tap squashes and springs back */
-:where(.cta,.ghost,.next-btn,.opt,.mt,.tok,.jr-row,.td-card,.td-go,.goal-pick,.stile,.play-big,.play-slow,.l-x,.pill,.practice,.rule > button,.seg button,.chip,.kc.got,.tf button,.rb,.stopdot,.jr-chip):not([disabled]){transition:scale .55s var(--spring),transform .45s var(--out),background-color .25s,color .25s,box-shadow .25s,opacity .25s,border-color .25s}
-:where(.cta,.ghost,.next-btn,.opt,.mt,.tok,.jr-row,.td-card,.td-go,.goal-pick,.stile,.play-big,.play-slow,.l-x,.pill,.practice,.rule > button,.seg button,.chip,.kc.got,.tf button,.rb,.jr-chip):not([disabled]):active{scale:.955;transition-duration:.09s,.45s,.25s,.25s,.25s,.25s,.25s}
+/* press feel: everything you can tap gives on press (100ms ease-out, to 0.97) and springs back on release
+   (the 0.8/0.4 spring, ~520ms). Colour changes use plain ease. */
+:where(.cta,.ghost,.next-btn,.opt,.mt,.tok,.jr-row,.td-card,.td-go,.goal-pick,.stile,.play-big,.play-slow,.l-x,.pill,.practice,.rule > button,.seg button,.chip,.kc.got,.tf button,.rb,.stopdot,.jr-chip):not([disabled]){transition:scale 520ms var(--spring),transform 320ms var(--ease-out),background-color 200ms ease,color 200ms ease,box-shadow 200ms ease,opacity 200ms ease,border-color 200ms ease}
+:where(.cta,.ghost,.next-btn,.opt,.mt,.tok,.jr-row,.td-card,.td-go,.goal-pick,.stile,.play-big,.play-slow,.l-x,.pill,.practice,.rule > button,.seg button,.chip,.kc.got,.tf button,.rb,.jr-chip):not([disabled]):active{scale:.97;transition-duration:100ms,320ms,200ms,200ms,200ms,200ms,200ms;transition-timing-function:var(--ease-out),var(--ease-out),ease,ease,ease,ease,ease}
 
 /* ---------- HUD ---------- */
 .hud{position:absolute;z-index:30;top:0;left:0;right:0;pointer-events:none}
@@ -786,7 +802,7 @@ svg{display:block}
 }
 
 /* ---------- motion ---------- */
-@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @keyframes pop{0%{transform:scale(.7);opacity:0}100%{transform:scale(1);opacity:1}}
 @keyframes stamp{0%{transform:scale(2.2) rotate(-25deg);opacity:0}100%{transform:none;opacity:1}}
 @keyframes medin{0%{transform:perspective(800px) rotateY(-140deg) rotateX(20deg) scale(.55);opacity:0}100%{transform:none;opacity:1}}
@@ -814,60 +830,85 @@ svg{display:block}
 @keyframes tabhop{0%{transform:none}35%{transform:translateY(-4px) scale(1.12)}100%{transform:none}}
 @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
 @media (prefers-reduced-motion: no-preference){
-  .card.play .a1{animation:rise .6s var(--out) both}
-  .card.play .a2{animation:rise .6s .07s var(--out) both}
-  .card.play .a3{animation:rise .6s .14s var(--out) both}
-  .card.play .a4{animation:rise .6s .21s var(--out) both}
-  .card.play .a5{animation:rise .6s .28s var(--out) both}
-  .card.play .a6{animation:rise .6s .35s var(--out) both}
+  .card.play .a1{animation:rise 260ms var(--ease-out) both}
+  .card.play .a2{animation:rise 260ms 40ms var(--ease-out) both}
+  .card.play .a3{animation:rise 260ms 80ms var(--ease-out) both}
+  .card.play .a4{animation:rise 260ms 120ms var(--ease-out) both}
+  .card.play .a5{animation:rise 260ms 160ms var(--ease-out) both}
+  .card.play .a6{animation:rise 260ms 200ms var(--ease-out) both}
   .next-btn.nudge svg,.swipe-cue svg{animation:nudge 1.2s ease-in-out infinite}
   .card.is-active .chest:not(.open):not(.wobble){animation:wobble 2.6s 1.2s ease-in-out infinite}
   .steam{animation:steam 1.6s ease-out infinite}
   .td-med .zwrap{animation:breathe 5s ease-in-out infinite}
 }
+/* reduced motion: fewer and gentler, not zero. Looping and travelling motion stops; entrances become
+   150ms fades; colour, opacity and press feedback stay so a tap still reads as heard. */
 @media (prefers-reduced-motion: reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}
+  .cat,.cat *,.steam,.td-med .zwrap,.td-go::after,.l-foot .cta::after,.welcome .cta::after,.ov-box::before,.p-streak svg path,.td-week .d.met svg path,
+  .jr-row.current .go::after,.zel .seg.current .pc,.next-btn.nudge svg,.swipe-cue svg,.chest,.play-big::before,.play-big::after,.shimmer{animation:none!important}
+  .view.enter,.card.play [class*=" a"],.l-end .panel,.l-end h2,.l-end .sub,.l-stats,.ov-box,.cat-say,.slots .tok,.bub,.banner.inline{animation:fade 150ms ease both!important}
+  .banner,.nsheet,.l-confirm .box{transition:opacity 150ms ease!important;transform:none!important}
+  .banner.leaving,.nsheet.leaving{opacity:0}
+  .shake,.stars.anim svg.on,.mt.ok,.tab.on svg,.l-bar i.just{animation:none!important}
+  :where(.cta,.ghost,.next-btn,.opt,.mt,.tok,.jr-row,.chip,.play-big,.play-slow,.l-x):active{scale:.98}
+  .flip-in{transition:transform 1ms!important}
 }
 .swipe-cue{display:flex;align-items:center;gap:8px;font:500 14px/1 var(--font);color:var(--tx-soft)}
 .swipe-cue svg{width:20px;height:20px}
 
-/* ---------- Mchicha the cat ---------- */
+/* ---------- Mchicha the cat ----------
+   At rest he costs almost nothing: the tail wags four times and stops; blinks come from a JS timer
+   (one 140ms squash every 4-7s). Everything else plays only as a reaction. */
 .cat{overflow:visible}
 .cat g{transform-box:fill-box}
-.cat-tail{transform-origin:0% 100%;animation:tailwag 2.8s ease-in-out infinite alternate}
-.cat-eyes{transform-origin:50% 50%;animation:blink 5s infinite}
-.cat-ear-l{transform-origin:90% 100%;animation:earL 7s infinite}
-.cat-ear-r{transform-origin:10% 100%;animation:earR 9s 1.3s infinite}
-.cat-body{transform-origin:50% 100%;animation:breathe2 3.4s ease-in-out infinite}
+.cat-tail{transform-origin:0% 100%;animation:tailwag 2.8s var(--ease-in-out) 4 alternate}
+.cat.wag .cat-tail{animation:tailwag 2.8s var(--ease-in-out) 4 alternate}
+.cat-eyes{transform-origin:50% 50%;transition:transform 110ms var(--ease-out)}
+.cat.blink .cat-eyes{transform:scaleY(.1);transition-duration:70ms}
+.cat-ear-l{transform-origin:90% 100%;transition:transform 300ms var(--ease-out)}
+.cat-ear-r{transform-origin:10% 100%;transition:transform 300ms var(--ease-out)}
+.cat-body{transform-origin:50% 100%}
 .cat-head{transform-origin:50% 90%}
 .cat-cap{transform-origin:50% 100%}
-.cat.bob{animation:bob 3.2s ease-in-out infinite}
-.cat.jump,.cat.hop{animation:catjump .9s var(--spring) both}
-.cat.jump .cat-shadow,.cat.hop .cat-shadow{animation:catshadow .9s var(--spring) both;transform-box:fill-box;transform-origin:center}
-.cat.hi .cat-head{animation:cathi 1.4s ease-in-out both}
-.cat.hi .cat-cap{animation:capflip 1.4s ease-in-out both}
-.cat.droop .cat-head{animation:droop .8s var(--out) both}
-.cat.droop .cat-ear-l{animation:none;transform:rotate(-18deg)}
-.cat.droop .cat-ear-r{animation:none;transform:rotate(18deg)}
-.cat.droop .cat-tail{animation:none;transform:rotate(18deg)}
+/* tapped on Today: a hop, or a wave with the cap */
+.cat.jump,.cat.hop{animation:catjump 560ms var(--ease-in-out) both}
+.cat.jump .cat-shadow,.cat.hop .cat-shadow{animation:catshadow 560ms var(--ease-in-out) both;transform-box:fill-box;transform-origin:center}
+.cat.hi .cat-head{animation:cathi 900ms var(--ease-in-out) both}
+.cat.hi .cat-cap{animation:capflip 900ms var(--ease-in-out) both}
+/* right answer: he pops up behind the feedback sheet, hops, flips his cap and wags fast */
+.cat.cheer{animation:catjump 560ms var(--ease-in-out) 200ms both}
+.cat.cheer .cat-shadow{animation:catshadow 560ms var(--ease-in-out) 200ms both;transform-box:fill-box;transform-origin:center}
+.cat.cheer .cat-cap{animation:capflip 600ms var(--ease-in-out) 260ms both}
+.cat.cheer .cat-tail{animation:tailwag 240ms var(--ease-in-out) 200ms 6 alternate}
+/* wrong answer: a small "no" with the head, then the ears and tail drop. Sympathy, not mockery. */
+.cat.sorry .cat-head{animation:catno 420ms var(--ease-in-out) 200ms both,droop 300ms var(--ease-out) 640ms forwards}
+.cat.sorry .cat-ear-l{animation:earL-down 300ms var(--ease-out) 640ms both}
+.cat.sorry .cat-ear-r{animation:earR-down 300ms var(--ease-out) 640ms both}
+.cat.sorry .cat-tail{animation:tail-down 360ms var(--ease-out) 640ms both}
+@keyframes earL-down{from{transform:none}to{transform:rotate(-26deg)}}
+@keyframes earR-down{from{transform:none}to{transform:rotate(26deg)}}
+@keyframes tail-down{from{transform:rotate(0)}to{transform:rotate(30deg) translateY(4%)}}
+.cat.droop .cat-head{animation:droop 300ms var(--ease-out) both}
+.cat.droop .cat-ear-l{animation:none;transform:rotate(-16deg)}
+.cat.droop .cat-ear-r{animation:none;transform:rotate(16deg)}
+.cat.droop .cat-tail{animation:none;transform:rotate(16deg)}
 @keyframes tailwag{from{transform:rotate(-7deg)}to{transform:rotate(9deg)}}
-@keyframes blink{0%,93%,100%{transform:none}95%{transform:scaleY(.08)}97%{transform:none}}
-@keyframes earL{0%,88%,100%{transform:none}90%{transform:rotate(-16deg)}93%{transform:none}95%{transform:rotate(-10deg)}}
-@keyframes earR{0%,90%,100%{transform:none}93%{transform:rotate(14deg)}96%{transform:none}}
-@keyframes breathe2{0%,100%{transform:none}50%{transform:scaleY(1.025)}}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-@keyframes catjump{0%{transform:none}18%{transform:translateY(4%) scale(1.08,.9)}48%{transform:translateY(-22%) scale(.94,1.08)}74%{transform:translateY(2%) scale(1.06,.95)}100%{transform:none}}
-@keyframes catshadow{0%,100%{transform:none}48%{transform:scale(.6);opacity:.4}}
-@keyframes cathi{0%,100%{transform:none}20%{transform:rotate(-10deg)}45%{transform:rotate(8deg)}70%{transform:rotate(-5deg)}}
-@keyframes capflip{0%,100%{transform:none}25%{transform:translateY(-8px) rotate(-10deg)}50%{transform:translateY(-2px) rotate(4deg)}}
-@keyframes droop{to{transform:translateY(4%) rotate(-7deg)}}
-/* speech bubble */
-.cat-say{position:absolute;z-index:3;pointer-events:none;padding:8px 12px;border-radius:16px 16px 4px 16px;background:var(--card);color:var(--ink);font:600 15px/1.2 var(--font);white-space:nowrap;
-  box-shadow:var(--sh-2);animation:sayin .5s var(--spring) both}
+@keyframes catjump{0%{transform:none}20%{transform:translateY(3%) scale(1.06,.94)}50%{transform:translateY(-16%) scale(.96,1.05)}78%{transform:translateY(1%) scale(1.03,.97)}100%{transform:none}}
+@keyframes catshadow{0%,100%{transform:none}50%{transform:scale(.65);opacity:.45}}
+@keyframes cathi{0%,100%{transform:none}25%{transform:rotate(-9deg)}55%{transform:rotate(7deg)}80%{transform:rotate(-3deg)}}
+@keyframes capflip{0%,100%{transform:none}30%{transform:translateY(-8px) rotate(-10deg)}60%{transform:translateY(-2px) rotate(4deg)}}
+@keyframes catno{0%,100%{transform:none}25%{transform:rotate(-6deg)}55%{transform:rotate(5deg)}80%{transform:rotate(-3deg)}}
+@keyframes droop{to{transform:translateY(5%) rotate(-8deg)}}
+/* in the feedback sheet he rises from behind its top edge, 280ms */
+.banner .cat-peek{transform:translateY(0);opacity:1;transition:transform 280ms var(--ease-out),opacity 200ms ease}
+@starting-style{ .banner .cat-peek{transform:translateY(40%);opacity:0} }
+/* speech bubble: grows out of its tail corner, next to his mouth */
+.cat-say{position:absolute;z-index:3;pointer-events:none;padding:8px 12px;border-radius:16px 16px 4px 16px;background:var(--raised);color:var(--ink);font:600 15px/1.2 var(--font);white-space:nowrap;
+  box-shadow:var(--sh-2);transform-origin:100% 100%;animation:sayin 220ms var(--ease-out) both}
 .cat-say small{display:block;font:400 12px/1.3 var(--font);color:var(--ink-soft);margin-top:2px}
-.cat-say.out{animation:sayout .3s var(--out) forwards}
-@keyframes sayin{from{opacity:0;transform:translateY(8px) scale(.7)}to{opacity:1;transform:none}}
-@keyframes sayout{to{opacity:0;transform:translateY(-6px) scale(.9)}}
+.cat-say.out{animation:sayout 160ms var(--ease-out) forwards}
+@keyframes sayin{from{opacity:0;transform:translateY(4px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes sayout{to{opacity:0;transform:scale(.96)}}
 /* where the cat lives */
 .td-cat{position:absolute;z-index:2;top:calc(var(--hud-h) + 6px);right:max(10px,env(safe-area-inset-right,0px));width:96px;cursor:pointer}
 .td-cat .cat{width:96px;height:96px}
@@ -904,7 +945,7 @@ svg{display:block}
 .cta,.td-go{overflow:hidden;isolation:isolate}
 .td-go::after,.l-foot .cta::after,.welcome .cta::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.5) 50%,transparent 65%);transform:translateX(-130%);animation:shine 5s 1.6s ease-in-out infinite}
 @keyframes shine{0%,62%{transform:translateX(-130%)}82%,100%{transform:translateX(130%)}}
-.p-streak:not(.cold) svg path:first-child,.td-week .d.met svg path:first-child{transform-box:fill-box;transform-origin:50% 100%;animation:flick 1.4s ease-in-out infinite alternate}
+.td-week .d.met svg path:first-child{transform-box:fill-box;transform-origin:50% 100%;animation:flick 1.4s ease-in-out infinite alternate}
 @keyframes flick{0%{transform:scaleY(1) skewX(0)}50%{transform:scaleY(1.08) skewX(-3deg)}100%{transform:scaleY(.96) skewX(2deg)}}
 .ov-box::before{content:"";position:absolute;left:50%;top:-70px;width:360px;height:360px;margin-left:-180px;z-index:-1;border-radius:50%;pointer-events:none;
   background:repeating-conic-gradient(from 0deg,rgba(246,185,50,.2) 0 9deg,transparent 9deg 18deg);-webkit-mask:radial-gradient(circle,#000 25%,transparent 68%);mask:radial-gradient(circle,#000 25%,transparent 68%);animation:spin 22s linear infinite}
@@ -928,3 +969,356 @@ svg{display:block}
 .w-lang svg{color:#fff}
 @media (max-height:690px){ .card[data-type="sq"].answered .prompt-big{display:none} .card[data-type="sq"].answered .listen{display:none} }
 @media (max-height:690px){ .reward{gap:6px} .reward .r-sub{font-size:14px;line-height:1.35} .chest.open{width:min(28vw,110px)} }
+
+/* =====================================================================
+   v7: design system on the lessons tab (Journey, node sheet, lesson flow)
+   ===================================================================== */
+@media (min-width:560px){ body{background:var(--bg-2);background-image:none} .stage{box-shadow:0 0 0 1px var(--line)} }
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* buttons: flat fills, no glow; the primary is near-black (inverted in dark) */
+.cta{background:var(--maj);color:var(--on-maj);box-shadow:none;border-radius:999px;font-weight:600}
+.cta.saf,.on-dark .cta,.jewel .cta{box-shadow:none}
+.lesson .cta,.nsheet .cta{background:var(--maj);color:var(--on-maj)}
+.ghost{box-shadow:inset 0 0 0 1px var(--line-2);background:transparent;border-radius:999px}
+.say{background:var(--maj-wash);color:var(--maj-ink)}
+.say.playing,.jewel .say.playing,.on-dark .say.playing{background:var(--accent);color:var(--on-accent,#fff)}
+:root{--on-accent:#FFFFFF}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){--on-accent:#0B1F1C} }
+:root[data-theme="dark"]{--on-accent:#0B1F1C}
+
+/* Darija set like a street sign: Arabic and Latin at the same visual size, neither one a footnote */
+.word{font-weight:500;letter-spacing:-.025em}
+.arw{font-weight:400;color:var(--ink);font-size:clamp(34px,10vw,46px);line-height:1.3}
+.arw.sign-ar{text-align:right;margin-bottom:-6px}
+.arw.sign-ar.sm{font-size:clamp(28px,8.4vw,38px)}
+.j-wall{--ar:var(--ink)}
+.mean{color:var(--ink)}
+/* the small labels above a step read as one quiet line, not pills */
+.kicker{gap:0}
+.tag{height:auto;padding:0;background:none;border-radius:0;font:500 13px/1.3 var(--font);color:var(--ink-soft)}
+.tag svg{display:none}
+.kicker .tag + .tag::before{content:"·";margin:0 7px;color:var(--ink-faint)}
+.tag.solid{color:var(--ink-soft)}
+.prompt{font:500 15px/1.3 var(--font);color:var(--ink-soft)}
+.prompt-big{font-weight:600;letter-spacing:-.02em}
+.ex{background:var(--wall);box-shadow:none;border-radius:22px}
+.ex-d{font-weight:500}
+.note{color:var(--ink-soft)}
+
+/* options: a quiet surface; the answer fills from the tap point with a pale wash and a 2px edge */
+.opt{background:var(--card);box-shadow:none;border-radius:18px;font-weight:500}
+.opt::before{transition:clip-path 320ms var(--ease-out)}
+.opt.ok::before{--fill:var(--good-wash)}
+.opt.no::before{--fill:var(--bad-wash)}
+.opt.ok,.opt.no{color:var(--ink)}
+.opt.ok{box-shadow:inset 0 0 0 2px var(--accent)}
+.opt.no{box-shadow:inset 0 0 0 2px var(--bad)}
+.opt.ok .mk{color:var(--good-ink)}
+.opt.no .mk{color:var(--bad-ink)}
+.opt .d{font-weight:500}
+.opt .a{font:400 18px/1.45 var(--font-ar);opacity:1;color:var(--ink-soft)}
+.opts.done .opt:not(.ok):not(.no){opacity:.5}
+.mt{background:var(--card);box-shadow:none}
+.mt.dj-t{font-weight:500}
+.mt.sel{background:var(--maj);color:var(--on-maj);transform:none;box-shadow:none}
+.mt.ok{background:var(--good-wash);color:var(--good-ink)}
+.mt.no{background:var(--bad-wash);color:var(--bad-ink)}
+.tok{background:var(--card);box-shadow:inset 0 0 0 1px var(--line-2);font-weight:500}
+.tok:active{box-shadow:inset 0 0 0 1px var(--line-2)}
+.slots{background:transparent;box-shadow:inset 0 0 0 1.5px var(--line-2)}
+.slots.ok{background:var(--good-wash);box-shadow:inset 0 0 0 2px var(--accent)}
+/* audio is the one teal thing you press */
+.play-big{background:var(--accent);color:var(--on-accent);box-shadow:none;width:88px;height:88px}
+.play-slow{background:transparent;box-shadow:inset 0 0 0 1px var(--line-2);color:var(--ink);font:500 12px/1 var(--font)}
+.play-slow.playing{background:var(--accent);color:var(--on-accent);box-shadow:none}
+
+/* the lesson frame */
+.lesson{background:var(--bg)}
+.l-bar{gap:3px}
+.l-bar i{height:6px;border-radius:6px;background:var(--track);transition:background-color 200ms ease}
+.l-bar i.done,.l-bar i.done:nth-child(3n+2),.l-bar i.done:nth-child(3n){background:var(--ink)}
+.l-bar i.now{background:var(--line-2)}
+.l-bar i.just{animation:segpop 240ms var(--ease-out)}
+@keyframes segpop{0%{transform:scaleY(1)}40%{transform:scaleY(1.6)}100%{transform:none}}
+.l-combo{color:var(--accent)}
+.sc-city{font-weight:600;letter-spacing:-.025em}
+.sc-ar{font:400 24px/1.3 var(--font-ar);color:var(--ink-soft)}
+.sc-quote{background:var(--wall);box-shadow:none}
+.sc-quote .d{font-weight:500}
+.l-end{background:var(--bg)}
+.l-end h2{font-weight:600;letter-spacing:-.025em}
+.l-end .sub{color:var(--ink-soft)}
+.l-stats div{background:var(--card)}
+.l-stats b{font-weight:400;font-variant-numeric:tabular-nums}
+.stars svg.on{color:var(--accent);filter:none}
+
+/* feedback sheet: rises from the bottom edge and leaves the same way */
+.banner{background:var(--good-wash);border-radius:24px 24px 0 0;animation:none;transform:translateY(0);transition:transform 320ms var(--ease-drawer)}
+@starting-style{ .banner:not(.inline){transform:translateY(100%)} }
+.banner.leaving{transform:translateY(100%);transition:transform 200ms var(--ease-out);pointer-events:none}
+.banner.no{background:var(--bad-wash)}
+.banner .bi{background:var(--accent);color:var(--on-accent)}
+.banner.no .bi{background:var(--bad);color:#fff}
+.banner .bv{font-weight:600;letter-spacing:-.02em}
+.banner .say{background:var(--raised);color:var(--ink)}
+.banner.ok .cta,.banner.no .cta{background:var(--maj);color:var(--on-maj);box-shadow:none}
+
+/* ---------- top bar (board): wordmark left, streak right ---------- */
+.hud-in{justify-content:space-between;padding-top:6px}
+.hud-mark{pointer-events:auto;display:flex;align-items:center;gap:8px;height:48px;color:var(--ink)}
+.hud-mark svg{width:22px;height:22px;flex:none}
+.hud-mark .wm{font:400 24px/1 var(--font-greet);letter-spacing:-.01em}
+.hud-mark .ar{font:400 17px/1 var(--font-ar);color:var(--ink-soft);margin-left:2px}
+.hud .p-goal,.hud .p-lvl{display:none}
+.hud .pill{background:var(--card);box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;height:36px;padding:0 14px;gap:6px;font:500 15px/1 var(--font)}
+.p-streak b{font-weight:500;font-variant-numeric:tabular-nums}
+.p-streak .u{color:var(--ink-soft);font-weight:400}
+.p-streak svg{width:15px;height:17px}
+.on-dark .pill{background:var(--card);color:var(--ink);box-shadow:none}
+#stage[data-view="feed"] .hud-mark{visibility:hidden}
+#stage[data-view="feed"] .hud .pill{background:rgba(0,0,0,.28);color:#fff}
+#stage[data-view="feed"] .hud .p-streak .u{color:rgba(255,255,255,.8)}
+
+/* ---------- Journey (board): one list of cities ---------- */
+.journey{padding-top:calc(var(--hud-h) + 8px)}
+.journey .jt{font:600 26px/1.1 var(--font);letter-spacing:-.02em;margin:6px 0 0}
+.journey .jsub{color:var(--ink-soft);font-size:13px;margin:6px 0 16px;font-variant-numeric:tabular-nums}
+.cities{display:grid;gap:8px}
+.crow{display:grid;grid-template-columns:52px 1fr auto;gap:14px;align-items:center;width:100%;min-height:76px;padding:8px 0;text-align:left;color:var(--ink)}
+.crow .sw{width:52px;height:60px;display:block}
+.cbadge{display:block;width:100%;height:100%;overflow:visible}
+.crow.locked .cbadge{filter:grayscale(1);opacity:.5}
+.crow:not(.locked):active .cbadge{transform:scale(.96)}
+.crow .nm b{display:block;font:600 16px/1.2 var(--font)}
+.crow .nm .ar{display:block;font:400 17px/1.4 var(--font-ar);color:var(--ink-soft)}
+.crow .c{font-size:13px;color:var(--ink-soft);font-variant-numeric:tabular-nums;text-align:right}
+.crow .c.full{color:var(--ink)}
+.crow.locked .nm b{color:var(--ink-soft);font-weight:500}
+.copen{background:var(--wall);border-radius:22px;padding:14px 16px 10px;margin:2px 0 6px}
+.copen .crow{padding-top:0}
+.cscene{font-size:14px;line-height:1.45;color:var(--ink-soft);margin:2px 0 8px}
+.stops{display:grid}
+.stops .jr-row{display:grid;grid-template-columns:24px 1fr auto;gap:12px;align-items:center;width:100%;min-height:46px;padding:0;text-align:left;font-size:14px;color:var(--ink)}
+.stops .jr-row + .jr-row::before{display:none}
+.stops .jr-row .dot{width:12px;height:12px;border-radius:50%;justify-self:center;box-shadow:inset 0 0 0 2px var(--line-2)}
+.stops .jr-row.done .dot{background:var(--ink);box-shadow:none}
+.stops .jr-row.current .dot{width:16px;height:16px;background:var(--raised);box-shadow:inset 0 0 0 2px var(--ink)}
+.stops .jr-row b{font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.stops .jr-row.current b{font-weight:600}
+.stops .jr-row.locked{color:var(--ink-soft)}
+.stops .jr-row em{font-style:normal;color:var(--ink-soft);font-size:13px;font-variant-numeric:tabular-nums}
+.stops .jr-row .go{position:relative;height:32px;padding:0 14px;border-radius:999px;background:var(--maj);color:var(--on-maj);font:600 13px/32px var(--font);width:auto;display:block}
+.stops .jr-row.current .go::after{border-radius:999px}
+.cat{color:var(--ink)}
+
+/* node sheet: the drawer curve in and out, draggable down to dismiss */
+.sheet-scrim{background:rgba(0,0,0,.36);animation:none;opacity:1;transition:opacity 200ms ease}
+@starting-style{ .sheet-scrim{opacity:0} }
+.sheet-scrim.leaving{opacity:0;transition-duration:160ms}
+.nsheet{background:var(--raised);box-shadow:var(--sh-2);animation:none;transform:translateY(0);transition:transform 380ms var(--ease-drawer);touch-action:none;border-radius:28px 28px 0 0}
+@starting-style{ .nsheet{transform:translateY(100%)} }
+.nsheet.leaving{transform:translateY(100%);transition-duration:260ms}
+.nsheet.dragging{transition:none}
+.nsheet h3{font-weight:600;letter-spacing:-.02em}
+.nsheet .chip{background:var(--card)}
+.chip{box-shadow:none;font-weight:500}
+.l-confirm{background:rgba(0,0,0,.36)}
+.l-confirm .box{background:var(--raised);animation:none;transform:translateY(0);transition:transform 380ms var(--ease-drawer)}
+@starting-style{ .l-confirm .box{transform:translateY(100%)} }
+
+/* pulse on the next lesson: a ring that scales out, 3 times, then rests (no animated shadow) */
+.jr-row.current .go{animation:none}
+.jr-row.current .go::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 2px var(--maj);opacity:0;animation:goring 2s var(--ease-out) 600ms 3;pointer-events:none}
+@keyframes goring{0%{transform:scale(1);opacity:.45}100%{transform:scale(1.35);opacity:0}}
+
+
+
+/* =====================================================================
+   v7 board layouts: lesson steps, feedback box, Today
+   ===================================================================== */
+/* lesson frame: content reads from the top, scrolls if it must, the footer button stays put */
+.lesson .card-in{justify-content:flex-start;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;gap:16px;padding-top:calc(var(--hud-h) + 18px)}
+.lesson .card-in::-webkit-scrollbar{display:none}
+.l-top{gap:14px}
+.l-prog{flex:1;height:8px;border-radius:8px;background:var(--track);overflow:hidden}
+.l-prog i{display:block;height:100%;border-radius:8px;background:var(--ink);transform-origin:0 50%;transform:scaleX(0);transition:transform 320ms var(--ease-out)}
+.l-count{flex:none;min-width:44px;text-align:right;font-size:13px;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.l-foot{background:var(--bg);padding-top:14px}
+.l-foot .cta{min-height:52px}
+
+/* new word: the street sign */
+.bigsign{display:grid;gap:2px;margin-top:6px}
+.bigsign .arw.sign-ar{font-size:clamp(46px,15vw,60px);line-height:1.25;margin:0;text-align:right}
+.bigsign .word{font-size:clamp(40px,12vw,48px);line-height:1;letter-spacing:-.025em;font-weight:500}
+.lesson .mean{font-size:18px;margin-top:-4px}
+.plays{display:flex;align-items:center;gap:10px}
+.say.lg{width:52px;height:52px}
+.say.fill,.say.lg.fill{background:var(--accent);color:var(--on-accent)}
+.say.slow{width:auto;height:52px;padding:0 18px;border-radius:999px;gap:8px;display:inline-flex;align-items:center;background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line-2);font:500 14px/1 var(--font)}
+.say.slow svg{width:16px;height:16px}
+.say.slow.playing{background:var(--accent);color:var(--on-accent);box-shadow:none}
+.ex{display:block;padding:18px 20px;background:var(--wall);border-radius:22px;max-width:none}
+.ex .ex-h{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:-4px 0 4px}
+.ex .l{font-size:13px;color:var(--ink-soft)}
+.ex .ex-d{font:500 21px/1.3 var(--font);letter-spacing:-.01em}
+.ex .ex-ar{font:400 21px/1.55 var(--font-ar);text-align:right;direction:rtl;margin-top:2px}
+.ex .ex-t{margin-top:6px;font-size:15px;color:var(--ink-soft)}
+.catline{display:flex;gap:12px;align-items:center;font-size:13px;line-height:1.45;color:var(--ink-soft)}
+.catline .cat{width:44px;height:44px;flex:none}
+.catline b{color:var(--ink);font-weight:600}
+
+/* quiz: the title, then the word on a plate with its play button */
+.qtitle{font:600 21px/1.25 var(--font);letter-spacing:-.01em;margin-top:6px}
+.qtitle.big{font-size:clamp(26px,7.6vw,32px);letter-spacing:-.02em;margin-top:-4px}
+.qsign{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;background:var(--card);border-radius:22px;padding:18px 20px}
+.qsign .say{width:48px;height:48px}
+.qsign .lat{font:500 34px/1.05 var(--font);letter-spacing:-.02em;min-width:0;overflow-wrap:anywhere}
+.qsign .ar{font:400 30px/1.3 var(--font-ar);color:var(--ink-soft);direction:rtl}
+.lesson .opts{gap:10px;margin-top:0}
+.lesson .opt{min-height:58px;background:transparent;box-shadow:inset 0 0 0 1px var(--line-2)}
+.lesson .opt.ok{box-shadow:inset 0 0 0 2px var(--accent)}
+.lesson .opt.no{box-shadow:inset 0 0 0 2px var(--bad)}
+.okpill{display:inline-block;height:24px;padding:0 10px;border-radius:999px;background:var(--maj-wash);color:var(--good-ink);font:500 12px/24px var(--font);white-space:nowrap}
+.opt.ok .mk{width:auto;height:auto}
+.lesson .listen{margin:0}
+.lesson .play-big{width:72px;height:72px}
+.lesson .play-big svg{width:30px;height:30px}
+.lesson .play-slow{display:inline-flex;align-items:center;gap:8px;width:auto;height:52px;padding:0 18px;border-radius:999px;font:500 14px/1 var(--font)}
+.lesson .play-slow svg{width:16px;height:16px}
+
+/* feedback box under the options: Mchicha reacts beside the praise or the right answer */
+.lesson .fbx:empty{display:none}
+.fb{display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:center;padding:14px 16px;border-radius:22px;background:var(--card);animation:fbin 260ms var(--ease-out) both}
+@keyframes fbin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.fb .fb-cat .cat{width:52px;height:52px;display:block}
+.fb .fv{font:600 18px/1.2 var(--font);letter-spacing:-.01em}
+.fb.ok .fv{color:var(--good-ink)}
+.fb.no .fv{color:var(--bad-ink)}
+.fb .fs{margin-top:3px;font-size:14px;line-height:1.4;color:var(--ink-soft)}
+.fb .fs b{color:var(--ink);font-weight:600}
+.fb .say{width:40px;height:40px}
+
+/* ---------- Today (board) ---------- */
+.today{padding-top:calc(var(--hud-h) + 8px)}
+.td-greet{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:0}
+.td-greet h1{font:400 34px/1.05 var(--font-greet);letter-spacing:-.015em;color:var(--ink)}
+.td-greet .ar{font:400 22px/1.3 var(--font-ar);color:var(--ink-soft)}
+.td-date{color:var(--ink-soft);font-size:13px;margin:6px 0 18px}
+.td-lead{background:var(--wall);border-radius:22px;padding:20px;display:grid;gap:0}
+.td-lead .where{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--ink-soft)}
+.td-lead .where .ar{font:400 17px/1 var(--font-ar)}
+.td-lead h3{font:600 24px/1.15 var(--font);letter-spacing:-.015em;margin:10px 0 2px}
+.td-lead .sc{color:var(--ink-soft);font-size:13px;line-height:1.45}
+.td-lead .wordrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:16px 0 14px}
+.td-lead .wchip{background:var(--raised);border-radius:16px;padding:10px 12px;min-width:0}
+.td-lead .wchip b{display:block;font:500 15px/1.2 var(--font);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.td-lead .wchip span{display:block;font:400 18px/1.4 var(--font-ar);color:var(--ink-soft);text-align:right;direction:rtl}
+.td-lead .td-cat{position:static;width:auto;margin:0 0 14px;color:var(--ink);cursor:pointer}
+.td-lead .td-cat .cat{width:44px;height:44px}
+.td-lead .td-cat p{color:var(--ink)}
+.td-go{display:flex;justify-content:center;gap:8px;min-height:52px;margin:0;padding:0 24px;border-radius:999px;background:var(--maj);color:var(--on-maj);font:600 16px/1 var(--font);box-shadow:none}
+.td-go span{opacity:.72;font-weight:500;font-variant-numeric:tabular-nums}
+.td-go::after{display:none}
+.td-tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.td-tile{display:flex;flex-direction:column;align-items:stretch;text-align:left;background:var(--card);border-radius:22px;padding:16px 18px;min-height:104px;color:var(--ink);min-width:0}
+.td-tile .l{font-size:13px;color:var(--ink-soft)}
+.td-tile .v{font:400 28px/1.1 var(--font);font-variant-numeric:tabular-nums;letter-spacing:-.01em;margin-top:8px}
+.td-tile .v small{font-size:15px;color:var(--ink-soft);letter-spacing:0;margin-left:4px}
+.td-tile .bar{display:block;height:6px;border-radius:6px;background:var(--track);margin-top:12px;overflow:hidden}
+.td-tile .bar i{display:block;height:100%;background:var(--accent);border-radius:6px;transform-origin:0 50%}
+.td-tile .s{font-size:12px;color:var(--ink-soft);margin-top:8px}
+.td-tile[aria-disabled="true"]{opacity:.6}
+.today .plate{background:var(--raised);border-radius:22px;padding:20px;box-shadow:inset 0 0 0 1px var(--line);display:grid}
+.today .plate .hd{display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:600}
+.today .plate .hd span{font-weight:400;color:var(--ink-soft);font-size:13px}
+.today .plate .sign{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin:14px 0 4px}
+.today .plate .sign .lat{font:500 34px/1 var(--font);letter-spacing:-.02em}
+.today .plate .sign .ar{font:400 34px/1.15 var(--font-ar);direction:rtl}
+.today .plate .mean{color:var(--ink-soft);font-size:15px;margin:6px 0 14px}
+.today .exrow{display:flex;align-items:center;gap:12px;padding:14px 0 0;box-shadow:inset 0 1px 0 var(--line)}
+.today .exrow .say{width:44px;height:44px}
+.today .exrow b{font:500 15px/1.3 var(--font);display:block}
+.today .exrow span{color:var(--ink-soft);font-size:13px}
+.today .plate .ghost{justify-self:start;margin-top:14px;min-height:40px;padding:0 16px;font-size:14px;gap:6px}
+.today .plate .ghost svg{width:15px;height:15px}
+.route{display:block;width:100%;text-align:left;margin-top:12px;background:var(--card);border-radius:22px;padding:18px 20px 20px;color:var(--ink)}
+.route .hd{display:flex;justify-content:space-between;font-size:14px;font-weight:600}
+.route .hd span{font-weight:400;color:var(--ink-soft);font-size:13px;font-variant-numeric:tabular-nums}
+.route .dots{display:grid;grid-template-columns:repeat(10,1fr);align-items:center;margin:18px 0 8px;position:relative}
+.route .dots::before{content:"";position:absolute;left:12px;right:12px;top:50%;height:2px;background:var(--track);transform:translateY(-50%)}
+.route .dots i{position:relative;justify-self:center;width:14px;height:14px;border-radius:50%;background:var(--card);box-shadow:inset 0 0 0 2px var(--line-2)}
+.route .dots i.done{background:var(--ink);box-shadow:none}
+.route .dots i.now{width:22px;height:22px;background:var(--wall-raw);box-shadow:inset 0 0 0 2px var(--ink)}
+.route .dotnames{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-soft)}
+.route .dotnames b{color:var(--ink);font-weight:600}
+
+.hud{background:var(--bg)}
+#stage[data-view="feed"] .hud{background:transparent}
+.hud-in{padding-bottom:6px}
+.td-tile .v{white-space:nowrap}
+.td-tile .v small{font-size:14px}
+/* tab bar (board): the active tab is ink text, no pill and no hop (tabs are pressed tens of times a day) */
+.dock{background:var(--bg);box-shadow:inset 0 1px 0 var(--line)}
+.tab{color:var(--ink-soft)}
+.tab::before{display:none}
+.tab.on{color:var(--ink);font-weight:600}
+.tab.on svg{animation:none}
+.view.enter{animation:fade 160ms ease}
+
+/* v7: zellige. A khatam (eight-point star) lattice, drawn as a mask so it takes the ink colour in both themes,
+   fading out from one corner of the city cards. The keyhole-arch badge sits on it. */
+:root{--zellige:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%23000' stroke-width='1.3'%3E%3Cpath d='M9 9h14v14H9Z'/%3E%3Cpath d='M16 6.1L25.9 16 16 25.9 6.1 16Z'/%3E%3Cpath d='M0 16h6.1M25.9 16H32M16 0v6.1M16 25.9V32'/%3E%3C/g%3E%3C/svg%3E")}
+.td-lead,.copen{position:relative;isolation:isolate}
+.td-lead::before,.copen::before{content:"";position:absolute;z-index:-1;top:0;right:0;width:190px;height:150px;border-top-right-radius:22px;pointer-events:none;
+  background:var(--wall-raw);opacity:.9;filter:brightness(.82) saturate(1.2);
+  -webkit-mask:var(--zellige) 0 0/32px 32px,radial-gradient(120% 100% at 100% 0,#000 20%,transparent 75%);-webkit-mask-composite:source-in;
+  mask:var(--zellige) 0 0/32px 32px,radial-gradient(120% 100% at 100% 0,#000 20%,transparent 75%);mask-composite:intersect}
+.copen::before{border-top-right-radius:18px}
+.td-badge{position:absolute;top:16px;right:18px;width:58px;height:66px}
+.td-lead .where{padding-right:76px}
+.td-lead .where .ar{display:none}
+.td-lead h3,.td-lead .sc{padding-right:72px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .td-lead::before,:root:not([data-theme="light"]) .copen::before{filter:brightness(1.6) saturate(.7);opacity:.35}}
+:root[data-theme="dark"] .td-lead::before,:root[data-theme="dark"] .copen::before{filter:brightness(1.6) saturate(.7);opacity:.35}
+
+/* v7: Say it out loud */
+.say-card{background:var(--card);border-radius:22px;padding:20px 20px 18px;margin:14px 0 18px;text-align:center}
+.say-card .lat{font:600 34px/1.15 var(--font);letter-spacing:-.02em}
+.say-card .lat.long{font-size:24px}
+.say-card .ar{font:400 26px/1.5 var(--font-ar);color:var(--ink-soft);direction:rtl;margin-top:4px}
+.say-card .mean{font-size:14px;color:var(--ink-soft);margin-top:6px}
+.say-row{display:flex;justify-content:center;align-items:flex-start;gap:28px;margin-bottom:10px}
+.say-col[hidden]{display:none}
+.say-col{display:grid;justify-items:center;gap:8px;font-size:13px;color:var(--ink-soft);min-width:84px}
+.say-btn{position:relative;width:76px;height:76px;border-radius:50%;display:grid;place-items:center;background:var(--card);color:var(--ink);transition:transform 100ms var(--ease-out)}
+.say-btn:active{transform:scale(.95)}
+.say-btn .ico{width:30px;height:30px;position:relative}
+.say-btn.native{background:var(--accent);color:var(--on-accent,#fff)}
+.say-btn.mic{background:var(--maj);color:var(--on-maj)}
+.say-btn.mic.again{background:var(--card);color:var(--ink);width:60px;height:60px;margin-top:8px}
+.say-btn.mic .lv{position:absolute;inset:0;border-radius:50%;background:var(--accent);opacity:0;transform:scale(1);transition:transform 90ms linear,opacity 160ms}
+.say-btn.mic.on{background:var(--bad);color:#fff}
+.say-btn.mic.on .lv{opacity:.28;transform:scale(calc(1 + var(--lv,0) * .55))}
+.say-btn.you{background:var(--good-wash);color:var(--good-ink)}
+.say-btn.you.on,.say-btn.native.on{box-shadow:0 0 0 6px color-mix(in srgb,var(--accent) 22%,transparent)}
+.say-hint{text-align:center;font-size:14px;color:var(--ink-soft);margin:6px 0 14px;min-height:20px}
+.say-rate{display:grid;grid-template-columns:1fr 1.4fr;gap:10px}
+.say-rate[hidden],.say-fallback[hidden],.say-skip[hidden]{display:none}
+.say-rate .btn-soft{border-radius:999px;background:var(--card);color:var(--ink);font:600 15px/1 var(--font);min-height:52px}
+.say-rate .cta{min-height:52px}
+.say-skip{display:block;margin:12px auto 0;font-size:13px;color:var(--ink-soft);text-decoration:underline;text-underline-offset:3px;padding:8px}
+@media (prefers-reduced-motion:reduce){.say-btn.mic.on .lv{transform:none}}
+
+/* v7: the tea tray replaces the flame streak. Seven small glasses, no pill; the run count in the serif of the wordmark */
+.hud .p-streak{background:none;padding:0 2px 0 6px;gap:10px;height:44px}
+.p-streak .tray{display:flex;align-items:flex-end;gap:3px;color:var(--ink-faint)}
+.p-streak .tg{width:10px;height:16px;display:block}
+.p-streak .tg.full{color:var(--ink-soft)}
+.p-streak .tg.now{width:13px;height:21px;color:var(--ink)}
+.p-streak b{font:400 26px/1 var(--font-greet);letter-spacing:-.01em;min-width:.6em;text-align:right}
+.p-streak.cold b{color:var(--ink-soft)}
+.p-streak.cold svg{filter:none;opacity:1}
+#stage[data-view="feed"] .hud .p-streak{background:rgba(0,0,0,.28);padding:0 14px;color:#fff}
+#stage[data-view="feed"] .p-streak .tray,#stage[data-view="feed"] .p-streak .tg.now,#stage[data-view="feed"] .p-streak b{color:#fff}
+.cb-glass{width:100%;height:100%;color:var(--ink)}

@@ -11,6 +11,28 @@ function shell(type, tile) {
 const wordCls = (s) => (s.length > 12 ? "word l4" : s.length > 9 ? "word l3" : s.length > 6 ? "word l2" : "word");
 const catTag = (wd) => wd.rar ? `<span class="tag rar-${wd.rar}" style="color:var(--rc);border-color:var(--rc)">${ICON.sparkle}${esc(L(RAR[wd.rar]))}</span>` : `<span class="tag">${esc(L(CAT[wd.cat] || ["", ""]))}</span>`;
 const nextBtnHTML = (label) => `<button class="next-btn nudge" data-act="next"><span>${esc(label || t("next"))}</span>${ICON.down}</button>`;
+// big play + a "Slow" pill that plays the same clip at 0.68x
+function playsRow(text, cls = "") {
+  if (!Voice.has(text)) return "";
+  return `<div class="plays ${cls}">${sayBtn(text, "lg fill")}<button class="say slow" data-say="${esc(text)}" data-rate="0.68" aria-label="${esc(t("slow"))}: ${esc(text)}">${ICON.speak}<span>${esc(t("slow"))}</span></button></div>`;
+}
+// "In a sentence": Latin, Arabic script and the translation on the city's wall tint
+function exPanel(ex, cls = "") {
+  const ar = EXAR[ex[0]];
+  return `<div class="ex ${cls}"><div class="ex-h"><p class="l">${esc(t("inSentence"))}</p>${sayBtn(ex[0], "sm")}</div><p class="ex-d">${dj(ex[0])}</p>${ar ? `<p class="ex-ar" lang="ary">${esc(ar)}</p>` : ""}<p class="ex-t">${esc(exTr(ex))}</p></div>`;
+}
+// Mchicha's aside: the line drawing and one sentence
+function catLine(text, cls = "", mood = "normal", react = "") {
+  return `<div class="catline ${cls}">${mascot(mood, react)}<p><b>${esc(t("catName"))}</b> · ${esc(text)}</p></div>`;
+}
+// the board's feedback box, under the options: Mchicha reacts, the praise or the right answer, a replay
+function fbHTML(ok, info, mood) {
+  const tri = ok ? pick(PRAISE2) : pick(COMFORT);
+  const sub = ok
+    ? (info.right ? `<b>${esc(info.showRight ? info.right : (info.say || info.right))}</b>${info.showRight ? (info.rightTr ? ` · ${esc(info.rightTr)}` : "") : ` · ${esc(info.right)}`}` : esc(triTr(tri)))
+    : (info.right ? `${esc(t("correctAns"))}: <b>${esc(info.right)}</b>${info.rightTr ? ` · ${esc(info.rightTr)}` : ""}` : esc(triTr(tri)));
+  return `<div class="fb ${ok ? "ok" : "no"}"><div class="fb-cat">${mascot(mood, ok ? "cheer" : "sorry")}</div><div class="fb-t"><p class="fv">${dj(tri[0])}</p><p class="fs">${sub}</p></div>${info.say ? sayBtn(info.say, "", info.voice || "n") : ""}</div>`;
+}
 function bannerHTML(ok, info, inline) {
   const tri = ok ? pick(PRAISE2) : pick(COMFORT);
   const sub = ok
@@ -33,8 +55,9 @@ function makeOptions(wd, reverse, pool, easy) {
 }
 function markOptions(el, chosen, rightSel, ok) {
   const box = $(".opts", el); box && box.classList.add("done");
-  chosen.classList.add(ok ? "ok" : "no"); const mk = $(".mk", chosen); mk && (mk.innerHTML = ok ? ICON.check : ICON.x);
-  if (!ok) { const r = $(rightSel, el); if (r) { r.classList.add("ok"); const m2 = $(".mk", r); m2 && (m2.innerHTML = ICON.check); } $(".card-in", el).classList.add("shake"); }
+  const pill = () => `<span class="okpill">${esc(t("correctP"))}</span>`;
+  chosen.classList.add(ok ? "ok" : "no"); const mk = $(".mk", chosen); mk && (mk.innerHTML = ok ? pill() : ICON.x);
+  if (!ok) { const r = $(rightSel, el); if (r) { r.classList.add("ok"); const m2 = $(".mk", r); m2 && (m2.innerHTML = pill()); } $(".card-in", el).classList.add("shake"); }
 }
 
 function exLearn(sp, host) {
@@ -44,11 +67,11 @@ function exLearn(sp, host) {
   const saved = S.words[wd.id] && S.words[wd.id].fav;
   $(".card-in", el).innerHTML = `
     <div class="kicker a1"><span class="tag solid">${esc(inFeed ? t("review") : t("newWord"))}</span>${catTag(wd)}</div>
-    <div class="word-row a2"><h2 class="${wordCls(wd.d)}">${dj(wd.d)}</h2>${sayBtn(wd.d, "lg")}</div>
-    <p class="arw a3" lang="ary">${esc(wd.ar)}</p>
-    <p class="mean a4">${esc(meaning(wd))}${wd.lit ? `<span class="lit">${esc(L(wd.lit))}</span>` : ""}</p>
-    ${wd.ex ? `<div class="ex a5"><div><p class="ex-d">${dj(wd.ex[0])}</p><p class="ex-t">${esc(exTr(wd.ex))}</p></div>${sayBtn(wd.ex[0], "sm")}</div>` : ""}
-    ${wd.note ? `<p class="note a6">${ICON.info}<span>${esc(L(wd.note))}</span></p>` : ""}`;
+    <div class="bigsign a2"><p class="arw sign-ar" lang="ary">${esc(wd.ar)}</p><h2 class="${wordCls(wd.d)}">${dj(wd.d)}</h2></div>
+    <p class="mean a3">${esc(meaning(wd))}${wd.lit ? `<span class="lit">${esc(L(wd.lit))}</span>` : ""}</p>
+    ${playsRow(wd.d, "a3")}
+    ${wd.ex ? exPanel(wd.ex, "a4") : ""}
+    ${wd.note ? catLine(L(wd.note), "a5") : ""}`;
   const card = { el, kind:"learn", firstEnter() { introduce(wd.id); persist(); }, enter() { setTimeout(() => host.isActive(card) && autoSay(wd.d, "n", $$(".word .dj", el)), 380); } };
   if (inFeed) {
     el.classList.add("has-rail");
@@ -83,10 +106,8 @@ function exPick(sp, host) {
   const el = shell("pick", host.tile(sp));
   const opts = makeOptions(wd, false, host.pool(), sp.easy);
   $(".card-in", el).innerHTML = `
-    <div class="kicker a1"><span class="tag solid">${esc(sp.review ? t("review") : "Quiz")}</span>${catTag(wd)}</div>
-    <p class="prompt a1">${esc(t("whatMeans"))}</p>
-    <div class="word-row a2"><h2 class="${wordCls(wd.d)}">${dj(wd.d)}</h2>${sayBtn(wd.d, "lg")}</div>
-    <p class="arw a3" lang="ary" style="font-size:clamp(26px,8vw,38px)">${esc(wd.ar)}</p>
+    <h2 class="qtitle a1">${esc(t("whatMeans"))}</h2>
+    <div class="qsign a2">${sayBtn(wd.d, "fill")}<span class="lat">${dj(wd.d)}</span><span class="ar" lang="ary">${esc(wd.ar)}</span></div>
     <div class="opts a4">${opts.map((id) => `<button class="opt" data-id="${esc(id)}"><span>${esc(meaning(W[id]))}</span><span class="mk"></span></button>`).join("")}</div>
     <div class="fbx"></div>`;
   const card = { el, kind:"pick", done:false, enter() { setTimeout(() => host.isActive(card) && !card.done && autoSay(wd.d, "n", $$(".word .dj", el)), 350); } };
@@ -105,9 +126,8 @@ function exRev(sp, host) {
   const el = shell("rev", host.tile(sp));
   const opts = makeOptions(wd, true, host.pool(), sp.easy);
   $(".card-in", el).innerHTML = `
-    <div class="kicker a1"><span class="tag solid">${esc(sp.review ? t("review") : "Quiz")}</span>${catTag(wd)}</div>
     <p class="prompt a1">${esc(t("howSay"))}</p>
-    <h2 class="prompt-big a2">${esc(meaning(wd))}</h2>
+    <h2 class="qtitle big a2">${esc(meaning(wd))}</h2>
     <div class="opts a3">${opts.map((id) => `<div class="opt-wrap has-say"><button class="opt" data-id="${esc(id)}"><span class="d" lang="ary-Latn">${esc(W[id].d)}</span><span class="a" lang="ary">${esc(W[id].ar)}</span><span class="mk"></span></button>${sayBtn(W[id].d, "sm")}</div>`).join("")}</div>
     <div class="fbx"></div>`;
   const card = { el, kind:"rev", done:false };
@@ -126,9 +146,8 @@ function exListen(sp, host) {
   const el = shell("listen", host.tile(sp));
   const opts = makeOptions(wd, !mean, host.pool(), false);
   $(".card-in", el).innerHTML = `
-    <div class="kicker a1"><span class="tag solid">${ICON.ear}${esc(t("heard"))}</span></div>
-    <h2 class="prompt-big a2">${esc(mean ? t("listenMean") : t("listenPick"))}</h2>
-    <div class="listen a3"><button class="play-big" data-act="play" aria-label="${esc(t("hearIt"))}">${ICON.speak}</button><button class="play-slow" data-act="slow" aria-label="${esc(t("slow"))}">${ICON.turtle}<span>${esc(t("slow"))}</span></button></div>
+    <h2 class="qtitle a1">${esc(mean ? t("listenMean") : t("listenPick"))}</h2>
+    <div class="listen plays a2"><button class="play-big" data-act="play" aria-label="${esc(t("hearIt"))}">${ICON.speak}</button><button class="play-slow" data-act="slow" aria-label="${esc(t("slow"))}">${ICON.speak}<span>${esc(t("slow"))}</span></button></div>
     <div class="opts a4">${opts.map((id) => `<button class="opt" data-id="${esc(id)}">${mean ? `<span>${esc(meaning(W[id]))}</span>` : `<span class="d" lang="ary-Latn">${esc(W[id].d)}</span>`}<span class="mk"></span></button>`).join("")}</div>
     <div class="fbx"></div>`;
   const play = (rate) => Voice.play(wd.d, { rate, btn:$(rate < 1 ? ".play-slow" : ".play-big", el) });
@@ -179,17 +198,22 @@ function exMatch(sp, host) {
 function exBuild(sp, host) {
   const row = BUILDS.find((b) => b[0] === sp.id) || BUILDS[0];
   const [, en, fr, tok, extra, credit, alts] = row;
-  const el = shell("build", host.tile(sp));
+  const hear = !!sp.hear;
+  const el = shell(hear ? "hear" : "build", host.tile(sp));
   const chips = shuffle(tok.concat(extra).map((x, k) => ({ x, k })));
   const sentence = buildSay(tok);
-  $(".card-in", el).innerHTML = `
+  $(".card-in", el).innerHTML = (hear ? `
+    <h2 class="qtitle a1">${esc(t("hearBuild"))}</h2>
+    <div class="listen plays a2"><button class="play-big" data-act="play" aria-label="${esc(t("hearIt"))}">${ICON.speak}</button><button class="play-slow" data-act="slow" aria-label="${esc(t("slow"))}">${ICON.speak}<span>${esc(t("slow"))}</span></button></div>` : `
     <div class="kicker a1"><span class="tag solid">${esc(t("buildK"))}</span></div>
     <p class="prompt a1">${esc(t("say"))}</p>
-    <h2 class="prompt-big a2">${esc(X(en, fr))}</h2>
+    <h2 class="prompt-big a2">${esc(X(en, fr))}</h2>`) + `
     <div class="slots a3" aria-live="polite"></div>
     <div class="pool a4">${chips.map(({ x, k }) => `<button class="tok" data-k="${k}" lang="ary-Latn">${esc(x)}</button>`).join("")}</div>
     <div class="fbx"></div>`;
-  const card = { el, kind:"build", done:false, tries:0, placed:[] };
+  const play = (rate) => Voice.play(sentence, { rate, btn:$(rate < 1 ? ".play-slow" : ".play-big", el) });
+  const card = { el, kind:hear ? "hear" : "build", done:false, tries:0, placed:[],
+    enter() { if (hear) setTimeout(() => host.isActive(card) && !card.done && Session.gesture && play(1), 380); } };
   const slots = $(".slots", el), pool = $(".pool", el);
   const check = () => {
     const said = card.placed.map((b) => b.textContent);
@@ -198,13 +222,13 @@ function exBuild(sp, host) {
     if (ok) {
       card.done = true; slots.classList.add("ok"); S.stats.builds++;
       if (credit && W[credit]) grade(credit, true);
-      host.resolve(card, true, { fromEl:slots, base:card.tries === 1 ? 6 : 3, say:sentence, right:sentence, showRight:true });
+      host.resolve(card, true, { fromEl:slots, base:(card.tries === 1 ? 6 : 3) + (hear ? 1 : 0), say:sentence, right:sentence, rightTr:hear ? X(en, fr) : "", showRight:true, noAuto:hear });
     } else if (card.tries >= 2) {
       card.done = true;
       if (credit && S.words[credit]) grade(credit, false);
       slots.innerHTML = tok.map((x) => `<span class="tok" lang="ary-Latn">${esc(x)}</span>`).join("");
       slots.classList.add("ok"); $$(".tok", pool).forEach((b) => b.classList.add("ghost-t"));
-      host.resolve(card, false, { fromEl:slots, right:sentence, say:sentence });
+      host.resolve(card, false, { fromEl:slots, right:sentence, rightTr:hear ? X(en, fr) : "", say:sentence });
     } else {
       Sound.play("bad"); slots.classList.remove("shake"); void slots.offsetWidth; slots.classList.add("shake");
       combo = 0; renderCombo(); toast(t("tryAgain"));
@@ -213,6 +237,8 @@ function exBuild(sp, host) {
   };
   el.addEventListener("click", (e) => {
     if (e.target.closest("[data-act=next]")) { host.next(card); return; }
+    const pa = e.target.closest("[data-act=play],[data-act=slow]");
+    if (pa) { Sound.unlock(); Session.gesture = true; play(pa.dataset.act === "slow" ? 0.68 : 1); return; }
     if (card.done) return;
     const b = e.target.closest(".tok"); if (!b) return;
     Sound.play("tap");
@@ -559,9 +585,9 @@ function exComeback(sp, host) {
   const st = shownStreak(), due = dueWords().length;
   $(".card-in", el).innerHTML = `
     <div class="kicker a1"><span class="tag solid">${esc(t("comebackK"))}</span></div>
-    <div class="a2" style="display:flex;align-items:center;gap:14px"><div style="width:64px;height:76px">${flameSVG()}</div><h2 class="word">${esc(t("dayN", { n:Math.max(1, S.dayCount || 1) }))}</h2></div>
+    <div class="a2" style="display:flex;align-items:center;gap:14px"><div style="width:56px;height:76px">${teaGlass(1, "cb-glass")}</div><h2 class="word">${esc(t("dayN", { n:Math.max(1, S.dayCount || 1) }))}</h2></div>
     <p class="mean a3">${esc(due ? t("comebackS", { n:due }) : st > 0 ? t("comebackS0") : t("comebackNew"))}</p>
-    <div class="a4" style="display:flex;gap:8px;flex-wrap:wrap">${st > 0 ? `<span class="tag">${flameSVG().replace("<svg", '<svg style="width:14px;height:16px"')} ${st}</span>` : ""}${S.shields ? `<span class="tag">${ICON.shield} ${S.shields}</span>` : ""}</div>
+    <div class="a4" style="display:flex;gap:8px;flex-wrap:wrap">${st > 0 ? `<span class="tag">${esc(t("trayL", { n:st }))}</span>` : ""}${S.shields ? `<span class="tag">${ICON.shield} ${S.shields}</span>` : ""}</div>
     <p class="swipe-cue a5">${ICON.up}<span>${esc(t("swipe"))}</span></p>`;
   return { el, kind:"comeback", firstEnter() { FG.force = dueWords().slice(0, 6); if (FG.force.length) Feed.rebuildAhead(false); } };
 }
@@ -592,7 +618,110 @@ function exScene(sp, host) {
     <div class="sc-words a4">${node.kind === "boss" || node.kind === "story" ? "" : ws.map((id) => `<span class="chip">${esc(W[id].d)}${sayBtn(W[id].d)}</span>`).join("")}</div>`;
   return { el, kind:"scene" };
 }
-const BUILDERS = { story:exStory, sq:exStoryQ, scene:exScene, learn:exLearn, spot:exLearn, pick:exPick, rev:exRev, listen:exListen, match:exMatch, build:exBuild, sit:exSit, reel:exReel, dialog:exDialog, proverb:exProverb, mystery:exMystery, drop:exDrop, lightning:exLightning, haggle:exHaggle, comeback:exComeback, nudge:exNudge };
+// v7 speaking: hear the clip, record yourself, play the two back to back, then say honestly how it went.
+// Nothing is uploaded; the recording lives in memory until the card goes away.
+const Rec = {
+  supported() { return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder); },
+  async start(onLevel) {
+    this.stream = await navigator.mediaDevices.getUserMedia({ audio:{ echoCancellation:true, noiseSuppression:true } });
+    this.chunks = [];
+    this.mr = new MediaRecorder(this.stream);
+    this.mr.ondataavailable = (e) => e.data && e.data.size && this.chunks.push(e.data);
+    this.mr.start();
+    try {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      this.ac = new AC(); const an = this.ac.createAnalyser(); an.fftSize = 512;
+      this.ac.createMediaStreamSource(this.stream).connect(an);
+      const buf = new Uint8Array(an.fftSize);
+      const loop = () => {
+        if (!this.mr || this.mr.state !== "recording") return;
+        an.getByteTimeDomainData(buf); let sum = 0; for (const v of buf) sum += (v - 128) * (v - 128);
+        onLevel(Math.min(1, Math.sqrt(sum / buf.length) / 40)); this.raf = requestAnimationFrame(loop);
+      };
+      loop();
+    } catch (e) {}
+  },
+  stop() {
+    return new Promise((res) => {
+      const mr = this.mr; if (!mr) return res(null);
+      cancelAnimationFrame(this.raf);
+      mr.onstop = () => {
+        const blob = new Blob(this.chunks, { type:mr.mimeType || "audio/webm" });
+        this.release(); res(blob.size ? URL.createObjectURL(blob) : null);
+      };
+      try { mr.stop(); } catch (e) { this.release(); res(null); }
+    });
+  },
+  release() {
+    if (this.stream) this.stream.getTracks().forEach((tr) => tr.stop());
+    if (this.ac) this.ac.close().catch(() => {});
+    this.stream = this.ac = this.mr = null;
+  },
+};
+function exSay(sp, host) {
+  const wd = W[sp.w], text = sp.text || wd.d, ar = sp.text ? EXAR[sp.text] || "" : wd.ar;
+  const el = shell("say", host.tile(sp));
+  const mic = Rec.supported();
+  $(".card-in", el).innerHTML = `
+    <h2 class="qtitle a1">${esc(t("sayIt"))}</h2>
+    <div class="say-card a2"><p class="lat${text.length > 14 ? " long" : ""}" lang="ary-Latn">${dj(text)}</p>${ar ? `<p class="ar" lang="ary">${esc(ar)}</p>` : ""}<p class="mean">${esc(sp.text ? exTr(wd.ex) : meaning(wd))}</p></div>
+    <div class="say-row a3">
+      <div class="say-col"><button class="say-btn native" data-act="native" aria-label="${esc(t("hearIt"))}">${ICON.speak}</button><span>${esc(t("catName"))}</span></div>
+      <div class="say-col yc" hidden><button class="say-btn you" data-act="you" aria-label="${esc(t("yourVoice"))}">${ICON.speak}</button><span>${esc(t("yourVoice"))}</span></div>
+      <div class="say-col mc2"${mic ? "" : " hidden"}><button class="say-btn mic" data-act="rec" aria-label="${esc(t("tapRecord"))}"><i class="lv"></i>${ICON_MIC}</button><span class="say-l">${esc(t("tapRecord"))}</span></div>
+    </div>
+    <p class="say-hint a4">${esc(mic ? t("sayHint") : t("noMic"))}</p>
+    <div class="say-rate a4" hidden><button class="btn-soft" data-rate="again">${esc(t("notYet"))}</button><button class="cta" data-rate="good">${esc(t("soundsRight"))}</button></div>
+    <div class="say-fallback a4"${mic ? " hidden" : ""}><button class="cta block" data-act="saidit">${esc(t("saidIt"))}</button></div>
+    <button class="say-skip a4" data-act="skip">${esc(t("cantTalk"))}</button>
+    <div class="fbx"></div>`;
+  const card = { el, kind:"say", done:false, url:null, recording:false,
+    enter() { setTimeout(() => host.isActive(card) && !card.done && Session.gesture && Voice.play(text, { btn:$(".native", el) }), 380); },
+    leave() { if (card.recording) Rec.stop(); card.recording = false; } };
+  const micB = $(".mic", el), youB = $(".you", el), lab = $(".say-l", el);
+  const fallback = (msg) => { $(".mc2", el).hidden = true; $(".say-hint", el).textContent = msg; $(".say-fallback", el).hidden = false; };
+  const finish = (ok, base) => {
+    if (card.done) return; card.done = true;
+    $(".say-rate", el).hidden = true; $(".say-fallback", el).hidden = true; $(".say-skip", el).hidden = true;
+    if (ok && sp.w && S.words[sp.w]) grade(sp.w, true);
+    host.resolve(card, ok, { fromEl:$(".say-card", el), base, right:text, rightTr:sp.text ? exTr(wd.ex) : meaning(wd), say:text, showRight:true, noAuto:true });
+  };
+  el.addEventListener("click", async (e) => {
+    if (e.target.closest("[data-act=next]")) { host.next(card); return; }
+    const a = e.target.closest("[data-act],[data-rate]"); if (!a) return;
+    Sound.unlock(); Session.gesture = true;
+    const act = a.dataset.act;
+    if (act === "native") { Voice.play(text, { btn:a }); return; }
+    if (act === "you" && card.url) { Voice.stop(); const au = new Audio(card.url); youB.classList.add("on"); au.onended = () => youB.classList.remove("on"); au.play().catch(() => youB.classList.remove("on")); return; }
+    if (card.done) return;
+    if (act === "skip") { Session.noSay = true; card.done = true; host.skip ? host.skip(card) : host.next(card); return; }
+    if (act === "saidit") { finish(true, 2); return; }
+    if (a.dataset.rate) { finish(a.dataset.rate === "good", a.dataset.rate === "good" ? 4 : 1); return; }
+    if (act === "rec") {
+      if (!card.recording) {
+        Voice.stop();
+        try {
+          await Rec.start((lv) => micB.style.setProperty("--lv", lv.toFixed(3)));
+          card.recording = true; micB.classList.add("on"); lab.textContent = t("tapStop");
+          card.timer = setTimeout(() => card.recording && micB.click(), 5000);
+        } catch (err) { fallback(t("micOff")); }
+      } else {
+        clearTimeout(card.timer); card.recording = false; micB.classList.remove("on"); micB.style.setProperty("--lv", 0);
+        const url = await Rec.stop();
+        if (!url) { fallback(t("micOff")); return; }
+        if (card.url) URL.revokeObjectURL(card.url);
+        card.url = url; micB.classList.add("again"); $(".yc", el).hidden = false; lab.textContent = t("again");
+        $(".say-hint", el).textContent = t("compareHint"); $(".say-rate", el).hidden = false;
+        // native, then you: the comparison is the lesson
+        Voice.play(text, { btn:$(".native", el) }).then(() => { if (host.isActive(card)) setTimeout(() => youB.click(), 250); });
+      }
+    }
+  });
+  return card;
+}
+const ICON_MIC = `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>`;
+
+const BUILDERS = { story:exStory, sq:exStoryQ, scene:exScene, learn:exLearn, spot:exLearn, pick:exPick, rev:exRev, listen:exListen, match:exMatch, build:exBuild, sit:exSit, reel:exReel, dialog:exDialog, proverb:exProverb, mystery:exMystery, drop:exDrop, lightning:exLightning, haggle:exHaggle, comeback:exComeback, nudge:exNudge, say:exSay, hear:(sp, host) => exBuild(Object.assign({}, sp, { hear:true }), host) };
 function makeEx(sp, host) { const f = BUILDERS[sp.t] || exReel; return f(sp, host); }
 
 /* =========================================================
@@ -621,7 +750,8 @@ function lessonSpecs(node) {
     const m = words.concat(firstFree(known, Math.max(0, 4 - words.length))).slice(0, 5);
     if (m.length >= 3) seq.push({ t:"match", words:m });
     seq.push({ t:"listen", w:words[words.length - 1], sub:"mean" });
-    const b = buildFor(words); if (b) seq.push({ t:"build", id:b });
+    if (!Session.noSay) seq.push({ t:"say", w:words[Math.min(1, words.length - 1)] });
+    const b = buildFor(words); if (b) seq.push({ t:PATH.indexOf(node) % 2 ? "hear" : "build", id:b });
     const s = sitFor(words); if (s) seq.push({ t:"sit", id:s });
     if (known.length) seq.push({ t:pick(["pick", "listen"]), w:pick(known), review:true });
     seq.push({ t:"rev", w:words[0] });
@@ -631,8 +761,10 @@ function lessonSpecs(node) {
   const ws = shuffle(words);
   ws.slice(0, 7).forEach((w, k) => seq.push({ t:["listen", "rev", "pick", "listen"][k % 4], w, sub:k === 3 ? "mean" : undefined }));
   seq.splice(3, 0, { t:"match", words:ws.slice(0, 5) });
-  const b = buildFor(words); if (b) seq.push({ t:"build", id:b });
+  const b = buildFor(words); if (b) seq.push({ t:"hear", id:b });
   const s = sitFor(words); if (s) seq.splice(6, 0, { t:"sit", id:s });
+  const ew = ws.find((id) => W[id].ex && Voice.has(W[id].ex[0]));
+  if (ew && !Session.noSay) seq.push({ t:"say", w:ew, text:W[ew].ex[0] });
   seq.push({ t:"match", words:ws.slice(5, 10).length >= 3 ? ws.slice(5, 10) : ws.slice(0, 4) });
   return seq;
 }
@@ -643,6 +775,7 @@ const LessonHost = {
   isActive(card) { return Lesson.active && Lesson.card === card; },
   resolve(card, ok, info) { Lesson.answer(card, ok, info); },
   next() { Lesson.advance(); },
+  skip() { Lesson.advance(); },
 };
 const Lesson = {
   active:false, node:null, specs:[], i:0, card:null, tile:"majorelle", pool:[], st:null,
@@ -658,7 +791,7 @@ const Lesson = {
     combo = 0;
     const el = $("#lesson");
     el.className = "lesson plaster cv" + (isSide(node) ? 0 : node.unit);
-    el.innerHTML = `<div class="l-top"><button class="l-x" data-act="quit" aria-label="${esc(t("quit"))}">${ICON.x}</button><div class="l-bar" id="l-bar"><i></i></div><div class="l-combo" id="l-combo" hidden></div></div>
+    el.innerHTML = `<div class="l-top"><button class="l-x" data-act="quit" aria-label="${esc(t("quit"))}">${ICON.x}</button><div class="l-prog" id="l-bar"><i></i></div><span class="l-count" id="l-count"></span><div class="l-combo" id="l-combo" hidden></div></div>
       <div class="l-body"></div><div class="l-foot" hidden></div>
       <div class="l-confirm" hidden><div class="box"><p>${esc(t("quitQ"))}</p><button class="cta block" data-act="stay">${esc(t("keepLearning"))}</button><button class="btn-bad" data-act="leave">${esc(t("leave"))}</button></div></div>`;
     el.hidden = false;
@@ -676,7 +809,9 @@ const Lesson = {
   progress(all) {
     const bar = $("#l-bar"), n = this.specs.filter((x) => x.t !== "scene").length, off = this.specs[0] && this.specs[0].t === "scene" ? 1 : 0;
     const done = all ? n : Math.max(0, this.i - off), prev = this.shownDone || 0;
-    bar.innerHTML = Array.from({ length:n }, (_, k) => `<i class="${k < done ? "done" : k === done && !all ? "now" : ""}${k < done && k >= prev ? " just" : ""}"></i>`).join("");
+    const fill = $("i", bar); if (fill) fill.style.transform = `scaleX(${(n ? done / n : 0).toFixed(4)})`;
+    const cnt = $("#l-count"); if (cnt) cnt.textContent = t("aOfB", { a:done, b:n });
+    if (done > prev && !reduced) bar.animate([{ transform:"scaleY(1)" }, { transform:"scaleY(1.5)", offset:0.4 }, { transform:"scaleY(1)" }], { duration:240, easing:EASE_OUT });
     this.shownDone = done;
   },
   show() {
@@ -686,7 +821,10 @@ const Lesson = {
       // the answered card swings away in 3D while the next one swings in
       old.leave && old.leave();
       const oe = old.el; oe.classList.add("leaving"); oe.classList.remove("is-active");
-      if (!reduced && oe.animate) oe.animate([{ transform:"none", opacity:1 }, { transform:"perspective(1200px) translateX(-34%) rotateY(30deg) scale(.9)", opacity:0 }], { duration:360, easing:"cubic-bezier(.45,0,.7,.4)", fill:"forwards" }).finished.then(() => oe.remove(), () => oe.remove());
+      if (oe.animate) oe.animate(reduced
+        ? [{ opacity:1 }, { opacity:0 }]
+        : [{ transform:"none", opacity:1 }, { transform:"perspective(1200px) translateX(-22%) rotateY(16deg) scale(.96)", opacity:0 }],
+        { duration:reduced ? 150 : 180, easing:EASE_OUT, fill:"forwards" }).finished.then(() => oe.remove(), () => oe.remove());
       else oe.remove();
     }
     const sp = this.specs[this.i];
@@ -694,7 +832,10 @@ const Lesson = {
     this.card = card;
     card.el.classList.add("play", "is-active");
     body.appendChild(card.el);
-    if (old && !reduced && card.el.animate) card.el.animate([{ transform:"perspective(1200px) translateX(38%) rotateY(-26deg) scale(.92)", opacity:0 }, { transform:"none", opacity:1 }], { duration:640, easing:"cubic-bezier(.2,.9,.25,1.06)" });
+    if (old && card.el.animate) card.el.animate(reduced
+      ? [{ opacity:0 }, { opacity:1 }]
+      : [{ transform:"perspective(1200px) translateX(22%) rotateY(-14deg) scale(.96)", opacity:0 }, { transform:"none", opacity:1 }],
+      { duration:reduced ? 150 : 280, delay:reduced ? 0 : 60, easing:EASE_OUT, fill:"backwards" });
     card.firstEnter && card.firstEnter();
     card.enter && card.enter();
     this.progress();
@@ -712,20 +853,17 @@ const Lesson = {
     card.el.classList.add("answered");
     if (info.haggle) { this.advance(); return; }
     const foot = $("#lesson .l-foot");
-    foot.hidden = true;
-    const holder = document.createElement("div");
-    holder.innerHTML = bannerHTML(ok, info, false);
-    const banner = holder.firstElementChild;
-    banner.insertAdjacentHTML("beforeend", `<button class="cta" data-act="cont">${esc(t("continueL"))}</button>`);
     const moods = ok ? ["happy", "wink", "wow"] : ["sad"];
-    banner.insertAdjacentHTML("beforeend", `<div class="cat-peek">${mascot(moods[(this.st.right + this.st.wrong) % moods.length], ok ? "jump" : "droop")}</div>`);
-    $("#lesson").appendChild(banner);
-    this.banner = banner;
+    let fbx = $(".fbx", card.el);
+    if (!fbx) { fbx = document.createElement("div"); fbx.className = "fbx"; $(".card-in", card.el).appendChild(fbx); }
+    fbx.innerHTML = fbHTML(ok, info, moods[(this.st.right + this.st.wrong) % moods.length]);
+    foot.innerHTML = `<button class="cta block" data-act="cont">${esc(t("continueL"))}</button>`; foot.hidden = false;
+    const ci = $(".card-in", card.el); if (ci && ci.scrollHeight > ci.clientHeight) ci.scrollTo({ top:ci.scrollHeight, behavior:reduced ? "auto" : "smooth" });
     if (info.say && !info.noAuto) setTimeout(() => this.card === card && autoSay(info.say, info.voice), ok ? 200 : 350);
-    setTimeout(() => { const c = $(".cta", banner); c && c.focus({ preventScroll:true }); }, 60);
+    setTimeout(() => { const c = $(".cta", foot); c && c.focus({ preventScroll:true }); }, 60);
   },
   advance() {
-    if (this.banner) { this.banner.remove(); this.banner = null; }
+    if (this.banner) { const bn = this.banner; this.banner = null; bn.classList.add("leaving"); setTimeout(() => bn.remove(), reduced ? 0 : 200); }
     Voice.stop();
     this.i++;
     if (this.i >= this.specs.length) this.finish(); else this.show();
@@ -807,7 +945,8 @@ const Lesson = {
    ========================================================= */
 const FeedHost = {
   mode:"feed",
-  tile(sp) { return { learn:"majorelle", spot:"majorelle", pick:"saffron", rev:"emerald", listen:"night", match:"plum", build:"teal", sit:"rose" }[sp.t] || "majorelle"; },
+  tile(sp) { return { learn:"majorelle", spot:"majorelle", pick:"saffron", rev:"emerald", listen:"night", match:"plum", build:"teal", hear:"night", say:"saffron", sit:"rose" }[sp.t] || "majorelle"; },
+  skip() { Feed.next(); },
   pool() { return learnedIds().filter((id) => !W[id].rar); },
   isActive(card) { return view === "feed" && Feed.cards[Feed.active] === card; },
   resolve(card, ok, info) {
@@ -827,18 +966,24 @@ const FG = {
   recent:[], last:{}, force:[], requeue:[], opener:[], reserved:new Set(),
   RULES:{
     pick:{ gap:2, w:3, min:3 }, rev:{ gap:2, w:3, min:3 }, listen:{ gap:3, w:3, min:3 }, spot:{ gap:5, w:2, min:2 }, match:{ gap:7, w:2, min:4 },
-    build:{ gap:6, w:2, min:4 }, sit:{ gap:4, w:3 }, reel:{ gap:5, w:2 }, dialog:{ gap:6, w:2 }, proverb:{ gap:8, w:1 },
+    build:{ gap:6, w:2, min:4 }, hear:{ gap:7, w:2, min:4 }, say:{ gap:6, w:2, min:3 }, sit:{ gap:4, w:3 }, reel:{ gap:5, w:2 }, dialog:{ gap:6, w:2 }, proverb:{ gap:8, w:1 },
     mystery:{ gap:10, w:1, from:6 }, drop:{ gap:12, w:1, from:12 }, lightning:{ gap:14, w:1, min:6 }, haggle:{ gap:20, w:1, from:8 },
   },
-  PRACTICE:new Set(["pick", "rev", "listen", "spot", "match", "build", "lightning"]),
+  COOL:{ "s:":36e5 * 20, "b:":36e5 * 12, "r:":36e5 * 72, "hb:":36e5 * 12, "d:":36e5 * 48, "p:":36e5 * 72, "h:":36e5 * 24 },
+  PRACTICE:new Set(["pick", "rev", "listen", "spot", "match", "build", "hear", "say", "lightning"]),
   reset() { this.recent = []; this.last = {}; this.force = []; this.requeue = []; this.opener = []; this.reserved = new Set(); },
   since(type, i) { return this.last[type] == null ? 999 : i - this.last[type]; },
   freshest(ids, prefix) {
     const inUse = new Set(Feed.cards.filter((c) => !c.seen).map((c) => c.spec.id).filter(Boolean));
     const avail = ids.filter((id) => !inUse.has(id) && !this.recentIds().has(id));
     if (!avail.length) return null;
-    avail.sort((a, b) => (S.shown[prefix + a] || 0) - (S.shown[prefix + b] || 0) || Math.random() - 0.5);
-    return avail[0];
+    // never-seen first, then least recently seen; anything seen inside its cool-down stays out,
+    // so the type sits out and the feed fills with something else instead of a rerun
+    const now = Date.now(), cool = this.COOL[prefix] || 0;
+    const ok = avail.filter((id) => now - (S.shown[prefix + id] || 0) >= cool);
+    if (!ok.length) return null;
+    ok.sort((a, b) => (S.shown[prefix + a] || 0) - (S.shown[prefix + b] || 0) || Math.random() - 0.5);
+    return ok[0];
   },
   recentIds() { return new Set(Feed.cards.slice(-12).map((c) => c.spec.id).filter(Boolean)); },
   pickWord() {
@@ -858,6 +1003,8 @@ const FG = {
       case "listen": { const w = this.pickWord(); return w ? { t:"listen", w, sub:Math.random() < 0.4 ? "mean" : undefined } : null; }
       case "match": return known.length >= 4 ? { t:"match", words:shuffle(known).slice(0, 4) } : null;
       case "build": { const ok = BUILDS.filter((b) => S.words[b[5]]).map((b) => b[0]); const id = this.freshest(ok.length ? ok : BUILDS.map((b) => b[0]), "b:"); return id ? { t:"build", id } : null; }
+      case "hear": { const ok = BUILDS.filter((b) => S.words[b[5]] && Voice.has(buildSay(b[3]))).map((b) => b[0]); const id = ok.length ? this.freshest(ok, "hb:") : null; return id ? { t:"hear", id } : null; }
+      case "say": { if (Session.noSay) return null; const w = this.pickWord(); return w ? { t:"say", w } : null; }
       case "sit": { const id = this.freshest(SITS.map((s) => s[0]), "s:"); return id ? { t:"sit", id } : null; }
       case "reel": { const id = this.freshest(REELS.map((r) => r[0]), "r:"); return id ? { t:"reel", id } : null; }
       case "dialog": { const id = this.freshest(DIALOGS.map((d) => d.id), "d:"); return id ? { t:"dialog", id } : null; }
@@ -907,7 +1054,8 @@ const FG = {
       if (sp) return sp;
       cand.splice(k, 1);
     }
-    return this.specFor("sit") || this.specFor("reel") || { t:"reel", id:pick(REELS)[0] };
+    // everything story-like is cooling down: fall back to practice, built fresh from the learner's own words
+    return this.specFor("sit") || this.specFor("pick") || this.specFor("listen") || this.specFor("rev") || { t:"reel", id:pick(REELS)[0] };
   },
 };
 const Feed = {
@@ -948,7 +1096,7 @@ const Feed = {
       c.seen = true; if (this.booted) c.el.classList.add("play");
       S.stats.cards++; dayRec().n++;
       if (c.spec.t === "drop") FG.reserved.delete(c.spec.w);
-      const pre = { reel:"r:", build:"b:", sit:"s:", dialog:"d:", proverb:"p:", haggle:"h:" }[c.spec.t];
+      const pre = { reel:"r:", build:"b:", hear:"hb:", sit:"s:", dialog:"d:", proverb:"p:", haggle:"h:" }[c.spec.t];
       if (pre && (c.spec.id || c.spec.item)) S.shown[pre + (c.spec.id || c.spec.item)] = Date.now();
       c.firstEnter && c.firstEnter();
       persist();
@@ -987,10 +1135,10 @@ function setView(k) {
   if (k === "learn") k = "today"; if (k === "kenz") k = "me";
   if (Lesson.active) return;
   if (view === "feed" && k !== "feed") Feed.pause();
-  view = k;
+  view = k; $("#stage").dataset.view = k;
   $$(".tab").forEach((b) => { b.classList.toggle("on", b.dataset.tab === k); b.setAttribute("aria-current", b.dataset.tab === k ? "page" : "false"); });
   for (const v of ["today", "journey", "feed", "guide", "me"]) { const el = $("#v-" + v); el.hidden = v !== k; }
-  $("#hud").classList.toggle("on-dark", k === "today" && $("#v-today").scrollTop < 300);
+  $("#hud").classList.remove("on-dark");
   const order = ["today", "journey", "feed", "guide", "me"];
   const el = $("#v-" + k); el.style.setProperty("--dx", (order.indexOf(k) >= order.indexOf(Session.lastView || "today") ? 26 : -26) + "px"); Session.lastView = k;
   el.classList.remove("enter"); void el.offsetWidth; el.classList.add("enter");
@@ -1032,9 +1180,43 @@ function openNodeSheet(idx) {
     ${n.kind === "story" ? "" : n.kind !== "boss" ? `<div class="chips">${n.words.slice(0, 8).map((id) => `<span class="chip">${esc(W[id].d)}${sayBtn(W[id].d)}</span>`).join("")}</div>` : `<p>${esc(t("haggleS"))}</p>`}
     ${st === "done" ? `<div class="stars" style="justify-content:flex-start">${[1, 2, 3].map((k) => ICON.star.replace("<svg", `<svg class="${k <= stars ? "on" : ""}"`)).join("")}</div>` : ""}
     ${st === "locked" ? `<p>${esc(t("locked"))}</p>` : `<button class="cta block" data-start="${idx}">${esc(st === "done" ? t("practiceAgain") : t("start"))}</button>`}`;
+  clearTimeout(Session.sheetT); sh.style.transform = ""; $("#sheet-scrim").classList.remove("leaving");
   sh.hidden = false; $("#sheet-scrim").hidden = false;
 }
-function closeNodeSheet() { $("#nsheet").hidden = true; $("#sheet-scrim").hidden = true; }
+function closeNodeSheet() {
+  const sh = $("#nsheet"), sc = $("#sheet-scrim");
+  if (sh.hidden || sh.classList.contains("leaving")) return;
+  sh.style.transform = ""; sh.classList.remove("dragging");
+  if (reduced) { sh.hidden = true; sc.hidden = true; return; }
+  sh.classList.add("leaving"); sc.classList.add("leaving");
+  Session.sheetT = setTimeout(() => { sh.hidden = true; sc.hidden = true; sh.classList.remove("leaving"); sc.classList.remove("leaving"); }, 260);
+}
+// drag the sheet down to dismiss. It tracks the finger 1:1 from where it was grabbed, resists upward
+// (rubber-band), and a flick (> 0.11 px/ms) dismisses whatever the distance.
+function sheetDrag(sh) {
+  let d = null;
+  const band = (x, dim) => (x * dim * 0.55) / (dim + 0.55 * Math.abs(x));
+  sh.addEventListener("pointerdown", (e) => {
+    if (d || e.button > 0 || e.target.closest("button,[data-start],.say")) return;
+    d = { y0:e.clientY, t0:performance.now(), hist:[[performance.now(), e.clientY]], id:e.pointerId, moved:false, h:sh.offsetHeight };
+  });
+  sh.addEventListener("pointermove", (e) => {
+    if (!d || e.pointerId !== d.id) return;
+    const dy = e.clientY - d.y0;
+    if (!d.moved) { if (Math.abs(dy) < 10) return; d.moved = true; sh.setPointerCapture(e.pointerId); sh.classList.add("dragging"); }
+    d.hist.push([performance.now(), e.clientY]); if (d.hist.length > 6) d.hist.shift();
+    sh.style.transform = `translateY(${dy >= 0 ? dy : band(dy, d.h)}px)`;
+  });
+  const end = (e) => {
+    if (!d || e.pointerId !== d.id) return;
+    const g = d; d = null;
+    if (!g.moved) return;
+    sh.classList.remove("dragging");
+    const dy = e.clientY - g.y0, [t1, y1] = g.hist[0], v = (e.clientY - y1) / Math.max(1, performance.now() - t1);
+    if (dy > g.h * 0.3 || v > 0.11) closeNodeSheet(); else sh.style.transform = "";
+  };
+  sh.addEventListener("pointerup", end); sh.addEventListener("pointercancel", end);
+}
 
 // --- Guide ---
 let guideTab = "sounds", guideSound = "3", pbFilter = "all", pbQuery = "";
@@ -1122,9 +1304,10 @@ function renderMe() {
 function refreshHUD() {
   const st = shownStreak();
   const sEl = $("#hud-streak");
-  sEl.innerHTML = flameSVG() + `<b>${st}</b>`;
+  sEl.innerHTML = teaTray() + `<b>${st}</b>`;
+  $("#hud-mark").innerHTML = `${ICON.mark}<span class="wm">Wakha</span><span class="ar" lang="ar">واخا</span>`;
   sEl.classList.toggle("cold", !dayRec().goalMet);
-  sEl.setAttribute("aria-label", st + " " + t("stStreak"));
+  sEl.setAttribute("aria-label", t("trayL", { n:st }));
   const rec = dayRec(), pct = Math.min(1, rec.xp / S.goal);
   const gEl = $("#hud-goal");
   gEl.innerHTML = teaGlass(pct, "gl") + `<span class="bar"><i style="width:${(pct * 100).toFixed(1)}%"></i></span><b>${Math.min(rec.xp, 999)}/${S.goal}</b>`;
@@ -1177,7 +1360,7 @@ function start(data) {
 
   const fromHot = data && data.S ? migrate(data.S) : null;
   S = fromHot || loadLocal() || defaultState();
-  Voice.init(); FX.init(); Feed.init();
+  Voice.init(); FX.init(); Feed.init(); catBlinks();
   const t0 = today();
   Session.newDay = !!(S.lastOpen && S.lastOpen !== t0);
   if (S.lastOpen !== t0) { S.lastOpen = t0; S.dayCount = (S.dayCount || 0) + 1; }
@@ -1192,7 +1375,7 @@ function start(data) {
     if (!b || b.closest(".mt")) return;
     e.stopPropagation();
     Session.gesture = true; Sound.unlock();
-    Voice.play(b.dataset.say, { voice:b.dataset.voice || "n", btn:b, mark:$$(`.dj[data-say="${CSS.escape(b.dataset.say)}"]`, b.closest(".card,.gpanel,.exrow,.pbrow,.hero,.nsheet,.chip,.kc,.welcome,.banner,.ov-box") || document).filter((x) => x !== b) });
+    Voice.play(b.dataset.say, { voice:b.dataset.voice || "n", rate:+(b.dataset.rate || 1), btn:b, mark:$$(`.dj[data-say="${CSS.escape(b.dataset.say)}"]`, b.closest(".card,.gpanel,.exrow,.pbrow,.hero,.nsheet,.chip,.kc,.welcome,.banner,.ov-box") || document).filter((x) => x !== b) });
   }, true);
   addEventListener("pointerdown", () => { Session.gesture = true; Sound.unlock(); }, { capture:true });
   $$(".tab").forEach((b) => b.addEventListener("click", () => { Sound.play("tap"); setView(b.dataset.tab); }));
@@ -1200,6 +1383,7 @@ function start(data) {
   bindHome();
   $("#nsheet").addEventListener("click", (e) => { const s = e.target.closest("[data-start]"); if (s) { closeNodeSheet(); Lesson.open(PATH[+s.dataset.start]); } });
   $("#sheet-scrim").addEventListener("click", closeNodeSheet);
+  sheetDrag($("#nsheet"));
   $("#v-guide").addEventListener("click", (e) => {
     const g = e.target.closest("[data-gt]"); if (g) { guideTab = g.dataset.gt; renderGuide(); return; }
     const sd = e.target.closest("[data-snd]"); if (sd) { guideSound = sd.dataset.snd; renderGuide(); $("#v-guide").scrollTo({ top:0, behavior:reduced ? "auto" : "smooth" }); const s = SOUNDS.find((x) => x.id === guideSound); Session.gesture = true; Voice.play(s.say, { btn:$(".gpanel .say") }); return; }
