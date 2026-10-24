@@ -1439,3 +1439,13 @@ svg{display:block}
 
 /* sheets can open over a lesson (cups of tea) */
 .sheet-scrim{z-index:45}.nsheet{z-index:46}
+
+/* v1.9: Mchicha's wardrobe and a light rim so the black cat reads on dark screens */
+.hatrow{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.hatrow button{flex:none;width:76px;display:grid;justify-items:center;gap:4px;padding:8px 4px 6px;border-radius:16px;background:var(--bg);color:var(--ink-soft);font:500 11.5px/1.2 var(--font)}
+.hatrow button svg{width:56px;height:64px}.hatrow button.on{box-shadow:inset 0 0 0 2px var(--ink);color:var(--ink)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cat{filter:drop-shadow(0 0 1.2px rgba(255,255,255,.55))}}
+:root[data-theme="dark"] .cat{filter:drop-shadow(0 0 1.2px rgba(255,255,255,.55))}
+.jewel .cat,.adlayer .cat,.welcome .cat{filter:drop-shadow(0 0 1.2px rgba(255,255,255,.6))}
+
+.sheet-scrim.leaving,.nsheet.leaving{pointer-events:none}

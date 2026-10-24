@@ -314,55 +314,97 @@ const ARCH = `<svg class="arch" viewBox="0 0 200 320" aria-hidden="true"><path d
 const INK = "#2A1B3D";
 // Mchicha: a flat line drawing in the ink colour, with a white tagiya and its teal band.
 // Group classes (cat-tail, cat-head, cat-ear-l/r, cat-eyes, cat-cap, cat-shadow) are what the motion CSS animates.
-// Mchicha: a sand-coloured tabby in a white tagiya. Fixed warm colours so she reads the same in light and dark.
-const CATC = { ink:"#2B231D", fur:"#EDBE7E", shade:"#C98A4B", cream:"#FBF0DC", pink:"#E9A08C", cap:"#FBF8F2" };
-function catHead(mood = "happy") {
-  const C = CATC, K = `stroke="${C.ink}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"`;
-  const hl = (x, y) => `<circle cx="${x}" cy="${y}" r="1.6" fill="#FFFFFF"/>`;
-  const eyes = {
-    happy:`<path d="M60 84q6-7 12 0M88 84q6-7 12 0" fill="none" ${K}/>`,
-    normal:`<g class="cat-eyes"><ellipse cx="66" cy="83" rx="4" ry="5" fill="${C.ink}"/><ellipse cx="94" cy="83" rx="4" ry="5" fill="${C.ink}"/>${hl(67.5, 81)}${hl(95.5, 81)}</g>`,
-    wow:`<g class="cat-eyes"><ellipse cx="66" cy="82" rx="5.4" ry="6.2" fill="${C.ink}"/><ellipse cx="94" cy="82" rx="5.4" ry="6.2" fill="${C.ink}"/>${hl(68, 79.6)}${hl(96, 79.6)}</g>`,
-    sad:`<g class="cat-eyes"><ellipse cx="66" cy="85" rx="3.6" ry="4.4" fill="${C.ink}"/><ellipse cx="94" cy="85" rx="3.6" ry="4.4" fill="${C.ink}"/>${hl(67.2, 83.4)}${hl(95.2, 83.4)}</g><path d="M59 76l11-3.5M101 76l-11-3.5" fill="none" ${K}/>`,
-    wink:`<path d="M60 84q6-7 12 0" fill="none" ${K}/><g class="cat-eyes"><ellipse cx="94" cy="83" rx="4" ry="5" fill="${C.ink}"/>${hl(95.5, 81)}</g>`,
+// Mchicha: a sassy black street cat from Tangier. No hat by default; she has a wardrobe of Moroccan hats.
+// Group classes (cat-tail, cat-head, cat-ear-l/r, cat-eyes, cat-cap, cat-shadow) are what the motion CSS animates.
+const CATC = { fur:"#221E27", fur2:"#2E2934", tuft:"#3B3542", line:"#0F0D12", rim:"#4A4352", ear:"#E0827A", ear2:"#C9645E", nose:"#D9443C", eye:"#FFFFFF", lid:"#C9C6D1", pupil:"#141117" };
+const CAT_HATS = {
+  none:"",
+  // red tarbouche with a black tassel (Fes, Marrakech)
+  tarbouche:`<g class="cat-cap"><path d="M58 52L62 24Q80 19 98 24L102 52Q80 58 58 52Z" fill="#B3262E" stroke="#0F0D12" stroke-width="3" stroke-linejoin="round"/><path d="M62 24Q80 29 98 24" fill="none" stroke="#7E1A21" stroke-width="2.5"/><path d="M80 22Q92 20 98 34" fill="none" stroke="#141117" stroke-width="3" stroke-linecap="round"/><path d="M96 33l4 11M98 33l-1 12M100 33l5 9" stroke="#141117" stroke-width="2" stroke-linecap="round"/></g>`,
+  // white tagiya with a teal band (the old Mchicha cap)
+  tagiya:`<g class="cat-cap"><path d="M56 56Q58 31 80 30Q102 31 104 56Q80 62 56 56Z" fill="#FBF8F2" stroke="#0F0D12" stroke-width="3" stroke-linejoin="round"/><path d="M64 41l3-3 3 3-3 3ZM77 37l3-3 3 3-3 3ZM90 41l3-3 3 3-3 3Z" fill="#17655E" opacity=".85"/><path d="M58.5 51Q80 57 101.5 51" fill="none" stroke="#17655E" stroke-width="4.5" stroke-linecap="round"/></g>`,
+  // Jebli straw hat with wool pompoms (Chefchaouen, Tetouan)
+  terrazza:`<g class="cat-cap"><ellipse cx="80" cy="50" rx="50" ry="10" fill="#E3B65F" stroke="#0F0D12" stroke-width="3"/><path d="M60 48Q62 26 80 25Q98 26 100 48Z" fill="#E9C27A" stroke="#0F0D12" stroke-width="3" stroke-linejoin="round"/><path d="M38 51q8-4 16 0M106 51q8-4 16 0M62 40h36M64 33h32" fill="none" stroke="#B88A34" stroke-width="1.8"/>
+    ${[[34, 58, "#2F6FB5"], [126, 58, "#D9443C"], [47, 61, "#E0A631"], [113, 61, "#2F8A5B"], [61, 41, "#2F6FB5"], [99, 41, "#D9443C"], [80, 22, "#E0A631"]].map(([x, y, c]) => `<path d="M${x} ${y - 10}V${y - 4}" stroke="#0F0D12" stroke-width="1.5"/><circle cx="${x}" cy="${y - 1}" r="5" fill="${c}" stroke="#0F0D12" stroke-width="2"/>`).join("")}</g>`,
+  // indigo desert cheche (Merzouga, Zagora, Ouarzazate)
+  cheche:`<g class="cat-cap"><path d="M50 60Q46 30 80 26Q114 30 110 60Q96 50 80 50Q64 50 50 60Z" fill="#26407A" stroke="#0F0D12" stroke-width="3" stroke-linejoin="round"/><path d="M56 44Q80 34 104 44M54 52Q80 42 106 52" fill="none" stroke="#3A5BA0" stroke-width="3" stroke-linecap="round"/><path d="M104 46Q122 58 116 84Q112 70 104 62Z" fill="#26407A" stroke="#0F0D12" stroke-width="3" stroke-linejoin="round"/></g>`,
+  // red and green football beanie (Rabat, Agadir)
+  beanie:`<g class="cat-cap"><path d="M56 54Q56 26 80 25Q104 26 104 54Z" fill="#C1272D" stroke="#0F0D12" stroke-width="3" stroke-linejoin="round"/><path d="M54 50h52v8H54Z" fill="#006233" stroke="#0F0D12" stroke-width="3" stroke-linejoin="round"/><path d="M80 34l2.4 4.8 5.3.8-3.8 3.7.9 5.3-4.8-2.5-4.8 2.5.9-5.3-3.8-3.7 5.3-.8Z" fill="none" stroke="#006233" stroke-width="1.8" stroke-linejoin="round"/><circle cx="80" cy="22" r="6" fill="#F4F0E8" stroke="#0F0D12" stroke-width="2.5"/></g>`,
+  // fisherman's bucket hat (Essaouira, Dakhla, Tangier port)
+  bucket:`<g class="cat-cap"><path d="M48 55Q50 46 60 44L64 28Q80 23 96 28L100 44Q110 46 112 55Q80 63 48 55Z" fill="#F2C46D" stroke="#0F0D12" stroke-width="3" stroke-linejoin="round"/><path d="M62 42Q80 47 98 42" fill="none" stroke="#B88A34" stroke-width="2.5"/></g>`,
+  // a rose tucked behind the ear (Kelaat M'Gouna)
+  rose:`<g class="cat-cap"><path d="M106 52c6-2 10 1 11 4-5 1-8 0-11-4Z" fill="#2F8A5B" stroke="#0F0D12" stroke-width="1.5"/><circle cx="104" cy="44" r="8.5" fill="#D9486A" stroke="#0F0D12" stroke-width="2.5"/><path d="M100.5 44a3.5 3.5 0 1 1 5 3M98 46.5a6.5 6.5 0 0 0 12 0" fill="none" stroke="#7A1E36" stroke-width="1.6" stroke-linecap="round"/></g>`,
+  // big round sunglasses (Casablanca, El Jadida): sits on the face, so it's drawn over the eyes
+  shades:`<g class="cat-cap"><circle cx="65" cy="84" r="10.5" fill="#141117" stroke="#0F0D12" stroke-width="2.5"/><circle cx="95" cy="84" r="10.5" fill="#141117" stroke="#0F0D12" stroke-width="2.5"/><path d="M75.5 82h9M54.5 82l-9-3M105.5 82l9-3" stroke="#E0A631" stroke-width="2.5" stroke-linecap="round"/><path d="M60 79l5-3M90 79l5-3" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity=".55"/></g>`,
+};
+// which hat Mchicha wears in each city's badge
+const CITY_HAT = { Tangier:"bucket", Asilah:"none", Chefchaouen:"terrazza", Tetouan:"terrazza", Rabat:"beanie", Agadir:"beanie", Fes:"tarbouche", Ifrane:"beanie", Meknes:"tagiya", Azrou:"tagiya",
+  Marrakech:"tarbouche", Taroudant:"tarbouche", Casablanca:"shades", "El Jadida":"shades", "Kelaat M’Gouna":"rose", Ouarzazate:"cheche", Merzouga:"cheche", Zagora:"cheche", Essaouira:"bucket", Dakhla:"bucket" };
+function catEyes(mood) {
+  const C = CATC, L = `stroke="${C.line}" stroke-linecap="round" stroke-linejoin="round"`;
+  // half-lidded, unimpressed eyes: white below a heavy flat lid, pupils parked to one side
+  const eye = (cx, px, top = 80, open = 1) => {
+    const y0 = top, h = 10.5 * open, w = 13.5;
+    return `<path d="M${cx - w} ${y0}Q${cx} ${y0 - 1.5} ${cx + w} ${y0}Q${cx + w - 1} ${y0 + h + 5} ${cx} ${y0 + h + 5}Q${cx - w + 1} ${y0 + h + 5} ${cx - w} ${y0}Z" fill="${C.eye}" stroke="${C.line}" stroke-width="2.4" stroke-linejoin="round"/>
+      <path d="M${cx - w + 1} ${y0 + 2}Q${cx} ${y0 + 0.8} ${cx + w - 1} ${y0 + 2}" fill="none" stroke="${C.lid}" stroke-width="2.6"/>
+      <circle cx="${px}" cy="${y0 + 3.5 + h * 0.45}" r="${3.8 + open}" fill="${C.pupil}"/><circle cx="${px + 1.6}" cy="${y0 + 2.4 + h * 0.35}" r="1.3" fill="#fff"/>
+      <path d="M${cx - w - 1.5} ${y0 - 0.5}Q${cx} ${y0 - 3.5} ${cx + w + 1.5} ${y0 - 0.5}" fill="none" ${L} stroke-width="3.8"/>`;
+  };
+  return {
+    // sassy: side-eye, one brow cocked
+    sassy:`<g class="cat-eyes">${eye(64, 69)}${eye(96, 101)}</g><path d="M51 69Q62 61 76 67" fill="none" ${L} stroke-width="3.2"/><path d="M84 72Q96 71.5 109 73" fill="none" ${L} stroke-width="3.2"/>`,
+    normal:`<g class="cat-eyes">${eye(66, 68, 79, 1.2)}${eye(94, 96, 79, 1.2)}</g><path d="M56 70Q65 67 74 69M86 69Q95 67 104 70" fill="none" ${L} stroke-width="2.8"/>`,
+    // happy = smug: eyes closed in a satisfied curve
+    happy:`<path d="M56 83Q66 76 76 83M84 83Q94 76 104 83" fill="none" ${L} stroke-width="3.4"/><path d="M57 72Q66 68 74 71M86 71Q94 68 103 72" fill="none" ${L} stroke-width="2.6"/>`,
+    wow:`<g class="cat-eyes">${eye(66, 66, 76, 1.9)}${eye(94, 94, 76, 1.9)}</g><path d="M55 66Q65 60 75 65M85 65Q95 60 105 66" fill="none" ${L} stroke-width="2.8"/>`,
+    // sorry = disappointed side-eye, both brows flat and low
+    sad:`<g class="cat-eyes">${eye(66, 61, 82, 0.6)}${eye(94, 89, 82, 0.6)}</g><path d="M55 76Q65 73 76 75M84 75Q95 73 105 76" fill="none" ${L} stroke-width="3"/>`,
+    wink:`<g class="cat-eyes">${eye(64, 69)}</g><path d="M84 84Q94 78 104 84" fill="none" ${L} stroke-width="3.4"/><path d="M55 70Q65 64 75 69M86 70Q95 67 104 70" fill="none" ${L} stroke-width="2.8"/>`,
   }[mood] || "";
+}
+function catHead(mood = "sassy", hat = "none") {
+  const C = CATC, K = `stroke="${C.line}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"`;
+  if (mood === "normal" && false) mood = "sassy";
   const mouth = {
-    happy:`<path d="M74 97q6 7 12 0" fill="none" ${K}/>`,
-    wow:`<ellipse cx="80" cy="99" rx="3.6" ry="4.4" fill="#8E3B2E" ${K}/>`,
-    sad:`<path d="M74 101q6-5 12 0" fill="none" ${K}/>`,
-  }[mood] || `<path d="M80 93v2.4M80 95.4q-3.6 3.6-7 1M80 95.4q3.6 3.6 7 1" fill="none" ${K}/>`;
-  const cap = `<g class="cat-cap"><path d="M55 57Q57 31 80 30Q103 31 105 57Q80 63 55 57Z" fill="${C.cap}" ${K}/>
-    <path d="M64 41l3-3 3 3-3 3ZM77 37l3-3 3 3-3 3ZM90 41l3-3 3 3-3 3Z" fill="var(--accent)" opacity=".85"/>
-    <path d="M57.5 51.5Q80 57.5 102.5 51.5" fill="none" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="round"/>
-    <circle cx="80" cy="28.5" r="3.4" fill="var(--accent)" stroke="${C.ink}" stroke-width="2.4"/></g>`;
+    happy:`<path d="M73 101q4 3 7 0q3 3 7 0" fill="none" ${K} stroke-width="2.6"/>`,
+    wow:`<ellipse cx="80" cy="102" rx="3.4" ry="4.2" fill="#5A1E22" ${K} stroke-width="2.4"/>`,
+    sad:`<path d="M74 104q6-4 12 0" fill="none" ${K} stroke-width="2.6"/>`,
+    wink:`<path d="M74 101q6 4 12-1" fill="none" ${K} stroke-width="2.6"/>`,
+  }[mood] || `<path d="M75 102.5h10" fill="none" ${K} stroke-width="2.6"/>`;
+  const h = CAT_HATS[hat] || "";
+  const onFace = hat === "shades";
   return `<g class="cat-head">
-      <g class="cat-ear-l"><path d="M51 74L47 38L73 55Z" fill="${C.fur}" ${K}/><path d="M53.5 64L51.5 47L64 56Z" fill="${C.pink}"/></g>
-      <g class="cat-ear-r"><path d="M109 74L113 38L87 55Z" fill="${C.fur}" ${K}/><path d="M106.5 64L108.5 47L96 56Z" fill="${C.pink}"/></g>
-      <ellipse cx="80" cy="84" rx="37" ry="31" fill="${C.fur}" ${K}/>
-      <path d="M80 61v7M71.5 62.5l1.6 5M88.5 62.5l-1.6 5M44.5 81h7M45.5 88h6M115.5 81h-7M114.5 88h-6" stroke="${C.shade}" stroke-width="3" stroke-linecap="round"/>
-      <path d="M65 98Q65 88.5 80 89.5Q95 88.5 95 98Q95 107 80 106Q65 107 65 98Z" fill="${C.cream}"/>
-      <ellipse cx="55" cy="96" rx="5.5" ry="3.2" fill="${C.pink}" opacity=".55"/><ellipse cx="105" cy="96" rx="5.5" ry="3.2" fill="${C.pink}" opacity=".55"/>
-      ${cap}
-      ${eyes}
-      <path d="M76.4 89h7.2L80 93.2Z" fill="${C.pink}" stroke="${C.ink}" stroke-width="2" stroke-linejoin="round"/>
+      <g class="cat-ear-l"><path d="M50 76L44 34L74 54Z" fill="${C.fur}" ${K}/><path d="M53 66L49 42L67 55Z" fill="${C.ear}"/><path d="M52 60l5 2M51 52l6 3" stroke="${C.ear2}" stroke-width="1.6" stroke-linecap="round"/></g>
+      <g class="cat-ear-r"><path d="M110 76L116 34L86 54Z" fill="${C.fur}" ${K}/><path d="M107 66L111 42L93 55Z" fill="${C.ear}"/><path d="M108 60l-5 2M109 52l-6 3" stroke="${C.ear2}" stroke-width="1.6" stroke-linecap="round"/></g>
+      <path d="M44 92Q40 84 46 76Q48 60 64 54Q72 50 80 51Q88 50 96 54Q112 60 114 76Q120 84 116 92L122 96L113 99L117 105L107 105Q98 116 80 116Q62 116 53 105L43 105L47 99L38 96Z" fill="${C.fur}" ${K}/>
+      <path d="M74 52l3-6 3 5 3-6 2 7" fill="${C.fur}" stroke="${C.line}" stroke-width="2.4" stroke-linejoin="round"/>
+      <path d="M47 96l-6 1M113 96l6 1M50 101l-5 3M110 101l5 3" stroke="${C.tuft}" stroke-width="2" stroke-linecap="round"/>
+      <path d="M60 108Q70 114 80 113Q90 114 100 108" fill="none" stroke="${C.rim}" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+      ${onFace ? "" : h}
+      ${onFace ? `<path d="M55 70Q65 64 75 69M85 72Q95 72 105 73" fill="none" stroke="${C.line}" stroke-width="3" stroke-linecap="round"/>` : catEyes(mood)}
+      <path d="M77 93.5h6L80 97.5Z" fill="${C.nose}" stroke="${C.line}" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M80 97.5v2.5" stroke="${C.line}" stroke-width="2" stroke-linecap="round"/>
       ${mouth}
-      <path d="M60 94H47M60 99l-12 3.5M100 94h13M100 99l12 3.5" fill="none" stroke="${C.ink}" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+      ${onFace ? h : ""}
     </g>`;
 }
-function mascot(mood = "happy", cls = "") {
-  const C = CATC, K = `stroke="${C.ink}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"`;
-  const tail = "M106 140Q138 140 136 113Q134 99 123 95";
+function mascot(mood = "sassy", cls = "", hat) {
+  const C = CATC, K = `stroke="${C.line}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"`;
+  if (hat == null) hat = (typeof S !== "undefined" && S.catHat) || "none";
+  if (mood === "normal") mood = "sassy";
+  const tail = "M106 140Q140 142 138 112Q136 96 124 92";
   return `<svg xmlns="http://www.w3.org/2000/svg" class="cat mc ${cls}" data-mood="${mood}" viewBox="0 0 160 160" aria-hidden="true">
-    <ellipse class="cat-shadow" cx="80" cy="151" rx="40" ry="4.5" fill="${C.ink}" opacity=".12"/>
-    <g class="cat-tail"><path d="${tail}" fill="none" stroke="${C.ink}" stroke-width="12.5" stroke-linecap="round"/><path d="${tail}" fill="none" stroke="${C.fur}" stroke-width="6.5" stroke-linecap="round"/>
-      <path d="M132.4 104Q128 97 123 95" fill="none" stroke="${C.shade}" stroke-width="6.5" stroke-linecap="round"/><path d="M128 139.4l1.5-6.5M135.3 125l-6-2" stroke="${C.shade}" stroke-width="3" stroke-linecap="round"/></g>
-    <g class="cat-body"><path d="M50 148Q45 116 62 105Q80 97 98 105Q115 116 110 148Z" fill="${C.fur}" ${K}/>
-      <path d="M67 147Q65 122 80 115Q95 122 93 147Z" fill="${C.cream}"/>
-      <path d="M53 124l7 2M52 133l7 1M107 124l-7 2M108 133l-7 1" stroke="${C.shade}" stroke-width="3" stroke-linecap="round"/>
-      <ellipse cx="70" cy="146" rx="8.5" ry="5" fill="${C.cream}" ${K}/><ellipse cx="90" cy="146" rx="8.5" ry="5" fill="${C.cream}" ${K}/></g>
-    ${catHead(mood)}
+    <ellipse class="cat-shadow" cx="80" cy="151" rx="40" ry="4.5" fill="#000" opacity=".16"/>
+    <g class="cat-tail"><path d="${tail}" fill="none" stroke="${C.line}" stroke-width="13" stroke-linecap="round"/><path d="${tail}" fill="none" stroke="${C.fur}" stroke-width="7.5" stroke-linecap="round"/><path d="M134 104q-3-6-8-9" fill="none" stroke="${C.rim}" stroke-width="2" stroke-linecap="round" opacity=".8"/></g>
+    <g class="cat-body"><path d="M50 148Q44 116 62 104Q80 96 98 104Q116 116 110 148Z" fill="${C.fur}" ${K}/>
+      <path d="M68 112l4 7 3-8 5 9 4-9 4 8 3-7" fill="none" stroke="${C.tuft}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M58 122q-2 10 0 20M102 122q2 10 0 20" fill="none" stroke="${C.rim}" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+      <ellipse cx="69" cy="146" rx="9" ry="5" fill="${C.fur2}" ${K}/><ellipse cx="91" cy="146" rx="9" ry="5" fill="${C.fur2}" ${K}/>
+      <path d="M66 145v2.5M70 145v2.5M88 145v2.5M92 145v2.5" stroke="${C.line}" stroke-width="1.5" stroke-linecap="round"/></g>
+    ${catHead(mood, hat)}
   </svg>`;
 }
+
 // A keyhole-arch badge for each city on the Journey: Mchicha's head in front of something from that city.
 const BADGE_PROPS = {
   // Tangier: the ferry coming in
@@ -433,10 +475,10 @@ const BADGE_PROPS = {
 const BADGE_ARCH = "M7 64V33C2 25 5 4 28 4S54 25 49 33V64Z";
 function cityBadge(ui, mood = "happy") {
   const c = CITIES[ui] || CITIES[0], id = `cb${ui}`;
-  const scarf = c.en === "Rabat" || c.en === "Agadir" ? `<path d="M8.5 60q11.5 5 23 0v4h-23Z" fill="#C1272D" stroke="#2B231D" stroke-width="1.3"/><path d="M14 62v2.5M20 62.6v2M26 62v2.5" stroke="#006233" stroke-width="2.4"/>` : c.en === "Kelaat M’Gouna" ? `<g transform="translate(27.5 41)"><circle r="3" fill="#D9486A" stroke="#7A1E36" stroke-width="1"/><path d="M-1.2 0a1.3 1.3 0 1 1 2 1" fill="none" stroke="#7A1E36" stroke-width=".8"/></g>` : "";
+  const scarf = "";
   return `<svg class="cbadge" viewBox="0 0 56 64" aria-hidden="true"><defs><clipPath id="${id}"><path d="${BADGE_ARCH}"/></clipPath></defs>
     <g clip-path="url(#${id})"><rect width="56" height="64" fill="${c.wall}"/><g transform="translate(-4.5 0)">${BADGE_PROPS[c.en] || ""}</g>
-      <g transform="translate(20 52.5) scale(.33) translate(-80 -84)">${catHead(mood)}</g>${scarf}</g>
+      <g transform="translate(20 53) scale(.31) translate(-80 -84)">${catHead(mood === "happy" ? "sassy" : mood, CITY_HAT[c.en] || "none")}</g>${scarf}</g>
     <path d="${BADGE_ARCH}" fill="none" stroke="#2B231D" stroke-width="1.6" stroke-linejoin="round"/></svg>`;
 }
 function vendorFace() {

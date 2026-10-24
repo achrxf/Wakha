@@ -690,8 +690,8 @@
   "c": "ui"
  },
  {
-  "en": "I’m Mchicha, a street cat from Tangier. I’ll show you around Morocco, one city at a time.",
-  "fr": "Moi c’est Mchicha, un chat des rues de Tanger. Je te fais visiter le Maroc, une ville à la fois.",
+  "en": "I’m Mchicha. Black cat, Tangier streets, zero patience for bad Darija. Let’s fix yours.",
+  "fr": "Moi c’est Mchicha. Chat noir des rues de Tanger, zéro patience pour le mauvais darija. On va arranger le tien.",
   "c": "ui"
  },
  {
@@ -1135,8 +1135,8 @@
   "c": "ui"
  },
  {
-  "en": "Today counts. See you tomorrow for the next one.",
-  "fr": "Aujourd’hui compte. À demain pour la suite.",
+  "en": "Today counts. Don’t let it go to your head.",
+  "fr": "Aujourd’hui compte. Ne prends pas la grosse tête.",
   "c": "ui"
  },
  {
@@ -1175,8 +1175,13 @@
   "c": "ui"
  },
  {
-  "en": "Finish your first lesson to start your run.",
-  "fr": "Termine ta première leçon pour lancer ta série.",
+  "en": "One lesson today. I won’t ask twice.",
+  "fr": "Une leçon aujourd’hui. Je ne demanderai pas deux fois.",
+  "c": "ui"
+ },
+ {
+  "en": "First lesson. I’ll pretend I’m not watching.",
+  "fr": "Première leçon. Je fais semblant de ne pas regarder.",
   "c": "ui"
  },
  {
@@ -1610,6 +1615,51 @@
   "c": "ui"
  },
  {
+  "en": "Goal met. Fine, I’m impressed. A little.",
+  "fr": "Objectif atteint. Bon, je suis impressionné. Un peu.",
+  "c": "ui"
+ },
+ {
+  "en": "Mchicha’s hat",
+  "fr": "Le chapeau de Mchicha",
+  "c": "ui"
+ },
+ {
+  "en": "She has opinions about all of them.",
+  "fr": "Il a un avis sur chacun.",
+  "c": "ui"
+ },
+ {
+  "en": "No hat",
+  "fr": "Sans chapeau",
+  "c": "ui"
+ },
+ {
+  "en": "Jebli hat",
+  "fr": "Chapeau jebli",
+  "c": "ui"
+ },
+ {
+  "en": "Cheche",
+  "fr": "Chèche",
+  "c": "ui"
+ },
+ {
+  "en": "Match beanie",
+  "fr": "Bonnet de match",
+  "c": "ui"
+ },
+ {
+  "en": "Fisher’s hat",
+  "fr": "Bob de pêcheur",
+  "c": "ui"
+ },
+ {
+  "en": "Shades",
+  "fr": "Lunettes",
+  "c": "ui"
+ },
+ {
   "en": "Say it out loud",
   "fr": "Dis-le à voix haute",
   "c": "ui"
@@ -1702,11 +1752,6 @@
  {
   "en": "Start lesson",
   "fr": "Commencer la leçon",
-  "c": "ui"
- },
- {
-  "en": "Goal met for today. One more lesson glazes another tile.",
-  "fr": "Objectif atteint aujourd’hui. Une leçon de plus émaille un autre carreau.",
   "c": "ui"
  },
  {

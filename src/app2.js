@@ -1310,6 +1310,9 @@ function renderMe() {
     <div class="panel-c"><h3>${esc(t("week"))}</h3>${weekChart()}</div>
     ${kenzHTML()}
     <div class="panel-c"><h3>${esc(t("bestDeal"))}</h3><p class="sub" style="margin:0">${bd ? esc(t("paid", { p:bd.price, s:bd.start })) : esc(t("none"))}</p></div>
+    <div class="panel-c"><h3>${esc(t("hatH"))}</h3><p class="sub" style="margin:0 0 10px">${esc(t("hatS"))}</p>
+      <div class="hatrow">${Object.keys(CAT_HATS).map((h) => `<button data-hat="${h}" class="${(S.catHat || "none") === h ? "on" : ""}" aria-label="${esc(t("hat_" + h))}"><svg viewBox="34 14 92 106" aria-hidden="true">${catHead("sassy", h)}</svg><span>${esc(t("hat_" + h))}</span></button>`).join("")}</div>
+    </div>
     <div class="panel-c plan-c"><h3>${esc(t("planH"))}</h3>
       <div class="setrow"><span>${esc(isPlus() ? (plan().sub ? t("planSubbed", { p:t(plan().sub === "yearly" ? "planYearly" : "planMonthly") }) : plan().dev === "plus" ? "Wakha Plus (dev)" : t("trialLeft", { n:trialDaysLeft() })) : t("planFree"))}</span><button class="ghost" data-act="plus">${esc(isPlus() && plan().sub ? t("planManage") : t("seePlans"))}</button></div>
       ${isPlus() ? `<div class="setrow"><span>${esc(t("plTestK"))}</span><button class="ghost" data-act="placement">${esc(t("plStart"))}</button></div>` : ""}
@@ -1431,6 +1434,7 @@ function start(data) {
     setLang(sel.value);
   });
   $("#v-me").addEventListener("click", (e) => {
+    const hb = e.target.closest("[data-hat]"); if (hb) { S.catHat = hb.dataset.hat; persist(); renderMe(); renderLearn(); Sound.play("tap"); return; }
     const dv = e.target.closest("[data-dev-tier]"); if (dv) { plan().dev = dv.dataset.devTier; persist(); refreshAll(); renderMe(); toast(t("devTierSet", { t:dv.textContent }), ""); return; }
     if (e.target.closest("#sw-shortads")) { plan().shortAds = !plan().shortAds; persist(); renderMe(); return; }
     if (e.target.closest("[data-act=placement]")) { openPlacement(); return; }

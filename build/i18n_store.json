@@ -1505,7 +1505,20 @@
   "Restart trial": "Reiniciar prueba",
   "End trial": "Terminar prueba",
   "Cancel Plus": "Cancelar Plus",
-  "Plan: {t}": "Plan: {t}"
+  "Plan: {t}": "Plan: {t}",
+  "I’m Mchicha. Black cat, Tangier streets, zero patience for bad Darija. Let’s fix yours.": "Soy Mchicha. Gato negro, calles de Tánger, cero paciencia con el mal darija. Vamos a arreglar el tuyo.",
+  "Today counts. Don’t let it go to your head.": "Hoy cuenta. Que no se te suba a la cabeza.",
+  "One lesson today. I won’t ask twice.": "Una lección hoy. No lo voy a pedir dos veces.",
+  "First lesson. I’ll pretend I’m not watching.": "Primera lección. Haré como que no miro.",
+  "Goal met. Fine, I’m impressed. A little.": "Objetivo cumplido. Vale, estoy impresionado. Un poco.",
+  "Mchicha’s hat": "El sombrero de Mchicha",
+  "She has opinions about all of them.": "Tiene opinión sobre todos.",
+  "No hat": "Sin sombrero",
+  "Jebli hat": "Sombrero jebli",
+  "Cheche": "Cheche",
+  "Match beanie": "Gorro de partido",
+  "Fisher’s hat": "Gorro de pescador",
+  "Shades": "Gafas de sol"
  },
  "de": {
   "Feed": "Feed",
@@ -3013,7 +3026,20 @@
   "Restart trial": "Test neu starten",
   "End trial": "Test beenden",
   "Cancel Plus": "Plus kündigen",
-  "Plan: {t}": "Plan: {t}"
+  "Plan: {t}": "Plan: {t}",
+  "I’m Mchicha. Black cat, Tangier streets, zero patience for bad Darija. Let’s fix yours.": "Ich bin Mchicha. Schwarze Katze, Straßen von Tanger, null Geduld für schlechtes Darija. Wir bringen deins in Ordnung.",
+  "Today counts. Don’t let it go to your head.": "Heute zählt. Bild dir nichts darauf ein.",
+  "One lesson today. I won’t ask twice.": "Eine Lektion heute. Ich frage nicht zweimal.",
+  "First lesson. I’ll pretend I’m not watching.": "Erste Lektion. Ich tu so, als würde ich nicht hinschauen.",
+  "Goal met. Fine, I’m impressed. A little.": "Ziel erreicht. Na gut, ich bin beeindruckt. Ein bisschen.",
+  "Mchicha’s hat": "Mchichas Hut",
+  "She has opinions about all of them.": "Sie hat zu jedem eine Meinung.",
+  "No hat": "Kein Hut",
+  "Jebli hat": "Jebli-Hut",
+  "Cheche": "Chech",
+  "Match beanie": "Stadionmütze",
+  "Fisher’s hat": "Fischerhut",
+  "Shades": "Sonnenbrille"
  },
  "nl": {
   "Feed": "Feed",
@@ -4521,7 +4547,20 @@
   "Restart trial": "Proef herstarten",
   "End trial": "Proef beëindigen",
   "Cancel Plus": "Plus opzeggen",
-  "Plan: {t}": "Abonnement: {t}"
+  "Plan: {t}": "Abonnement: {t}",
+  "I’m Mchicha. Black cat, Tangier streets, zero patience for bad Darija. Let’s fix yours.": "Ik ben Mchicha. Zwarte kat, straten van Tanger, nul geduld voor slecht Darija. We gaan het jouwe fiksen.",
+  "Today counts. Don’t let it go to your head.": "Vandaag telt. Laat het je niet naar je hoofd stijgen.",
+  "One lesson today. I won’t ask twice.": "Eén les vandaag. Ik vraag het geen twee keer.",
+  "First lesson. I’ll pretend I’m not watching.": "Eerste les. Ik doe alsof ik niet kijk.",
+  "Goal met. Fine, I’m impressed. A little.": "Doel gehaald. Oké, ik ben onder de indruk. Een beetje.",
+  "Mchicha’s hat": "De hoed van Mchicha",
+  "She has opinions about all of them.": "Ze heeft over elke hoed een mening.",
+  "No hat": "Geen hoed",
+  "Jebli hat": "Jebli-hoed",
+  "Cheche": "Chech",
+  "Match beanie": "Wedstrijdmuts",
+  "Fisher’s hat": "Vissershoedje",
+  "Shades": "Zonnebril"
  },
  "it": {
   "Feed": "Feed",
@@ -6029,6 +6068,19 @@
   "Restart trial": "Riavvia la prova",
   "End trial": "Termina la prova",
   "Cancel Plus": "Annulla Plus",
-  "Plan: {t}": "Piano: {t}"
+  "Plan: {t}": "Piano: {t}",
+  "I’m Mchicha. Black cat, Tangier streets, zero patience for bad Darija. Let’s fix yours.": "Sono Mchicha. Gatto nero, strade di Tangeri, zero pazienza per il darija sbagliato. Sistemiamo il tuo.",
+  "Today counts. Don’t let it go to your head.": "Oggi conta. Non montarti la testa.",
+  "One lesson today. I won’t ask twice.": "Una lezione oggi. Non lo chiedo due volte.",
+  "First lesson. I’ll pretend I’m not watching.": "Prima lezione. Faccio finta di non guardare.",
+  "Goal met. Fine, I’m impressed. A little.": "Obiettivo raggiunto. Va bene, sono colpito. Un po’.",
+  "Mchicha’s hat": "Il cappello di Mchicha",
+  "She has opinions about all of them.": "Ha un’opinione su ognuno.",
+  "No hat": "Senza cappello",
+  "Jebli hat": "Cappello jebli",
+  "Cheche": "Cheche",
+  "Match beanie": "Berretto da stadio",
+  "Fisher’s hat": "Cappello da pescatore",
+  "Shades": "Occhiali da sole"
  }
 }

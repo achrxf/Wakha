@@ -27,7 +27,7 @@ Every Darija word, phrase, dialog line and story in the app has its own recorded
 - **Spaced review:** words you get wrong come back sooner; words you know come back later.
 
 ### Personality
-- **Mchicha**, the app's cat mascot (*mchicha* means "kitty" in Darija), is a sand-coloured tabby in a white **tagiya**. She reacts to right and wrong answers, blinks and wags her tail.
+- **Mchicha**, the app's cat mascot (*mchicha* means "kitty" in Darija), is a sassy black street cat from Tangier with half-lidded, unimpressed eyes. No hat by default, but a wardrobe of Moroccan hats (tarbouche, tagiya, Jebli straw hat, desert cheche, match beanie, fisher's hat, a rose, shades); each city's badge dresses her for that city, and you pick her everyday hat in Me.
 - **The tea tray** instead of a streak: seven small tea glasses for the last seven days, today's filling as you earn XP, and the number of days of atay in a row.
 - A faint **zellige** (khatam star) pattern on the city cards.
 - Motion throughout: page transitions, glazing animations, celebrations on milestones, and haptics where the phone supports it.
@@ -132,6 +132,7 @@ Wakha is on **v1**. Every update from here is a v1.x release. The commits follow
 | **v1.7** | Fixes from a **1,000-user swarm test**: the phone **Back button** now closes the top layer (celebration, sheet, lesson) instead of leaving the app; the locked-stop sheet has a **Got it** button; keyboard and screen-reader focus stays inside whatever is on top (welcome, lesson, overlay); the lesson intro shows the city badge. |
 | **v1.8** | Fixes from a **12-person tester panel**: valid synonyms are never marked wrong (Salam/Ahlan/Mer7ba), today's tea glass is poured by the first finished lesson, "1 day"/"1 étape" plurals, Jeddati/Jeddek and Arabic spellings (بخير، كي داير) corrected, readable feed cards in light mode, calmer welcome in dark mode, a sheet for locked cities (with Wakha Plus coming), a **text size** setting, and a "No sound? Show text" option on listening questions. Plus a recording script for real voices. |
 | **v1.9** | **Free tier and Wakha Plus.** Free: a minimal Today, 7 cities (Tangier open, the next 6 open with an ad), an ad after each lesson, **3 cups of tea** as lives (a mistake empties one, an ad pours one, they refill every morning), 5 minutes of feed a day with ad cards, a small banner in the Guide. Plus ($7/month or $50/year, with a 3-day trial from install): everything, any city in any order, a placement test that recommends where to start, no ads, unlimited tea and feed. The run of days is now a zellige star; a developer switch in Me flips Free/Plus. Payments and ads are simulated in this prototype (`Ads.show()` is where a real ad SDK goes). |
+| **v1.10** | **New Mchicha**: a sassy black cat with moods (side-eye, smug, shocked, disappointed, wink), a hat wardrobe and city outfits, sassier lines; tested with a 300-user swarm across both tiers. |
 
 ## Known limitations
 - The voice is a computer voice (an Arabic TTS model reading Darija through transliteration). It sounds clear but not native. Recordings by a real Moroccan speaker would be the biggest upgrade.
