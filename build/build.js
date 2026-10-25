@@ -9,7 +9,7 @@ put("/*CSS*/", R("src/styles.css"));
 put("/*AUDIO*/", audio.replace(/</g, "\\u003c"));
 put("/*CONTENT*/", content);
 const exAr = fs.existsSync(path.join(__dirname, "ex_ar.json")) ? R("build/ex_ar.json") : "{}";
-put("/*APP*/", "const EXAR = " + JSON.stringify(JSON.parse(exAr)) + ";\nconst I18N = " + JSON.stringify(Object.assign(JSON.parse(R("build/i18n_store.json")), { fr:{ "AFCON 2025":"CAN 2025", "…or 5 hours":"…ou 5 heures" } })) + ";\n" + R("src/medallion.js") + "\n" + R("src/app1.js") + "\n" + R("src/app2.js") + "\n" + R("src/app3.js") + "\n" + R("src/plan.js"));
+put("/*APP*/", R("src/cat_sprites.js") + "\n" + "const EXAR = " + JSON.stringify(JSON.parse(exAr)) + ";\nconst I18N = " + JSON.stringify(Object.assign(JSON.parse(R("build/i18n_store.json")), { fr:{ "AFCON 2025":"CAN 2025", "…or 5 hours":"…ou 5 heures" } })) + ";\n" + R("src/medallion.js") + "\n" + R("src/app1.js") + "\n" + R("src/app2.js") + "\n" + R("src/app3.js") + "\n" + R("src/plan.js"));
 fs.mkdirSync(path.join(__dirname, "../dist"), { recursive: true });
 fs.writeFileSync(path.join(__dirname, "../dist/wakha.html"), html);
 const RESET = ":root{color-scheme:light;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}";

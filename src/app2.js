@@ -599,7 +599,7 @@ function exNudge(sp, host) {
   const el = shell("nudge", "majorelle");
   $(".card-in", el).innerHTML = `
     <div class="kicker a1"><span class="tag solid">${esc(t("feed"))}</span></div>
-    <div class="a2">${mascot("happy", "bob")}</div>
+    <div class="a2">${mascot("wave", "bob", null, "full")}</div>
     <h2 class="prompt-big a3">${esc(t("startLesson1"))}</h2>
     <p class="mean a4" style="font-size:17px;color:var(--tx-soft)">${esc(t("feedLocked"))}</p>
     <div class="a5" style="display:flex;gap:10px;flex-wrap:wrap"><button class="cta" data-act="go">${esc(t("start"))}</button></div>
@@ -918,13 +918,13 @@ const Lesson = {
     if (side === "daily") dailyRec().wotd = true;
     if (side === "sprint") dailyRec().sprint = this.sprintScore || 0;
     const head = side === "sprint" ? t("sprintBest", { n:this.sprintScore || 0 }) : side === "daily" ? t("wotd") : perfect ? t("perfectGlaze") : before ? t("tileGlazed") : t("lessonDone");
-    const art = `<div class="end-badge">${isSide(this.node) ? mascot(perfect ? "wow" : "happy") : cityBadge(ui, perfect ? "wow" : "happy")}</div>`;
+    const art = `<div class="end-badge">${isSide(this.node) ? mascot(perfect ? "cheer" : "happy", "", null, "full") : cityBadge(ui, perfect ? "wow" : "happy")}</div>`;
     el.innerHTML = `<div class="l-end">${art}<h2>${esc(head)}</h2>
       ${before ? `<p class="sub">${esc(cityName(c))}, ${esc(t("glazedN", { a:glazedNow, b:before.length }))}</p>` : ""}
       <div class="stars anim">${[1, 2, 3].map((k) => ICON.star.replace("<svg", `<svg class="${k <= stars ? "on" : ""}"`)).join("")}</div>
       <div class="l-stats"><div><b class="xpv">–</b><span>${esc(t("xpL"))}</span></div><div><b class="accv">–</b><span>${esc(t("accuracy"))}</span></div><div><b>${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, "0")}</b><span>${esc(t("timeL"))}</span></div></div></div>`;
     $("#lesson .l-body").appendChild(el);
-    const pnl = $(".l-end .panel", el); if (pnl) pnl.insertAdjacentHTML("beforeend", `<div class="cat-sit">${mascot(perfect ? "love" : "happy", "")}</div>`);
+    const pnl = $(".l-end .panel", el); if (pnl) pnl.insertAdjacentHTML("beforeend", `<div class="cat-sit">${mascot(perfect ? "cheer" : "proud", "", null, "full")}</div>`);
     setTimeout(() => pnl && catPlay(pnl, "jump"), reduced ? 0 : 1500);
     const lend = $(".l-end", el);
     lend.classList.add("cv" + ui);
@@ -1341,7 +1341,7 @@ function renderMe() {
     ${kenzHTML()}
     <div class="panel-c"><h3>${esc(t("bestDeal"))}</h3><p class="sub" style="margin:0">${bd ? esc(t("paid", { p:bd.price, s:bd.start })) : esc(t("none"))}</p></div>
     <div class="panel-c"><h3>${esc(t("hatH"))}</h3><p class="sub" style="margin:0 0 10px">${esc(t("hatS"))}</p>
-      <div class="hatrow">${Object.keys(CAT_HATS).map((h) => `<button data-hat="${h}" class="${(S.catHat || "none") === h ? "on" : ""}" aria-label="${esc(t("hat_" + h))}"><svg viewBox="34 14 92 106" aria-hidden="true">${catHead("sassy", h)}</svg><span>${esc(t("hat_" + h))}</span></button>`).join("")}</div>
+      <div class="hatrow">${Object.keys(CAT_HATS).map((h) => `<button data-hat="${h}" class="${(S.catHat || "none") === h ? "on" : ""}" aria-label="${esc(t("hat_" + h))}"><img src="${catHead("sassy", h)}" alt="" draggable="false"><span>${esc(t("hat_" + h))}</span></button>`).join("")}</div>
     </div>
     <div class="panel-c plan-c"><h3>${esc(t("planH"))}</h3>
       <div class="setrow"><span>${esc(isPlus() ? (plan().sub ? t("planSubbed", { p:t(plan().sub === "yearly" ? "planYearly" : "planMonthly") }) : plan().dev === "plus" ? "Wakha Plus (dev)" : t("trialLeft", { n:trialDaysLeft() })) : t("planFree"))}</span><button class="ghost" data-act="plus">${esc(isPlus() && plan().sub ? t("planManage") : t("seePlans"))}</button></div>
@@ -1407,7 +1407,7 @@ function showWelcome(step = 1, swapped = false) {
   el.getAnimations({ subtree:true }).forEach((a) => a.cancel());
   el.className = "welcome plaster cv0";
   if (step === 1) {
-    el.innerHTML = `<div class="w-lang">${langSelect("w-lang")}</div><div class="stage-art">${panelHTML(0, ["done", "done", "done", "done"])}<div class="cat-sit">${mascot("happy", "hi")}</div></div>
+    el.innerHTML = `<div class="w-lang">${langSelect("w-lang")}</div><div class="stage-art">${panelHTML(0, ["done", "done", "done", "done"])}<div class="cat-sit">${mascot("wave", "hi", null, "full")}</div></div>
       <p class="eyebrow">Wakha</p>
       <div class="salam"><span class="word">${dj("Salam!")}</span><span class="arw" lang="ar">سلام</span>${sayBtn("Salam!")}</div>
       <h1>${esc(t("welcome3T"))}</h1><p>${esc(t("catIntro"))}</p>

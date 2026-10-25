@@ -53,7 +53,7 @@ const Ads = {
       const house = (this.n = (this.n || 0) + 1) % 2;
       el.className = "adlayer " + kind;
       el.innerHTML = `<div class="ad-top"><span class="ad-tag">${esc(t("adLabel"))}</span><span class="ad-count" aria-live="polite">${secs}</span></div>
-        <div class="ad-body">${house ? `<div class="ad-house">${mascot("wink")}<h3>${esc(t("plusAdT"))}</h3><p>${esc(t("plusAdS"))}</p><button class="cta" data-ad="plus">${esc(t("seePlans"))}</button></div>`
+        <div class="ad-body">${house ? `<div class="ad-house">${mascot("wink", "", null, "full")}<h3>${esc(t("plusAdT"))}</h3><p>${esc(t("plusAdS"))}</p><button class="cta" data-ad="plus">${esc(t("seePlans"))}</button></div>`
           : `<div class="ad-slot"><b>${esc(t("adSlotT"))}</b><p>${esc(t("adSlotS"))}</p></div>`}</div>
         <p class="ad-note">${esc(kind === "rewarded" ? t("adRewardNote") : t("adNote"))}</p>
         <button class="ad-close" data-ad="close" disabled>${esc(t("adWait"))}</button>`;
@@ -223,7 +223,7 @@ function syncFeedLock() {
   const lock = $("#feedlock"); if (!lock) return;
   const on = view === "feed" && feedLocked();
   if (on && lock.hidden) {
-    lock.innerHTML = `<div class="fl-in">${mascot("sleepy")}<h3>${esc(t("feedDoneT"))}</h3><p>${esc(t("feedDoneS"))}</p><button class="cta block" data-act="plus">${esc(t("feedPlus"))}</button><button class="ghost block" data-act="journey">${esc(t("feedJourney"))}</button></div>`;
+    lock.innerHTML = `<div class="fl-in">${mascot("sleepy", "", null, "full")}<h3>${esc(t("feedDoneT"))}</h3><p>${esc(t("feedDoneS"))}</p><button class="cta block" data-act="plus">${esc(t("feedPlus"))}</button><button class="ghost block" data-act="journey">${esc(t("feedJourney"))}</button></div>`;
     Feed.pause(); Voice.stop();
   }
   lock.hidden = !on;
@@ -238,7 +238,7 @@ function feedTick() {
 function exAd(sp, host) {
   const el = shell("ad", "night");
   $(".card-in", el).innerHTML = `<div class="kicker a1"><span class="tag solid">${esc(t("adLabel"))}</span></div>
-    <div class="ad-card a2">${mascot("happy")}<h2 class="prompt-big">${esc(t("plusAdT"))}</h2><p class="mean">${esc(t("plusAdS"))}</p><button class="cta" data-act="plus">${esc(t("seePlans"))}</button></div>
+    <div class="ad-card a2">${mascot("happy", "", null, "full")}<h2 class="prompt-big">${esc(t("plusAdT"))}</h2><p class="mean">${esc(t("plusAdS"))}</p><button class="cta" data-act="plus">${esc(t("seePlans"))}</button></div>
     <p class="ad-note a3">${esc(t("adNote"))}</p><p class="swipe-cue a4">${ICON.up}<span>${esc(t("swipe"))}</span></p>`;
   el.addEventListener("click", (e) => { if (e.target.closest("[data-act=plus]")) openPaywall("feed"); });
   return { el, kind:"ad" };

@@ -340,29 +340,27 @@ function catPlay(holder, cls) {
   // after a reaction he goes back to resting: four slow wags, then still
   clearTimeout(svg._rest); svg._rest = setTimeout(() => { if (!svg.classList.contains(cls)) return; svg.classList.remove(cls); void svg.getBoundingClientRect(); svg.classList.add("wag"); }, 1000);
 }
-// her idle life: every few seconds each visible cat blinks (sometimes twice); now and then she glances away,
-// rolls her eyes or flicks an ear. All short classes the CSS animates; nothing runs while the tab is hidden.
+// her idle life: every few seconds each visible cat blinks (the sassy bust has a closed-eye twin), sometimes twice,
+// and now and then gives a little wiggle. Short classes the CSS animates; nothing runs while the tab is hidden.
 function catBlinks() {
   setTimeout(() => {
     if (!document.hidden) for (const c of $$(".cat")) {
       if (!c.getClientRects().length || c.classList.contains("sorry") || c.classList.contains("droop")) continue;
-      const lids = c.querySelector(".cat-lid"), r = Math.random();
       const flash = (cls, ms) => { c.classList.add(cls); setTimeout(() => c.classList.remove(cls), ms); };
-      if (lids) { flash("blink", 130); if (r < 0.22) setTimeout(() => flash("blink", 120), 260); }
-      if (r > 0.86 && lids && c.dataset.mood === "sassy") setTimeout(() => flash("roll", 950), 700);
-      else if (r > 0.7 && lids) setTimeout(() => flash("glance", 1200), 500);
-      if (Math.random() < 0.3) setTimeout(() => { c.classList.toggle("left", Math.random() < 0.5); flash("twitch", 450); }, 1500 + Math.random() * 1500);
+      if (c.querySelector(".cat-blink")) { flash("blink", 140); if (Math.random() < 0.22) setTimeout(() => flash("blink", 130), 300); }
+      if (Math.random() < 0.18) setTimeout(() => flash("wiggle", 700), 1200 + Math.random() * 1500);
     }
     catBlinks();
   }, 3200 + Math.random() * 2800);
 }
 // swap a cat's face for a moment (same hat), with a little pop, then back
-function catFace(svg, mood, ms = 1800) {
-  if (!svg || !svg.parentNode) return;
-  const base = svg.dataset.base || svg.dataset.mood, cls = [...svg.classList].filter((k) => !["cat", "mc", "pop", "blink", "glance", "roll", "twitch", "left", "jump", "hi", "wag"].includes(k)).join(" ");
-  const tmp = document.createElement("div"); tmp.innerHTML = mascot(mood, cls + " pop");
-  const n = tmp.firstElementChild; n.dataset.base = base; svg.replaceWith(n);
-  clearTimeout(n._back); n._back = setTimeout(() => { if (!n.parentNode) return; tmp.innerHTML = mascot(base, cls + " pop"); n.replaceWith(tmp.firstElementChild); }, ms);
+function catFace(el, mood, ms = 1800) {
+  if (!el || !el.parentNode) return;
+  const kind = el.dataset.kind || "bust", base = el.dataset.base || el.dataset.mood;
+  const cls = [...el.classList].filter((k) => !["cat", "mc", "bust", "full", "pop", "blink", "wiggle", "jump", "hi", "wag", "hop", "cheer"].includes(k)).join(" ");
+  const tmp = document.createElement("div"); tmp.innerHTML = mascot(mood, cls + " pop", null, kind);
+  const n = tmp.firstElementChild; n.dataset.base = base; el.replaceWith(n);
+  clearTimeout(n._back); n._back = setTimeout(() => { if (!n.parentNode) return; tmp.innerHTML = mascot(base, cls + " pop", null, kind); n.replaceWith(tmp.firstElementChild); }, ms);
   return n;
 }
 function catTalk(holder) {
