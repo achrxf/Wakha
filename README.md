@@ -1,5 +1,9 @@
 # Wakha — learn Moroccan Darija
 
+**▶ Try the prototype in an iPhone frame:** https://raw.githack.com/achrxf/Wakha/main/docs/index.html
+(once GitHub Pages is on: https://achrxf.github.io/Wakha/)
+
+
 **Wakha** (واخا, "okay / deal" in Darija) is a small, fun app for learning Moroccan Arabic, the Darija people actually speak in Casablanca, Fes and Marrakech, not textbook Arabic.
 
 It is one HTML file that works offline. Open `dist/wakha.html` in any modern browser, on a phone or a computer. There is nothing to install and no account, and progress is saved in the browser.
@@ -138,6 +142,7 @@ Wakha is on **v1**. Every update from here is a v1.x release. The commits follow
 | **v1.13** | **Mchicha, redrawn**: a properly shaded black cat with gold cat-eyes and real eyelids, a teal collar with a gold khamsa charm and a two-part tail. Eight expressions (sassy, annoyed, wow, sad, wink, happy, love, sleepy) and nine redrawn hats. She breathes, her tail whips, the tarbouche tassel swings, and between blinks she glances away, rolls her eyes or flicks an ear. Tapping her flashes a face. Also fixed: a finished slide-away animation could stick and open the next lesson or the Plus page off-screen. Showcase: `docs/mchicha-showcase.html`. |
 | **v1.14** | **Mchicha in picture-book style**: redrawn as a white cat with green eyes, thin warm-brown ink lines, flat colour with one soft shadow and expressive brows, from Achraf’s reference. Twelve expressions now (sassy, playful, grumpy, annoyed, curious, mischievous, wink, happy, love, sad, sleepy, wow); right answers get happy, playful, wink or love, wrong ones sad, annoyed or grumpy; tapping her flashes a face. Hats restyled to match. Intro line says white cat in all six languages. |
 | **v1.15** | **Mchicha as real illustrations**: Achraf’s green-screen sheets are keyed, despilled and cut into 55 WebP sprites (`art/mchicha`, `build/cat_key.py`, `src/cat_sprites.js`, 0.6 MB): 9 head-and-shoulders moods, 9 hat portraits with baked closed-eye twins so she really blinks, 14 full-body poses and 6 actions (wave, jump, cheer, proud, shrug, facepalm). Small spots use portraits, big moments use full poses (waving on the welcome screen, jumping on level up, cheering after a perfect lesson, asleep on the feed lock). She breathes, blinks, wiggles, hops and pops between faces. |
+| **v1.17** | **Phone mockup page**: `docs/index.html` shows the app inside an iPhone 15 frame (status bar, Dynamic Island, home bar) that you click like a phone, with Start as a new user, Reload and full screen; on a real phone it goes full screen. `docs/app.html` is rebuilt by `build/build.js`. |
 | **v1.16** | **Mchicha moves**: 140 sprites from 19 sheets, all in `assets/mchicha` (sheets, cut sprites, tools). Every face blinks (half then closed eyes, eye area transplanted so mouths stay put); sassy, grumpy, surprised, sad and happy all come in all nine hats, so her hat now shows in lesson feedback too; she talks with three mouth shapes when you tap her on Today; the plain portrait flicks an ear; level ups and perfect lessons play a seven-frame jump. Frames share one canvas, so outlines never move. |
 
 ## Known limitations

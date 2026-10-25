@@ -18,3 +18,5 @@ fs.writeFileSync(path.join(__dirname, "../dist/preview.html"), `<!doctype html><
 const js = html.slice(html.indexOf('"use strict";'), html.lastIndexOf("})();"));
 fs.writeFileSync("/tmp/wakha_check.js", "(() => {" + js + "})();");
 console.log("built", (Buffer.byteLength(html) / 1e6).toFixed(2), "MB");
+// the phone mockup page (docs/index.html) shows docs/app.html inside an iPhone frame; keep the copy current
+fs.copyFileSync(path.join(__dirname, "../dist/preview.html"), path.join(__dirname, "../docs/app.html"));
