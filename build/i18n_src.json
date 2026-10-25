@@ -810,6 +810,11 @@
   "c": "ui"
  },
  {
+  "en": "Nothing yet. Rare words drop into your feed now and then: catch one and it lands here.",
+  "fr": "Rien pour l’instant. Des mots rares tombent parfois dans ton fil : attrape-en un et il arrive ici.",
+  "c": "ui"
+ },
+ {
   "en": "Done",
   "fr": "Fait",
   "c": "ui"

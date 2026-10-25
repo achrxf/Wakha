@@ -1305,10 +1305,11 @@ function renderGuide() {
 function kenzHTML() {
   const got = COLL.filter((id) => S.kenz[id]).length;
   const order = { rare:0, epic:1, legend:2 };
-  const ids = COLL.slice().sort((a, b) => order[W[a].rar] - order[W[b].rar]);
+  // only what you've found: the rest stays a surprise (the counter still says how many there are)
+  const ids = COLL.filter((id) => S.kenz[id]).sort((a, b) => order[W[a].rar] - order[W[b].rar] || String(S.kenz[b]).localeCompare(String(S.kenz[a])));
   return `<div class="panel-c"><h3>${esc(t("kenzH"))}</h3><p class="sub" style="margin:0">${esc(t("kenzS"))}</p>
     <p style="font:600 14px/1 var(--font);margin-top:12px">${esc(t("found", { a:got, b:COLL.length }))}</p><div class="kprog"><i style="width:${((got / COLL.length) * 100).toFixed(1)}%"></i></div>
-    <div class="kgrid">${ids.map((id) => { const wd = W[id], has = !!S.kenz[id]; return `<div class="kc rar-${wd.rar} ${has ? "got" : "miss"}"><p class="rl">${esc(L(RAR[wd.rar]))}</p>${has ? `${sayBtn(wd.d, "sm")}<div><p class="kw">${dj(wd.d)}</p><p class="ka" lang="ary">${esc(wd.ar)}</p></div><p class="km">${esc(meaning(wd))}</p>` : `<p class="kw">?</p><p class="km">${esc(t("hidden"))}</p>`}</div>`; }).join("")}</div></div>`;
+    ${ids.length ? "" : `<p class="kempty">${esc(t("kenzNone"))}</p>`}<div class="kgrid">${ids.map((id) => { const wd = W[id], has = !!S.kenz[id]; return `<div class="kc rar-${wd.rar} ${has ? "got" : "miss"}"><p class="rl">${esc(L(RAR[wd.rar]))}</p>${has ? `${sayBtn(wd.d, "sm")}<div><p class="kw">${dj(wd.d)}</p><p class="ka" lang="ary">${esc(wd.ar)}</p></div><p class="km">${esc(meaning(wd))}</p>` : `<p class="kw">?</p><p class="km">${esc(t("hidden"))}</p>`}</div>`; }).join("")}</div></div>`;
 }
 // --- Me ---
 function weekChart() {

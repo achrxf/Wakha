@@ -1605,3 +1605,5 @@ svg{display:block}
 @media (min-width:1100px) and (hover:hover) and (pointer:fine) and (prefers-color-scheme:dark){ :root:not([data-theme="light"]) body{--page-bg:#0D0D0C} }
 :root[data-theme="dark"] body{--page-bg:#0D0D0C}
 @media (min-width:1100px) and (max-height:620px) and (hover:hover) and (pointer:fine){ .stage{height:100%;margin:0 auto;border-radius:0} }
+
+.kempty{margin:12px 0 2px;color:var(--ink-soft);font-size:14px;line-height:1.45}
