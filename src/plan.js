@@ -267,7 +267,7 @@ function bootPlans() {
   if (!$("#feedlock")) { const fl = document.createElement("div"); fl.id = "feedlock"; fl.className = "feedlock"; fl.hidden = true; $("#v-feed").appendChild(fl); }
   setInterval(feedTick, 1000);
   if (location.hash === "#newuser") { try { history.replaceState(history.state, "", location.pathname + location.search); } catch (e) {} setTimeout(startOver, 50); }
-  setTimeout(() => { if (window.__wakha) Object.assign(window.__wakha, { isPlus, cityGate, cupsLeft, openPaywall, openPlacement, Ads, plan, refreshAll, persist }); }, 0);
+  setTimeout(() => { if (window.__wakha) Object.assign(window.__wakha, { isPlus, cityGate, cupsLeft, openPaywall, openPlacement, Ads, plan, refreshAll, persist, mascot, catBlink, catSpeak, catTwitch, catFrames }); }, 0);
   // any "Plus" button anywhere opens the paywall
   document.addEventListener("click", (e) => {
     const p = e.target.closest("[data-act=plus]"); if (p && !p.closest("#nsheet,#adlayer,#paywall")) { e.preventDefault(); openPaywall("button"); }

@@ -313,33 +313,82 @@ function medalMark() { return `<svg viewBox="-30 -30 60 60" aria-hidden="true"><
 const ARCH = `<svg class="arch" viewBox="0 0 200 320" aria-hidden="true"><path d="M30 320V150A70 70 0 1 1 170 150V320" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M46 320V152A54 54 0 1 1 154 152V320" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M100 54l7 12 14 2-10 10 2 14-13-7-13 7 2-14-10-10 14-2z" fill="currentColor" opacity=".7"/></svg>`;
 const INK = "#2A1B3D";
 /* =========================================================
-   MCHICHA v4: a white Tangier street cat, drawn as real illustrations (green-screen sheets cut into WebP sprites,
-   see art/mchicha and src/cat_sprites.js). Two kinds of picture:
-     bust  head and shoulders, for small spots (lesson feedback, Today, Me, badges). The sassy bust wears her hat and blinks.
-     full  whole body in a pose, for big moments (welcome, level up, lesson end, ads, feed lock).
-   mascot() returns <span class="cat mc ..."> holding the picture (and its closed-eye twin when it has one);
-   the motion CSS moves the whole picture: breathing, bob, hop, wiggle, pop.
+   MCHICHA v5: a white Tangier street cat, drawn as real illustrations (green-screen sheets in assets/mchicha,
+   cut into WebP sprites by build/cat_sprites.py into src/cat_sprites.js). Two kinds of picture:
+     bust  head and shoulders for small spots. Sassy, grumpy, surprised, sad and happy come in every hat.
+     full  whole body in a pose for big moments.
+   Animation is flipbook frames drawn from the same picture, so outlines never move:
+     blink   half-closed then closed eyes (most faces), closed for the sassy hats
+     talk    three mouth shapes on the sassy bust (every hat), played while she speaks
+     twitch  an ear flick on the sassy no-hat bust
+     jump    seven frames for level ups and perfect lessons
    ========================================================= */
 const CAT_HATS = { none:1, tarbouche:1, tagiya:1, terrazza:1, cheche:1, beanie:1, bucket:1, rose:1, shades:1 };
-const CAT_BUST = { happy:"p_happy", playful:"p_playful", grumpy:"p_grumpy", annoyed:"p_annoyed", sad:"p_sad", curious:"p_curious", wow:"p_wow",
-  mischievous:"p_mischievous", love:"b_love", wink:"b_wink", sleepy:"b_sassy", cheer:"p_playful", jump:"p_playful", wave:"p_playful", proud:"b_happy", shrug:"p_annoyed", facepalm:"b_annoyed" };
+const CAT_HAT_MOOD = { sassy:"s", grumpy:"g", wow:"w", sad:"d", happy:"h" };
+const CAT_BUST = { playful:"p_playful", annoyed:"p_annoyed", curious:"p_curious", mischievous:"p_mischievous",
+  love:"b_love", wink:"b_wink", sleepy:"b_sassy", cheer:"p_playful", jump:"p_playful", wave:"p_playful", proud:"b_happy", shrug:"p_annoyed", facepalm:"p_grumpy" };
 const CAT_FULL = { sassy:"f_sassy", happy:"f_happy", playful:"f_playful", pounce:"f_pounce", grumpy:"f_grumpy", sad:"f_sad", wow:"f_wow", annoyed:"f_annoyed",
   unimpressed:"f_unimpressed", curious:"f_curious", mischievous:"f_mischievous", sleepy:"f_sleepy", love:"f_love", wink:"f_wink",
   wave:"a_wave", jump:"a_jump", cheer:"a_cheer", proud:"a_proud", shrug:"a_shrug", facepalm:"a_facepalm" };
-function catPic(mood = "sassy", kind = "bust", hat = "none") {
+// which sprite a cat shows, and the frame sets it can play
+function catKey(mood = "sassy", kind = "bust", hat = "none") {
   if (mood === "normal") mood = "sassy";
-  if (kind === "full") return { src:CAT_IMG[CAT_FULL[mood] || "f_sassy"] };
-  if (mood === "sassy") { const h = CAT_HATS[hat] ? hat : "none"; return { src:CAT_IMG["h_" + h], blink:CAT_IMG["hb_" + h] || null }; }
-  return { src:CAT_IMG[CAT_BUST[mood] || "p_happy"] };
+  if (kind === "full") return CAT_FULL[mood] || "f_sassy";
+  const hm = CAT_HAT_MOOD[mood];
+  if (hm) return "h" + hm + "_" + (CAT_HATS[hat] ? hat : "none");
+  return CAT_BUST[mood] || "p_" + mood;
+}
+function catFrames(k) {
+  const f = (s) => CAT_IMG[k + s] ? k + s : null;
+  const blink = f("_h") && f("_c") ? [k + "_h", k + "_c", k + "_c", k + "_h"] : f("_c") ? [k + "_c", k + "_c"] : null;
+  const talk = f("_t1") ? [k + "_t1", k + "_t2", k + "_t3"] : null;
+  const twitch = f("_e1") ? [k + "_e1", k + "_e2", k + "_e1"] : null;
+  return { blink, talk, twitch };
 }
 function mascot(mood = "sassy", cls = "", hat, kind = "bust") {
   if (hat == null) hat = (typeof S !== "undefined" && S.catHat) || "none";
   if (mood === "normal") mood = "sassy";
-  const p = catPic(mood, kind, hat);
-  return `<span class="cat mc ${kind} ${cls}" data-mood="${mood}" data-kind="${kind}" aria-hidden="true"><img class="cat-img" src="${p.src}" alt="" draggable="false">${p.blink ? `<img class="cat-blink" src="${p.blink}" alt="" draggable="false">` : ""}</span>`;
+  if (kind === "full" && mood === "jumpseq") return catJump(cls);
+  const k = catKey(mood, kind, hat);
+  return `<span class="cat mc ${kind} ${cls}" data-mood="${mood}" data-kind="${kind}" data-k="${k}" aria-hidden="true"><span class="cat-in"><img class="cat-img" src="${CAT_IMG[k] || CAT_IMG.p_happy}" alt="" draggable="false"><img class="cat-fx" alt="" draggable="false" hidden></span></span>`;
+}
+// the jump: seven frames that play once, each lifted to its height in the air, ending in a happy sit
+const CAT_JUMP_Y = [0, -6, -20, -16, -8, 0, 0];
+function catJump(cls = "") {
+  const step = 105;
+  return `<span class="cat mc full catseq ${cls}" data-mood="jump" data-kind="full" aria-hidden="true">${CAT_JUMP_Y.map((y, i) => `<img src="${CAT_IMG["j_" + i]}" alt="" draggable="false" class="${i === 6 ? "last" : ""}" style="--y:${y}%;animation-delay:${i * step}ms">`).join("")}</span>`;
+}
+// flipbook player: shows frames over the picture one after another, then hides the overlay
+function catPlayFrames(el, keys, ms = 55, done) {
+  const fx = el && el.querySelector(".cat-fx"); if (!fx || !keys || reduced) { done && done(); return; }
+  clearTimeout(el._fxT); let i = 0;
+  const next = () => {
+    if (i >= keys.length) { fx.hidden = true; el.classList.remove("fx-on"); done && done(); return; }
+    fx.src = CAT_IMG[keys[i++]]; fx.hidden = false; el.classList.add("fx-on");
+    el._fxT = setTimeout(next, ms);
+  };
+  next();
+}
+function catBlink(el) { if (el && el.dataset.k) catPlayFrames(el, catFrames(el.dataset.k).blink, 45); }
+function catTwitch(el) { if (el && el.dataset.k) catPlayFrames(el, catFrames(el.dataset.k).twitch, 75); }
+// she talks: mouth shapes in a loose rhythm for as long as the word lasts
+function catSpeak(el, ms = 900) {
+  if (!el || !el.dataset.k) return false;
+  const t = catFrames(el.dataset.k).talk; if (!t) return false;
+  const seq = [], n = Math.max(3, Math.round(ms / 110));
+  for (let i = 0; i < n; i++) seq.push(t[(i * 2 + (i % 3)) % 3]);
+  catPlayFrames(el, seq, 110);
+  return true;
+}
+// decode every frame once in idle time so the first blink or word never flickers
+function catPreload() {
+  const keys = Object.keys(CAT_IMG); let i = 0;
+  const run = (dl) => { while (i < keys.length && (!dl || dl.timeRemaining() > 4)) { const im = new Image(); im.src = CAT_IMG[keys[i++]]; im.decode && im.decode().catch(() => {}); } if (i < keys.length) idle(run); };
+  const idle = (f) => (window.requestIdleCallback ? requestIdleCallback(f) : setTimeout(() => f(null), 200));
+  idle(run);
 }
 // the head-and-shoulders picture alone (hat picker, badges)
-function catHead(mood = "sassy", hat = "none") { return catPic(mood, "bust", hat).src; }
+function catHead(mood = "sassy", hat = "none") { return CAT_IMG[catKey(mood, "bust", hat)]; }
 
 // which hat Mchicha wears in each city's badge
 const CITY_HAT = { Tangier:"bucket", Asilah:"none", Chefchaouen:"terrazza", Tetouan:"terrazza", Rabat:"beanie", Agadir:"beanie", Fes:"tarbouche", Ifrane:"beanie", Meknes:"tagiya", Azrou:"tagiya",
@@ -698,7 +747,7 @@ function nextOverlay() {
   let html = "";
   if (o.kind === "level") {
     const sub = LEVEL_SUB[o.info.raw];
-    html = `<div class="ov-box">${mascot("jump", "hop", null, "full")}<p class="ov-k">${esc(t("levelK"))}</p><p class="ov-t">${esc(t("levelT", { n:o.info.n }))}</p>
+    html = `<div class="ov-box">${mascot("jumpseq", "", null, "full")}<p class="ov-k">${esc(t("levelK"))}</p><p class="ov-t">${esc(t("levelT", { n:o.info.n }))}</p>
       <p class="ov-s"><b>${dj(o.info.title)}</b>${sub ? esc(L(sub)) : ""}</p>
       <div class="ov-btns"><button class="cta" data-ov="close">${esc(t("keepGoing"))}</button><button class="ghost" data-ov="share">${ICON.share}<span>${esc(t("share"))}</span></button></div></div>`;
     Sound.play("level"); setTimeout(() => FX.rain(), 120);

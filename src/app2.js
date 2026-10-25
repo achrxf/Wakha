@@ -924,7 +924,7 @@ const Lesson = {
       <div class="stars anim">${[1, 2, 3].map((k) => ICON.star.replace("<svg", `<svg class="${k <= stars ? "on" : ""}"`)).join("")}</div>
       <div class="l-stats"><div><b class="xpv">–</b><span>${esc(t("xpL"))}</span></div><div><b class="accv">–</b><span>${esc(t("accuracy"))}</span></div><div><b>${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, "0")}</b><span>${esc(t("timeL"))}</span></div></div></div>`;
     $("#lesson .l-body").appendChild(el);
-    const pnl = $(".l-end .panel", el); if (pnl) pnl.insertAdjacentHTML("beforeend", `<div class="cat-sit">${mascot(perfect ? "cheer" : "proud", "", null, "full")}</div>`);
+    const pnl = $(".l-end .panel", el); if (pnl) pnl.insertAdjacentHTML("beforeend", `<div class="cat-sit">${mascot(perfect ? "jumpseq" : "proud", "", null, "full")}</div>`);
     setTimeout(() => pnl && catPlay(pnl, "jump"), reduced ? 0 : 1500);
     const lend = $(".l-end", el);
     lend.classList.add("cv" + ui);
@@ -1444,7 +1444,7 @@ function start(data) {
 
   const fromHot = data && data.S ? migrate(data.S) : null;
   S = fromHot || loadLocal() || defaultState();
-  Voice.init(); FX.init(); Feed.init(); catBlinks();
+  Voice.init(); FX.init(); Feed.init(); catBlinks(); catPreload();
   const t0 = today();
   Session.newDay = !!(S.lastOpen && S.lastOpen !== t0);
   if (S.lastOpen !== t0) { S.lastOpen = t0; S.dayCount = (S.dayCount || 0) + 1; }

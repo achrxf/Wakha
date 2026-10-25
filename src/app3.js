@@ -340,24 +340,24 @@ function catPlay(holder, cls) {
   // after a reaction he goes back to resting: four slow wags, then still
   clearTimeout(svg._rest); svg._rest = setTimeout(() => { if (!svg.classList.contains(cls)) return; svg.classList.remove(cls); void svg.getBoundingClientRect(); svg.classList.add("wag"); }, 1000);
 }
-// her idle life: every few seconds each visible cat blinks (the sassy bust has a closed-eye twin), sometimes twice,
-// and now and then gives a little wiggle. Short classes the CSS animates; nothing runs while the tab is hidden.
+// her idle life: every few seconds each visible cat blinks (sometimes twice); the sassy no-hat face flicks an ear now and then,
+// and any cat may give a little wiggle. Frames come from the same drawing, so nothing jumps.
 function catBlinks() {
   setTimeout(() => {
-    if (!document.hidden) for (const c of $$(".cat")) {
-      if (!c.getClientRects().length || c.classList.contains("sorry") || c.classList.contains("droop")) continue;
-      const flash = (cls, ms) => { c.classList.add(cls); setTimeout(() => c.classList.remove(cls), ms); };
-      if (c.querySelector(".cat-blink")) { flash("blink", 140); if (Math.random() < 0.22) setTimeout(() => flash("blink", 130), 300); }
-      if (Math.random() < 0.18) setTimeout(() => flash("wiggle", 700), 1200 + Math.random() * 1500);
+    if (!document.hidden) for (const c of $$(".cat.mc")) {
+      if (!c.getClientRects().length || c.classList.contains("sorry") || c.classList.contains("talking") || c.classList.contains("catseq")) continue;
+      const delay = Math.random() * 900;
+      setTimeout(() => { catBlink(c); if (Math.random() < 0.22) setTimeout(() => catBlink(c), 320); }, delay);
+      if (Math.random() < 0.25) setTimeout(() => catTwitch(c), 1500 + Math.random() * 1500);
+      if (Math.random() < 0.14) setTimeout(() => { c.classList.add("wiggle"); setTimeout(() => c.classList.remove("wiggle"), 700); }, 2000 + Math.random() * 1500);
     }
     catBlinks();
-  }, 3200 + Math.random() * 2800);
+  }, 3200 + Math.random() * 2600);
 }
-// swap a cat's face for a moment (same hat), with a little pop, then back
 function catFace(el, mood, ms = 1800) {
   if (!el || !el.parentNode) return;
   const kind = el.dataset.kind || "bust", base = el.dataset.base || el.dataset.mood;
-  const cls = [...el.classList].filter((k) => !["cat", "mc", "bust", "full", "pop", "blink", "wiggle", "jump", "hi", "wag", "hop", "cheer"].includes(k)).join(" ");
+  const cls = [...el.classList].filter((k) => !["cat", "mc", "bust", "full", "pop", "fx-on", "wiggle", "jump", "hi", "wag", "hop", "cheer"].includes(k)).join(" ");
   const tmp = document.createElement("div"); tmp.innerHTML = mascot(mood, cls + " pop", null, kind);
   const n = tmp.firstElementChild; n.dataset.base = base; el.replaceWith(n);
   clearTimeout(n._back); n._back = setTimeout(() => { if (!n.parentNode) return; tmp.innerHTML = mascot(base, cls + " pop", null, kind); n.replaceWith(tmp.firstElementChild); }, ms);
@@ -366,9 +366,11 @@ function catFace(el, mood, ms = 1800) {
 function catTalk(holder) {
   Session.gesture = true; Sound.unlock();
   const id = CAT_LINES[(Session.catN = ((Session.catN || 0) + 1)) % CAT_LINES.length], wd = W[id];
+  // most taps she just says the word (her mouth moves with it); every third tap she pulls a face instead
   const faces = ["wink", "playful", "mischievous", "curious", "grumpy", "love"];
-  const svg = catFace($(".cat", holder), faces[Session.catN % faces.length], 2000);
-  catPlay(holder, Session.catN % 2 ? "jump" : "hi");
+  const cur = $(".cat", holder);
+  if (Session.catN % 3 === 0) { catFace(cur, faces[(Session.catN / 3) % faces.length], 2000); catPlay(holder, "jump"); }
+  else { catPlay(holder, "hi"); catSpeak(cur, 1000); }
   haptic(8);
   $$(".cat-say", holder).forEach((b) => b.remove());
   holder.insertAdjacentHTML("beforeend", `<div class="cat-say">${esc(wd.d)}<small>${esc(meaning(wd))}</small></div>`);

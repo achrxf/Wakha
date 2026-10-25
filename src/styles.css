@@ -1529,34 +1529,41 @@ svg{display:block}
 /* v1.14: the white cat carries her own brown outline, so she needs no glow on dark backgrounds */
 .cat,.jewel .cat,.adlayer .cat,.welcome .cat{filter:none!important}
 
-/* ---------- v1.15 Mchicha as pictures ----------
-   The picture breathes from its feet, hops, wiggles and pops; the sassy bust blinks by showing its closed-eye twin. */
-.cat.mc{display:inline-block;position:relative;line-height:0;vertical-align:bottom;filter:none!important}
-.cat.mc > img{display:block;width:100%;height:100%;object-fit:contain;object-position:50% 100%;-webkit-user-drag:none;user-select:none;pointer-events:none}
-.cat.mc .cat-img{transform-origin:50% 100%;animation:picbreathe 3.6s ease-in-out infinite}
-.cat.mc .cat-blink{position:absolute;inset:0;opacity:0;transform-origin:50% 100%;animation:picbreathe 3.6s ease-in-out infinite}
-.cat.mc.blink .cat-blink{opacity:1}
-.cat.mc.blink .cat-img{opacity:0}
+/* ---------- v1.16 Mchicha as pictures with flipbook frames ----------
+   .cat is the reaction layer (hop, wiggle, pop), .cat-in breathes, and the frame overlay sits exactly on the picture. */
+.cat.mc{display:inline-block;position:relative;line-height:0;vertical-align:bottom;filter:none!important;transform-origin:50% 100%}
+.cat.mc .cat-in{display:block;position:relative;width:100%;height:100%;transform-origin:50% 100%;animation:picbreathe 3.6s ease-in-out infinite}
+.cat.mc.full .cat-in{animation-duration:4.2s}
+.cat.mc .cat-in > img{display:block;width:100%;height:100%;object-fit:contain;object-position:50% 100%;-webkit-user-drag:none;user-select:none;pointer-events:none}
+.cat.mc .cat-fx{position:absolute;inset:0}
+.cat.mc.fx-on .cat-img{visibility:hidden}
 @keyframes picbreathe{0%,100%{transform:none}50%{transform:scale(1.012,1.026)}}
-.cat.mc.full .cat-img{animation-duration:4s}
 .cat.mc.wiggle{animation:picwiggle 700ms cubic-bezier(.45,0,.3,1)}
 @keyframes picwiggle{0%,100%{transform:none}25%{transform:rotate(-4deg)}55%{transform:rotate(3deg)}80%{transform:rotate(-1deg)}}
-.cat.mc{transform-origin:50% 100%}
 .cat.mc.jump,.cat.mc.hop,.cat.mc.cheer{animation:pichop 620ms cubic-bezier(.45,0,.3,1) both}
 @keyframes pichop{0%{transform:none}18%{transform:scale(1.06,.92)}45%{transform:translateY(-16%) scale(.96,1.05)}72%{transform:scale(1.04,.96)}86%{transform:scale(.99,1.01)}100%{transform:none}}
-.cat.mc.hi{animation:picwiggle 900ms cubic-bezier(.45,0,.3,1) both}
+.cat.mc.hi{animation:picnod 700ms cubic-bezier(.45,0,.3,1) both}
+@keyframes picnod{0%,100%{transform:none}30%{transform:rotate(-3deg) translateY(-2%)}65%{transform:rotate(2deg)}}
 .cat.mc.sorry{animation:picno 480ms cubic-bezier(.45,0,.3,1) 120ms both}
 @keyframes picno{0%,100%{transform:none}25%{transform:translateX(-5%) rotate(-3deg)}55%{transform:translateX(4%) rotate(2deg)}80%{transform:translateX(-2%)}}
-.cat.mc.droop .cat-img{transform:translateY(4%) scale(.98);animation:none}
+.cat.mc.droop .cat-in{transform:translateY(4%) scale(.98);animation:none}
 .cat.mc.pop{animation:picpop 460ms cubic-bezier(.3,1.6,.5,1) both}
 @keyframes picpop{0%{transform:scale(.86,1.08);opacity:.4}100%{transform:none;opacity:1}}
-.cat.mc.bob .cat-img{animation:picbob 2.4s ease-in-out infinite}
+.cat.mc.bob .cat-in{animation:picbob 2.4s ease-in-out infinite}
 @keyframes picbob{0%,100%{transform:none}50%{transform:translateY(-4%)}}
 .cat.mc.wag{animation:none}
+/* the jump flipbook: each frame shows for its slot, lifted to its height; the last one stays */
+.cat.mc.catseq{display:block;position:relative;width:170px;height:190px;margin:0 auto}
+.cat.mc.catseq > img{position:absolute;left:50%;bottom:0;height:86%;width:auto;max-width:100%;object-fit:contain;transform:translate(-50%,var(--y,0%));opacity:0;animation:seqon 105ms linear;pointer-events:none}
+.cat.mc.catseq > img.last{animation:seqlast 1ms linear both}
+@keyframes seqon{from,to{opacity:1}}
+@keyframes seqlast{from{opacity:0}to{opacity:1}}
 /* sizes: busts are near-square, full poses keep their own shape */
-.cat-sit .cat.mc,.ov-box .cat.mc,.fl-in .cat.mc,.ad-house .cat.mc,.ad-card .cat.mc,.end-badge .cat.mc{width:100%;height:auto}
+.cat-sit .cat.mc,.fl-in .cat.mc,.ad-house .cat.mc,.ad-card .cat.mc,.end-badge .cat.mc{width:100%;height:auto}
 .ov-box .cat.mc{width:170px;height:170px}
+.ov-box .cat.mc.catseq{height:190px}
 .fl-in .cat.mc,.ad-house .cat.mc,.ad-card .cat.mc{width:150px;height:150px;margin:0 auto}
 .card .a2 .cat.mc.full{width:150px;height:150px}
+.cat-sit .cat.mc.catseq{width:100%;height:auto;aspect-ratio:.9}
 .hatrow button img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain;object-position:50% 100%}
-@media (prefers-reduced-motion:reduce){.cat.mc,.cat.mc *{animation:none!important}}
+@media (prefers-reduced-motion:reduce){.cat.mc,.cat.mc *{animation:none!important}.cat.mc.catseq > img{opacity:0}.cat.mc.catseq > img.last{opacity:1}}
