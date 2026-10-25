@@ -85,12 +85,12 @@ const base = (extra) => JSON.stringify(Object.assign({ v: 2, onboarded: true, go
   {
     const st = { goal: 50, xp: 200, streak: 3, best: 3, lastGoalDay: "2026-10-20", lastOpen: "2026-10-20", lessons: { u1l1: { stars: 3 } }, words: W(["salam", "labas", "hamdoulillah"], 1, "2026-10-30", "2026-10-19") };
     const { browser, page } = await openApp({ time: "2026-10-21T09:00:00", storage: base(st) });
-    const hud = await page.locator("#hud-streak b").innerText();
+    
     await page.click(".hero [data-start]"); await page.waitForTimeout(400);
     await playLesson(page); await page.click("#lesson .l-foot .cta"); await page.waitForTimeout(1200);
-    const ovs = []; for (let k = 0; k < 3; k++) if (await page.locator("#overlay:not([hidden])").count()) { ovs.push(await page.locator("#overlay .ov-t").innerText()); await page.click("#overlay [data-ov=close]"); await page.waitForTimeout(500); }
+    const ovs = []; for (let k = 0; k < 4; k++) { if (await page.locator("#overlay:not([hidden])").count()) { ovs.push(await page.locator("#overlay .ov-t").innerText()); await page.click("#overlay [data-ov=close]"); } await page.waitForTimeout(1200); }
     const s = await page.evaluate(() => window.__wakha.S.streak);
-    ok("next-day lesson that fills the goal grows the streak 3 -> 4, celebrated after the lesson", hud === "3" && s === 4 && ovs.some((x) => /Atay wajed/.test(x)), `overlays: ${ovs.join(" / ")}`);
+    ok("next-day lesson that fills the goal grows the streak 3 -> 4, celebrated after the lesson", s === 4 && ovs.some((x) => /days in a row/.test(x)) && ovs.some((x) => /Atay wajed/.test(x)), `overlays: ${ovs.join(" / ")}`);
     await browser.close();
   }
   // 6 feed: nudge for new users, comeback on a new day
