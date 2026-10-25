@@ -801,6 +801,7 @@ const Lesson = {
     el.innerHTML = `<div class="l-top"><button class="l-x" data-act="quit" aria-label="${esc(t("quit"))}">${ICON.x}</button><div class="l-prog" id="l-bar"><i></i></div><span class="l-count" id="l-count"></span><div class="l-combo" id="l-combo" hidden></div></div>
       <div class="l-body"></div><div class="l-foot" hidden></div>
       <div class="l-confirm" hidden><div class="box"><p>${esc(t("quitQ"))}</p><button class="cta block" data-act="stay">${esc(t("keepLearning"))}</button><button class="btn-bad" data-act="leave">${esc(t("leave"))}</button></div></div>`;
+    if (this.exitAnim) { this.exitAnim.cancel(); this.exitAnim = null; }
     el.getAnimations().forEach((a) => a.cancel());
     const wasHidden = el.hidden;
     el.hidden = false;
@@ -855,7 +856,7 @@ const Lesson = {
     else if (!foot.hidden && old && !reduced && foot.firstElementChild) {
       // the button that's no longer needed sinks away instead of vanishing
       const b = foot.firstElementChild; b.disabled = true;
-      b.animate([{ transform:"none", opacity:1 }, { transform:"translateY(14px)", opacity:0 }], { duration:160, easing:"ease-in", fill:"forwards" }).finished.then(() => { if (foot.firstElementChild === b) { foot.innerHTML = ""; foot.hidden = true; } }, () => {});
+      b.animate([{ transform:"none", opacity:1 }, { transform:"translateY(14px)", opacity:0 }], { duration:160, easing:"ease-in", fill:"forwards" }).finished.then(() => { if (foot.firstElementChild === b) { foot.innerHTML = ""; foot.hidden = true; } else b.getAnimations().forEach((x) => x.cancel()); }, () => {});
     }
     else { foot.innerHTML = ""; foot.hidden = true; }
     $("#lesson").classList.toggle("nofoot", sp.t === "haggle" || sp.t === "lightning");
@@ -870,7 +871,7 @@ const Lesson = {
     card.el.classList.add("answered");
     if (info.haggle) { this.advance(); return; }
     const foot = $("#lesson .l-foot");
-    const moods = ok ? ["happy", "wink", "wow"] : ["sad"];
+    const moods = ok ? ["happy", "wink", "wow", "love"] : ["sad", "annoyed"];
     let fbx = $(".fbx", card.el);
     if (!fbx) { fbx = document.createElement("div"); fbx.className = "fbx"; $(".card-in", card.el).appendChild(fbx); }
     fbx.innerHTML = fbHTML(ok, info, moods[(this.st.right + this.st.wrong) % moods.length]);
@@ -923,7 +924,7 @@ const Lesson = {
       <div class="stars anim">${[1, 2, 3].map((k) => ICON.star.replace("<svg", `<svg class="${k <= stars ? "on" : ""}"`)).join("")}</div>
       <div class="l-stats"><div><b class="xpv">–</b><span>${esc(t("xpL"))}</span></div><div><b class="accv">–</b><span>${esc(t("accuracy"))}</span></div><div><b>${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, "0")}</b><span>${esc(t("timeL"))}</span></div></div></div>`;
     $("#lesson .l-body").appendChild(el);
-    const pnl = $(".l-end .panel", el); if (pnl) pnl.insertAdjacentHTML("beforeend", `<div class="cat-sit">${mascot(perfect ? "wow" : "happy", "")}</div>`);
+    const pnl = $(".l-end .panel", el); if (pnl) pnl.insertAdjacentHTML("beforeend", `<div class="cat-sit">${mascot(perfect ? "love" : "happy", "")}</div>`);
     setTimeout(() => pnl && catPlay(pnl, "jump"), reduced ? 0 : 1500);
     const lend = $(".l-end", el);
     lend.classList.add("cv" + ui);
@@ -955,9 +956,10 @@ const Lesson = {
     if (this.banner) { this.banner.remove(); this.banner = null; }
     const el = $("#lesson");
     this.active = false; combo = 0; renderCombo();
-    const done = () => { if (this.active) return; el.hidden = true; el.innerHTML = ""; };
+    // the exit animation is cancelled as soon as it ends, so its end position never sticks to the next lesson
+    const done = () => { const a = this.exitAnim; this.exitAnim = null; if (a) a.cancel(); if (this.active) return; el.hidden = true; el.innerHTML = ""; };
     if (reduced || el.hidden) done();
-    else { el.getAnimations().forEach((a) => a.cancel()); el.animate([{ transform:"none" }, { transform:"translateY(100%)" }], { duration:360, easing:"cubic-bezier(0.4, 0, 0.9, 0.6)", fill:"forwards" }).finished.then(done, () => {}); }
+    else { el.getAnimations().forEach((a) => a.cancel()); const a = this.exitAnim = el.animate([{ transform:"none" }, { transform:"translateY(100%)" }], { duration:360, easing:"cubic-bezier(0.4, 0, 0.9, 0.6)", fill:"forwards" }); a.finished.then(() => { if (this.exitAnim === a) done(); }, () => {}); }
     refreshHUD(); renderLearn(completed ? this.justDone : null); if (view === "today" && Med3D.host) Med3D.go();
     $("#desk-nav").hidden = view !== "feed";
     if (Session.overlayQ.length) { clearTimeout(Session.ovTimer); Session.ovTimer = setTimeout(nextOverlay, 500); }
@@ -1331,7 +1333,7 @@ function renderMe() {
   const acc = tot ? Math.round((S.stats.correct / tot) * 100) + "%" : "–";
   const bd = S.stats.bestDeal;
   el.innerHTML = `<div class="scroll-pad">
-    <div class="me-top">${mascot("happy")}<div style="min-width:0;flex:1"><p class="sub" style="margin:0 0 4px">${esc(t("meLevel", { n:li2.n }))}</p><h2>${dj(li2.title)}</h2>
+    <div class="me-top">${mascot("sassy")}<div style="min-width:0;flex:1"><p class="sub" style="margin:0 0 4px">${esc(t("meLevel", { n:li2.n }))}</p><h2>${dj(li2.title)}</h2>
       <div class="lvlbar"><i style="width:${(li2.pct * 100).toFixed(1)}%"></i></div><p class="sub">${esc(t("xpToNext", { n:li2.nextAt - S.xp, l:li2.n + 1 }))}</p></div></div>
     <div class="stats"><div class="stat"><b>${shownStreak()}</b><span>${esc(t("stStreak"))}</span></div><div class="stat"><b>${S.best}</b><span>${esc(t("stBest"))}</span></div>
       <div class="stat"><b>${learned}</b><span>${esc(t("stWords"))}</span></div><div class="stat"><b>${acc}</b><span>${esc(t("stAcc"))}</span></div></div>
@@ -1428,7 +1430,7 @@ function showWelcome(step = 1, swapped = false) {
       setTimeout(() => {
         refreshHUD(); renderLearn(); Lesson.open(PATH[0]);
         const bye = () => { el.hidden = true; el.innerHTML = ""; };
-        if (reduced) bye(); else el.animate([{ opacity:1 }, { opacity:0 }], { duration:380, easing:"ease-out", fill:"forwards" }).finished.then(() => { bye(); el.getAnimations().forEach((a) => a.cancel()); });
+        if (reduced) bye(); else { const a = el.animate([{ opacity:1 }, { opacity:0 }], { duration:380, easing:"ease-out", fill:"forwards" }); a.finished.then(() => { bye(); a.cancel(); }); }
       }, 380);
     }
   };

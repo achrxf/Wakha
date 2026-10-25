@@ -107,22 +107,26 @@ async function openCityWithAd(ui) {
 function afterLessonAd(done) { if (isPlus()) { done(); return; } Ads.show("interstitial", "lesson").then(done); }
 
 /* ---------- full-screen layers slide up and back down (paywall, test) or fade (ads) ---------- */
+// a finished fill-forwards animation drops out of getAnimations(), so each layer keeps a handle on its exit to cancel it
 function layerIn(el, kind = "slide") {
+  if (el._exit) { el._exit.cancel(); el._exit = null; }
   el.getAnimations().forEach((a) => a.cancel());
+  el.style.pointerEvents = "";
   el.hidden = false;
   if (reduced) return;
   if (kind === "fade") el.animate([{ opacity:0 }, { opacity:1 }], { duration:220, easing:"ease-out" });
   else el.animate([{ transform:"translateY(100%)" }, { transform:"none" }], { duration:480, easing:EASE_DRAWER });
 }
 function layerOut(el, cleanup, kind = "slide") {
-  const done = () => { el.hidden = true; el.getAnimations().forEach((a) => a.cancel()); cleanup && cleanup(); };
+  const done = () => { el.hidden = true; el.style.pointerEvents = ""; if (el._exit) { el._exit.cancel(); el._exit = null; } cleanup && cleanup(); };
   if (reduced || el.hidden) { done(); return; }
+  if (el._exit) el._exit.cancel();
   el.getAnimations().forEach((a) => a.cancel());
-  const a = kind === "fade"
+  const a = el._exit = kind === "fade"
     ? el.animate([{ opacity:1 }, { opacity:0 }], { duration:180, easing:"ease-in", fill:"forwards" })
     : el.animate([{ transform:"none" }, { transform:"translateY(100%)" }], { duration:340, easing:"cubic-bezier(0.4, 0, 0.9, 0.6)", fill:"forwards" });
   el.style.pointerEvents = "none";
-  a.finished.then(() => { el.style.pointerEvents = ""; done(); }, () => { el.style.pointerEvents = ""; });
+  a.finished.then(() => { if (el._exit === a) done(); }, () => {});
 }
 
 /* ---------- paywall ---------- */
@@ -219,7 +223,7 @@ function syncFeedLock() {
   const lock = $("#feedlock"); if (!lock) return;
   const on = view === "feed" && feedLocked();
   if (on && lock.hidden) {
-    lock.innerHTML = `<div class="fl-in">${mascot("normal")}<h3>${esc(t("feedDoneT"))}</h3><p>${esc(t("feedDoneS"))}</p><button class="cta block" data-act="plus">${esc(t("feedPlus"))}</button><button class="ghost block" data-act="journey">${esc(t("feedJourney"))}</button></div>`;
+    lock.innerHTML = `<div class="fl-in">${mascot("sleepy")}<h3>${esc(t("feedDoneT"))}</h3><p>${esc(t("feedDoneS"))}</p><button class="cta block" data-act="plus">${esc(t("feedPlus"))}</button><button class="ghost block" data-act="journey">${esc(t("feedJourney"))}</button></div>`;
     Feed.pause(); Voice.stop();
   }
   lock.hidden = !on;

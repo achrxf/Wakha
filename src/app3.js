@@ -100,7 +100,7 @@ function renderToday() {
       <h3>${esc(n.kind === "lesson" ? L([UNITS[ui].en, UNITS[ui].fr]) : nodeLabel(n))}</h3>
       <p class="sc">${esc(L(LESSON_SCENES[n.id] || c.scene))}</p>
       ${words.length ? `<div class="wordrow">${words.map((id) => `<div class="wchip"><b lang="ary-Latn">${esc(W[id].d)}</b><span lang="ary">${esc(W[id].ar)}</span></div>`).join("")}</div>` : ""}
-      <div class="td-cat catline" data-act="cat" role="button" aria-label="${esc(t("catName"))}">${mascot("happy", Session.catHi ? "" : "hi")}<p><b>${esc(t("catName"))}</b> · ${esc(line)}</p></div>
+      <div class="td-cat catline" data-act="cat" role="button" aria-label="${esc(t("catName"))}">${mascot("sassy", Session.catHi ? "" : "hi")}<p><b>${esc(t("catName"))}</b> · ${esc(line)}</p></div>
       ${goBtn}
     </section>` : `<section class="td-lead"><h3>${esc(t("allDoneT"))}</h3></section>`;
   el.innerHTML = `<div class="today scroll-pad">
@@ -340,19 +340,36 @@ function catPlay(holder, cls) {
   // after a reaction he goes back to resting: four slow wags, then still
   clearTimeout(svg._rest); svg._rest = setTimeout(() => { if (!svg.classList.contains(cls)) return; svg.classList.remove(cls); void svg.getBoundingClientRect(); svg.classList.add("wag"); }, 1000);
 }
-// blinks: one 140ms squash on every visible cat, every 4-7s; nothing animates in between
+// her idle life: every few seconds each visible cat blinks (sometimes twice); now and then she glances away,
+// rolls her eyes or flicks an ear. All short classes the CSS animates; nothing runs while the tab is hidden.
 function catBlinks() {
   setTimeout(() => {
     if (!document.hidden) for (const c of $$(".cat")) {
-      if (!c.querySelector(".cat-eyes") || c.classList.contains("sorry") || c.classList.contains("droop") || !c.getClientRects().length) continue;
-      c.classList.add("blink"); setTimeout(() => c.classList.remove("blink"), 140);
+      if (!c.getClientRects().length || c.classList.contains("sorry") || c.classList.contains("droop")) continue;
+      const lids = c.querySelector(".cat-lid"), r = Math.random();
+      const flash = (cls, ms) => { c.classList.add(cls); setTimeout(() => c.classList.remove(cls), ms); };
+      if (lids) { flash("blink", 130); if (r < 0.22) setTimeout(() => flash("blink", 120), 260); }
+      if (r > 0.86 && lids && c.dataset.mood === "sassy") setTimeout(() => flash("roll", 950), 700);
+      else if (r > 0.7 && lids) setTimeout(() => flash("glance", 1200), 500);
+      if (Math.random() < 0.3) setTimeout(() => { c.classList.toggle("left", Math.random() < 0.5); flash("twitch", 450); }, 1500 + Math.random() * 1500);
     }
     catBlinks();
-  }, 4000 + Math.random() * 3000);
+  }, 3200 + Math.random() * 2800);
+}
+// swap a cat's face for a moment (same hat), with a little pop, then back
+function catFace(svg, mood, ms = 1800) {
+  if (!svg || !svg.parentNode) return;
+  const base = svg.dataset.base || svg.dataset.mood, cls = [...svg.classList].filter((k) => !["cat", "mc", "pop", "blink", "glance", "roll", "twitch", "left", "jump", "hi", "wag"].includes(k)).join(" ");
+  const tmp = document.createElement("div"); tmp.innerHTML = mascot(mood, cls + " pop");
+  const n = tmp.firstElementChild; n.dataset.base = base; svg.replaceWith(n);
+  clearTimeout(n._back); n._back = setTimeout(() => { if (!n.parentNode) return; tmp.innerHTML = mascot(base, cls + " pop"); n.replaceWith(tmp.firstElementChild); }, ms);
+  return n;
 }
 function catTalk(holder) {
   Session.gesture = true; Sound.unlock();
   const id = CAT_LINES[(Session.catN = ((Session.catN || 0) + 1)) % CAT_LINES.length], wd = W[id];
+  const faces = ["wink", "happy", "love", "annoyed", "wow"];
+  const svg = catFace($(".cat", holder), faces[Session.catN % faces.length], 2000);
   catPlay(holder, Session.catN % 2 ? "jump" : "hi");
   haptic(8);
   $$(".cat-say", holder).forEach((b) => b.remove());
