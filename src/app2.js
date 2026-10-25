@@ -871,7 +871,7 @@ const Lesson = {
     card.el.classList.add("answered");
     if (info.haggle) { this.advance(); return; }
     const foot = $("#lesson .l-foot");
-    const moods = ok ? ["happy", "wink", "wow", "love"] : ["sad", "annoyed"];
+    const moods = ok ? ["happy", "playful", "wink", "love"] : ["sad", "annoyed", "grumpy"];
     let fbx = $(".fbx", card.el);
     if (!fbx) { fbx = document.createElement("div"); fbx.className = "fbx"; $(".card-in", card.el).appendChild(fbx); }
     fbx.innerHTML = fbHTML(ok, info, moods[(this.st.right + this.st.wrong) % moods.length]);

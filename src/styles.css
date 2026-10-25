@@ -1525,3 +1525,6 @@ svg{display:block}
 .cat.wag .cat-tail{animation:tailsway 700ms ease-in-out 4 alternate}
 .cat.wag .cat-tail-tip{animation:tailtip 700ms ease-in-out .12s 4 alternate}
 @media (prefers-reduced-motion:reduce){.cat,.cat *{animation:none!important;transition:none!important}}
+
+/* v1.14: the white cat carries her own brown outline, so she needs no glow on dark backgrounds */
+.cat,.jewel .cat,.adlayer .cat,.welcome .cat{filter:none!important}

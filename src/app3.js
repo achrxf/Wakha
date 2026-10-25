@@ -368,7 +368,7 @@ function catFace(svg, mood, ms = 1800) {
 function catTalk(holder) {
   Session.gesture = true; Sound.unlock();
   const id = CAT_LINES[(Session.catN = ((Session.catN || 0) + 1)) % CAT_LINES.length], wd = W[id];
-  const faces = ["wink", "happy", "love", "annoyed", "wow"];
+  const faces = ["wink", "playful", "mischievous", "curious", "grumpy", "love"];
   const svg = catFace($(".cat", holder), faces[Session.catN % faces.length], 2000);
   catPlay(holder, Session.catN % 2 ? "jump" : "hi");
   haptic(8);
