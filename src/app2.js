@@ -1302,14 +1302,22 @@ function renderGuide() {
   if (inp) inp.addEventListener("input", () => { pbQuery = inp.value; const pos = inp.selectionStart; renderGuide(); const n = $("#pb-q"); n.focus(); try { n.setSelectionRange(pos, pos); } catch (e) {} });
 }
 // --- Kenz ---
+// Kenz on Me is one row; tapping it opens a sheet with only the rare words found so far
 function kenzHTML() {
   const got = COLL.filter((id) => S.kenz[id]).length;
-  const order = { rare:0, epic:1, legend:2 };
-  // only what you've found: the rest stays a surprise (the counter still says how many there are)
+  return `<button class="panel-c kenz-row" data-act="kenz-open" aria-label="${esc(t("kenzH"))}, ${esc(t("found", { a:got, b:COLL.length }))}">
+    <span class="kr-ic" aria-hidden="true">${ICON.star}</span>
+    <span class="kr-tx"><b>${esc(t("kenzH"))}</b><small>${esc(t("found", { a:got, b:COLL.length }))}</small></span>
+    <span class="kr-go" aria-hidden="true">${ICON.right}</span></button>`;
+}
+function kenzSheet() {
+  const order = { rare:0, epic:1, legend:2 }, got = COLL.filter((id) => S.kenz[id]).length;
   const ids = COLL.filter((id) => S.kenz[id]).sort((a, b) => order[W[a].rar] - order[W[b].rar] || String(S.kenz[b]).localeCompare(String(S.kenz[a])));
-  return `<div class="panel-c"><h3>${esc(t("kenzH"))}</h3><p class="sub" style="margin:0">${esc(t("kenzS"))}</p>
-    <p style="font:600 14px/1 var(--font);margin-top:12px">${esc(t("found", { a:got, b:COLL.length }))}</p><div class="kprog"><i style="width:${((got / COLL.length) * 100).toFixed(1)}%"></i></div>
-    ${ids.length ? "" : `<p class="kempty">${esc(t("kenzNone"))}</p>`}<div class="kgrid">${ids.map((id) => { const wd = W[id], has = !!S.kenz[id]; return `<div class="kc rar-${wd.rar} ${has ? "got" : "miss"}"><p class="rl">${esc(L(RAR[wd.rar]))}</p>${has ? `${sayBtn(wd.d, "sm")}<div><p class="kw">${dj(wd.d)}</p><p class="ka" lang="ary">${esc(wd.ar)}</p></div><p class="km">${esc(meaning(wd))}</p>` : `<p class="kw">?</p><p class="km">${esc(t("hidden"))}</p>`}</div>`; }).join("")}</div></div>`;
+  const sh = openSheet(`<h3>${esc(t("kenzH"))}</h3><p>${esc(t("kenzS"))}</p>
+    <p style="font:600 14px/1 var(--font);margin-top:4px">${esc(t("found", { a:got, b:COLL.length }))}</p><div class="kprog"><i style="width:${((got / COLL.length) * 100).toFixed(1)}%"></i></div>
+    ${ids.length ? `<div class="kgrid ks-grid">${ids.map((id) => { const wd = W[id]; return `<div class="kc rar-${wd.rar} got"><p class="rl">${esc(L(RAR[wd.rar]))}</p>${sayBtn(wd.d, "sm")}<div><p class="kw">${dj(wd.d)}</p><p class="ka" lang="ary">${esc(wd.ar)}</p></div><p class="km">${esc(meaning(wd))}</p></div>`; }).join("")}</div>` : `<p class="kempty">${esc(t("kenzNone"))}</p>`}
+    <button class="ghost block sh-ok" data-act="sheet-close">${esc(t("gotIt"))}</button>`, "kenz-sheet");
+  return sh;
 }
 // --- Me ---
 function weekChart() {
@@ -1482,6 +1490,7 @@ function start(data) {
     setLang(sel.value);
   });
   $("#v-me").addEventListener("click", (e) => {
+    if (e.target.closest("[data-act=kenz-open]")) { Sound.play("tap"); kenzSheet(); return; }
     const hb = e.target.closest("[data-hat]"); if (hb) { S.catHat = hb.dataset.hat; persist(); renderMe(); renderLearn(); Sound.play("tap"); return; }
     const dv = e.target.closest("[data-dev-tier]"); if (dv) { plan().dev = dv.dataset.devTier; persist(); refreshAll(); renderMe(); toast(t("devTierSet", { t:dv.textContent }), ""); return; }
     if (e.target.closest("#sw-shortads")) { plan().shortAds = !plan().shortAds; persist(); renderMe(); return; }

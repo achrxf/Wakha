@@ -1607,3 +1607,14 @@ svg{display:block}
 @media (min-width:1100px) and (max-height:620px) and (hover:hover) and (pointer:fine){ .stage{height:100%;margin:0 auto;border-radius:0} }
 
 .kempty{margin:12px 0 2px;color:var(--ink-soft);font-size:14px;line-height:1.45}
+
+/* v1.21 Kenz: a single row on Me that opens the collection in a sheet */
+.kenz-row{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:12px;align-items:center;width:100%;text-align:left;cursor:pointer}
+.kenz-row .kr-ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--maj-wash,rgba(23,101,94,.1));color:var(--maj-ink,var(--saf))}
+.kenz-row .kr-ic svg{width:20px;height:20px}
+.kenz-row b{display:block;font:600 17px/1.2 var(--font)}
+.kenz-row small{display:block;font-size:13.5px;color:var(--ink-soft);margin-top:2px;font-variant-numeric:tabular-nums}
+.kenz-row .kr-go svg{width:18px;height:18px;color:var(--ink-soft)}
+.kenz-sheet{max-height:82%;overflow-y:auto}
+.kenz-sheet .ks-grid{margin-top:12px}
+.kenz-sheet .sh-ok{margin-top:14px}
