@@ -54,7 +54,8 @@ const allErr = [];
     for (let i = 0; i < 3 && await page.locator("#overlay:not([hidden]) .cta").count(); i++) { await page.click("#overlay .cta"); await page.waitForTimeout(400); }
     // finish Tangier, then Asilah opens with an ad
     await page.evaluate(() => { const A = window.__wakha; A.PATH.filter((p) => p.unit === 0).forEach((p) => (A.S.lessons[p.id] = { stars:2 })); A.setView("journey"); A.setView("today"); });
-    await page.waitForTimeout(300);
+    await page.waitForTimeout(1300);
+    for (let i = 0; i < 3 && await page.locator("#overlay:not([hidden]) .cta").count(); i++) { await page.click("#overlay .cta"); await page.waitForTimeout(500); }
     const btn = await page.locator(".td-go[data-act=adopen]").count();
     await page.click(".td-go"); await closeAd(page); await page.waitForTimeout(300);
     const op = await page.evaluate(() => ({ open:!!window.__wakha.S.adOpen && window.__wakha.S.adOpen.u11, gate:window.__wakha.cityGate(1) }));

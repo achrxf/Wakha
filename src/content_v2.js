@@ -630,7 +630,7 @@ Object.assign(UI.fr, {
 Object.assign(UI.en, {
   trayL1:"{n} day of atay in a row", stopsN1:"{a} of {b} stops", stopsWords1:"{a} of {b} stops · {c} of {d} words", dayDoneLine:"Today’s glass is full. See you tomorrow for the next one.",
   cityAheadT:"{c} is still ahead", cityAheadS:"Finish {p} to get here.", plusNote:"Coming with Wakha Plus: jump to any city whenever you like.", showText:"No sound? Show text", textSize:"Text size",
-  stStreak:"days in a row", stBest:"longest run", streakL:"days in a row", runL:"{n} days in a row", runL1:"{n} day in a row",
+  stStreak:"days in a row", stBest:"longest run", streakL:"days in a row", runL:"{n} days in a row", runL1:"{n} day in a row", stkK:"Streak", stkT1:"Day one. It begins.", stkS1:"Come back tomorrow and it becomes a streak.", stkS:"Same time tomorrow? Mchicha is counting.", stkBest:"New record.",
   goalS:"Earn XP every day to reach your daily goal.", goalDoneS:"Daily goal reached. {n} days in a row.",
   shieldT:"Rest day", shieldS:"Miss a day and a rest day keeps your run going. You have {n}.", shieldUsed:"A rest day kept your run going.",
   comebackS:"Your run is waiting. {n} words want a review.", comebackS0:"Finish a lesson today to keep your run going.", streakTip:"Finish a lesson every day to grow your run.",
@@ -674,7 +674,7 @@ Object.assign(UI.en, {
 Object.assign(UI.fr, {
   trayL1:"{n} jour d’atay d’affilée", stopsN1:"{a} étape sur {b}", stopsWords1:"{a} étape sur {b} · {c} mots sur {d}", dayDoneLine:"Le verre du jour est plein. À demain pour le suivant.",
   cityAheadT:"{c}, c’est pour plus tard", cityAheadS:"Termine {p} pour arriver ici.", plusNote:"Bientôt avec Wakha Plus : saute vers n’importe quelle ville quand tu veux.", showText:"Pas de son ? Afficher le texte", textSize:"Taille du texte",
-  stStreak:"jours d’affilée", stBest:"plus longue suite", streakL:"jours d’affilée", runL:"{n} jours d’affilée", runL1:"{n} jour d’affilée",
+  stStreak:"jours d’affilée", stBest:"plus longue suite", streakL:"jours d’affilée", runL:"{n} jours d’affilée", runL1:"{n} jour d’affilée", stkK:"Série", stkT1:"Premier jour. Ça commence.", stkS1:"Reviens demain et ça devient une série.", stkS:"Même heure demain ? Mchicha compte.", stkBest:"Nouveau record.",
   goalS:"Gagne des XP chaque jour pour atteindre ton objectif.", goalDoneS:"Objectif du jour atteint. {n} jours d’affilée.",
   shieldT:"Jour de repos", shieldS:"Rate un jour, un jour de repos garde ta série. Tu en as {n}.", shieldUsed:"Un jour de repos a gardé ta série.",
   comebackS:"Ta série t’attend. {n} mots veulent une révision.", comebackS0:"Termine une leçon aujourd’hui pour garder ta série.", streakTip:"Termine une leçon chaque jour pour faire grandir ta série.",

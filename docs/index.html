@@ -3,126 +3,209 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Wakha prototype</title>
-<meta name="description" content="Wakha, learn Moroccan Darija city by city. Interactive prototype in an iPhone frame.">
+<title>Wakha</title>
+<meta name="description" content="Wakha: learn Moroccan Darija city by city, with Mchicha the sassy street cat. Try the prototype on any phone or tablet.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif&family=Noto+Naskh+Arabic:wght@500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#141317;--bg2:#1E1C22;--ink:#F3EEE6;--soft:#A39C92;--line:rgba(255,255,255,.1);--acc:#E9B44C;--ti1:#8E8A86;--ti2:#4A4744}
+:root{--bg:#131215;--bg2:#1D1B20;--bg3:#27242B;--ink:#F3EEE6;--soft:#A39C92;--line:rgba(255,255,255,.1);--line2:rgba(255,255,255,.2);--acc:#E9B44C;--accink:#2B1D08}
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
-body{background:radial-gradient(1200px 700px at 70% 20%,#2A2533 0%,var(--bg) 60%) fixed,var(--bg);color:var(--ink);font:15px/1.5 "Instrument Sans",system-ui,sans-serif;overflow:hidden}
-.wrap{height:100%;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:40px;padding:24px max(24px,env(safe-area-inset-right)) 24px max(24px,env(safe-area-inset-left))}
-.side{max-width:330px;justify-self:end}
-.side h1{font:400 64px/0.95 "Instrument Serif",Georgia,serif;margin:0;letter-spacing:-.01em}
-.side h1 span{display:block;font:400 30px/1.2 "Noto Naskh Arabic",serif;color:var(--soft);margin-top:6px}
-.side p{color:var(--soft);margin:18px 0 22px;max-width:30ch}
-.btns{display:flex;flex-wrap:wrap;gap:8px}
-.btns button{font:500 14px "Instrument Sans",system-ui;color:var(--ink);background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:9px 16px;cursor:pointer;transition:background .2s,border-color .2s}
-.btns button:hover{background:#2A2730;border-color:rgba(255,255,255,.22)}
-.btns button.pri{background:var(--acc);color:#2B1D08;border-color:transparent}
-.btns button.pri:hover{background:#F2C463}
-.help{justify-self:start;max-width:260px;color:var(--soft);font-size:13.5px}
-.help h2{font:600 12px/1 "Instrument Sans";letter-spacing:.12em;text-transform:uppercase;color:var(--ink);margin:0 0 12px}
-.help ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
-.help b{color:var(--ink);font-weight:500}
-.kbd{display:inline-block;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:0 6px;font-size:12px;color:var(--ink)}
-/* the phone: drawn at real iPhone 15 size (393 x 852 screen), then scaled to fit the window */
-.stage{width:var(--pw);height:var(--ph);position:relative}
-.phone{--sw:393px;--sh:852px;position:absolute;left:0;top:0;width:calc(var(--sw) + 28px);height:calc(var(--sh) + 28px);transform-origin:0 0;transform:scale(var(--k,1));
-  border-radius:68px;padding:14px;background:linear-gradient(145deg,var(--ti1),var(--ti2) 45%,#6F6B67 70%,#3A3835);
-  box-shadow:0 0 0 1px rgba(255,255,255,.08) inset,0 0 0 2px #0B0A0C,0 50px 100px -30px rgba(0,0,0,.8),0 30px 60px -40px rgba(0,0,0,.9)}
-.phone::before{content:"";position:absolute;inset:5px;border-radius:63px;background:#050505}
-.btn{position:absolute;background:linear-gradient(90deg,#3A3835,#77736F);border-radius:3px}
-.b1{left:-3px;top:150px;width:4px;height:32px}.b2{left:-3px;top:210px;width:4px;height:60px}.b3{left:-3px;top:285px;width:4px;height:60px}.b4{right:-3px;top:235px;width:4px;height:95px}
-.screen{position:relative;width:var(--sw);height:var(--sh);border-radius:55px;overflow:hidden;background:#F7F3EC;isolation:isolate}
-.status{position:absolute;inset:0 0 auto;height:54px;display:flex;align-items:center;justify-content:space-between;padding:6px 34px 0 46px;font:600 16.5px/1 -apple-system,"SF Pro Text","Instrument Sans",system-ui;color:#111;z-index:3;pointer-events:none;transition:color .3s}
-.status.dark{color:#fff}
-.status .ic{display:flex;gap:6px;align-items:center}
-.island{position:absolute;top:11px;left:50%;width:125px;height:36px;margin-left:-62.5px;border-radius:20px;background:#000;z-index:4;pointer-events:none}
-.home{position:absolute;bottom:8px;left:50%;width:138px;height:5px;margin-left:-69px;border-radius:3px;background:#111;opacity:.85;z-index:4;pointer-events:none;transition:background .3s}
-.home.dark{background:#fff}
-iframe{position:absolute;left:0;top:0;width:100%;height:100%;border:0;display:block;background:#F7F3EC}
+body{background:radial-gradient(1100px 700px at 75% 15%,#2A2533 0%,var(--bg) 62%) fixed,var(--bg);color:var(--ink);font:15px/1.5 "Instrument Sans",system-ui,sans-serif}
+a{color:inherit}
+.page{display:grid;grid-template-columns:minmax(300px,380px) minmax(0,1fr);gap:28px;height:100vh;padding:28px max(28px,env(safe-area-inset-right)) 28px max(28px,env(safe-area-inset-left))}
+/* left: the site */
+.side{display:flex;flex-direction:column;min-height:0;overflow:auto;scrollbar-width:none}
+.brand{display:flex;align-items:baseline;gap:12px}
+.brand h1{font:400 58px/0.95 "Instrument Serif",Georgia,serif;margin:0;letter-spacing:-.01em}
+.brand span{font:500 28px/1 "Noto Naskh Arabic",serif;color:var(--soft)}
+.lead{color:#D8D1C6;font-size:17px;margin:16px 0 6px;max-width:34ch;text-wrap:balance}
+.sub{color:var(--soft);margin:0 0 20px;max-width:36ch}
+.dl{display:grid;gap:10px;margin-bottom:26px}
+.store{display:flex;align-items:center;gap:12px;padding:11px 16px;border-radius:14px;background:var(--bg2);border:1px solid var(--line);text-align:left;color:var(--ink);font:inherit;cursor:default;position:relative}
+.store svg{flex:none;width:24px;height:24px}
+.store small{display:block;color:var(--soft);font-size:12px;line-height:1.2}
+.store b{display:block;font-weight:600;font-size:16px;line-height:1.25}
+.store .soon{margin-left:auto;font:600 11px/1 "Instrument Sans";letter-spacing:.08em;text-transform:uppercase;color:var(--accink);background:var(--acc);border-radius:999px;padding:6px 9px}
+.lbl{font:600 11.5px/1 "Instrument Sans";letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin:0 0 10px}
+.group{margin-bottom:14px}
+.group p{margin:0 0 6px;color:var(--soft);font-size:12.5px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:500 13.5px "Instrument Sans",system-ui;color:var(--ink);background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:7px 13px;cursor:pointer;transition:background .15s,border-color .15s}
+.chip:hover{border-color:var(--line2)}
+.chip[aria-pressed="true"]{background:var(--ink);color:#141215;border-color:transparent}
+.tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.tool{font:500 13px "Instrument Sans";color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:10px;padding:7px 11px;cursor:pointer}
+.tool:hover{border-color:var(--line2)}
+.tool.pri{background:var(--acc);color:var(--accink);border-color:transparent}
+.foot{margin-top:auto;padding-top:18px;color:var(--soft);font-size:12.5px}
+/* right: the device */
+.view{position:relative;min-width:0;min-height:0;display:grid;place-items:center}
+.stage{position:relative}
+.dev{position:absolute;left:0;top:0;transform-origin:0 0}
+.caption{position:absolute;left:0;right:0;bottom:-30px;text-align:center;color:var(--soft);font-size:12.5px;white-space:nowrap}
+.screen{position:relative;overflow:hidden;background:#F7F3EC;isolation:isolate}
+.screen iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:transparent}
+.sb{position:absolute;left:0;right:0;top:0;display:flex;align-items:center;justify-content:space-between;z-index:3;pointer-events:none;color:#111;transition:color .3s}
+.sb.dark{color:#fff}
+.sb .ic{display:flex;gap:6px;align-items:center}
+.gest{position:absolute;left:50%;bottom:8px;height:5px;border-radius:3px;background:#111;opacity:.8;z-index:4;pointer-events:none;transform:translateX(-50%)}
+.gest.dark{background:#fff}
 .load{position:absolute;inset:0;display:grid;place-items:center;color:#8A8177;font-size:14px;z-index:2;pointer-events:none;transition:opacity .4s}
-/* on a real phone or a narrow window: no frame, the app fills the screen */
-@media (max-width:760px),(max-height:520px){
-  body{overflow:hidden}.wrap{display:block;padding:0;height:100%}.side,.help{display:none}
-  .stage{width:100%!important;height:100%!important}.phone{position:static;transform:none!important;width:100%;height:100%;padding:0;border-radius:0;background:none;box-shadow:none}
-  .phone::before,.btn,.island,.status,.home{display:none}.screen{width:100%;height:100%;border-radius:0}
+/* frame families */
+.f-iphone{border-radius:var(--r);padding:var(--bz);background:linear-gradient(145deg,#8E8A86,#4A4744 45%,#6F6B67 70%,#3A3835);box-shadow:0 0 0 1px rgba(255,255,255,.08) inset,0 0 0 2px #0B0A0C,0 50px 100px -30px rgba(0,0,0,.8)}
+.f-iphone::before{content:"";position:absolute;inset:4px;border-radius:calc(var(--r) - 4px);background:#050505}
+.f-iphone .screen{border-radius:calc(var(--r) - var(--bz))}
+.island{position:absolute;top:11px;left:50%;width:124px;height:36px;margin-left:-62px;border-radius:20px;background:#000;z-index:5;pointer-events:none}
+.f-se{border-radius:54px;padding:96px 18px;background:linear-gradient(145deg,#2B2B2E,#111 60%);box-shadow:0 0 0 2px #0A0A0A,0 50px 100px -30px rgba(0,0,0,.8)}
+.f-se .screen{border-radius:4px}
+.f-se .spk{position:absolute;top:46px;left:50%;width:56px;height:6px;margin-left:-28px;border-radius:3px;background:#333}
+.f-se .cam{position:absolute;top:44px;left:50%;margin-left:-62px;width:10px;height:10px;border-radius:50%;background:#262632}
+.f-se .homebtn{position:absolute;bottom:22px;left:50%;width:56px;height:56px;margin-left:-28px;border-radius:50%;background:#151515;box-shadow:inset 0 0 0 2px #333}
+.f-android{border-radius:var(--r);padding:var(--bz);background:#0C0C0E;box-shadow:0 0 0 2px #2A2A2E,0 0 0 4px #121214,0 50px 100px -30px rgba(0,0,0,.8)}
+.f-android .screen{border-radius:calc(var(--r) - var(--bz))}
+.punch{position:absolute;top:12px;left:50%;width:22px;height:22px;margin-left:-11px;border-radius:50%;background:#000;box-shadow:0 0 0 2px #111;z-index:5;pointer-events:none}
+.f-tab{border-radius:var(--r);padding:var(--bz);background:var(--tab,#1A1A1C);box-shadow:0 0 0 2px #2F2F33,0 60px 120px -40px rgba(0,0,0,.8)}
+.f-tab .screen{border-radius:calc(var(--r) - var(--bz))}
+.f-tab .tcam{position:absolute;top:calc(var(--bz) / 2 - 4px);left:50%;width:8px;height:8px;margin-left:-4px;border-radius:50%;background:#2A2A33}
+.btn{position:absolute;border-radius:3px;background:#3A3835}
+.f-web{border-radius:12px;background:#2B2A2E;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 60px 120px -40px rgba(0,0,0,.8);padding:44px 0 0}
+.f-web .screen{border-radius:0 0 12px 12px}
+.bar{position:absolute;left:0;right:0;top:0;height:44px;display:flex;align-items:center;gap:14px;padding:0 14px}
+.dots{display:flex;gap:7px}.dots i{width:12px;height:12px;border-radius:50%;background:#FF5F57}.dots i:nth-child(2){background:#FEBC2E}.dots i:nth-child(3){background:#28C840}
+.url{flex:1;max-width:520px;margin:0 auto;height:28px;border-radius:8px;background:#1C1B1E;color:#A9A49E;font-size:13px;display:flex;align-items:center;justify-content:center;gap:6px}
+/* narrow screens: the site, then a button to open the app full screen */
+@media (max-width:900px){
+  body{background-attachment:scroll}
+  .page{display:block;height:auto;padding:28px 20px 40px}
+  .view,.pick{display:none}
+  .side{overflow:visible}
+  .try{display:flex!important}
 }
-@media (max-width:1100px) and (min-width:761px){.help{display:none}.wrap{grid-template-columns:minmax(0,1fr) auto}}
+.try{display:none;align-items:center;justify-content:center;gap:8px;margin:4px 0 22px;padding:15px 18px;border-radius:14px;background:var(--acc);color:var(--accink);font-weight:600;font-size:16px;text-decoration:none}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="side">
-    <h1>Wakha<span lang="ar">واخا</span></h1>
-    <p>Learn Moroccan Darija city by city, from Tangier to Dakhla, with Mchicha the sassy street cat. This is the working prototype: tap and swipe it like a phone.</p>
-    <div class="btns">
-      <button class="pri" id="fresh">Start as a new user</button>
-      <button id="reload">Reload</button>
-      <button id="open">Open full screen</button>
+<div class="page">
+  <aside class="side">
+    <div class="brand"><h1>Wakha</h1><span lang="ar">واخا</span></div>
+    <p class="lead">Learn Moroccan Darija city by city, from Tangier to Dakhla.</p>
+    <p class="sub">Short lessons, real street words and audio, and Mchicha, a sassy white cat who has opinions about your pronunciation.</p>
+    <a class="try" href="app.html">Try the prototype</a>
+    <div class="dl">
+      <div class="store" aria-label="iPhone and iPad app, coming soon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 5h3"/></svg>
+        <span><small>Download for</small><b>iPhone &amp; iPad</b></span><span class="soon">Coming soon</span></div>
+      <div class="store" aria-label="Android app, coming soon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="6" y="2.5" width="12" height="19" rx="2.2"/><circle cx="12" cy="5" r=".8" fill="currentColor"/></svg>
+        <span><small>Download for</small><b>Android</b></span><span class="soon">Coming soon</span></div>
     </div>
-  </div>
-  <div class="stage" id="stage">
-    <div class="phone" id="phone">
-      <i class="btn b1"></i><i class="btn b2"></i><i class="btn b3"></i><i class="btn b4"></i>
-      <div class="screen">
-        <div class="status" id="status"><span id="clock">9:41</span><span class="ic">
-          <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
-          <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.6c2.3 0 4.4.9 6 2.4l1.2-1.3C13.3 1.8 10.8.8 8 .8S2.7 1.8.8 3.7L2 5c1.6-1.5 3.7-2.4 6-2.4Zm0 3.6c1.3 0 2.5.5 3.4 1.3l1.2-1.3A6.7 6.7 0 0 0 8 4.4c-1.8 0-3.4.7-4.6 1.8l1.2 1.3c.9-.8 2.1-1.3 3.4-1.3Zm0 3.5c-.6 0-1.1.2-1.5.6L8 11.9l1.5-1.6c-.4-.4-.9-.6-1.5-.6Z"/></svg>
-          <svg width="27" height="13" viewBox="0 0 27 13" fill="none"><rect x=".5" y=".5" width="23" height="12" rx="3.5" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="18" height="9" rx="2" fill="currentColor"/><path d="M25 4.5v4c.8-.3 1.4-1.1 1.4-2s-.6-1.7-1.4-2Z" fill="currentColor" opacity=".5"/></svg>
-        </span></div>
-        <div class="island"></div>
-        <div class="load" id="load">Loading Wakha…</div>
-        <iframe id="app" src="app.html" title="Wakha app" allow="autoplay; microphone"></iframe>
-        <div class="home" id="home"></div>
-      </div>
+    <div class="pick">
+      <p class="lbl">Try it on</p>
+      <div id="groups"></div>
+      <div class="tools"><button class="tool pri" id="fresh">Start as a new user</button><button class="tool" id="rotate">Rotate</button><button class="tool" id="reload">Reload</button><a class="tool" href="app.html" style="text-decoration:none">Full screen</a></div>
     </div>
-  </div>
-  <div class="help">
-    <h2>How to use it</h2>
-    <ul>
-      <li><b>Tap</b> with the mouse, just like a finger.</li>
-      <li><b>Swipe the feed</b> with the mouse wheel or a trackpad.</li>
-      <li><b>Back</b>: <span class="kbd">Esc</span> or the app’s own close buttons.</li>
-      <li><b>Sound</b>: Darija audio plays after your first tap.</li>
-      <li><b>Start over</b> any time with “Start as a new user”, or in the app: Me → Developer → Start over.</li>
-    </ul>
-  </div>
+    <p class="foot">A prototype: progress is saved in this browser only. Click like a finger, scroll the feed with the mouse wheel, Esc goes back.</p>
+  </aside>
+  <main class="view" id="view"><div class="stage" id="stage"><div class="dev" id="dev"></div><div class="caption" id="cap"></div></div></main>
 </div>
 <script>
-const phone = document.getElementById("phone"), stage = document.getElementById("stage"), app = document.getElementById("app");
-// scale the phone to fit the window height, keeping its real proportions
-function fit() {
-  const W = 393 + 28, H = 852 + 28, k = Math.min(1, (innerHeight - 48) / H, (innerWidth * 0.5) / W);
-  phone.style.setProperty("--k", k.toFixed(4)); stage.style.setProperty("--pw", W * k + "px"); stage.style.setProperty("--ph", H * k + "px");
+// CSS viewport sizes of real devices; sb = status bar height the app should leave free, gb = gesture bar
+const DEV = [
+  { g:"iPhone", id:"iphone-16-pro", name:"iPhone 16 Pro", w:402, h:874, f:"iphone", r:66, bz:13, sb:54, gb:22, island:true },
+  { g:"iPhone", id:"iphone-16-pro-max", name:"iPhone 16 Pro Max", w:440, h:956, f:"iphone", r:72, bz:13, sb:56, gb:22, island:true },
+  { g:"iPhone", id:"iphone-15", name:"iPhone 15", w:393, h:852, f:"iphone", r:64, bz:14, sb:54, gb:22, island:true },
+  { g:"iPhone", id:"iphone-se", name:"iPhone SE", w:375, h:667, f:"se", sb:20, gb:0 },
+  { g:"Android", id:"pixel-9", name:"Pixel 9", w:412, h:915, f:"android", r:48, bz:10, sb:38, gb:18, punch:true },
+  { g:"Android", id:"galaxy-s24", name:"Galaxy S24", w:360, h:780, f:"android", r:40, bz:8, sb:34, gb:16, punch:true },
+  { g:"Android", id:"galaxy-a15", name:"Galaxy A15", w:384, h:832, f:"android", r:30, bz:12, sb:34, gb:16, punch:true },
+  { g:"Tablets", id:"ipad-mini", name:"iPad mini", w:744, h:1133, f:"tab", r:40, bz:22, sb:24, gb:14, tab:"#D9D7D3" },
+  { g:"Tablets", id:"ipad-pro-11", name:"iPad Pro 11″", w:834, h:1194, f:"tab", r:40, bz:20, sb:24, gb:14, tab:"#1A1A1C" },
+  { g:"Tablets", id:"galaxy-tab-s9", name:"Galaxy Tab S9", w:800, h:1280, f:"tab", r:30, bz:22, sb:28, gb:14, tab:"#26262A" },
+  { g:"Web", id:"browser", name:"Web browser", w:1280, h:800, f:"web", sb:0, gb:0 },
+];
+const groupsEl = document.getElementById("groups"), dev = document.getElementById("dev"), stage = document.getElementById("stage"), view = document.getElementById("view");
+const GROUPS = { iPhone:"iOS phones", Android:"Android phones", Tablets:"iPad and Android tablets", Web:"Any computer" };
+groupsEl.innerHTML = Object.keys(GROUPS).map((g) => `<div class="group"><p>${GROUPS[g]}</p><div class="chips">${DEV.filter((d) => d.g === g).map((d) => `<button class="chip" data-id="${d.id}" aria-pressed="false">${d.name}</button>`).join("")}</div></div>`).join("");
+let cur = null, land = false, appHash = "";
+const ICONS_IOS = `<svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.6c2.3 0 4.4.9 6 2.4l1.2-1.3C13.3 1.8 10.8.8 8 .8S2.7 1.8.8 3.7L2 5c1.6-1.5 3.7-2.4 6-2.4Zm0 3.6c1.3 0 2.5.5 3.4 1.3l1.2-1.3A6.7 6.7 0 0 0 8 4.4c-1.8 0-3.4.7-4.6 1.8l1.2 1.3c.9-.8 2.1-1.3 3.4-1.3Zm0 3.5c-.6 0-1.1.2-1.5.6L8 11.9l1.5-1.6c-.4-.4-.9-.6-1.5-.6Z"/></svg><svg width="27" height="13" viewBox="0 0 27 13" fill="none"><rect x=".5" y=".5" width="23" height="12" rx="3.5" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="18" height="9" rx="2" fill="currentColor"/><path d="M25 4.5v4c.8-.3 1.4-1.1 1.4-2s-.6-1.7-1.4-2Z" fill="currentColor" opacity=".5"/></svg>`;
+const ICONS_AND = `<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 2.2c2 0 3.8.8 5.2 2L7 11 1.8 4.2C3.2 3 5 2.2 7 2.2Z"/></svg><svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M13 1v12H1Z"/></svg><svg width="9" height="15" viewBox="0 0 9 15" fill="currentColor"><rect x="2.5" y="0" width="4" height="2" rx=".5"/><rect x="0" y="1.5" width="9" height="13.5" rx="1.6"/></svg>`;
+const clock = () => { const d = new Date(); return d.getHours() + ":" + String(d.getMinutes()).padStart(2, "0"); };
+function build(d) {
+  const w = land && d.f !== "web" ? d.h : d.w, h = land && d.f !== "web" ? d.w : d.h;
+  const sb = land && d.f !== "tab" && d.f !== "web" ? 0 : d.sb;
+  const isAnd = d.f === "android" || d.id === "galaxy-tab-s9";
+  let frame = "", extra = "";
+  if (d.f === "iphone") extra = (d.island && !land ? `<div class="island"></div>` : "") + `<i class="btn" style="left:-3px;top:150px;width:4px;height:32px"></i><i class="btn" style="left:-3px;top:210px;width:4px;height:60px"></i><i class="btn" style="left:-3px;top:285px;width:4px;height:60px"></i><i class="btn" style="right:-3px;top:235px;width:4px;height:95px"></i>`;
+  if (d.f === "se") extra = `<i class="spk"></i><i class="cam"></i><i class="homebtn"></i>`;
+  if (d.f === "android") extra = (!land ? `<div class="punch"></div>` : "") + `<i class="btn" style="right:-4px;top:180px;width:4px;height:70px"></i><i class="btn" style="right:-4px;top:280px;width:4px;height:44px"></i>`;
+  if (d.f === "tab") extra = `<i class="tcam"></i>`;
+  const status = sb ? `<div class="sb" id="sb" style="height:${sb}px;padding:${d.f === "iphone" ? "6px 32px 0 44px" : isAnd ? "2px 18px 0 22px" : "0 22px"};font:600 ${d.f === "iphone" ? 16.5 : 13.5}px/1 ${isAnd ? "Roboto," : "-apple-system,'SF Pro Text',"}'Instrument Sans',system-ui"><span>${clock()}</span><span class="ic">${isAnd ? ICONS_AND : ICONS_IOS}</span></div>` : "";
+  const gest = d.gb ? `<div class="gest" id="gest" style="width:${Math.min(140, w * 0.34)}px;${isAnd ? "height:4px;bottom:6px;" : ""}"></div>` : "";
+  const top = d.f === "web" ? `<div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="url"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="5" width="8" height="6" rx="1.5"/><path d="M4 5V3.5a2 2 0 0 1 4 0V5"/></svg>wakha.app</span><span style="width:58px"></span></div>` : "";
+  dev.className = "dev f-" + d.f;
+  dev.style.cssText = `--r:${d.r || 0}px;--bz:${d.bz || 0}px;${d.tab ? "--tab:" + d.tab : ""}`;
+  dev.innerHTML = `${top}${extra}<div class="screen" style="width:${w}px;height:${h}px">${status}<div class="load" id="load">Loading Wakha…</div><iframe id="app" title="Wakha app on ${d.name}" allow="autoplay; microphone"></iframe>${gest}</div>`;
+  const app = document.getElementById("app");
+  app.addEventListener("load", () => {
+    document.getElementById("load").style.opacity = 0;
+    try {
+      const doc = app.contentDocument;
+      // a framed page gets no safe-area insets, so leave room for this device's status bar and gesture bar
+      doc.documentElement.style.cssText += `;padding-top:${sb}px!important;padding-bottom:${d.gb}px!important;box-sizing:border-box;height:100%`;
+      // colour behind the status bar and gesture bar = whatever the app is showing at its top and bottom edge
+      const colorAt = (y) => {
+        let el = doc.elementFromPoint(app.clientWidth / 2, y); if (el === doc.documentElement) el = doc.body;
+        while (el) {
+          const cs = getComputedStyle(el), c = cs.backgroundColor;
+          if (c && c !== "transparent" && !/rgba\(.*,\s*0\)$/.test(c)) return c;
+          const g = cs.backgroundImage && cs.backgroundImage.match(/rgba?\([^)]*\)/); if (g && !/,\s*0\)$/.test(g[0])) return g[0];
+          el = el.parentElement;
+        }
+        return getComputedStyle(doc.body).backgroundColor;
+      };
+      const tone = () => {
+        const bg = colorAt(sb + 3), bot = colorAt(app.clientHeight - d.gb - 3), m = bg.match(/\d+/g) || [255, 255, 255];
+        const mb = bot.match(/\d+/g) || m, darkB = (0.299 * mb[0] + 0.587 * mb[1] + 0.114 * mb[2]) / 255 < 0.5;
+        const fill = `linear-gradient(${bg} 50%, ${bot} 50%)`;
+        dev.querySelector(".screen").style.background = fill; doc.documentElement.style.background = fill;
+        const g0 = document.getElementById("gest"); g0 && g0.classList.toggle("dark", darkB);
+        const dark = (0.299 * m[0] + 0.587 * m[1] + 0.114 * m[2]) / 255 < 0.5;
+        const s = document.getElementById("sb"), g = document.getElementById("gest");
+        s && s.classList.toggle("dark", dark);
+      };
+      clearInterval(window.__toneT); window.__toneT = setInterval(tone, 350); tone();
+    } catch (e) {}
+  });
+  app.src = "app.html" + appHash; appHash = "";
+  document.getElementById("cap").textContent = `${d.name} · ${w} × ${h}`;
+  fit();
 }
-addEventListener("resize", fit); fit();
-// status bar clock
-const tick = () => { const d = new Date(); document.getElementById("clock").textContent = d.getHours() + ":" + String(d.getMinutes()).padStart(2, "0"); };
-tick(); setInterval(tick, 20000);
-// the app's own top padding uses the device safe area, which is zero in a frame: give it the iPhone's status bar and home bar
-app.addEventListener("load", () => {
-  document.getElementById("load").style.opacity = 0;
-  try {
-    const doc = app.contentDocument;
-    doc.documentElement.style.cssText += ";padding-top:47px!important;padding-bottom:21px!important;box-sizing:border-box;height:100%";
-    // status bar text: dark on a light page, light on a dark page
-    const tone = () => {
-      const bg = getComputedStyle(doc.body).backgroundColor, m = bg.match(/\d+/g) || [255, 255, 255];
-      const dark = (0.299 * m[0] + 0.587 * m[1] + 0.114 * m[2]) / 255 < 0.5;
-      document.getElementById("status").classList.toggle("dark", dark); document.getElementById("home").classList.toggle("dark", dark);
-      document.querySelector(".screen").style.background = bg;
-    };
-    new MutationObserver(tone).observe(doc.documentElement, { attributes:true, attributeFilter:["data-theme", "class"] }); tone();
-    matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => setTimeout(tone, 50));
-  } catch (e) {}
-});
-document.getElementById("fresh").onclick = () => { app.src = "app.html#newuser"; setTimeout(() => { try { app.contentWindow.location.reload(); } catch (e) {} }, 50); };
-document.getElementById("reload").onclick = () => { app.src = "app.html"; };
-document.getElementById("open").onclick = () => { location.href = "app.html"; };
-addEventListener("keydown", (e) => { if (e.key === "Escape") try { app.contentWindow.history.back(); } catch (x) {} });
+function fit() {
+  if (!cur) return;
+  const r = dev.getBoundingClientRect(), W = dev.offsetWidth, H = dev.offsetHeight;
+  const avW = view.clientWidth - 10, avH = view.clientHeight - 50;
+  const k = Math.min(1, avW / W, avH / H);
+  dev.style.transform = `scale(${k})`; stage.style.width = W * k + "px"; stage.style.height = H * k + "px";
+}
+function choose(id, keepHash) {
+  const d = DEV.find((x) => x.id === id) || DEV[0]; cur = d;
+  document.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", c.dataset.id === d.id));
+  document.getElementById("rotate").disabled = d.f === "web"; document.getElementById("rotate").style.opacity = d.f === "web" ? .4 : 1;
+  try { localStorage.setItem("wakha.device", d.id); } catch (e) {}
+  if (!keepHash) history.replaceState(null, "", "#" + d.id);
+  build(d);
+}
+groupsEl.addEventListener("click", (e) => { const c = e.target.closest(".chip"); if (c) { land = false; choose(c.dataset.id); } });
+document.getElementById("rotate").onclick = () => { land = !land; build(cur); };
+document.getElementById("reload").onclick = () => build(cur);
+document.getElementById("fresh").onclick = () => { appHash = "#newuser"; build(cur); };
+addEventListener("resize", fit);
+addEventListener("hashchange", () => { const id = location.hash.slice(1); if (DEV.some((d) => d.id === id) && (!cur || cur.id !== id)) { land = false; choose(id, true); } });
+addEventListener("keydown", (e) => { if (e.key === "Escape") try { document.getElementById("app").contentWindow.history.back(); } catch (x) {} });
+setInterval(() => { const s = document.querySelector("#sb span"); if (s) s.textContent = clock(); }, 20000);
+let start = location.hash.slice(1); try { start = start || localStorage.getItem("wakha.device"); } catch (e) {}
+if (matchMedia("(min-width:901px)").matches) choose(DEV.some((d) => d.id === start) ? start : "iphone-16-pro", true);
 </script>
 </body>
 </html>

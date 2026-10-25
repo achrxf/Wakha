@@ -665,7 +665,10 @@ function markDay() {
   else if (S.lastGoalDay === addDays(d, -1)) S.streak += 1;
   else if (S.lastGoalDay && diffDays(S.lastGoalDay, d) === 2 && S.shields > 0) { S.shields--; S.streak += 1; usedShield = true; }
   else S.streak = 1;
+  const record = S.streak > S.best && S.streak > 1;
   S.lastGoalDay = d; S.best = Math.max(S.best, S.streak);
+  // the streak stays out of sight until this moment: today's task is done, so show it once
+  queueOverlay({ kind:"streak", n:S.streak, usedShield, record });
   return { usedShield };
 }
 function checkGoal() {
@@ -673,7 +676,7 @@ function checkGoal() {
   if (rec.goalMet || rec.xp < S.goal) return;
   rec.goalMet = true;
   const { usedShield } = markDay();
-  queueOverlay({ kind:"goal", streak:S.streak, usedShield });
+  queueOverlay({ kind:"goal", streak:S.streak, usedShield, quiet:true });
 }
 // ok/wrong bookkeeping shared by feed and lessons; returns XP awarded
 function hit(ok, fromEl, base, opts = {}) {
@@ -751,10 +754,21 @@ function nextOverlay() {
       <p class="ov-s"><b>${dj(o.info.title)}</b>${sub ? esc(L(sub)) : ""}</p>
       <div class="ov-btns"><button class="cta" data-ov="close">${esc(t("keepGoing"))}</button><button class="ghost" data-ov="share">${ICON.share}<span>${esc(t("share"))}</span></button></div></div>`;
     Sound.play("level"); setTimeout(() => FX.rain(), 120);
+  } else if (o.kind === "streak") {
+    // the week as seven stones: past days of the run already set, today's drops in; the number rolls up
+    const n = o.n, days = Array.from({ length:7 }, (_, i) => i), filled = Math.min(7, n), todayIdx = filled - 1;
+    html = `<div class="ov-box stk"><div class="stk-cat">${mascot("proud", "", null, "full")}</div>
+      <p class="ov-k">${esc(t("stkK"))}</p>
+      <p class="stk-n"><span class="stk-old">${n - 1}</span><span class="stk-new">${n}</span></p>
+      <p class="ov-t">${esc(n === 1 ? t("stkT1") : t("streakL"))}</p>
+      <div class="stk-week">${days.map((i) => `<i class="${i < todayIdx ? "on" : i === todayIdx ? "stk-now" : ""}"></i>`).join("")}</div>
+      <p class="ov-s">${esc(n === 1 ? t("stkS1") : t("stkS"))}${o.record ? " " + esc(t("stkBest")) : ""}${o.usedShield ? "<br>" + esc(t("shieldUsed")) : ""}</p>
+      <div class="ov-btns"><button class="cta" data-ov="close">${esc(t("keepGoing"))}</button></div></div>`;
+    Sound.play("good"); setTimeout(() => { Sound.play("level"); haptic([10, 40, 10]); }, 650);
   } else if (o.kind === "goal") {
     html = `<div class="ov-box"><div style="position:relative">${teaGlass(1, "ov-glass")}<svg viewBox="0 0 40 30" style="position:absolute;left:50%;top:-22px;width:46px;transform:translateX(-50%)" aria-hidden="true"><path class="steam" d="M12 28c-4-6 4-8 0-15M22 28c-4-6 4-8 0-15M32 28c-4-6 4-8 0-15" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".7"/></svg></div>
       <p class="ov-k">${esc(t("goalDoneK"))}</p><p class="ov-t">${dj(t("goalDoneT").replace(/ ?!$/, "!"))}</p>
-      <p class="ov-s">${esc(t("goalDoneS", { n:o.streak }))}${o.usedShield ? "<br>" + esc(t("shieldUsed")) : ""}</p>
+      <p class="ov-s">${o.quiet ? "" : esc(t("goalDoneS", { n:o.streak }))}</p>
       <div class="ov-btns"><button class="cta" data-ov="close">${esc(t("keepGoing"))}</button></div></div>`;
     Sound.play("level"); setTimeout(() => FX.rain(90), 120);
   } else if (o.kind === "unit") {

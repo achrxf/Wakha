@@ -1521,7 +1521,12 @@
   "Shades": "Gafas de sol",
   "Try it as a new user": "Probar como usuario nuevo",
   "Start over": "Empezar de cero",
-  "Tap again: erase everything": "Toca otra vez: borrar todo"
+  "Tap again: erase everything": "Toca otra vez: borrar todo",
+  "Streak": "Racha",
+  "Day one. It begins.": "Día uno. Empieza.",
+  "Come back tomorrow and it becomes a streak.": "Vuelve mañana y será una racha.",
+  "Same time tomorrow? Mchicha is counting.": "¿Mañana a la misma hora? Mchicha está contando.",
+  "New record.": "Nuevo récord."
  },
  "de": {
   "Feed": "Feed",
@@ -3045,7 +3050,12 @@
   "Shades": "Sonnenbrille",
   "Try it as a new user": "Als neuer Nutzer testen",
   "Start over": "Neu anfangen",
-  "Tap again: erase everything": "Nochmal tippen: alles löschen"
+  "Tap again: erase everything": "Nochmal tippen: alles löschen",
+  "Streak": "Serie",
+  "Day one. It begins.": "Tag eins. Es geht los.",
+  "Come back tomorrow and it becomes a streak.": "Komm morgen wieder, dann wird es eine Serie.",
+  "Same time tomorrow? Mchicha is counting.": "Morgen zur gleichen Zeit? Mchicha zählt mit.",
+  "New record.": "Neuer Rekord."
  },
  "nl": {
   "Feed": "Feed",
@@ -4569,7 +4579,12 @@
   "Shades": "Zonnebril",
   "Try it as a new user": "Uitproberen als nieuwe gebruiker",
   "Start over": "Opnieuw beginnen",
-  "Tap again: erase everything": "Tik nog eens: alles wissen"
+  "Tap again: erase everything": "Tik nog eens: alles wissen",
+  "Streak": "Reeks",
+  "Day one. It begins.": "Dag één. Het begint.",
+  "Come back tomorrow and it becomes a streak.": "Kom morgen terug en het wordt een reeks.",
+  "Same time tomorrow? Mchicha is counting.": "Morgen zelfde tijd? Mchicha telt mee.",
+  "New record.": "Nieuw record."
  },
  "it": {
   "Feed": "Feed",
@@ -6093,6 +6108,11 @@
   "Shades": "Occhiali da sole",
   "Try it as a new user": "Prova come nuovo utente",
   "Start over": "Ricomincia da capo",
-  "Tap again: erase everything": "Tocca ancora: cancella tutto"
+  "Tap again: erase everything": "Tocca ancora: cancella tutto",
+  "Streak": "Serie",
+  "Day one. It begins.": "Giorno uno. Si comincia.",
+  "Come back tomorrow and it becomes a streak.": "Torna domani e diventa una serie.",
+  "Same time tomorrow? Mchicha is counting.": "Domani alla stessa ora? Mchicha sta contando.",
+  "New record.": "Nuovo record."
  }
 }

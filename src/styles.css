@@ -1567,3 +1567,41 @@ svg{display:block}
 .cat-sit .cat.mc.catseq{width:100%;height:auto;aspect-ratio:.9}
 .hatrow button img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain;object-position:50% 100%}
 @media (prefers-reduced-motion:reduce){.cat.mc,.cat.mc *{animation:none!important}.cat.mc.catseq > img{opacity:0}.cat.mc.catseq > img.last{opacity:1}}
+
+/* v1.18 streak: no pill in the top bar; it appears as a moment when the day is earned */
+#hud-streak{display:none!important}
+.ov-box.stk{text-align:center}
+.stk-cat{width:150px;height:150px;margin:0 auto -4px}
+.stk-cat .cat.mc{width:150px;height:150px}
+.stk-n{position:relative;width:100%;height:84px;margin:-4px 0 -8px;overflow:hidden;font:700 80px/84px var(--font);letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:#fff}
+.stk-n span{position:absolute;inset:0;display:block}
+.stk-old{animation:stkout 420ms cubic-bezier(.5,0,.75,0) 450ms both}
+.stk-new{animation:stkin 620ms cubic-bezier(.2,1.4,.4,1) 650ms both}
+@keyframes stkout{to{transform:translateY(-90%);opacity:0}}
+@keyframes stkin{from{transform:translateY(90%);opacity:0}to{transform:none;opacity:1}}
+.stk-week{display:flex;justify-content:center;gap:9px;margin:4px 0 2px}
+.stk-week i{display:block;flex:none;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.12);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.25)}
+.stk-week i.on{background:#fff;box-shadow:none}
+.stk-week i.stk-now{background:#E9B44C;box-shadow:0 0 0 4px rgba(233,180,76,.25);animation:stkdrop 520ms cubic-bezier(.3,1.6,.5,1) 900ms both}
+@keyframes stkdrop{from{transform:translateY(-26px) scale(.4);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.stk-old{display:none}.stk-new,.stk-week i.stk-now{animation:none}}
+
+/* ---------- v1.18 every screen size ----------
+   phones (up to 699px): full screen, as designed.
+   tablets (700px+ wide, touch or not): the whole app is scaled up with CSS zoom so it reads like a big phone
+     instead of a strip in the middle; the column is capped so lines stay readable.
+   desktop browsers (1100px+ wide with a mouse): a centred app card with rounded corners on a soft backdrop. */
+@media (min-width:700px){
+  :root{--z:1.18}
+  .stage{zoom:var(--z);height:100%;width:100%;max-width:680px;box-shadow:none}
+  body{background-image:none}
+}
+@media (min-width:740px) and (min-height:1000px){ :root{--z:1.3} }
+@media (min-width:1100px) and (hover:hover) and (pointer:fine){
+  :root{--z:1}
+  body{background:var(--page-bg,#E9E4DA) var(--zl-page);background-size:110px 110px}
+  .stage{zoom:1;width:auto;max-width:440px;height:calc(100% - 48px);margin:24px auto;border-radius:28px;box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 40px 90px -30px rgba(40,25,10,.45)}
+}
+@media (min-width:1100px) and (hover:hover) and (pointer:fine) and (prefers-color-scheme:dark){ :root:not([data-theme="light"]) body{--page-bg:#0D0D0C} }
+:root[data-theme="dark"] body{--page-bg:#0D0D0C}
+@media (min-width:1100px) and (max-height:620px) and (hover:hover) and (pointer:fine){ .stage{height:100%;margin:0 auto;border-radius:0} }

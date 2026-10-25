@@ -1175,6 +1175,31 @@
   "c": "ui"
  },
  {
+  "en": "Streak",
+  "fr": "Série",
+  "c": "ui"
+ },
+ {
+  "en": "Day one. It begins.",
+  "fr": "Premier jour. Ça commence.",
+  "c": "ui"
+ },
+ {
+  "en": "Come back tomorrow and it becomes a streak.",
+  "fr": "Reviens demain et ça devient une série.",
+  "c": "ui"
+ },
+ {
+  "en": "Same time tomorrow? Mchicha is counting.",
+  "fr": "Même heure demain ? Mchicha compte.",
+  "c": "ui"
+ },
+ {
+  "en": "New record.",
+  "fr": "Nouveau record.",
+  "c": "ui"
+ },
+ {
   "en": "One lesson today. I won’t ask twice.",
   "fr": "Une leçon aujourd’hui. Je ne demanderai pas deux fois.",
   "c": "ui"
